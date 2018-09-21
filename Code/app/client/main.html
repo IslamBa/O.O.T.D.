@@ -9,10 +9,15 @@
 <body>
   <h1>Welcome to Meteor Yow!</h1>
 
-  {{> loginButtons}}
+  <!-- {{> loginButtons}} -->
+
+  
 
   {{#if currentUser}}
     {{> content}}
+    {{else}}
+    {{> register}}
+    {{> login}}
   {{/if}}
 
 
@@ -21,6 +26,52 @@
 
 <template name="content">
   <h1>Yow bist eingeloggt</h1>
+  <button class="btnLogout">Abmelden</button>
 </template>
 
+<template name="login">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="login-username" type="text" class="validate">
+        <label for="login-username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="login-password" type="password" class="validate">
+        <label for="login-password">Password</label>
+      </div>
+    </div>
+    <div>
+      <button type="submit">Anmelden</button>
+    </div>
+  </form>
+</template>
+
+<template name="register">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="username" type="text" class="validate">
+        <label for="username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="password" type="password" class="validate">
+        <label for="password">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="email" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <div>
+      <button type="submit">Registrieren</button>
+    </div>
+  </form>
+</template>
 
