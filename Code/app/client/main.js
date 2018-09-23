@@ -1,9 +1,6 @@
 import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-
+import { Profile } from '../collections';
 import './main.html';
-
-var weatherApiKey = '&APPID=50fd161807446be0d6d1b7e5ee0f537c';
 
 Template.register.events({
     'submit form'(event, template) {
@@ -11,11 +8,14 @@ Template.register.events({
         var username = $("#username").val();
         var email = $("#email").val();
         var passwort = $("#password").val();
+        
         Accounts.createUser({
             username: username,
             email: email,
             password: passwort
         });
+
+        
     }
 });
 
@@ -36,8 +36,21 @@ Template.content.events({
     'click #btnWeather'(event) {
         var alt = new Date(); alt.setMinutes(alt.getMinutes() - 20);
         var neu = new Date();
+        
 
-        var zeitDifferenz = (Math.abs(neu - alt)) / 60000;
+        Meteor.call('addNewProfile',Meteor.userId());
+
+        Meteor.call('getWeather','Vienna',neu,(error,result)=>{
+            console.log(result);
+        });
+
+        // Profile.update(Meteor.userId(), { $set: { lastWeatherDt: 'banane' } });
+
+        console.log(Meteor.userId());
+
+        // Profile.insert({ id: Meteor.userId(),lastWeatherDt: new Date() });
+
+        // var zeitDifferenz = (Math.abs(neu - alt)) / 60000;
         // HTTP.get('http://api.openweathermap.org/data/2.5/forecast?q=Vienna&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c', (error, result) => {
         //     if (!error) {
         //         console.log(result);
