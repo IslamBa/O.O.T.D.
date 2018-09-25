@@ -34,19 +34,17 @@ Template.content.events({
         Meteor.logout();
     },
     'click #btnWeather'(event) {
-        var alt = new Date(); alt.setMinutes(alt.getMinutes() - 20);
-        var neu = new Date();
+        // var alt = new Date(); alt.setMinutes(alt.getMinutes() - 20);
+        // var neu = new Date();
         
 
         Meteor.call('addNewProfile',Meteor.userId());
 
-        Meteor.call('getWeather','Vienna',neu,(error,result)=>{
+        Meteor.call('getWeather',function (error,result){
             console.log(result);
         });
 
         // Profile.update(Meteor.userId(), { $set: { lastWeatherDt: 'banane' } });
-
-        console.log(Meteor.userId());
 
         // Profile.insert({ id: Meteor.userId(),lastWeatherDt: new Date() });
 
