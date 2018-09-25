@@ -2,20 +2,20 @@ import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
 
+var userProfile;
+
 Template.register.events({
     'submit form'(event, template) {
         event.preventDefault();
         var username = $("#username").val();
         var email = $("#email").val();
         var passwort = $("#password").val();
-        
+
         Accounts.createUser({
             username: username,
             email: email,
             password: passwort
         });
-
-        
     }
 });
 
@@ -29,30 +29,31 @@ Template.login.events({
     }
 });
 
+Template.content.onRendered(() => {
+    Meteor.call('getWeather', function (error, result) {
+        if (result != false) {
+            $(".title").text("Wetter: " + result.data.main.temp + "°C");
+        }
+    });
+
+    Meteor.call('getProfile', Meteor.userId(), (error,result)=>{
+        $(".title").text("Wetter: " + result.weather.main.temp + "°C");
+    });
+});
+
+
 Template.content.events({
     'click .btnLogout'(event) {
         Meteor.logout();
     },
     'click #btnWeather'(event) {
-        // var alt = new Date(); alt.setMinutes(alt.getMinutes() - 20);
-        // var neu = new Date();
-        
 
-        Meteor.call('addNewProfile',Meteor.userId());
+        Meteor.call('addNewProfile', Meteor.userId());
 
-        Meteor.call('getWeather',function (error,result){
-            console.log(result);
+        Meteor.call('getWeather', function (error, result) {
+            if (result != false) {
+                $(".title").text("Wetter: " + result.data.main.temp + "°C");
+            }
         });
-
-        // Profile.update(Meteor.userId(), { $set: { lastWeatherDt: 'banane' } });
-
-        // Profile.insert({ id: Meteor.userId(),lastWeatherDt: new Date() });
-
-        // var zeitDifferenz = (Math.abs(neu - alt)) / 60000;
-        // HTTP.get('http://api.openweathermap.org/data/2.5/forecast?q=Vienna&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c', (error, result) => {
-        //     if (!error) {
-        //         console.log(result);
-        //     }
-        // });
     }
 });

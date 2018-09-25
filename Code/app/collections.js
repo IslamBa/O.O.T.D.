@@ -21,7 +21,8 @@ if (Meteor.isServer) {
       if (zeitDifferenz >= 10) {
         //  return "neuste wetter Daten";
         Profile.update(user._id, { $set: { lastWeatherDt: new Date() } });
-        const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip='+zip+','+country+'&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
+        const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
+        Profile.update(user._id, { $set: { weather: result.data } });
         return result;
       }
       else {
@@ -35,6 +36,9 @@ if (Meteor.isServer) {
       if (!Profile.findOne({ id: id })) {
         Profile.insert({ id: id, lastWeatherDt: new Date() });
       }
+    },
+    getProfile(id) {
+      return Profile.findOne({ id: id });
     }
   });
 }
