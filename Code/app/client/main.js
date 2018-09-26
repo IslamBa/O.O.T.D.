@@ -2,6 +2,9 @@ import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
 
+Meteor.subscribe('Profile');
+Meteor.subscribe('User');
+
 var userProfile;
 
 Template.register.events({
@@ -10,11 +13,22 @@ Template.register.events({
         var username = $("#username").val();
         var email = $("#email").val();
         var passwort = $("#password").val();
+        var zip = 1160;
+        var country = 'at';
 
         Accounts.createUser({
             username: username,
             email: email,
             password: passwort
+        }, (error) => {
+            if (!error) {
+                var user = {
+                    id: Meteor.userId(),
+                    zip: zip,
+                    country: country
+                }
+                Meteor.call('addNewProfile', user);
+            }
         });
     }
 });
@@ -36,7 +50,7 @@ Template.content.onRendered(() => {
         }
     });
 
-    Meteor.call('getProfile', Meteor.userId(), (error,result)=>{
+    Meteor.call('getProfile', Meteor.userId(), (error, result) => {
         $(".title").text("Wetter: " + result.weather.main.temp + "°C");
     });
 });
@@ -48,7 +62,7 @@ Template.content.events({
     },
     'click #btnWeather'(event) {
 
-        Meteor.call('addNewProfile', Meteor.userId());
+
 
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
