@@ -13,8 +13,8 @@ Template.register.events({
         var username = $("#username").val();
         var email = $("#email").val();
         var passwort = $("#password").val();
-        var zip = 1160;
-        var country = 'at';
+        var zip = $("#zip").val();
+        var country = $("#countrySel").val();
 
         Accounts.createUser({
             username: username,
@@ -44,14 +44,15 @@ Template.login.events({
 });
 
 Template.content.onRendered(() => {
+   
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
-            $(".title").text("Wetter: " + result.data.main.temp + "°C");
+            $(".title").text("Wetter: " + result.data.main.temp_max + "°C");
         }
     });
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
-        $(".title").text("Wetter: " + result.weather.main.temp + "°C");
+        $(".title").text("Wetter: " + result.weather.main.temp_max + "°C");
     });
 });
 

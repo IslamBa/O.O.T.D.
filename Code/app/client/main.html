@@ -1,8 +1,7 @@
 <head>
   <title>O.O.T.D.</title>
 
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 </head>
 
@@ -18,7 +17,9 @@
   {{/if}}
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 <template name="content">
@@ -71,13 +72,13 @@
     <div class="row">
       <div class="input-field col s12">
         <input id="zip" type="text" class="validate">
-        <label for="zip">Plz:</label>
+        <label for="zip">PLZ</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-      <select>
-        <option value="" disabled selected>Land wählen</option>
+      <select id="countrySel">
+        <option value="none" disabled selected>Land wählen</option>
         <option value="at">Österreich</option>
         <option value="de">Deutschland</option>
         <option value="ch">Schweiz</option>
