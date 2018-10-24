@@ -2,34 +2,153 @@
   <title>O.O.T.D.</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+  crossorigin="anonymous">
 
 </head>
 
 <body>
-  <h1>Welcome to Meteor Yow!</h1>
-  
-
-  {{#if currentUser}}
-    {{> content}}
-    {{else}}
-    {{> register}}
-    {{> login}}
-  {{/if}}
 
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  {{> Router}}
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 <template name="content">
+  {{#if currentUser}}
   <h1 class="title">Wetter: </h1>
   <button id="btnWeather">Get Weather</button>
   <button class="btnLogout">Abmelden</button>
-  
+  {{else}}
+  <span style="color:blue;">
+    <a href="/">Bitte Einlogen !</a>
+  </span>
+  {{/if}}
 </template>
 
 <template name="login">
+
+  <div class="img-login">
+
+    <div class="login-container">
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="text" id="login-username" />
+
+          <label class="input__label input__label--ruri" for="login-username">
+
+            <span class="input__label-content input__label-content--ruri">Username</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="password" id="login-password" />
+          <label class="input__label input__label--ruri" for="login-password">
+            <span class="input__label-content input__label-content--ruri">Password</span>
+          </label>
+        </span>
+      </div>
+      <div>
+        <button class="btn login-buttonn">Login</button>
+      </div>
+    </div>
+    <div class="text-center">
+      <p class="neu-registrieren">Noch kein Account?
+        <span style="color:blue;">
+          <a href="/registrieren">Hier Registrieren !</a>
+        </span>
+      </p>
+    </div>
+  </div>
+
+
+
+</template>
+
+<template name="register">
+  <div class="img-login">
+    <div class="registrieren-container">
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-at"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="text" id="email" />
+          <label class="input__label input__label--ruri" for="email">
+            <span class="input__label-content input__label-content--ruri">Email</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="text" id="username" />
+          <label class="input__label input__label--ruri" for="username">
+            <span class="input__label-content input__label-content--ruri">Username</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="password" id="password" />
+          <label class="input__label input__label--ruri" for="password">
+            <span class="input__label-content input__label-content--ruri">Passwort</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="password" id="zip" />
+          <label class="input__label input__label--ruri" for="zip">
+            <span class="input__label-content input__label-content--ruri">PLZ</span>
+          </label>
+        </span>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <select id="countrySel">
+            <option value="none" disabled selected>Land wählen</option>
+            <option value="at">Österreich</option>
+            <option value="de">Deutschland</option>
+            <option value="ch">Schweiz</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn login-buttonn" type="submit" name="action">Registrieren
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+</template>
+
+<!--<template name="login">
   <form class="col s12">
     <div class="row">
       <div class="input-field col s12">
@@ -48,6 +167,10 @@
     </div>
   </form>
 </template>
+
+
+
+
 
 <template name="register">
   <form class="col s12">
@@ -89,5 +212,4 @@
       <button type="submit">Registrieren</button>
     </div>
   </form>
-</template>
-
+</template>-->

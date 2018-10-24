@@ -5,6 +5,18 @@ import './main.html';
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
 
+Router.route('/', function () {
+    this.render('login');
+});
+
+Router.route('/registrieren', function () {
+    this.render('register');
+});
+
+Router.route('/startseite', function () {
+    this.render('content');
+});
+
 var userProfile;
 
 Template.register.events({
