@@ -3,16 +3,11 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-  crossorigin="anonymous">
+    crossorigin="anonymous">
 
 </head>
 
 <body>
-<<<<<<< HEAD
-  
-  
-=======
->>>>>>> 7e85fd5b63ef9bb05103ae99f72ca1c087eaced6
 
 
   {{> Router}}
@@ -30,7 +25,9 @@
   {{#if currentUser}}
   <h1 class="title">Wetter: </h1>
   <button id="btnWeather">Get Weather</button>
-  <button class="btnLogout">Abmelden</button>
+  <a href="/">
+    <button class="btnLogout">Abmelden</button>
+  </a>
   {{else}}
   <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>
@@ -42,34 +39,27 @@
 
   <div class="img-login">
 
-    <div class="login-container">
-      <div class="col-sm-3 iconn">
-        <i class="fas fa-user"></i>
-      </div>
-      <div class="col-sm-9">
-        <span class="input input--ruri">
-          <input class="input__field input__field--ruri" type="text" id="login-username" />
 
-          <label class="input__label input__label--ruri" for="login-username">
+    <div class="container carddes">
+      <h3 class="text-center">Login</h3>
+      <form class="btnright">
 
-            <span class="input__label-content input__label-content--ruri">Username</span>
-          </label>
-        </span>
-      </div>
-      <div class="col-sm-3 iconn">
-        <i class="fas fa-lock"></i>
-      </div>
-      <div class="col-sm-9">
-        <span class="input input--ruri">
-          <input class="input__field input__field--ruri" type="password" id="login-password" />
-          <label class="input__label input__label--ruri" for="login-password">
-            <span class="input__label-content input__label-content--ruri">Password</span>
-          </label>
-        </span>
-      </div>
-      <div>
-        <button class="btn login-buttonn">Login</button>
-      </div>
+        <div class="form-group">
+
+          <input id="login-username" type="text" class="validate border-bottom form-control" placeholder="Benutzername">
+
+        </div>
+
+        <div class="form-group">
+
+          <input id="login-password" type="password" class="validate border-bottom form-control" placeholder="Passwort">
+
+        </div>
+
+        <div class="form-group float-right">
+          <button type="submit">Anmelden</button>
+        </div>
+      </form>
     </div>
     <div class="text-center">
       <p class="neu-registrieren">Noch kein Account?
@@ -218,3 +208,33 @@
     </div>
   </form>
 </template>-->
+
+<!-- <div class="login-container">
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="text" id="login-username" />
+
+          <label class="input__label input__label--ruri" for="login-username">
+
+            <span class="input__label-content input__label-content--ruri">Username</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="password" id="login-password" />
+          <label class="input__label input__label--ruri" for="login-password">
+            <span class="input__label-content input__label-content--ruri">Password</span>
+          </label>
+        </span>
+      </div>
+      <div>
+        <button class="btn login-buttonn">Login</button>
+      </div>
+    </div> -->

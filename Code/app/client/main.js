@@ -51,7 +51,15 @@ Template.login.events({
         var username = $("#login-username").val();
         var passwort = $("#login-password").val();
 
-        Meteor.loginWithPassword(username, passwort);
+        Meteor.loginWithPassword(username, passwort,(err)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log("passt");
+                Router.go('startseite');
+            }
+        });
     }
 });
 
