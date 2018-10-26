@@ -6,7 +6,7 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor Yow!</h1>
+  
   
 
   {{#if currentUser}}
@@ -23,6 +23,7 @@
 </body>
 
 <template name="content">
+    <h1>Welcome to Meteor {{username}} Yow!</h1>
   <h1 class="title">Wetter: </h1>
   <button id="btnWeather">Get Weather</button>
   <button class="btnLogout">Abmelden</button>

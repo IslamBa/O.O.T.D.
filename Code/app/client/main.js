@@ -43,6 +43,12 @@ Template.login.events({
     }
 });
 
+Template.content.helpers({
+    username(){
+        return Meteor.user().username;
+    }
+})
+
 Template.content.onRendered(() => {
    
     Meteor.call('getWeather', function (error, result) {
@@ -52,6 +58,8 @@ Template.content.onRendered(() => {
     });
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
+        userProfile = result;
+        
         $(".title").text("Wetter: " + result.weather.main.temp_max + "°C");
     });
 });
