@@ -206,6 +206,7 @@ label{
 
 input{
 	border:0 !important;
+	border-bottom:1px solid rgb(80, 80, 80) !important;
 }
 
 input:focus{

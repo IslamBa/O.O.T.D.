@@ -17,6 +17,10 @@ Router.route('/startseite', function () {
     this.render('content');
 });
 
+Router.route('/resetPassword', function () {
+    this.render('resPass');
+});
+
 var userProfile;
 
 Template.register.events({
@@ -58,6 +62,30 @@ Template.login.events({
             else{
                 console.log("passt");
                 Router.go('startseite');
+            }
+        });
+    },
+    'click #forgotPass'(event){
+        Accounts.forgotPassword({email: 'islam2000@live.at'}, (err)=>{
+            if(!err){
+                console.log("passt");
+            }
+            else{
+                console.log(err);
+            }
+        });
+    }
+});
+
+Template.resPass.events({
+    'click #sendReset'(event){
+        email = $("#resEmail").val();
+        Accounts.forgotPassword({email: email}, (err)=>{
+            if(!err){
+                console.log("passt");
+            }
+            else{
+                console.log(err);
             }
         });
     }

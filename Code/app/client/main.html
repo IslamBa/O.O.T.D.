@@ -46,18 +46,21 @@
 
         <div class="form-group">
 
-          <input id="login-username" type="text" class="validate border-bottom form-control" placeholder="Benutzername">
+          <input id="login-username" type="text" class="validate form-control" placeholder="Benutzername">
 
         </div>
 
         <div class="form-group">
 
-          <input id="login-password" type="password" class="validate border-bottom form-control" placeholder="Passwort">
+          <input id="login-password" type="password" class="validate form-control" placeholder="Passwort">
 
         </div>
 
         <div class="form-group float-right">
           <button type="submit">Anmelden</button>
+        </div>
+        <div>
+          <a href="/resetPassword">Passwort vergessen?</a>
         </div>
       </form>
     </div>
@@ -76,71 +79,58 @@
 
 <template name="register">
   <div class="img-login">
-    <div class="registrieren-container">
-      <div class="col-sm-3 iconn">
-        <i class="fas fa-at"></i>
-      </div>
-      <div class="col-sm-9">
-        <span class="input input--ruri">
-          <input class="input__field input__field--ruri" type="text" id="email" />
-          <label class="input__label input__label--ruri" for="email">
-            <span class="input__label-content input__label-content--ruri">Email</span>
-          </label>
-        </span>
-      </div>
-      <div class="col-sm-3 iconn">
-        <i class="fas fa-user"></i>
-      </div>
-      <div class="col-sm-9">
-        <span class="input input--ruri">
-          <input class="input__field input__field--ruri" type="text" id="username" />
-          <label class="input__label input__label--ruri" for="username">
-            <span class="input__label-content input__label-content--ruri">Username</span>
-          </label>
-        </span>
-      </div>
-      <div class="col-sm-3 iconn">
-        <i class="fas fa-lock"></i>
-      </div>
-      <div class="col-sm-9">
-        <span class="input input--ruri">
-          <input class="input__field input__field--ruri" type="password" id="password" />
-          <label class="input__label input__label--ruri" for="password">
-            <span class="input__label-content input__label-content--ruri">Passwort</span>
-          </label>
-        </span>
-      </div>
-      <div class="col-sm-3 iconn">
-        <i class="fas fa-lock"></i>
-      </div>
-      <div class="col-sm-9">
-        <span class="input input--ruri">
-          <input class="input__field input__field--ruri" type="password" id="zip" />
-          <label class="input__label input__label--ruri" for="zip">
-            <span class="input__label-content input__label-content--ruri">PLZ</span>
-          </label>
-        </span>
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="username" type="text" class="validate">
+          <label for="username">Username</label>
+        </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <select id="countrySel">
-            <option value="none" disabled selected>Land wählen</option>
-            <option value="at">Österreich</option>
-            <option value="de">Deutschland</option>
-            <option value="ch">Schweiz</option>
-          </select>
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
         </div>
       </div>
-
-      <div>
-        <button class="btn login-buttonn" type="submit" name="action">Registrieren
-        </button>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="zip" type="text" class="validate">
+          <label for="zip">PLZ</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+        <select id="countrySel">
+          <option value="none" disabled selected>Land wählen</option>
+          <option value="at">Österreich</option>
+          <option value="de">Deutschland</option>
+          <option value="ch">Schweiz</option>
+        </select>
+      </div>
+      </div>
+      <div>
+        <button type="submit">Registrieren</button>
+      </div>
+    </form>
 
   </div>
+</template>
 
-
+<template name="resPass">
+  <div class="container text-center">
+  <p>Email eingeben</p>
+  <input id="resEmail" type="text">
+  <br>
+  <br>
+  <button id="sendReset">Email senden</button>
+  <a href="/">Zurück zu Login</a>
+  </div>
 </template>
 
 <!--<template name="login">
@@ -236,5 +226,67 @@
       </div>
       <div>
         <button class="btn login-buttonn">Login</button>
+      </div>
+    </div> -->
+
+    <!-- <div class="registrieren-container">
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-at"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="text" id="email" />
+          <label class="input__label input__label--ruri" for="email">
+            <span class="input__label-content input__label-content--ruri">Email</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="text" id="username" />
+          <label class="input__label input__label--ruri" for="username">
+            <span class="input__label-content input__label-content--ruri">Username</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="password" id="password" />
+          <label class="input__label input__label--ruri" for="password">
+            <span class="input__label-content input__label-content--ruri">Passwort</span>
+          </label>
+        </span>
+      </div>
+      <div class="col-sm-3 iconn">
+        <i class="fas fa-lock"></i>
+      </div>
+      <div class="col-sm-9">
+        <span class="input input--ruri">
+          <input class="input__field input__field--ruri" type="password" id="zip" />
+          <label class="input__label input__label--ruri" for="zip">
+            <span class="input__label-content input__label-content--ruri">PLZ</span>
+          </label>
+        </span>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <select id="countrySel">
+            <option value="none" disabled selected>Land wählen</option>
+            <option value="at">Österreich</option>
+            <option value="de">Deutschland</option>
+            <option value="ch">Schweiz</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn login-buttonn" type="submit" name="action">Registrieren
+        </button>
       </div>
     </div> -->
