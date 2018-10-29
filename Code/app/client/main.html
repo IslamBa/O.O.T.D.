@@ -38,6 +38,7 @@
   <div class="img-login">
 
     <div class="login-container">
+      <form>
       <div class="col-sm-3 iconn">
         <i class="fas fa-user"></i>
       </div>
@@ -63,16 +64,20 @@
         </span>
       </div>
       <div>
-        <button class="btn login-buttonn">Login</button>
+        <button class="btn login-buttonn submit">Login</button>
       </div>
+    </form>
     </div>
+  
     <div class="text-center">
       <p class="neu-registrieren">Noch kein Account?
         <span style="color:blue;">
           <a href="/registrieren">Hier Registrieren !</a>
         </span>
       </p>
+    
     </div>
+  
   </div>
 
 
@@ -81,7 +86,9 @@
 
 <template name="register">
   <div class="img-login">
+    
     <div class="registrieren-container">
+        <form>
       <div class="col-sm-3 iconn">
         <i class="fas fa-at"></i>
       </div>
@@ -138,11 +145,12 @@
       </div>
 
       <div>
-        <button class="btn login-buttonn" type="submit" name="action">Registrieren
+        <button class="btn login-buttonn submit" type="submit" name="action">Registrieren
         </button>
       </div>
+    </form>
     </div>
-
+  
   </div>
 
 
