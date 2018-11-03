@@ -12,7 +12,6 @@ Meteor.publish('User', () => Meteor.users.find());
 Meteor.methods({
   getWeather() {
     // var weatherApiKey = '&APPID=50fd161807446be0d6d1b7e5ee0f537c';
-
     const user = Profile.findOne({ id: Meteor.userId() });
 
     var zip = user.location.zip;
@@ -30,11 +29,8 @@ Meteor.methods({
       return result;
     }
     else {
-
       return false;
     }
-
-
   },
   addNewProfile(obj) {
     var weaterDate = new Date();
@@ -46,12 +42,18 @@ Meteor.methods({
         zip: obj.zip,
         country: obj.country
       },
-      lastWeatherDt: weaterDate
+      lastWeatherDt: weaterDate,
+      kleider:[]
     });
 
   },
   getProfile(id) {
     return Profile.findOne({ id: id });
+  },
+  addClothing(obj){
+    // const user = Profile.findOne({ id: Meteor.userId() });
+    // if(!user.kleider){user.kleider = [];}
+    // user.kleider.insert(obj);
   }
 });
 

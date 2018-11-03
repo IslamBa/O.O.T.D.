@@ -55,22 +55,21 @@ Template.login.events({
         var username = $("#login-username").val();
         var passwort = $("#login-password").val();
 
-        Meteor.loginWithPassword(username, passwort,(err)=>{
-            if(err){
+        Meteor.loginWithPassword(username, passwort, (err) => {
+            if (err) {
                 console.log(err);
             }
-            else{
-                console.log("passt");
+            else {
                 Router.go('startseite');
             }
         });
     },
-    'click #forgotPass'(event){
-        Accounts.forgotPassword({email: 'islam2000@live.at'}, (err)=>{
-            if(!err){
+    'click #forgotPass'(event) {
+        Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
+            if (!err) {
                 console.log("passt");
             }
-            else{
+            else {
                 console.log(err);
             }
         });
@@ -78,13 +77,13 @@ Template.login.events({
 });
 
 Template.resPass.events({
-    'click #sendReset'(event){
+    'click #sendReset'(event) {
         email = $("#resEmail").val();
-        Accounts.forgotPassword({email: email}, (err)=>{
-            if(!err){
+        Accounts.forgotPassword({ email: email }, (err) => {
+            if (!err) {
                 console.log("passt");
             }
-            else{
+            else {
                 console.log(err);
             }
         });
@@ -92,13 +91,13 @@ Template.resPass.events({
 });
 
 Template.content.helpers({
-    username(){
+    username() {
         return Meteor.user().username;
     }
-})
+});
 
 Template.content.onRendered(() => {
-   
+
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
             $(".title").text("Wetter: " + result.data.main.temp_max + "°C");
@@ -107,7 +106,7 @@ Template.content.onRendered(() => {
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
         userProfile = result;
-        
+
         $(".title").text("Wetter: " + result.weather.main.temp_max + "°C");
     });
 });
@@ -118,12 +117,33 @@ Template.content.events({
         Meteor.logout();
     },
     'click #btnWeather'(event) {
-
-
-
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
                 $(".title").text("Wetter: " + result.data.main.temp + "°C");
+            }
+        });
+    },
+    'click #NochnichtexistierenderButton'(event) {
+        var typ = 'Wert von Input';
+        var wetterMin = 'Wert von Input';
+        var wetterMax = 'Wert von Input';
+        var anlaesse = 'Wert von Input - Array';
+        var forRegen = 'Wert von Input - Boolean';
+        var forOuterLayer = 'Wert von Input - Boolean';
+        var image = '';
+
+        var obj ={
+            typ: typ,
+            weatherRange:{wetterMin:wetterMin,wetterMax:wetterMax},
+            anlaesse: anlaesse,
+            forRegen:forRegen,
+            image:image,
+            forOuterLayer:forOuterLayer
+        };
+
+        Meteor.call('addClothing', obj, (error, result) => {
+            if(!error){
+                console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
     }
