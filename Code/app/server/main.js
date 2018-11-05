@@ -49,7 +49,9 @@ Meteor.methods({
         country: obj.country
       },
       lastWeatherDt: weaterDate,
-      kleider:[]
+      kleider:[],
+      anlaesse:[],
+      favorites:[]
     });
 
   },
@@ -65,6 +67,51 @@ Meteor.methods({
     const user = Profile.findOne({ id: Meteor.userId() });
     if(!user.anlaesse){user.anlaesse = [];}
     user.anlaesse.insert(obj);
+  },
+  addFavorite(obj){
+    const user = Profile.findOne({ id: Meteor.userId() });
+    user.favorites.insert(obj);
+  },
+  getOutfit(){
+    const user = Profile.findOne({ id: Meteor.userId() });
+    var currTemp = user.temperatur.temp;
+    var Anlass = '';
+    var outfitCandidates=[];
+    outfitCandidates = user.kleider.filter(el => el.weatherRange.minWetter >= currTemp && el.weatherRange.maxWetter <= currTemp);
+    if(this.checkNiederschlag(user.zustand[0].id)){
+      outfitCandidates = outfitCandidates.filter(el => el.forNiederschlag == true);
+    }
+    if(user.anlaesse.length>0){
+      Anlass = this.checkAnlaesse(user.anlaesse);
+    }
+    if(Anlass!=''){
+      outfitCandidates = user.kleider.filter(el => el.anlaesse.includes(Anlass));
+    }
+  },
+  checkDate(d1,d2){
+    return d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate();
+  },
+  checkAnlaesse(arr){
+    var currDate = new Date();
+    arr.forEach((el)=>{
+      if(this.checkDate(currDate,el)){
+        return el.typ;
+      }
+      else{
+        return '';
+      }
+    });
+  },
+  checkNiederschlag(zustand){
+    var code = zustand.charAt(0);
+    if(code == 2 || code == 3 || code == 5 || code == 6){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
 });
 
