@@ -76,6 +76,8 @@ Template.login.events({
     }
 });
 
+
+//Events für Passwort Zurücksetzen Seite
 Template.resPass.events({
     'click #sendReset'(event) {
         email = $("#resEmail").val();
@@ -96,22 +98,27 @@ Template.content.helpers({
     }
 });
 
+
+//Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
             $(".title").text("Wetter: " + result.data.main.temp_max + "°C");
         }
+        else{
+            console.log("10 Minuten noch nicht vorbei");
+        }
     });
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
         userProfile = result;
 
-        $(".title").text("Wetter: " + result.weather.main.temp_max + "°C");
+        $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
     });
 });
 
-
+//Events für Content Seite
 Template.content.events({
     'click .btnLogout'(event) {
         Meteor.logout();
@@ -121,6 +128,9 @@ Template.content.events({
             if (result != false) {
                 $(".title").text("Wetter: " + result.data.main.temp + "°C");
             }
+            else{
+                console.log("10 Minuten noch nicht vorbei");
+            }
         });
     },
     'click #NochnichtexistierenderButton'(event) {
@@ -128,20 +138,39 @@ Template.content.events({
         var wetterMin = 'Wert von Input';
         var wetterMax = 'Wert von Input';
         var anlaesse = 'Wert von Input - Array';
-        var forRegen = 'Wert von Input - Boolean';
-        var forOuterLayer = 'Wert von Input - Boolean';
+        var forNiederschlag = 'Wert von Input - Boolean';
+        var layer = 'Wert von Frontend';
         var image = '';
+        var icon = 'Wert von Frontend';
 
         var obj ={
             typ: typ,
             weatherRange:{wetterMin:wetterMin,wetterMax:wetterMax},
             anlaesse: anlaesse,
-            forRegen:forRegen,
+            forNiederschlag:forNiederschlag,
             image:image,
-            forOuterLayer:forOuterLayer
+            layer:layer,
+            icon:icon
         };
 
         Meteor.call('addClothing', obj, (error, result) => {
+            if(!error){
+                console.log("Kleidung erfolgreich hinzugefügt");
+            }
+        });
+    },
+    'click #CurrentNoButton'(event){
+        var name = 'Wert von Input';
+        var date = 'Wert von Input';
+        var typ = 'Wert von Input';
+
+        var obj = {
+            name:name,
+            date:date,
+            typ:typ
+        };
+
+        Meteor.call('addAnlass', obj, (error, result) => {
             if(!error){
                 console.log("Kleidung erfolgreich hinzugefügt");
             }

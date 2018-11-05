@@ -25,7 +25,13 @@ Meteor.methods({
       //  return "neuste wetter Daten";
       Profile.update(user._id, { $set: { lastWeatherDt: new Date() } });
       const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
-      Profile.update(user._id, { $set: { weather: result.data } });
+      var weather = {
+        zustand: result.data.weather,
+        temperatur: result.data.main,
+        city: result.data.name
+      };
+      //Profile.update(user._id, { $set: { weather: result.data } });
+      Profile.update(user._id, { $set: { weather: weather } });
       return result;
     }
     else {
@@ -51,9 +57,14 @@ Meteor.methods({
     return Profile.findOne({ id: id });
   },
   addClothing(obj){
-    // const user = Profile.findOne({ id: Meteor.userId() });
-    // if(!user.kleider){user.kleider = [];}
-    // user.kleider.insert(obj);
+    const user = Profile.findOne({ id: Meteor.userId() });
+    if(!user.kleider){user.kleider = [];}
+    user.kleider.insert(obj);
+  },
+  addAnlass(obj){
+    const user = Profile.findOne({ id: Meteor.userId() });
+    if(!user.anlaesse){user.anlaesse = [];}
+    user.anlaesse.insert(obj);
   }
 });
 
