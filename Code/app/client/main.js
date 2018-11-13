@@ -1,6 +1,9 @@
 import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/animate.css/animate.css';
+
 
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
@@ -102,7 +105,6 @@ Template.content.helpers({
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
 
-
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
             $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
@@ -176,5 +178,8 @@ Template.content.events({
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
+    },
+    'click #test'(){
+        $('.title').fadeOut('slow');
     }
 });
