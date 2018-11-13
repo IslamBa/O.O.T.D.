@@ -36,7 +36,10 @@ body,html{
       /* Center and scale the image nicely */
       background-position: center;
       background-repeat: no-repeat;
-      background-size: cover;
+	  background-size: cover;
+	  padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 40%;
 }
 
 .container {
@@ -187,4 +190,85 @@ label{
 	color: #2196F3;
 	-webkit-transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
 	transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
+}
+
+.carddes{
+	background-color: white;
+	padding: 20px;
+	border-radius: 15px;
+	padding-bottom:0;
+	box-shadow:0px 0px 14px 0px rgba(50, 50, 50, 0.42);
+}
+
+.btnright{
+	overflow: hidden;
+}
+
+input{
+	border:0 !important;
+	border-bottom:1px solid rgb(80, 80, 80) !important;
+}
+
+input[type=text]:focus{
+	border:0;
+	box-shadow:none !important;
+	border-bottom: 2px solid #40b783 !important;
+	animation-name: example;
+    animation-duration: 0.7s;
+}
+
+button{
+	border: 0;
+    color: white;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 18px !important;
+    background-color: #40b783;
+    border-radius: 20px !important;
+}
+
+input[type=text]:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+@keyframes example {
+    from {width: 0%;border-color: rgb(145, 255, 0);}
+    to {width: 100%;}
+}
+
+.addcloth{
+	position: absolute;
+	right : 10px;
+	bottom : 10px;
+}
+
+.clothpic{
+	margin-top: 50px;
+	height:250px;
+	width : 250px;
+	border-radius:125px !important;
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.divclothpic{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
+	
+}
+
+.divweather{
+	
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
+}
+
+.inputaddcloth{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width:300px;
 }

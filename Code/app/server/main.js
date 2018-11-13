@@ -3,6 +3,7 @@ import { Profile } from '../collections';
 
 Meteor.startup(() => {
   // code to run on server at startup
+  // process.env.MAIL_URL="smtps://ootdapp1@gmail.com:IslamTolga@smtp.gmail.com:465";
 });
 
 Meteor.publish('Profile', () => Profile.find({ id: Meteor.userId() }));

@@ -17,6 +17,14 @@ Router.route('/startseite', function () {
     this.render('content');
 });
 
+Router.route('/resetPassword', function () {
+    this.render('resPass');
+});
+
+Router.route('/addcloth', function () {
+    this.render('AddClothes');
+});
+
 var userProfile;
 
 Template.register.events({
@@ -51,20 +59,60 @@ Template.login.events({
         var username = $("#login-username").val();
         var passwort = $("#login-password").val();
 
-        Meteor.loginWithPassword(username, passwort);
+        Meteor.loginWithPassword(username, passwort,(err)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log("passt");
+                Router.go('startseite');
+            }
+        });
+    },
+    'click #forgotPass'(event){
+        Accounts.forgotPassword({email: 'islam2000@live.at'}, (err)=>{
+            if(!err){
+                console.log("passt");
+            }
+            else{
+                console.log(err);
+            }
+        });
     }
 });
+
+Template.resPass.events({
+    'click #sendReset'(event){
+        email = $("#resEmail").val();
+        Accounts.forgotPassword({email: email}, (err)=>{
+            if(!err){
+                console.log("passt");
+            }
+            else{
+                console.log(err);
+            }
+        });
+    }
+});
+
+Template.content.helpers({
+    username(){
+        return Meteor.user().username;
+    }
+})
 
 Template.content.onRendered(() => {
    
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
-            $(".title").text("Wetter: " + result.data.main.temp_max + "°C");
+            $(".title").text(result.data.main.temp_max + "°C");
         }
     });
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
-        $(".title").text("Wetter: " + result.weather.main.temp_max + "°C");
+        userProfile = result;
+        
+        $(".title").text(result.weather.main.temp_max + "°C");
     });
 });
 
@@ -84,3 +132,5 @@ Template.content.events({
         });
     }
 });
+
+
