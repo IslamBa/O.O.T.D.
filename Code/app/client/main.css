@@ -238,10 +238,40 @@ input[type=text]:focus::-webkit-input-placeholder {
     to {width: 100%;}
 }
 
+.allbtn{
+	position: absolute;
+	right : 30px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+}
+
 .addcloth{
 	position: absolute;
-	right : 10px;
-	bottom : 10px;
+	right : 100px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+}
+
+.allcloth{
+	position: absolute;
+	right : 170px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+}
+
+.anlassbtn{
+	position: absolute;
+	right : 240px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
 }
 
 .clothpic{

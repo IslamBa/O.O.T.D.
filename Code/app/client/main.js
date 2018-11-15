@@ -25,6 +25,14 @@ Router.route('/addcloth', function () {
     this.render('AddClothes');
 });
 
+Router.route('/allcloth', function () {
+    this.render('Kategorien');
+});
+
+Router.route('/anlass', function () {
+    this.render('Anlass');
+});
+
 var userProfile;
 
 Template.register.events({
@@ -120,7 +128,16 @@ Template.content.onRendered(() => {
         
         $(".title").text(result.weather.main.temp_max + "°C");
     });
+
+   
+
+   
 });
+
+
+
+
+    
 
 //Events für Content Seite
 Template.content.events({
@@ -179,7 +196,14 @@ Template.content.events({
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
+    },
+    'click .allbtn'(event){
+        
+        $(".allcloth").show(100);
+        $(".anlassbtn").show(100);
+        $(".addcloth").show(100);
     }
+
 });
 
 
