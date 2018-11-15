@@ -1,6 +1,9 @@
 import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/animate.css/animate.css';
+
 
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
@@ -116,7 +119,7 @@ Template.content.onRendered(() => {
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
-            $(".title").text(result.data.main.temp_max + "°C");
+            $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
         }
         else{
             console.log("10 Minuten noch nicht vorbei");
@@ -197,11 +200,8 @@ Template.content.events({
             }
         });
     },
-    'click .allbtn'(event){
-        
-        $(".allcloth").show(100);
-        $(".anlassbtn").show(100);
-        $(".addcloth").show(100);
+    'click #test'(){
+        $('.title').fadeOut('slow');
     }
 
 });

@@ -32,7 +32,8 @@ Meteor.methods({
       };
       //Profile.update(user._id, { $set: { weather: result.data } });
       Profile.update(user._id, { $set: { weather: weather } });
-      return result;
+      weather= {weather};
+      return weather;
     }
     else {
       return false;
