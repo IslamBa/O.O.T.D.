@@ -14,18 +14,15 @@
   <div class="divweather text-center">
     <h1 class="title"></h1>
     <button id="btnWeather">Get Weather</button>
-    <a href="/">
-      <button class="btnLogout">Abmelden</button>
-    </a>
   </div>
 
 
-    <button class="allbtn btn btn-danger">
-      <i class="fas fa-bars"></i>
-    </button>
-  <a href="/addcloth">
-    <button class="addcloth btn btn-primary" style="display: none;">
-      <i class="fas fa-plus"></i>
+  <button class="allbtn allbtndown btn btn-danger">
+    <i class="fas fa-bars"></i>
+  </button>
+  <a href="/">
+    <button class="btnLogout btn btn-primary" style="display: none;">
+      <i class="fas fa-power-off"></i>
     </button>
   </a>
   <a href="/allcloth">
@@ -37,13 +34,8 @@
     <button class="anlassbtn btn btn-success" style="display: none;">
       <i class="far fa-calendar-plus"></i>
     </button>
-  <h1 class="title">Wetter: </h1>
-  
-  <button id="btnWeather">Get Weather</button>
-  <a href="/">
-    <button class="btnLogout">Abmelden</button>
   </a>
-  <button id="test">fadeout</button>
+
   {{else}}
   <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>
@@ -62,13 +54,13 @@
 
         <div class="form-group">
 
-          <input id="login-username" type="text" class="validate form-control" placeholder="Benutzername">
+          <input id="login-username" type="text" class="validate form-control inputt" placeholder="Benutzername">
 
         </div>
 
         <div class="form-group">
 
-          <input id="login-password" type="password" class="validate form-control" placeholder="Passwort">
+          <input id="login-password" type="password" class="validate form-control inputt" placeholder="Passwort">
 
         </div>
 
@@ -193,12 +185,80 @@
 </template>
 
 <template name="Kategorien">
+  <div class="container text-center">
+    <div class="row justify-content-md-center">
+      <a href="/oberteil">
+      <button class="divkategorie">
+        Oberteil
+      </button>
+    </a>
+    <a href="/hosen">
+      <button class="divkategorie">
+        Hosen
+      </button>
+    </a>
+    </div>
+    <div class="row justify-content-md-center">
+      <a href="/schuhe">
+        <button class="divkategorie">
+          Schuhe
+        </button>
+      </a>
+      <a href="/accessoire">
+        <button class="divkategorie">
+            Accessoire
+        </button>
+      </a>
+    </div>
+    <div class="row justify-content-md-center">
+      <a href="/favoutfits">
+        <button class="divkategorie">
+          Favourite Outfits
+        </button>
+      </a>
+    </div>
+  </div>
+  <a href="/addcloth">
+    <button class="allbtndown btn btn-danger">
+      <i class="fas fa-plus"></i>
+    </button>
+  </a>
+
 
 </template>
 
 <template name="Anlass">
+  <a href="/addanlass">
+    <button class="allbtndown btn btn-danger">
+      <i class="fas fa-plus"></i>
+    </button>
+  </a>
+</template>
+
+<template name="AddAnlass">
+    
+</template>
+
+<template name="Oberteil">
 
 </template>
+
+<template name="Hosen">
+    
+</template>
+
+<template name="Schuhe">
+    
+</template>
+
+<template name="Accessoire">
+    
+</template>
+
+<template name="FavOutfits">
+    
+</template>
+
 
 <!--<template name="login">
   <form class="col s12">
