@@ -156,7 +156,7 @@ body,html{
 }
 
 .divweather{
-	
+	margin-top : 50%;
 	margin-left: auto !important;
 	margin-right: auto !important;
 	
@@ -170,6 +170,12 @@ body,html{
 
 .divkategorie{
 	height: 200px !important;
-	width: 200px !important;
+	width: 350px !important;
 	cursor: pointer;
+}
+
+.divdailycloth{
+	height : 150px;
+	width : 150px;
+	border : 1px solid red;
 }

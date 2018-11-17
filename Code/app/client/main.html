@@ -15,7 +15,32 @@
     <h1 class="title"></h1>
     <button id="btnWeather">Get Weather</button>
   </div>
-
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Tshirt
+        </div>
+      </div>
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Hose
+        </div>
+      </div>
+      <br>
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Schuhe
+        </div>
+      </div>
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Accessoire
+        </div>
+      </div>
+    </div>
+  </div>
 
   <button class="allbtn allbtndown btn btn-danger">
     <i class="fas fa-bars"></i>
@@ -90,29 +115,25 @@
 
 <template name="register">
   <div class="img-login">
-    <form class="col s12">
+    <form class="">
       <div class="row">
         <div class="input-field col s12">
-          <input id="username" type="text" class="validate">
-          <label for="username">Username</label>
+          <input id="username" type="text" class="validate form-control inputt" placeholder="Username">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
+          <input id="password" type="password" class="validate form-control inputt" placeholder="Passwort">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
+          <input id="email" type="password" class="validate form-control inputt" placeholder="Passwort bestätigen">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="zip" type="text" class="validate">
-          <label for="zip">PLZ</label>
+          <input id="zip" type="text" class="validate form-control inputt" placeholder="ZIP">
         </div>
       </div>
       <div class="row">
@@ -153,24 +174,24 @@
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
+      <input type="text" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
       <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
     </div>
     <br>
     <div class="form-group inputaddcloth text-center">
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Max Temperatur">
+      <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
       <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
     </div>
     <br>
     <div class="row inputaddcloth text-center">
       <div class="input-field col s12">
         <select>
-          <option value="none" disabled selected>Kliederart wählen</option>
+          <option value="none" disabled selected>Kleiderart wählen</option>
           <option value="at">Jacke</option>
           <option value="de">Hose</option>
           <option value="ch">Shirt</option>
           <option value="ch">Schuhe</option>
-          <option value="ch">Uhr</option>
+          <option value="ch">Accessoire</option>
         </select>
       </div>
     </div>
@@ -180,42 +201,56 @@
       <label for="exampleCheck1">Niederschlagbeständig</label>
       <small id="emailHelp" class="form-text text-muted">Ist das Kleidungstück gegen Regen und Schnee geschützt?</small>
     </div>
+    <br>
+    <div class="text-center">
+      <button>Speichern</button>
+    </div>
   </form>
 
 </template>
 
 <template name="Kategorien">
   <div class="container text-center">
-    <div class="row justify-content-md-center">
-      <a href="/oberteil">
-      <button class="divkategorie">
-        Oberteil
-      </button>
-    </a>
-    <a href="/hosen">
-      <button class="divkategorie">
-        Hosen
-      </button>
-    </a>
+    <div class="row">
+      <div class="col col-sm-12">
+        <a href="/oberteil">
+          <button class="divkategorie">
+            Oberteil
+          </button>
+        </a>
+      </div>
+      <div class="col col-sm-12">
+        <a href="/hosen">
+          <button class="divkategorie">
+            Hosen
+          </button>
+        </a>
+      </div>
     </div>
-    <div class="row justify-content-md-center">
-      <a href="/schuhe">
-        <button class="divkategorie">
-          Schuhe
-        </button>
-      </a>
-      <a href="/accessoire">
-        <button class="divkategorie">
+    <div class="row">
+      <div class="col col-sm-12">
+        <a href="/schuhe">
+          <button class="divkategorie">
+            Schuhe
+          </button>
+        </a>
+      </div>
+      <div class="col col-sm-12">
+        <a href="/accessoire">
+          <button class="divkategorie">
             Accessoire
-        </button>
-      </a>
+          </button>
+        </a>
+      </div>
     </div>
-    <div class="row justify-content-md-center">
-      <a href="/favoutfits">
-        <button class="divkategorie">
-          Favourite Outfits
-        </button>
-      </a>
+    <div class="row">
+      <div class="col col-sm-12">
+        <a href="/favoutfits">
+          <button class="divkategorie">
+            Favourite Outfits
+          </button>
+        </a>
+      </div>
     </div>
   </div>
   <a href="/addcloth">
@@ -236,7 +271,41 @@
 </template>
 
 <template name="AddAnlass">
-    
+    <form class="">
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Jahr">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Monat">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Tag">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select >
+              <option value="none" disabled selected>Anlass wählen</option>
+              <option value="at">Normaler Tag</option>
+              <option value="de">Schick</option>
+              <option value="ch">Business</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button>Speichern</button>
+        </div>
+      </form>
 </template>
 
 <template name="Oberteil">
@@ -244,19 +313,19 @@
 </template>
 
 <template name="Hosen">
-    
+
 </template>
 
 <template name="Schuhe">
-    
+
 </template>
 
 <template name="Accessoire">
-    
+
 </template>
 
 <template name="FavOutfits">
-    
+
 </template>
 
 
