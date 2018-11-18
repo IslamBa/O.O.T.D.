@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 //import '../node_modules/animate.css/animate.css';
 
 
@@ -154,7 +155,7 @@ Template.content.onRendered(() => {
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
         userProfile = result;
         
-        $(".title").text(result.weather.main.temp_max + "°C");
+        $(".title").text(result.weather.temperatur.temp_max + "°C");
     });
 
    
@@ -238,7 +239,17 @@ Template.content.events({
             $('.anlassbtn').fadeOut(200);
             allbtncount++;
         }
-
+    },
+    'click #getPicture'(){
+        
+        MeteorCamera.getPicture((err, res)=>{
+            if(!err){
+                console.log(res);
+            }
+            else{
+                console.log("fehler yow");
+            }
+        });
     }
 });
 
