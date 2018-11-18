@@ -129,7 +129,7 @@ Template.content.events({
     'click #btnWeather'(event) {
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
-                $(".title").text("Wetter: " + result.data.main.temp + "°C");
+                $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
             }
             else{
                 console.log("10 Minuten noch nicht vorbei");
