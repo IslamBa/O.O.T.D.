@@ -63,133 +63,10 @@ body,html{
 }
 
 .registrieren-container{
-  margin-top: 20%;
+  margin-top: 10%;
   width: 90% !important;
   margin-left: 5% !important;
   position: absolute;
-}
-
-label{
-	display:block;
-}
-
-.input {
-	position: relative;
-	z-index: 1;
-	display: inline-block;
-	margin: 1em;
-	max-width: 80%;
-	width: calc(100% - 2em);
-	vertical-align: top;
-	margin-left : 10% !important;
-}
-
-.input__field {
-	position: relative;
-	display: block;
-	float: right;
-	padding: 0.8em;
-	width: 90%;
-	border: none;
-	border-radius: 0;
-	background: #f0f0f0;
-	color: #aaa;
-	font-weight: 400;
-	font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	-webkit-appearance: none; /* for box shadows to show on iOS */
-}
-
-.input__field:focus {
-	outline: none;
-}
-
-.input__label {
-	display: inline-block;
-	padding: 0 8em;
-	width: 70%;
-	color: #282828;
-	font-weight: bold;
-	font-size: 90%;
-	-webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.input__label-content {
-	position: relative;
-	display: block;
-	width: 100%;
-}
-
-.graphic {
-	position: absolute;
-	top: 0;
-	left: 0;
-	fill: none;
-}
-
-.icon {
-	color: #A8A8A8;
-	font-size: 125%;
-}
-
-/* Ruri */
-.input__field--ruri {
-	width: 100%;
-	background: transparent;
-	padding: 0.5em 0;
-	margin-bottom: 2em;
-	color: black;
-}
-
-.input__label--ruri {
-	width: 100%;
-	position: absolute;
-	text-align: left;
-	font-size: 1em;
-	padding: 10px 0 5px;
-	pointer-events: none;
-}
-
-.input__label--ruri::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 1px;
-	background: #282828;
-	left: 0;
-	top: 100%;
-	-webkit-transform-origin: 50% 100%;
-	transform-origin: 50% 100%;
-	-webkit-transition: -webkit-transform 0.3s, background-color 0.3s;
-	transition: transform 0.3s, background-color 0.3s;
-}
-
-.input__label-content--ruri {
-	padding: 0;
-	-webkit-transform-origin: 0 0;
-	transform-origin: 0 0;
-	-webkit-transition: -webkit-transform 0.3s, color 0.3s;
-	transition: transform 0.3s, color 0.3s;
-}
-
-.input__field--ruri:focus + .input__label--ruri::after,
-.input--filled .input__label--ruri::after {
-	background: #2196F3;
-	-webkit-transform: scale3d(1, 0.25, 1);
-	transform: scale3d(1, 0.25, 1);
-}
-
-.input__field--ruri:focus   + .input__label--ruri .input__label-content--ruri,
-.input--filled .input__label--ruri .input__label-content--ruri {
-	color: #2196F3;
-	-webkit-transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
-	transform: translate3d(0, 2em, 0) scale3d(0.655, 0.655, 1);
 }
 
 .carddes{
@@ -204,12 +81,12 @@ label{
 	overflow: hidden;
 }
 
-input{
+.inputt{
 	border:0 !important;
 	border-bottom:1px solid rgb(80, 80, 80) !important;
 }
 
-input:focus{
+.inputt[type=text]:focus{
 	border:0;
 	box-shadow:none !important;
 	border-bottom: 2px solid #40b783 !important;
@@ -217,19 +94,7 @@ input:focus{
     animation-duration: 0.7s;
 }
 
-button{
-	border: 0;
-    color: white;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 18px !important;
-    background-color: #40b783;
-    border-radius: 20px !important;
-}
-
-input:focus::-webkit-input-placeholder {
+.inputt[type=text]:focus::-webkit-input-placeholder {
     opacity: 0;
 }
 
@@ -238,3 +103,79 @@ input:focus::-webkit-input-placeholder {
     to {width: 100%;}
 }
 
+.allbtndown{
+	right : 30px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+	position: fixed;
+}
+
+.btnLogout{
+	position: fixed;
+	right : 100px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+}
+
+.allcloth{
+	position: fixed;
+	right : 170px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+}
+
+.anlassbtn{
+	position: fixed;
+	right : 240px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+}
+
+.clothpic{
+	margin-top: 50px;
+	height:250px;
+	width : 250px;
+	border-radius:125px !important;
+	background-color: lightgray;
+	cursor: pointer;
+}
+
+.divclothpic{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
+	
+}
+
+.divweather{
+	margin-top : 50%;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
+}
+
+.inputaddcloth{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width:300px;
+}
+
+.divkategorie{
+	height: 200px !important;
+	width: 350px !important;
+	cursor: pointer;
+}
+
+.divdailycloth{
+	height : 150px;
+	width : 150px;
+	border : 1px solid red;
+}

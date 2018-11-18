@@ -11,13 +11,56 @@
 
 <template name="content">
   {{#if currentUser}}
-  <h1 class="title">Wetter: </h1>
-  
-  <button id="btnWeather">Get Weather</button>
+  <div class="divweather text-center">
+    <h1 class="title"></h1>
+    <button id="btnWeather">Get Weather</button>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Tshirt
+        </div>
+      </div>
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Hose
+        </div>
+      </div>
+      <br>
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Schuhe
+        </div>
+      </div>
+      <div class="col col-sm-6">
+        <div class="divdailycloth">
+          Accessoire
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="allbtn allbtndown btn btn-danger">
+    <i class="fas fa-bars"></i>
+  </button>
   <a href="/">
-    <button class="btnLogout">Abmelden</button>
+    <button class="btnLogout btn btn-primary" style="display: none;">
+      <i class="fas fa-power-off"></i>
+    </button>
   </a>
-  <button id="test">fadeout</button>
+  <a href="/allcloth">
+    <button class="allcloth btn btn-info" style="display: none;">
+      <i class="fas fa-tshirt"></i>
+    </button>
+  </a>
+  <a href="/anlass">
+    <button class="anlassbtn btn btn-success" style="display: none;">
+      <i class="far fa-calendar-plus"></i>
+    </button>
+  </a>
+
   {{else}}
   <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>
@@ -36,13 +79,13 @@
 
         <div class="form-group">
 
-          <input id="login-username" type="text" class="validate form-control" placeholder="Benutzername">
+          <input id="login-username" type="text" class="validate form-control inputt" placeholder="Benutzername">
 
         </div>
 
         <div class="form-group">
 
-          <input id="login-password" type="password" class="validate form-control" placeholder="Passwort">
+          <input id="login-password" type="password" class="validate form-control inputt" placeholder="Passwort">
 
         </div>
 
@@ -54,13 +97,16 @@
         </div>
       </form>
     </div>
+
     <div class="text-center">
       <p class="neu-registrieren">Noch kein Account?
         <span style="color:blue;">
           <a href="/registrieren">Hier Registrieren !</a>
         </span>
       </p>
+
     </div>
+
   </div>
 
 
@@ -69,40 +115,36 @@
 
 <template name="register">
   <div class="img-login">
-    <form class="col s12">
+    <form class="">
       <div class="row">
         <div class="input-field col s12">
-          <input id="username" type="text" class="validate">
-          <label for="username">Username</label>
+          <input id="username" type="text" class="validate form-control inputt" placeholder="Username">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
-          <label for="password">Password</label>
+          <input id="password" type="password" class="validate form-control inputt" placeholder="Passwort">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
+          <input id="email" type="password" class="validate form-control inputt" placeholder="Passwort bestätigen">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="zip" type="text" class="validate">
-          <label for="zip">PLZ</label>
+          <input id="zip" type="text" class="validate form-control inputt" placeholder="ZIP">
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-        <select id="countrySel">
-          <option value="none" disabled selected>Land wählen</option>
-          <option value="at">Österreich</option>
-          <option value="de">Deutschland</option>
-          <option value="ch">Schweiz</option>
-        </select>
-      </div>
+          <select id="countrySel">
+            <option value="none" disabled selected>Land wählen</option>
+            <option value="at">Österreich</option>
+            <option value="de">Deutschland</option>
+            <option value="ch">Schweiz</option>
+          </select>
+        </div>
       </div>
       <div>
         <button type="submit">Registrieren</button>
@@ -114,14 +156,178 @@
 
 <template name="resPass">
   <div class="container text-center">
-  <p>Email eingeben</p>
-  <input id="resEmail" type="text">
-  <br>
-  <br>
-  <button id="sendReset">Email senden</button>
-  <a href="/">Zurück zu Login</a>
+    <p>Email eingeben</p>
+    <input id="resEmail" type="text">
+    <br>
+    <br>
+    <button id="sendReset">Email senden</button>
+    <a href="/">Zurück zu Login</a>
   </div>
 </template>
+
+<template name="AddClothes">
+  <div class="divclothpic text-center">
+    <button class="clothpic ">
+      <i class="fas fa-camera picicon"></i>
+    </button>
+  </div>
+  <br>
+  <form>
+    <div class="form-group inputaddcloth text-center">
+      <input type="text" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
+      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
+    </div>
+    <br>
+    <div class="form-group inputaddcloth text-center">
+      <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
+      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
+    </div>
+    <br>
+    <div class="row inputaddcloth text-center">
+      <div class="input-field col s12">
+        <select>
+          <option value="none" disabled selected>Kleiderart wählen</option>
+          <option value="at">Jacke</option>
+          <option value="de">Hose</option>
+          <option value="ch">Shirt</option>
+          <option value="ch">Schuhe</option>
+          <option value="ch">Accessoire</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-check text-center">
+      <input type="checkbox" id="exampleCheck1">
+      <label for="exampleCheck1">Niederschlagbeständig</label>
+      <small id="emailHelp" class="form-text text-muted">Ist das Kleidungstück gegen Regen und Schnee geschützt?</small>
+    </div>
+    <br>
+    <div class="text-center">
+      <button>Speichern</button>
+    </div>
+  </form>
+
+</template>
+
+<template name="Kategorien">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col col-sm-12">
+        <a href="/oberteil">
+          <button class="divkategorie">
+            Oberteil
+          </button>
+        </a>
+      </div>
+      <div class="col col-sm-12">
+        <a href="/hosen">
+          <button class="divkategorie">
+            Hosen
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-12">
+        <a href="/schuhe">
+          <button class="divkategorie">
+            Schuhe
+          </button>
+        </a>
+      </div>
+      <div class="col col-sm-12">
+        <a href="/accessoire">
+          <button class="divkategorie">
+            Accessoire
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-12">
+        <a href="/favoutfits">
+          <button class="divkategorie">
+            Favourite Outfits
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="/addcloth">
+    <button class="allbtndown btn btn-danger">
+      <i class="fas fa-plus"></i>
+    </button>
+  </a>
+
+
+</template>
+
+<template name="Anlass">
+  <a href="/addanlass">
+    <button class="allbtndown btn btn-danger">
+      <i class="fas fa-plus"></i>
+    </button>
+  </a>
+</template>
+
+<template name="AddAnlass">
+    <form class="">
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Jahr">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Monat">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Tag">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="text" class="validate form-control inputt" placeholder="Name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <select >
+              <option value="none" disabled selected>Anlass wählen</option>
+              <option value="at">Normaler Tag</option>
+              <option value="de">Schick</option>
+              <option value="ch">Business</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button>Speichern</button>
+        </div>
+      </form>
+</template>
+
+<template name="Oberteil">
+
+</template>
+
+<template name="Hosen">
+
+</template>
+
+<template name="Schuhe">
+
+</template>
+
+<template name="Accessoire">
+
+</template>
+
+<template name="FavOutfits">
+
+</template>
+
 
 <!--<template name="login">
   <form class="col s12">
@@ -219,7 +425,7 @@
       </div>
     </div> -->
 
-    <!-- <div class="registrieren-container">
+<!-- <div class="registrieren-container">
       <div class="col-sm-3 iconn">
         <i class="fas fa-at"></i>
       </div>

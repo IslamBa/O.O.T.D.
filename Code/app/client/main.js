@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/animate.css/animate.css';
+//import '../node_modules/animate.css/animate.css';
 
 
 Meteor.subscribe('Profile');
@@ -24,7 +24,44 @@ Router.route('/resetPassword', function () {
     this.render('resPass');
 });
 
+Router.route('/addcloth', function () {
+    this.render('AddClothes');
+});
+
+Router.route('/allcloth', function () {
+    this.render('Kategorien');
+});
+
+Router.route('/anlass', function () {
+    this.render('Anlass');
+});
+
+Router.route('/addanlass', function () {
+    this.render('AddAnlass');
+});
+
+Router.route('/oberteil', function () {
+    this.render('Oberteil');
+});
+
+Router.route('/hosen', function () {
+    this.render('Hosen');
+});
+
+Router.route('/schuhe', function () {
+    this.render('Schuhe');
+});
+
+Router.route('/accessoire', function () {
+    this.render('Accessoire');
+});
+
+Router.route('/favoutfits', function () {
+    this.render('FavOutfits');
+});
+
 var userProfile;
+var allbtncount = 1;
 
 Template.register.events({
     'submit form'(event, template) {
@@ -107,7 +144,7 @@ Template.content.onRendered(() => {
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
-            $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
+            $(".title").text(result.weather.temperatur.temp_max + "°C");
         }
         else{
             console.log("10 Minuten noch nicht vorbei");
@@ -116,10 +153,19 @@ Template.content.onRendered(() => {
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
         userProfile = result;
-
-        $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
+        
+        $(".title").text(result.weather.main.temp_max + "°C");
     });
+
+   
+
+   
 });
+
+
+
+
+    
 
 //Events für Content Seite
 Template.content.events({
@@ -179,7 +225,21 @@ Template.content.events({
             }
         });
     },
-    'click #test'(){
-        $('.title').fadeOut('slow');
+    'click .allbtn'(){
+        if(allbtncount == 1){
+           $('.btnLogout').fadeIn(200);
+           $('.allcloth').fadeIn(400);
+           $('.anlassbtn').fadeIn(600);
+           allbtncount--;
+        }
+        else{
+            $('.btnLogout').fadeOut(600);
+            $('.allcloth').fadeOut(400);
+            $('.anlassbtn').fadeOut(200);
+            allbtncount++;
+        }
+
     }
 });
+
+
