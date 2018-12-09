@@ -1,0 +1,82 @@
+[
+    {
+        "id": "test124",
+        "typ": "shirt",
+        "weather_range": {
+            "min": 12,
+            "max": 30
+        },
+        "anlaesse": [
+            "jsadfj23",
+            "as46h84fasf",
+            "aas05fsfa32"
+        ],
+        "layer": 0,
+        "color":"green",
+        "image": "",
+        "icon": "shirt_icon"
+    },
+    {
+        "id": "test154",
+        "typ": "shirt",
+        "weather_range": {
+            "min": 10,
+            "max": 27
+        },
+        "anlaesse": [
+            "jsadfj23",
+            "aas05fsfa32"
+        ],
+        "layer": 0,
+        "color":"black",
+        "image": "",
+        "icon": "shirt_icon"
+    },
+    {
+        "id": "test522",
+        "typ": "shoe",
+        "weather_range": {
+            "min": 5,
+            "max": 25
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"black",
+        "image": "",
+        "icon": "shoe_icon"
+    },
+    {
+        "id": "test785",
+        "typ": "pants",
+        "weather_range": {
+            "min": -10,
+            "max": 20
+        },
+        "anlaesse": [
+            "jsadfj23",
+            "aas05fsfa32"
+        ],
+        "layer": 1,
+        "color":"blue",
+        "image": "",
+        "icon": "pants_icon"
+    },
+    {
+        "id": "test785",
+        "typ": "jacket",
+        "weather_range": {
+            "min": 2,
+            "max": 20
+        },
+        "anlaesse": [
+            "jsadfj23",
+            "aas05fsfa32"
+        ],
+        "layer": 1,
+        "color":"gray",
+        "image": "",
+        "icon": "jacket_icon"
+    }
+]

@@ -147,26 +147,26 @@ Template.content.onRendered(() => {
         if (result != false) {
             $(".title").text(result.weather.temperatur.temp_max + "°C");
         }
-        else{
+        else {
             console.log("10 Minuten noch nicht vorbei");
         }
     });
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
         userProfile = result;
-        
+
         $(".title").text(result.weather.temperatur.temp_max + "°C");
     });
 
-   
 
-   
+
+
 });
 
 
 
 
-    
+
 
 //Events für Content Seite
 Template.content.events({
@@ -178,7 +178,7 @@ Template.content.events({
             if (result != false) {
                 $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
             }
-            else{
+            else {
                 console.log("10 Minuten noch nicht vorbei");
             }
         });
@@ -193,63 +193,67 @@ Template.content.events({
         var image = '';
         var icon = 'Wert von Frontend';
 
-        var obj ={
+        var obj = {
             typ: typ,
-            weatherRange:{wetterMin:wetterMin,wetterMax:wetterMax},
+            weatherRange: { wetterMin: wetterMin, wetterMax: wetterMax },
             anlaesse: anlaesse,
-            forNiederschlag:forNiederschlag,
-            image:image,
-            layer:layer,
-            icon:icon
+            forNiederschlag: forNiederschlag,
+            image: image,
+            layer: layer,
+            icon: icon
         };
 
         Meteor.call('addClothing', obj, (error, result) => {
-            if(!error){
+            if (!error) {
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
     },
-    'click #CurrentNoButton'(event){
+    'click #CurrentNoButton'(event) {
         var name = 'Wert von Input';
         var date = 'Wert von Input';
         var typ = 'Wert von Input';
 
         var obj = {
-            name:name,
-            date:date,
-            typ:typ
+            name: name,
+            date: date,
+            typ: typ
         };
 
         Meteor.call('addAnlass', obj, (error, result) => {
-            if(!error){
+            if (!error) {
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
     },
-    'click .allbtn'(){
-        if(allbtncount == 1){
-           $('.btnLogout').fadeIn(200);
-           $('.allcloth').fadeIn(400);
-           $('.anlassbtn').fadeIn(600);
-           allbtncount--;
+    'click .allbtn'() {
+        if (allbtncount == 1) {
+            $('.btnLogout').fadeIn(200);
+            $('.allcloth').fadeIn(400);
+            $('.anlassbtn').fadeIn(600);
+            allbtncount--;
         }
-        else{
+        else {
             $('.btnLogout').fadeOut(600);
             $('.allcloth').fadeOut(400);
             $('.anlassbtn').fadeOut(200);
             allbtncount++;
         }
     },
-    'click #getPicture'(){
-        
-        MeteorCamera.getPicture((err, res)=>{
-            if(!err){
+    'click #getPicture'() {
+
+        MeteorCamera.getPicture((err, res) => {
+            if (!err) {
                 console.log(res);
+
             }
-            else{
+            else {
                 console.log("fehler yow");
             }
         });
+    },
+    'click #uploadImage'() {
+
     }
 });
 
