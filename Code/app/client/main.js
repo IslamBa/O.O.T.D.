@@ -157,15 +157,7 @@ Template.content.onRendered(() => {
 
         $(".title").text(result.weather.temperatur.temp_max + "°C");
     });
-
-
-
-
 });
-
-
-
-
 
 
 //Events für Content Seite
@@ -254,6 +246,14 @@ Template.content.events({
     },
     'click #uploadImage'() {
 
+    },
+    'click #getOutfit'() {
+        console.log("test");
+        Meteor.call('getOutfit', (error, result) => {
+            console.log(error);
+            console.log(result);
+
+        });
     }
 });
 

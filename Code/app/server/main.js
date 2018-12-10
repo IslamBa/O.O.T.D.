@@ -32,7 +32,7 @@ Meteor.methods({
       };
       //Profile.update(user._id, { $set: { weather: result.data } });
       Profile.update(user._id, { $set: { weather: weather } });
-      weather= {weather};
+      weather = { weather };
       return weather;
     }
     else {
@@ -41,7 +41,7 @@ Meteor.methods({
   },
   addNewProfile(obj) {
     var weaterDate = new Date();
-    weaterDate.setMinutes(weaterDate.getMinutes()-15);
+    weaterDate.setMinutes(weaterDate.getMinutes() - 15);
 
     Profile.insert({
       id: obj.id,
@@ -50,67 +50,101 @@ Meteor.methods({
         country: obj.country
       },
       lastWeatherDt: weaterDate,
-      kleider:[],
-      anlaesse:[],
-      favorites:[]
+      kleider: [],
+      occasions: [],
+      favorites: []
     });
 
   },
   getProfile(id) {
     return Profile.findOne({ id: id });
   },
-  addClothing(obj){
+  addClothing(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    if(!user.kleider){user.kleider = [];}
+    if (!user.kleider) { user.kleider = []; }
     user.kleider.insert(obj);
   },
-  addAnlass(obj){
+  addAnlass(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    if(!user.anlaesse){user.anlaesse = [];}
+    if (!user.anlaesse) { user.anlaesse = []; }
     user.anlaesse.insert(obj);
   },
-  addFavorite(obj){
+  addFavorite(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     user.favorites.insert(obj);
   },
-  getOutfit(){
+  getOutfit() {
     const user = Profile.findOne({ id: Meteor.userId() });
-    var currTemp = user.temperatur.temp;
-    var Anlass = '';
-    var outfitCandidates=[];
-    outfitCandidates = user.kleider.filter(el => el.weatherRange.minWetter >= currTemp && el.weatherRange.maxWetter <= currTemp);
-    if(this.checkNiederschlag(user.zustand[0].id)){
-      outfitCandidates = outfitCandidates.filter(el => el.forNiederschlag == true);
+    var currTemp = user.weather.temperatur.temp;
+    var Occasion = '';
+    //Alle Kleidungsstücke die die Kriterien erfüllen werden in dieses Array gepackt
+    var outfitCandidates = [];
+    //Das finale Outfift wird in dieses Objekt gespeichert
+    var finalOutfit={};
+
+    //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
+    outfitCandidates = user.kleider.filter(el => el.weather_range.min >= currTemp && el.weather_range.max <= currTemp);
+
+    if (Meteor.call('checkNiederschlag',user.weather.zustand[0].id.toString())) {
+      outfitCandidates = outfitCandidates.filter(el => el.forWetWeather == true);
     }
-    if(user.anlaesse.length>0){
-      Anlass = this.checkAnlaesse(user.anlaesse);
+    if (user.occasions.length > 0) {
+      Occasion = Meteor.call('checkAnlaesse',user.occasions);
     }
-    if(Anlass!=''){
-      outfitCandidates = user.kleider.filter(el => el.anlaesse.includes(Anlass));
+    if (Occasion != '') {
+      outfitCandidates = user.kleider.filter(el => el.occasions.includes(Occasion));
     }
+
+    console.log(outfitCandidates);
+
+    var shirtArray = outfitCandidates.filter(el => el.typ = "shirt");
+    finalOutfit.shirt = Meteor.call('getClothing',"shirt", shirtArray, user.kleider);
+    var shoeArray = outfitCandidates.filter(el => el.typ = "shoe");
+    finalOutfit.shoe = Meteor.call('getClothing',"shoe", shoeArray, user.kleider);
+    var pantsArray = outfitCandidates.filter(el => el.typ = "shoe");
+    finalOutfit.pants = Meteor.call('getClothing',"pants", pantsArray, user.kleider);
+
+    console.log(finalOutfit);
+    return finalOutfit;
   },
-  checkDate(d1,d2){
+  checkDate(d1, d2) {
     return d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate();
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate();
   },
-  checkAnlaesse(arr){
+  getClothing(type, filteredArray, fullArray) {
+    if (filteredArray.length > 0) {
+      return filteredArray.filter(el => el.typ = type)[Math.floor(Math.random() * filteredArray.length)];
+    }
+    else {
+      
+      var completeRandomType = fullArray.filter(el => el.typ == type);
+      
+      if (completeRandomType.length > 0) {
+        return completeRandomType[Math.floor(Math.random() * completeRandomType.length)];
+      }
+      else {
+        return "";
+      }
+    }
+  },
+  checkAnlaesse(arr) {
     var currDate = new Date();
-    arr.forEach((el)=>{
-      if(this.checkDate(currDate,el)){
+    arr.forEach((el) => {
+      if (this.checkDate(currDate, el)) {
         return el.typ;
       }
-      else{
+      else {
         return '';
       }
     });
   },
-  checkNiederschlag(zustand){
+  checkNiederschlag(zustand) {
     var code = zustand.charAt(0);
-    if(code == 2 || code == 3 || code == 5 || code == 6){
+    if (code == 2 || code == 3 || code == 5 || code == 6) {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }
