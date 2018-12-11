@@ -64,10 +64,10 @@ Meteor.methods({
     if (!user.kleider) { user.kleider = []; }
     user.kleider.insert(obj);
   },
-  addAnlass(obj) {
+  addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    if (!user.anlaesse) { user.anlaesse = []; }
-    user.anlaesse.insert(obj);
+    if (!user.occasions) { user.occasions = []; }
+    user.occasions.insert(obj);
   },
   addFavorite(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -80,31 +80,55 @@ Meteor.methods({
     //Alle Kleidungsstücke die die Kriterien erfüllen werden in dieses Array gepackt
     var outfitCandidates = [];
     //Das finale Outfift wird in dieses Objekt gespeichert
-    var finalOutfit={};
+    var finalOutfit = {};
 
     //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
-    outfitCandidates = user.kleider.filter(el => el.weather_range.min >= currTemp && el.weather_range.max <= currTemp);
+    outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && el.weather_range.max >= currTemp);
 
-    if (Meteor.call('checkNiederschlag',user.weather.zustand[0].id.toString())) {
+    if (Meteor.call('checkPrecipitation', user.weather.zustand[0].id.toString())) {
       outfitCandidates = outfitCandidates.filter(el => el.forWetWeather == true);
     }
+
     if (user.occasions.length > 0) {
-      Occasion = Meteor.call('checkAnlaesse',user.occasions);
+      Occasion = Meteor.call('checkOccasions', user.occasions);
     }
+
     if (Occasion != '') {
       outfitCandidates = user.kleider.filter(el => el.occasions.includes(Occasion));
     }
 
-    console.log(outfitCandidates);
+    var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear"];
 
-    var shirtArray = outfitCandidates.filter(el => el.typ = "shirt");
-    finalOutfit.shirt = Meteor.call('getClothing',"shirt", shirtArray, user.kleider);
-    var shoeArray = outfitCandidates.filter(el => el.typ = "shoe");
-    finalOutfit.shoe = Meteor.call('getClothing',"shoe", shoeArray, user.kleider);
-    var pantsArray = outfitCandidates.filter(el => el.typ = "shoe");
-    finalOutfit.pants = Meteor.call('getClothing',"pants", pantsArray, user.kleider);
+    for (var type of types) {
+      console.log(type);
+      var array = outfitCandidates.filter(el => el.type == type);
+      finalOutfit[type] = Meteor.call('getClothing', type, array, user.kleider);
+      console.log(finalOutfit);
+    }
 
-    console.log(finalOutfit);
+
+    //Kleidungsstücke entfernen nach Wetter
+    if (currTemp < 20) {
+      var zufallszahl = Math.floor((Math.random() * 30) + 1);
+
+      if (zufallszahl > 10) {
+        delete finalOutfit.tshirt;
+      } else {
+        delete finalOutfit.shirt;
+      }
+    }
+
+    if (currTemp >= 18) {
+      delete finalOutfit.jacket;
+    }
+
+    // var shirtArray = outfitCandidates.filter(el => el.typ == "shirt");
+    // finalOutfit.shirt = Meteor.call('getClothing',"shirt", shirtArray, user.kleider);
+    // var shoeArray = outfitCandidates.filter(el => el.typ == "shoe");
+    // finalOutfit.shoe = Meteor.call('getClothing',"shoe", shoeArray, user.kleider);
+    // var pantsArray = outfitCandidates.filter(el => el.typ == "shoe");
+    // finalOutfit.pants = Meteor.call('getClothing',"pants", pantsArray, user.kleider);
+
     return finalOutfit;
   },
   checkDate(d1, d2) {
@@ -117,9 +141,8 @@ Meteor.methods({
       return filteredArray.filter(el => el.typ = type)[Math.floor(Math.random() * filteredArray.length)];
     }
     else {
-      
-      var completeRandomType = fullArray.filter(el => el.typ == type);
-      
+      var completeRandomType = fullArray.filter(el => el.type == type);
+
       if (completeRandomType.length > 0) {
         return completeRandomType[Math.floor(Math.random() * completeRandomType.length)];
       }
@@ -128,7 +151,7 @@ Meteor.methods({
       }
     }
   },
-  checkAnlaesse(arr) {
+  checkOccasions(arr) {
     var currDate = new Date();
     arr.forEach((el) => {
       if (this.checkDate(currDate, el)) {
@@ -139,7 +162,7 @@ Meteor.methods({
       }
     });
   },
-  checkNiederschlag(zustand) {
+  checkPrecipitation(zustand) {
     var code = zustand.charAt(0);
     if (code == 2 || code == 3 || code == 5 || code == 6) {
       return true;

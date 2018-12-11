@@ -212,7 +212,7 @@ Template.content.events({
             typ: typ
         };
 
-        Meteor.call('addAnlass', obj, (error, result) => {
+        Meteor.call('addOccasion', obj, (error, result) => {
             if (!error) {
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
@@ -248,11 +248,13 @@ Template.content.events({
 
     },
     'click #getOutfit'() {
-        console.log("test");
         Meteor.call('getOutfit', (error, result) => {
-            console.log(error);
-            console.log(result);
-
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log(result);
+            }
         });
     }
 });

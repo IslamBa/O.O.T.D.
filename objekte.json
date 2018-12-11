@@ -1,13 +1,13 @@
 [
     {
         "id": "test124",
-        "typ": "shirt",
+        "type": "shirt",
         "name":"Hemd",
         "weather_range": {
             "min": 12,
             "max": 30
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23",
             "as46h84fasf",
             "aas05fsfa32"
@@ -20,13 +20,13 @@
     },
     {
         "id": "test154",
-        "typ": "shirt",
+        "type": "shirt",
         "name":"Pullover",
         "weather_range": {
             "min": 10,
             "max": 27
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23",
             "aas05fsfa32"
         ],
@@ -38,47 +38,47 @@
     },
     {
         "id": "test522",
-        "typ": "shoe",
+        "type": "shoes",
         "name":"Sneaker",
         "weather_range": {
             "min": 5,
             "max": 25
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
         "color":"black",
         "image": "",
-        "icon": "shoe_icon",
+        "icon": "shoes_icon",
         "forWetWeather":false
     },
     {
         "id": "test562",
-        "typ": "shoe",
+        "type": "shoes",
         "name":"Stiefel",
         "weather_range": {
             "min": -20,
             "max": 2
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
         "color":"gray",
         "image": "",
-        "icon": "shoe_icon",
+        "icon": "shoes_icon",
         "forWetWeather":true
     },
     {
         "id": "test785",
-        "typ": "pants",
+        "type": "pants",
         "name":"Jeans",
         "weather_range": {
             "min": -10,
             "max": 20
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23",
             "aas05fsfa32"
         ],
@@ -89,14 +89,14 @@
         "forWetWeather":true
     },
     {
-        "id": "test785",
-        "typ": "jacket",
+        "id": "test192",
+        "type": "jacket",
         "name":"Leichte Jacke",
         "weather_range": {
             "min": 2,
             "max": 20
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23",
             "aas05fsfa32"
         ],
@@ -108,13 +108,13 @@
     },
     {
         "id": "test985",
-        "typ": "shirt",
+        "type": "shirt",
         "name":"Pullover",
         "weather_range": {
             "min": -5,
             "max": 20
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
@@ -125,13 +125,13 @@
     },
     {
         "id": "test975",
-        "typ": "tshirt",
+        "type": "tshirt",
         "name":"tshirt",
         "weather_range": {
             "min": 18,
             "max": 28
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
@@ -142,13 +142,13 @@
     },
     {
         "id": "test972",
-        "typ": "tshirt",
+        "type": "tshirt",
         "name":"poloshirt",
         "weather_range": {
             "min": 18,
             "max": 28
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
@@ -158,14 +158,14 @@
         "forWetWeather":false
     },
     {
-        "id": "test643",
-        "typ": "accessoires",
+        "id": "test493",
+        "type": "accessoires",
         "name":"Uhr",
         "weather_range": {
             "min": -10,
             "max": 30
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
@@ -176,13 +176,13 @@
     },
     {
         "id": "test683",
-        "typ": "accessoires",
+        "type": "accessoires",
         "name":"Kette",
         "weather_range": {
             "min": 15,
             "max": 30
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
@@ -192,14 +192,14 @@
         "forWetWeather":true
     },
     {
-        "id": "test643",
-        "typ": "headgear",
+        "id": "test983",
+        "type": "headgear",
         "name":"Kappe",
         "weather_range": {
             "min": 12,
             "max": 27
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
@@ -210,13 +210,13 @@
     },
     {
         "id": "test643",
-        "typ": "headgear",
+        "type": "headgear",
         "name":"Mütze",
         "weather_range": {
             "min": -15,
             "max": 5
         },
-        "anlaesse": [
+        "occasions": [
             "jsadfj23"
         ],
         "layer": 1,
