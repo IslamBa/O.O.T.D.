@@ -2,6 +2,7 @@
     {
         "id": "test124",
         "typ": "shirt",
+        "name":"Hemd",
         "weather_range": {
             "min": 12,
             "max": 30
@@ -20,6 +21,7 @@
     {
         "id": "test154",
         "typ": "shirt",
+        "name":"Pullover",
         "weather_range": {
             "min": 10,
             "max": 27
@@ -37,6 +39,7 @@
     {
         "id": "test522",
         "typ": "shoe",
+        "name":"Sneaker",
         "weather_range": {
             "min": 5,
             "max": 25
@@ -53,6 +56,7 @@
     {
         "id": "test562",
         "typ": "shoe",
+        "name":"Stiefel",
         "weather_range": {
             "min": -20,
             "max": 2
@@ -69,6 +73,7 @@
     {
         "id": "test785",
         "typ": "pants",
+        "name":"Jeans",
         "weather_range": {
             "min": -10,
             "max": 20
@@ -86,6 +91,7 @@
     {
         "id": "test785",
         "typ": "jacket",
+        "name":"Leichte Jacke",
         "weather_range": {
             "min": 2,
             "max": 20
@@ -103,6 +109,7 @@
     {
         "id": "test985",
         "typ": "shirt",
+        "name":"Pullover",
         "weather_range": {
             "min": -5,
             "max": 20
@@ -115,5 +122,107 @@
         "image": "",
         "icon": "shirt_icon",
         "forWetWeather":false
+    },
+    {
+        "id": "test975",
+        "typ": "tshirt",
+        "name":"tshirt",
+        "weather_range": {
+            "min": 18,
+            "max": 28
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"white",
+        "image": "",
+        "icon": "tshirt_icon",
+        "forWetWeather":false
+    },
+    {
+        "id": "test972",
+        "typ": "tshirt",
+        "name":"poloshirt",
+        "weather_range": {
+            "min": 18,
+            "max": 28
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"white",
+        "image": "",
+        "icon": "tshirt_icon",
+        "forWetWeather":false
+    },
+    {
+        "id": "test643",
+        "typ": "accessoires",
+        "name":"Uhr",
+        "weather_range": {
+            "min": -10,
+            "max": 30
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"silver",
+        "image": "",
+        "icon": "accessoires_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test683",
+        "typ": "accessoires",
+        "name":"Kette",
+        "weather_range": {
+            "min": 15,
+            "max": 30
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"gold",
+        "image": "",
+        "icon": "accessoires_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test643",
+        "typ": "headgear",
+        "name":"Kappe",
+        "weather_range": {
+            "min": 12,
+            "max": 27
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"black",
+        "image": "",
+        "icon": "headgear_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test643",
+        "typ": "headgear",
+        "name":"Mütze",
+        "weather_range": {
+            "min": -15,
+            "max": 5
+        },
+        "anlaesse": [
+            "jsadfj23"
+        ],
+        "layer": 1,
+        "color":"gray",
+        "image": "",
+        "icon": "headgear_icon",
+        "forWetWeather":true
     }
 ]
