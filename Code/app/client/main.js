@@ -248,6 +248,9 @@ Template.content.events({
 
     },
     'click #getOutfit'() {
+        Meteor.call('addOccasion', {test:"test"}, (error, result) => {
+            console.log(error);
+        });
         Meteor.call('getOutfit', (error, result) => {
             if (error) {
                 console.log(error);

@@ -13,6 +13,7 @@ Meteor.methods({
   getWeather() {
     // var weatherApiKey = '&APPID=50fd161807446be0d6d1b7e5ee0f537c';
     const user = Profile.findOne({ id: Meteor.userId() });
+    var weather = {};
 
     var zip = user.location.zip;
     var country = user.location.country;
@@ -22,10 +23,33 @@ Meteor.methods({
     var zeitDifferenz = (Math.abs(newDate - user.lastWeatherDt)) / 60000;
 
     if (zeitDifferenz >= 10) {
-      //  return "neuste wetter Daten";
+      var temp_min = null;
+      var temp_max = null;
       Profile.update(user._id, { $set: { lastWeatherDt: new Date() } });
       const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
-      var weather = {
+      // if (zeitDifferenz >= 60) {
+      //   const forecast = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=8&APPID=50fd161807446be0d6d1b7e5ee0f537c');
+      //   var list = forecast.data.list.slice(0,10);
+      //   console.log(list);
+      //   for (let index = 0; index < 9; index++) {
+
+      //     if(index = 0){
+      //       temp_max = list[0].main.temp_max;
+      //       temp_min = list[0].main.temp_min;
+      //     }
+      //     if(index > 0 && list[index].main.temp_max >list[index-1].main.temp_max){
+      //       temp_max = list[index].main.temp_max;
+      //     }
+      //     if(index > 0 && list[index].main.temp_min < list[index-1].main.temp_min){
+      //       temp_min = list[index].main.temp_min;
+      //     }
+
+
+      //   }
+      //   console.log(temp_max);
+      //     console.log(temp_min);
+      // }
+      weather = {
         zustand: result.data.weather,
         temperatur: result.data.main,
         city: result.data.name
@@ -52,7 +76,9 @@ Meteor.methods({
       lastWeatherDt: weaterDate,
       kleider: [],
       occasions: [],
-      favorites: []
+      favorites: [],
+      candidates: [],
+      currentOutfit: []
     });
 
   },
@@ -62,16 +88,17 @@ Meteor.methods({
   addClothing(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
-    user.kleider.insert(obj);
+    Profile.update(user._id, { $push: { kleider: obj } });
   },
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.occasions) { user.occasions = []; }
-    user.occasions.insert(obj);
+    Profile.update(user._id, { $push: { occasions: obj } });
   },
   addFavorite(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    user.favorites.insert(obj);
+    if (!user.favorites) { user.favorites = []; }
+    Profile.update(user._id, { $push: { favorites: obj } });
   },
   getOutfit() {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -100,10 +127,8 @@ Meteor.methods({
     var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear"];
 
     for (var type of types) {
-      console.log(type);
       var array = outfitCandidates.filter(el => el.type == type);
       finalOutfit[type] = Meteor.call('getClothing', type, array, user.kleider);
-      console.log(finalOutfit);
     }
 
 
@@ -122,19 +147,19 @@ Meteor.methods({
       delete finalOutfit.jacket;
     }
 
-    // var shirtArray = outfitCandidates.filter(el => el.typ == "shirt");
-    // finalOutfit.shirt = Meteor.call('getClothing',"shirt", shirtArray, user.kleider);
-    // var shoeArray = outfitCandidates.filter(el => el.typ == "shoe");
-    // finalOutfit.shoe = Meteor.call('getClothing',"shoe", shoeArray, user.kleider);
-    // var pantsArray = outfitCandidates.filter(el => el.typ == "shoe");
-    // finalOutfit.pants = Meteor.call('getClothing',"pants", pantsArray, user.kleider);
+    Meteor.call('insertCandidates', outfitCandidates);
 
     return finalOutfit;
   },
   checkDate(d1, d2) {
-    return d1.getFullYear() === d2.getFullYear() &&
+    try {
+      return d1.getFullYear() === d2.getFullYear() &&
       d1.getMonth() === d2.getMonth() &&
       d1.getDate() === d2.getDate();
+    } catch (error) {
+      console.log(error);
+    }
+    
   },
   getClothing(type, filteredArray, fullArray) {
     if (filteredArray.length > 0) {
@@ -154,7 +179,7 @@ Meteor.methods({
   checkOccasions(arr) {
     var currDate = new Date();
     arr.forEach((el) => {
-      if (this.checkDate(currDate, el)) {
+      if (Meteor.call("checkDate",currDate, el.date)) {
         return el.typ;
       }
       else {
@@ -170,6 +195,15 @@ Meteor.methods({
     else {
       return false;
     }
+  },
+  insertCandidates(arr) {
+    const user = Profile.findOne({ id: Meteor.userId() });
+    var idArr = [];
+    for (var el of arr) {
+      idArr.push(el.id);
+    }
+    if (!user.candidates) { user.candidates = []; }
+    Profile.update(user._id, { $set: { candidates: idArr } });
   }
 });
 
