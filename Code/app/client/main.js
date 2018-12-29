@@ -5,6 +5,27 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 //import '../node_modules/animate.css/animate.css';
 
+if (Meteor.isCordova) {
+
+
+
+    function notification() {
+
+        try {
+            cordova.plugins.notification.local.schedule({
+                title: 'OOTD',
+                text: 'Schaue dir an yow',
+                vibrate: false,
+                trigger: { at: new Date(2018, 11, 30, 6) }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+    notification()
+
+}
 
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
@@ -248,7 +269,7 @@ Template.content.events({
 
     },
     'click #getOutfit'() {
-        Meteor.call('addOccasion', {test:"test"}, (error, result) => {
+        Meteor.call('addOccasion', { test: "test" }, (error, result) => {
             console.log(error);
         });
         Meteor.call('getOutfit', (error, result) => {
