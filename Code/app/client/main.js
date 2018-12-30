@@ -5,27 +5,6 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 //import '../node_modules/animate.css/animate.css';
 
-if (Meteor.isCordova) {
-
-
-
-    function notification() {
-
-        try {
-            cordova.plugins.notification.local.schedule({
-                title: 'OOTD',
-                text: 'Schaue dir an yow',
-                vibrate: false,
-                trigger: { at: new Date(2018, 11, 30, 6) }
-            });
-        } catch (error) {
-            console.log(error);
-        }
-
-    }
-    notification()
-
-}
 
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
@@ -84,6 +63,27 @@ Router.route('/favoutfits', function () {
 
 var userProfile;
 var allbtncount = 1;
+
+Template.register.onRendered(() => {
+    if (Meteor.isCordova) {
+        function notification() {
+            cordova.plugins.notification.local.clearAll();
+            try {
+                var date = new Date();
+                date.setMinutes(date.getMinutes()+1);
+                cordova.plugins.notification.local.schedule({
+                    title: 'OOTD',
+                    text: 'Pa gönn dir Gucci Outfit',
+                    trigger: { at: date },
+                    foreground:true
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        notification()
+    }
+});
 
 Template.register.events({
     'submit form'(event, template) {
