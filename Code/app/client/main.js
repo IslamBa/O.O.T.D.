@@ -67,6 +67,7 @@ var allbtncount = 1;
 Template.register.onRendered(() => {
     if (Meteor.isCordova) {
         function notification() {
+            alert("y0w");
             cordova.plugins.notification.local.clearAll();
             try {
                 var date = new Date();
@@ -163,6 +164,28 @@ Template.content.helpers({
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
+   
+    if (Meteor.isCordova) {
+        function notification() {
+            // IF Statement um zu schauen ob letztes Datum schon vorbei ist
+            cordova.plugins.notification.local.cancel(1);
+            try {
+                var date = new Date();
+                date.setMinutes(date.getMinutes()+1);
+                cordova.plugins.notification.local.schedule({
+                    id:1,
+                    title: 'OOTD',
+                    text: 'Pa gönn dir Gucci Outfit, '+ Meteor.user().username,
+                    trigger: { at: date },
+                    foreground:true                 
+                });
+            } catch (error) {
+                console.log(error);
+            }
+            //Server Aufrufen und neue Push Date einfügen/updaten
+        }
+        notification()
+    }
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
