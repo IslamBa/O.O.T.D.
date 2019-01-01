@@ -211,6 +211,10 @@ Meteor.methods({
     }
     if (!user.candidates) { user.candidates = []; }
     Profile.update(user._id, { $set: { candidates: idArr } });
+  },
+  updateNotificationDate(date) {
+    const user = Profile.findOne({ id: Meteor.userId() });
+    Profile.update(user._id, { $set: { notificationDate: date } });
   }
 });
 

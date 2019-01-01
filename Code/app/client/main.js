@@ -9,6 +9,7 @@ import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
 
+
 Router.route('/', function () {
     this.render('login');
 });
@@ -61,7 +62,7 @@ Router.route('/favoutfits', function () {
     this.render('FavOutfits');
 });
 
-var userProfile;
+
 var allbtncount = 1;
 
 Template.register.onRendered(() => {
@@ -71,12 +72,12 @@ Template.register.onRendered(() => {
             cordova.plugins.notification.local.clearAll();
             try {
                 var date = new Date();
-                date.setMinutes(date.getMinutes()+1);
+                date.setMinutes(date.getMinutes() + 1);
                 cordova.plugins.notification.local.schedule({
                     title: 'OOTD',
                     text: 'Pa gönn dir Gucci Outfit',
                     trigger: { at: date },
-                    foreground:true
+                    foreground: true
                 });
             } catch (error) {
                 console.log(error);
@@ -164,28 +165,6 @@ Template.content.helpers({
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
-   
-    if (Meteor.isCordova) {
-        function notification() {
-            // IF Statement um zu schauen ob letztes Datum schon vorbei ist
-            cordova.plugins.notification.local.cancel(1);
-            try {
-                var date = new Date();
-                date.setMinutes(date.getMinutes()+1);
-                cordova.plugins.notification.local.schedule({
-                    id:1,
-                    title: 'OOTD',
-                    text: 'Pa gönn dir Gucci Outfit, '+ Meteor.user().username,
-                    trigger: { at: date },
-                    foreground:true                 
-                });
-            } catch (error) {
-                console.log(error);
-            }
-            //Server Aufrufen und neue Push Date einfügen/updaten
-        }
-        notification()
-    }
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
@@ -197,10 +176,62 @@ Template.content.onRendered(() => {
     });
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
-        userProfile = result;
 
         $(".title").text(result.weather.temperatur.temp_max + "°C");
     });
+
+
+
+
+    function notification() {
+        // IF Statement um zu schauen ob letztes Datum schon vorbei ist
+        var lastNotification = '';
+        var date = new Date();
+        if (Meteor.isCordova) {
+            Meteor.call('getProfile', Meteor.userId(), (error, result) => {
+
+                lastNotification = result.notificationDate;
+                if (lastNotification == '') { lastNotification = '2000-01-31'; }
+                var difference = (new Date(lastNotification) - date) * -1;
+                difference = difference / 1000 / 60 / 60 / 24;
+
+                if (difference >= 2) {
+                    cordova.plugins.notification.local.cancelAll();
+                    try {
+                        alert("yow");
+                        date.setMinutes(date.getMinutes() + 1);
+                        cordova.plugins.notification.local.schedule(
+                            {
+                                id: 1,
+                                title: 'OOTD',
+                                text: 'Pa gönn dir Gucci Outfit, ' + Meteor.user().username,
+                                trigger: { at: date },
+                                foreground: true
+                            }
+                            // {
+                            //     id: 2,
+                            //     title: 'OOTD',
+                            //     text: 'Pa gönn dir Gucci Outfit, ' + Meteor.user().username,
+                            //     trigger: { at: date },
+                            //     foreground: true
+                            // }
+                        );
+                        Meteor.call("updateNotificationDate",date, (error, result) => {
+                            console.log(error);
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                }
+
+            });
+
+            //Server Aufrufen und neue Push Date einfügen/updaten
+        }
+    }
+    notification();
+
+
 });
 
 
