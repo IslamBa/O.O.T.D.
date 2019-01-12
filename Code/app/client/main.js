@@ -2,7 +2,9 @@ import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/el-checkbox-master/dist/checkbox.min.css';  
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js';   
 //import '../node_modules/animate.css/animate.css';
 
 
@@ -122,6 +124,11 @@ Template.login.events({
         Meteor.loginWithPassword(username, passwort, (err) => {
             if (err) {
                 console.log(err);
+                $(".fehlermeldung").slideDown(200, function(){
+                    setTimeout(function() {
+                        $('.fehlermeldung').fadeOut();
+                       }, 1200 );
+                });
             }
             else {
                 Router.go('startseite');
@@ -243,7 +250,7 @@ Template.content.events({
     'click #btnWeather'(event) {
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
-                $(".title").text("Wetter: " + result.weather.temperatur.temp_max + "°C");
+                $(".title").text(result.weather.temperatur.temp_max + "°C");
             }
             else {
                 console.log("10 Minuten noch nicht vorbei");
@@ -338,3 +345,5 @@ Template.content.events({
 });
 
 
+
+    
