@@ -65,27 +65,6 @@ Router.route('/favoutfits', function () {
 
 var allbtncount = 1;
 
-Template.register.onRendered(() => {
-    if (Meteor.isCordova) {
-        function notification() {
-            alert("y0w");
-            cordova.plugins.notification.local.clearAll();
-            try {
-                var date = new Date();
-                date.setMinutes(date.getMinutes() + 1);
-                cordova.plugins.notification.local.schedule({
-                    title: 'OOTD',
-                    text: 'Pa gönn dir Gucci Outfit',
-                    trigger: { at: date },
-                    foreground: true
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        notification()
-    }
-});
 
 Template.register.events({
     'submit form'(event, template) {
@@ -165,6 +144,10 @@ Template.content.helpers({
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
+
+    Meteor.call('FunktionAmServer', function (error, result) {
+        //Code
+    });
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
@@ -334,6 +317,12 @@ Template.content.events({
                 console.log(result);
             }
         });
+    }
+});
+
+Template.AddClothes.events({
+    'click #btn_addCloth'(){
+        alert("passz");
     }
 });
 
