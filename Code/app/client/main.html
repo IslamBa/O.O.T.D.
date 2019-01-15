@@ -1,6 +1,6 @@
 <head>
   <title>O.O.T.D.</title>
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"> -->
+  <link rel="stylesheet" href="addons/checkbox.min.css">
 </head>
 
 <body>
@@ -13,60 +13,60 @@
   {{#if currentUser}}
   <div class="divweather text-center">
     <h1 class="title"></h1>
-    <button id="btnWeather">Get Weather</button>
+    <button id="btnWeather" class="btn getweatherbtn suncolor">Get Weather</button>
   </div>
-  <br>
   <div class="container">
     <div class="row">
-      <div class="col col-sm-6">
+      <div class="col col-sm">
         <div class="divdailycloth">
-          Tshirt
+          <i class="fas fa-tshirt kategorieicons"></i>
         </div>
       </div>
-      <div class="col col-sm-6">
+      <div class="col col-sm">
         <div class="divdailycloth">
-          Hose
+          <i class="fas fa-socks kategorieicons"></i>
         </div>
       </div>
-      <br>
-      <div class="col col-sm-6">
+    </div>
+    <div class="row">
+      <div class="col col-sm">
         <div class="divdailycloth">
-          Schuhe
+          <i class="fas fa-shoe-prints kategorieicons"></i>
         </div>
       </div>
-      <div class="col col-sm-6">
+      <div class="col col-sm">
         <div class="divdailycloth">
-          Accessoire
+          <i class="fas fa-ring kategorieicons"></i>
         </div>
       </div>
     </div>
   </div>
 
-  <button class="allbtn allbtndown btn btn-danger">
+  <button class="allbtn allbtndown btn suncolor">
     <i class="fas fa-bars"></i>
   </button>
   <a href="/">
-    <button class="btnLogout btn btn-primary" style="display: none;">
+    <button class="btnLogout btn suncolor" style="display: none;">
       <i class="fas fa-power-off"></i>
     </button>
   </a>
   <a href="/allcloth">
-    <button class="allcloth btn btn-info" style="display: none;">
+    <button class="allcloth btn suncolor" style="display: none;">
       <i class="fas fa-tshirt"></i>
     </button>
   </a>
   <a href="/anlass">
-    <button class="anlassbtn btn btn-success" style="display: none;">
+    <button class="anlassbtn btn suncolor" style="display: none;">
       <i class="far fa-calendar-plus"></i>
     </button>
   </a>
 
 
-    <button id="getPicture">Bild</button>
-    <input type="file" name="myFile" id="galleryImage" accept="image/*">
-    <button id="uploadImage">Upload Image</button>
+  <button id="getPicture">Bild</button>
+  <input type="file" name="myFile" id="galleryImage" accept="image/*">
+  <button id="uploadImage">Upload Image</button>
 
-    <button id="getOutfit">Test Outfit (in console)</button>
+  <button id="getOutfit">Test Outfit (in console)</button>
 
   {{else}}
   <span style="color:blue;">
@@ -79,8 +79,7 @@
 
   <div class="img-login">
 
-
-    <div class="container carddes">
+    <!--<div class="container carddes">
       <h3 class="text-center">Login</h3>
       <form class="btnright">
 
@@ -103,15 +102,44 @@
           <a href="/resetPassword">Passwort vergessen?</a>
         </div>
       </form>
-    </div>
+    </div>-->
+    <form>
+      <div class="container login-container">
+        <div class="login-div form-group">
 
-    <div class="text-center">
+          <!--<label class="login-text">Benutzername</label>-->
+          <input id="login-username" type="text" class="validate login-input form-control" placeholder="Benutzername">
+          <i class="fas fa-user login-icon"></i>
+        </div>
+        <br>
+        <div class="login-div form-group">
+
+          <!--<label class="login-text">Passwort</label>-->
+          <input id="login-password" type="password" class="validate login-input form-control" placeholder="Passwort">
+          <i class="fas fa-lock login-icon"></i>
+        </div>
+        <br>
+        <div class="text-center form-group">
+          <button type="submit" class="btn login-buttonn">Anmelden</button>
+        </div>
+
+      </div>
+    </form>
+
+
+
+    <div class="text-center registrieren-text">
       <p class="neu-registrieren">Noch kein Account?
         <span style="color:blue;">
           <a href="/registrieren">Hier Registrieren !</a>
         </span>
       </p>
+    </div>
 
+    <div class="text-center">
+      <div class="fehlermeldung">
+        <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
+      </div>
     </div>
 
   </div>
@@ -122,7 +150,7 @@
 
 <template name="register">
   <div class="img-login">
-    <form class="">
+    <!-- <form class="">
       <div class="row">
         <div class="input-field col s12">
           <input id="username" type="text" class="validate form-control inputt" placeholder="Username">
@@ -156,6 +184,51 @@
       <div>
         <button type="submit">Registrieren</button>
       </div>
+    </form>-->
+    <form>
+      <div class="container">
+        <div class="login-div form-group">
+
+          <!--<label class="login-text">Benutzername</label>-->
+          <input id="username" type="text" class="validate login-input form-control" placeholder="Benutzername">
+          <i class="fas fa-user login-icon"></i>
+        </div>
+        <br>
+        <div class="login-div form-group">
+
+          <!--<label class="login-text">Passwort</label>-->
+          <input id="password" type="password" class="validate login-input form-control" placeholder="Passwort">
+          <i class="fas fa-lock login-icon"></i>
+        </div>
+        <br>
+        <div class="login-div form-group">
+
+          <!--<label class="login-text">Passwort</label>-->
+          <input id="email" type="password" class="validate login-input form-control" placeholder="Passwort bestätigen">
+          <i class="fas fa-lock login-icon"></i>
+        </div>
+        <br>
+        <div class="login-div form-group">
+
+          <!--<label class="login-text">Passwort</label>-->
+          <input id="zip" type="text" class="validate login-input form-control" placeholder="ZIP">
+          <i class="fas fa-map-marker-alt login-icon"></i>
+        </div>
+        <br>
+        <div class="input-field col s12">
+            <select id="countrySel">
+              <option value="none" disabled selected>Land wählen</option>
+              <option value="at">Österreich</option>
+              <option value="de">Deutschland</option>
+              <option value="ch">Schweiz</option>
+            </select>
+          </div>
+          <br>
+        <div class="text-center form-group">
+          <button type="submit" class="btn login-buttonn">Regestrieren</button>
+        </div>
+
+      </div>
     </form>
 
   </div>
@@ -174,14 +247,14 @@
 
 <template name="AddClothes">
   <div class="divclothpic text-center">
-    <button class="clothpic ">
-      <i class="fas fa-camera picicon"></i>
+    <button class="clothpic">
+      <i class="fas fa-camera"></i>
     </button>
   </div>
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
-      <input type="text" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
+      <input type="range" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
       <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
     </div>
     <br>
@@ -190,46 +263,100 @@
       <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
     </div>
     <br>
-    <div class="row inputaddcloth text-center">
-      <div class="input-field col s12">
-        <select>
-          <option value="none" disabled selected>Kleiderart wählen</option>
-          <option value="at">Jacke</option>
-          <option value="de">Hose</option>
-          <option value="ch">Shirt</option>
-          <option value="ch">Schuhe</option>
-          <option value="ch">Accessoire</option>
-        </select>
+    <div class="dropdown text-center">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Kleiderart
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">Jacke</button>
+        <button class="dropdown-item" type="button">Hose</button>
+        <button class="dropdown-item" type="button">Shirt</button>
+        <button class="dropdown-item" type="button">Schuhe</button>
+        <button class="dropdown-item" type="button">Kleid</button>
+        <button class="dropdown-item" type="button">Rock</button>
+        <button class="dropdown-item" type="button">Accessoire</button>
       </div>
     </div>
-    <br>
-    <div class="form-check text-center">
-      <input type="checkbox" id="exampleCheck1">
-      <label for="exampleCheck1">Niederschlagbeständig</label>
-      <small id="emailHelp" class="form-text text-muted">Ist das Kleidungstück gegen Regen und Schnee geschützt?</small>
+    <hr>
+    <div class="text-center inputaddcloth row">
+      <label class="el-switch col col-sm">
+        <input type="checkbox" name="switch">
+        <span class="el-switch-style"></span>
+      </label>
+      <label class="switchfont col col-sm">Niederschlag</label>
+      <small id="emailHelp" class="form-text text-muted col-sm">Regen und Schnee geschützt?</small>
     </div>
+    <hr>
+    <div>
+      <div class="text-center inputaddcloth row">
+        <label class="el-switch col col-sm">
+          <input type="checkbox" name="switch">
+          <span class="el-switch-style"></span>
+        </label>
+        <label class="switchfont col col-sm">Schicker Anlass</label>
+
+      </div>
+
+      <div class="text-center inputaddcloth row">
+        <label class="el-switch col col-sm">
+          <input type="checkbox" name="switch">
+          <span class="el-switch-style"></span>
+        </label>
+        <label class="switchfont col col-sm">Casual Day</label>
+
+      </div>
+
+      <div class="text-center inputaddcloth row">
+        <label class="el-switch col col-sm">
+          <input type="checkbox" name="switch">
+          <span class="el-switch-style"></span>
+        </label>
+        <label class="switchfont col col-sm">Busniess</label>
+
+      </div>
+
+      <div class="text-center inputaddcloth row">
+        <label class="el-switch col col-sm">
+          <input type="checkbox" name="switch">
+          <span class="el-switch-style"></span>
+        </label>
+        <label class="switchfont col col-sm">Bewerbung</label>
+        <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
+      </div>
+    </div>
+
+
     <br>
-    <div class="text-center">
-      <button id="btn_addCloth">Speichern</button>
+    <div class="text-center addclothbtn">
+      <button class="btn btn-success">Speichern</button>
     </div>
   </form>
 
 </template>
 
 <template name="Kategorien">
+
+  <div class="weatherbar suncolor">
+
+  </div>
   <div class="container text-center">
+
     <div class="row">
       <div class="col col-sm-12">
         <a href="/oberteil">
           <button class="divkategorie">
-            Oberteil
+            <i class="fas fa-tshirt kategorieicons"></i>
+            <br> Oberteil
           </button>
         </a>
       </div>
+    </div>
+    <div class="row">
       <div class="col col-sm-12">
         <a href="/hosen">
           <button class="divkategorie">
-            Hosen
+            <i class="fas fa-socks kategorieicons"></i>
+            <br> Hosen
           </button>
         </a>
       </div>
@@ -238,14 +365,18 @@
       <div class="col col-sm-12">
         <a href="/schuhe">
           <button class="divkategorie">
-            Schuhe
+            <i class="fas fa-shoe-prints kategorieicons"></i>
+            <br> Schuhe
           </button>
         </a>
       </div>
+    </div>
+    <div class="row">
       <div class="col col-sm-12">
         <a href="/accessoire">
           <button class="divkategorie">
-            Accessoire
+            <i class="fas fa-ring kategorieicons"></i>
+            <br> Accessoire
           </button>
         </a>
       </div>
@@ -254,14 +385,15 @@
       <div class="col col-sm-12">
         <a href="/favoutfits">
           <button class="divkategorie">
-            Favourite Outfits
+            <i class="fas fa-star kategorieicons"></i>
+            <br> Favourite Outfits
           </button>
         </a>
       </div>
     </div>
   </div>
   <a href="/addcloth">
-    <button class="allbtndown btn btn-danger">
+    <button class="allbtndown btn suncolor">
       <i class="fas fa-plus"></i>
     </button>
   </a>
@@ -270,69 +402,83 @@
 </template>
 
 <template name="Anlass">
+  <div class="weatherbar suncolor">
+
+  </div>
+
+  <p class="text-center nvorhandentext">Noch keine Anlässe vorhanden !</p>
+
   <a href="/addanlass">
-    <button class="allbtndown btn btn-danger">
+    <button class="allbtndown btn suncolor">
       <i class="fas fa-plus"></i>
     </button>
   </a>
 </template>
 
 <template name="AddAnlass">
-    <form class="">
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate form-control inputt" placeholder="Jahr">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate form-control inputt" placeholder="Monat">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate form-control inputt" placeholder="Tag">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="text" class="validate form-control inputt" placeholder="Name">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <select >
-              <option value="none" disabled selected>Anlass wählen</option>
-              <option value="at">Normaler Tag</option>
-              <option value="de">Schick</option>
-              <option value="ch">Business</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <button>Speichern</button>
-        </div>
-      </form>
+  <form class="">
+    <!-- <div class="row">
+      <div class="input-field col s12">
+        <input type="text" class="validate form-control inputt" placeholder="Jahr">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" class="validate form-control inputt" placeholder="Monat">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" class="validate form-control inputt" placeholder="Tag">
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" class="validate form-control inputt" placeholder="Name">
+      </div>
+    </div>-->
+    <input type="date" class="form-control" id="example">
+
+
+    <br>
+    <div class="dropdown text-center">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Anlass
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button">Schicker Anlass</button>
+        <button class="dropdown-item" type="button">Casual Day</button>
+        <button class="dropdown-item" type="button">Bewerbung</button>
+        <button class="dropdown-item" type="button">Busniess</button>
+      </div>
+    </div>
+    <br>
+    <div class="text-center addclothbtn">
+      <button class="btn btn-success">Speichern</button>
+    </div>
+  </form>
 </template>
 
 <template name="Oberteil">
 
+  <p class="text-center nvorhandentext">Noch keine Oberteile vorhanden !</p>
+
 </template>
 
 <template name="Hosen">
-
+  <p class="text-center nvorhandentext">Noch keine Hosen vorhanden !</p>
 </template>
 
 <template name="Schuhe">
-
+  <p class="text-center nvorhandentext">Noch keine Schuhe vorhanden !</p>
 </template>
 
 <template name="Accessoire">
-
+  <p class="text-center nvorhandentext">Noch keine Accesoires vorhanden !</p>
 </template>
 
 <template name="FavOutfits">
-
+  <p class="text-center nvorhandentext">Noch keine Favourite Outfits vorhanden !</p>
 </template>
 
 
