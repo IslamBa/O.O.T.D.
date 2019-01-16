@@ -342,5 +342,11 @@ Template.AddClothes.events({
     }
 });
 
+Template.AddAnlass.events({
+    'click #save_occasion'(){
+        alert($('.inputaddanlass').val());
+    }
+});
+
 
 
