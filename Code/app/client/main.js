@@ -117,14 +117,14 @@ Template.login.events({
         });
     },
     'click #forgotPass'(event) {
-        Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
-            if (!err) {
-                console.log("passt");
-            }
-            else {
-                console.log(err);
-            }
-        });
+        // Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
+        //     if (!err) {
+        //         console.log("passt");
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // });
     }
 });
 

@@ -30,48 +30,28 @@ Meteor.methods({
     var zeitDifferenz = (Math.abs(newDate - user.lastWeatherDt)) / 60000;
 
     if (zeitDifferenz >= 10) {
-      var temp_min = null;
-      var temp_max = null;
+      var temp_min_arr = [];
+      var temp_max_arr = [];
       Profile.update(user._id, { $set: { lastWeatherDt: new Date() } });
 
 
       const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
 
-      const vorschau = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=10&APPID=50fd161807446be0d6d1b7e5ee0f537c');
+      const vorschau = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=8&APPID=50fd161807446be0d6d1b7e5ee0f537c');
       
-      console.log(vorschau);;
 
-      // for (let index = 0; index < vorschau.list.length; index++) {
-        
-        
-      // }
+      for (let index = 0; index < vorschau.data.list.length; index++) {
+        temp_min_arr.push(vorschau.data.list[index].main.temp_min);
+        temp_max_arr.push(vorschau.data.list[index].main.temp_max);
+      }
       
-      // if (zeitDifferenz >= 60) {
-      //   const forecast = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=8&APPID=50fd161807446be0d6d1b7e5ee0f537c');
-      //   var list = forecast.data.list.slice(0,10);
-      //   console.log(list);
-      //   for (let index = 0; index < 9; index++) {
-
-      //     if(index = 0){
-      //       temp_max = list[0].main.temp_max;
-      //       temp_min = list[0].main.temp_min;
-      //     }
-      //     if(index > 0 && list[index].main.temp_max >list[index-1].main.temp_max){
-      //       temp_max = list[index].main.temp_max;
-      //     }
-      //     if(index > 0 && list[index].main.temp_min < list[index-1].main.temp_min){
-      //       temp_min = list[index].main.temp_min;
-      //     }
-
-
-      //   }
-      //   console.log(temp_max);
-      //     console.log(temp_min);
-      // }
+    
       weather = {
         zustand: result.data.weather,
         temperatur: result.data.main,
-        city: result.data.name
+        city: result.data.name,
+        min: Math.min(...temp_min_arr),
+        max: Math.max(...temp_max_arr)
       };
       //Profile.update(user._id, { $set: { weather: result.data } });
       Profile.update(user._id, { $set: { weather: weather } });
