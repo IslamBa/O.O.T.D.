@@ -117,14 +117,14 @@ Template.login.events({
         });
     },
     'click #forgotPass'(event) {
-        Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
-            if (!err) {
-                console.log("passt");
-            }
-            else {
-                console.log(err);
-            }
-        });
+        // Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
+        //     if (!err) {
+        //         console.log("passt");
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // });
     }
 });
 
@@ -322,9 +322,6 @@ Template.content.events({
 
     },
     'click #getOutfit'() {
-        Meteor.call('addOccasion', { test: "test" }, (error, result) => {
-            console.log(error);
-        });
         Meteor.call('getOutfit', (error, result) => {
             if (error) {
                 console.log(error);
@@ -339,6 +336,23 @@ Template.content.events({
 Template.AddClothes.events({
     'click #btn_addCloth'(){
         alert("passz");
+    }
+});
+
+Template.AddAnlass.events({
+    'click #save_occasion'(){
+        var obj = {};
+        obj.name = $("#select_anlass").val();
+        obj.date = $('.inputaddanlass').val();
+
+        Meteor.call('addOccasion', obj, (error, result) => {
+            if(!err){
+                alert("passt");
+            }
+            else{
+                alert(error);
+            }
+        });
     }
 });
 
