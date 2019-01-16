@@ -95,12 +95,14 @@ Template.register.events({
 
 Template.login.events({
     'submit form'(event, template) {
+        $("#loginLoading").show();
         event.preventDefault();
-        var username = $("#login-username").val();
+        var username = $("#login-username").val().trim();
         var passwort = $("#login-password").val();
 
         Meteor.loginWithPassword(username, passwort, (err) => {
             if (err) {
+                $("#loginLoading").hide();
                 console.log(err);
                 $(".fehlermeldung").slideDown(200, function(){
                     setTimeout(function() {
@@ -109,6 +111,7 @@ Template.login.events({
                 });
             }
             else {
+                $("#loginLoading").hide();
                 Router.go('startseite');
             }
         });
