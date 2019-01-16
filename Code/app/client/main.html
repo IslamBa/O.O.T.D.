@@ -1,6 +1,6 @@
 <head>
   <title>O.O.T.D.</title>
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"> -->
+  <link rel="stylesheet" href="addons/checkbox.min.css">
 </head>
 
 <body>
@@ -79,30 +79,6 @@
 
   <div class="img-login">
 
-    <!--<div class="container carddes">
-      <h3 class="text-center">Login</h3>
-      <form class="btnright">
-
-        <div class="form-group">
-
-          <input id="login-username" type="text" class="validate form-control inputt" placeholder="Benutzername">
-
-        </div>
-
-        <div class="form-group">
-
-          <input id="login-password" type="password" class="validate form-control inputt" placeholder="Passwort">
-
-        </div>
-
-        <div class="form-group float-right">
-          <button type="submit">Anmelden</button>
-        </div>
-        <div>
-          <a href="/resetPassword">Passwort vergessen?</a>
-        </div>
-      </form>
-    </div>-->
     <form>
       <div class="container login-container">
         <div class="login-div form-group">
@@ -127,6 +103,18 @@
     </form>
 
 
+    <div id="loginLoading" class="lds-ripple" style="display:none;">
+      <div class="text-center"></div>
+      <div class="text-center"></div>
+    </div>
+
+
+    <div class="text-center">
+      <div class="fehlermeldung">
+        <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
+      </div>
+    </div>
+
 
     <div class="text-center registrieren-text">
       <p class="neu-registrieren">Noch kein Account?
@@ -136,11 +124,7 @@
       </p>
     </div>
 
-    <div class="text-center">
-      <div class="fehlermeldung">
-        <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
-      </div>
-    </div>
+
 
   </div>
 
@@ -255,16 +239,19 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <input type="range" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
+      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück
+        anzuziehen.</small>
     </div>
     <br>
     <div class="form-group inputaddcloth text-center">
       <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.</small>
+      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück
+        anzuziehen.</small>
     </div>
     <br>
     <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         Kleiderart
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -446,7 +433,8 @@
 
     <br>
     <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         Anlass
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">

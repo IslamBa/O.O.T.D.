@@ -2,11 +2,11 @@ import { Meteor } from 'meteor/meteor';
 import { Profile } from '../collections';
 var cloudinary = require('cloudinary');
 
-cloudinary.config({ 
-  cloud_name: 'sample', 
-  api_key: '874837483274837', 
-  api_secret: 'a676b67565c6767a6767d6767f676fe1' 
-});
+// cloudinary.config({ 
+//   cloud_name: 'sample', 
+//   api_key: '874837483274837', 
+//   api_secret: 'a676b67565c6767a6767d6767f676fe1' 
+// });
 
 Meteor.startup(() => {
   // code to run on server at startup
@@ -33,7 +33,19 @@ Meteor.methods({
       var temp_min = null;
       var temp_max = null;
       Profile.update(user._id, { $set: { lastWeatherDt: new Date() } });
+
+
       const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
+
+      const vorschau = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=10&APPID=50fd161807446be0d6d1b7e5ee0f537c');
+      
+      console.log(vorschau);;
+
+      // for (let index = 0; index < vorschau.list.length; index++) {
+        
+        
+      // }
+      
       // if (zeitDifferenz >= 60) {
       //   const forecast = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=8&APPID=50fd161807446be0d6d1b7e5ee0f537c');
       //   var list = forecast.data.list.slice(0,10);

@@ -66,27 +66,6 @@ Router.route('/favoutfits', function () {
 
 var allbtncount = 1;
 
-Template.register.onRendered(() => {
-    if (Meteor.isCordova) {
-        function notification() {
-            alert("y0w");
-            cordova.plugins.notification.local.clearAll();
-            try {
-                var date = new Date();
-                date.setMinutes(date.getMinutes() + 1);
-                cordova.plugins.notification.local.schedule({
-                    title: 'OOTD',
-                    text: 'Pa gönn dir Gucci Outfit',
-                    trigger: { at: date },
-                    foreground: true
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        notification()
-    }
-});
 
 Template.register.events({
     'submit form'(event, template) {
@@ -116,12 +95,14 @@ Template.register.events({
 
 Template.login.events({
     'submit form'(event, template) {
+        $("#loginLoading").show();
         event.preventDefault();
-        var username = $("#login-username").val();
+        var username = $("#login-username").val().trim();
         var passwort = $("#login-password").val();
 
         Meteor.loginWithPassword(username, passwort, (err) => {
             if (err) {
+                $("#loginLoading").hide();
                 console.log(err);
                 $(".fehlermeldung").slideDown(200, function () {
                     setTimeout(function () {
@@ -130,6 +111,7 @@ Template.login.events({
                 });
             }
             else {
+                $("#loginLoading").hide();
                 Router.go('startseite');
             }
         });
@@ -171,6 +153,10 @@ Template.content.helpers({
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
+
+    Meteor.call('FunktionAmServer', function (error, result) {
+        //Code
+    });
 
     Meteor.call('getWeather', function (error, result) {
         if (result != false) {
@@ -347,6 +333,12 @@ Template.content.events({
                 console.log(result);
             }
         });
+    }
+});
+
+Template.AddClothes.events({
+    'click #btn_addCloth'(){
+        alert("passz");
     }
 });
 
