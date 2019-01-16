@@ -216,14 +216,14 @@
         </div>
         <br>
         <div class="input-field col s12">
-            <select id="countrySel">
-              <option value="none" disabled selected>Land wählen</option>
-              <option value="at">Österreich</option>
-              <option value="de">Deutschland</option>
-              <option value="ch">Schweiz</option>
-            </select>
-          </div>
-          <br>
+          <select id="countrySel">
+            <option value="none" disabled selected>Land wählen</option>
+            <option value="at">Österreich</option>
+            <option value="de">Deutschland</option>
+            <option value="ch">Schweiz</option>
+          </select>
+        </div>
+        <br>
         <div class="text-center form-group">
           <button type="submit" class="btn login-buttonn">Regestrieren</button>
         </div>
@@ -437,7 +437,11 @@
         <input type="text" class="validate form-control inputt" placeholder="Name">
       </div>
     </div>-->
-    <input type="date" class="form-control" id="example">
+    <div class="col-sm-12">
+        
+      <input type="text" class="datepicker form-control inputaddanlass col-sm">
+      <i class="fas fa-calendar-alt calender-icon"></i>
+    </div>
 
 
     <br>
@@ -454,7 +458,7 @@
     </div>
     <br>
     <div class="text-center addclothbtn">
-      <button class="btn btn-success">Speichern</button>
+      <button id="save_occasion" class="btn btn-success">Speichern</button>
     </div>
   </form>
 </template>

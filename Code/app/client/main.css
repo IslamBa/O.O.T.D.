@@ -280,4 +280,16 @@ body,html{
 	padding-top: 12px;
 }
 
+.inputaddanlass{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width:300px !important;
+	height: 45px !important;
+}
 
+.calender-icon{
+	font-size: 25px !important;
+	float: left;
+	margin-top : -35px;
+	margin-left: 10px;
+}

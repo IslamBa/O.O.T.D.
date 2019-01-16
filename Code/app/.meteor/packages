@@ -27,3 +27,4 @@ iron:router
 mdg:camera
 underscore
 lepozepo:cloudinary
+deepwell:bootstrap-datepicker2
