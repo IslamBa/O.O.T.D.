@@ -195,7 +195,6 @@ body,html{
 	margin-top : 180px;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	
 }
 
 .inputaddcloth{
@@ -256,11 +255,9 @@ body,html{
 }
 
 .dropdown_select{
-	left: auto !important;
-	right: auto !important;
-	text-align: center !important;
-	width: 100px !important;
-	background-color: #8deeee !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width: 200px !important;
 }
 
 .kategorieicons{
@@ -303,7 +300,7 @@ body,html{
 	font-size: 25px !important;
 	float: left;
 	margin-top : -35px;
-	margin-left: 10px;
+	margin-left: 50px;
 }
 .lds-ripple {
 	display: inline-block;
