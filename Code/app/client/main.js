@@ -322,9 +322,6 @@ Template.content.events({
 
     },
     'click #getOutfit'() {
-        Meteor.call('addOccasion', { test: "test" }, (error, result) => {
-            console.log(error);
-        });
         Meteor.call('getOutfit', (error, result) => {
             if (error) {
                 console.log(error);
@@ -344,7 +341,18 @@ Template.AddClothes.events({
 
 Template.AddAnlass.events({
     'click #save_occasion'(){
-        alert($('.inputaddanlass').val());
+        var obj = {};
+        obj.name = $("#select_anlass").val();
+        obj.date = $('.inputaddanlass').val();
+
+        Meteor.call('addOccasion', obj, (error, result) => {
+            if(!err){
+                alert("passt");
+            }
+            else{
+                alert(error);
+            }
+        });
     }
 });
 

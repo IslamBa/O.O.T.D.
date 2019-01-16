@@ -134,41 +134,6 @@
 
 <template name="register">
   <div class="img-login">
-    <!-- <form class="">
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="username" type="text" class="validate form-control inputt" placeholder="Username">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="password" type="password" class="validate form-control inputt" placeholder="Passwort">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="email" type="password" class="validate form-control inputt" placeholder="Passwort bestätigen">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="zip" type="text" class="validate form-control inputt" placeholder="ZIP">
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <select id="countrySel">
-            <option value="none" disabled selected>Land wählen</option>
-            <option value="at">Österreich</option>
-            <option value="de">Deutschland</option>
-            <option value="ch">Schweiz</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <button type="submit">Registrieren</button>
-      </div>
-    </form>-->
     <form>
       <div class="container">
         <div class="login-div form-group">
@@ -239,19 +204,18 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <input type="range" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück
-        anzuziehen.</small>
+      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.
+      </small>
     </div>
     <br>
     <div class="form-group inputaddcloth text-center">
       <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück
-        anzuziehen.</small>
+      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.
+      </small>
     </div>
     <br>
     <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Kleiderart
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -404,44 +368,18 @@
 
 <template name="AddAnlass">
   <form class="">
-    <!-- <div class="row">
-      <div class="input-field col s12">
-        <input type="text" class="validate form-control inputt" placeholder="Jahr">
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="text" class="validate form-control inputt" placeholder="Monat">
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="text" class="validate form-control inputt" placeholder="Tag">
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input type="text" class="validate form-control inputt" placeholder="Name">
-      </div>
-    </div>-->
     <div class="col-sm-12">
       <input type="text" class="datepicker form-control inputaddanlass col-sm">
       <i class="fas fa-calendar-alt calender-icon"></i>
     </div>
-
-
     <br>
-    <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        Anlass
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button">Schicker Anlass</button>
-        <button class="dropdown-item" type="button">Casual Day</button>
-        <button class="dropdown-item" type="button">Bewerbung</button>
-        <button class="dropdown-item" type="button">Busniess</button>
-      </div>
+    <div clas="text-center dropdown_select">
+      <select class="form-control" id="select_anlass">
+        <option>Schicker Anlass</option>
+        <option>Casual Day</option>
+        <option>Bewerbung</option>
+        <option>Business</option>
+      </select>
     </div>
     <br>
     <div class="text-center addclothbtn">

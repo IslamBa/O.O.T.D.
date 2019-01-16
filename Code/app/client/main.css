@@ -1,10 +1,9 @@
 .login-container{
-  padding-top: 150px;
+  padding-top: 430px;
   position: absolute;
 }
 
 .login-buttonn{
-
   width : 80% !important;
   height: 45px !important;
   background-color: #e6a452 !important; 
@@ -19,8 +18,19 @@
 	border-radius: 23px !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	background-color: rgba(255, 255, 255, 0.4) !important;
+	background-color: rgba(0, 0, 0, 0.4) !important;
+	color : white !important;
 }
+
+::placeholder{
+	color:white !important;
+}
+
+.login-input::placeholder{
+	color: white;
+	opacity: 1;
+}
+
 
 .login-text{
 	padding-left: 50px;
@@ -87,6 +97,7 @@ body,html{
   text-align: center;
   position: fixed;
   width: 100%;
+  color: white;
 }
 
 .registrieren-container{
@@ -244,10 +255,12 @@ body,html{
 	background-color: #8deeee !important;
 }
 
-.dropdown{
+.dropdown_select{
 	left: auto !important;
 	right: auto !important;
 	text-align: center !important;
+	width: 100px !important;
+	background-color: #8deeee !important;
 }
 
 .kategorieicons{
