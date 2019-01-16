@@ -3,7 +3,7 @@ import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
-import '../node_modules/bootstrap/dist/js/bootstrap.min.js';   
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 //import '../node_modules/animate.css/animate.css';
 
 
@@ -104,10 +104,10 @@ Template.login.events({
             if (err) {
                 $("#loginLoading").hide();
                 console.log(err);
-                $(".fehlermeldung").slideDown(200, function(){
-                    setTimeout(function() {
+                $(".fehlermeldung").slideDown(200, function () {
+                    setTimeout(function () {
                         $('.fehlermeldung').fadeOut();
-                       }, 1200 );
+                    }, 1200);
                 });
             }
             else {
@@ -208,7 +208,7 @@ Template.content.onRendered(() => {
                             //     foreground: true
                             // }
                         );
-                        Meteor.call("updateNotificationDate",date, (error, result) => {
+                        Meteor.call("updateNotificationDate", date, (error, result) => {
                             console.log(error);
                         });
                     } catch (error) {
@@ -226,6 +226,10 @@ Template.content.onRendered(() => {
 
 });
 
+
+Template.AddAnlass.onRendered(() =>{
+    this.$('.datepicker').datepicker();
+});
 
 //Events für Content Seite
 Template.content.events({
@@ -311,6 +315,9 @@ Template.content.events({
             }
         });
     },
+    'click #save_occasion'() {
+        alert("yow");
+    },
     'click #uploadImage'() {
 
     },
@@ -337,4 +344,3 @@ Template.AddClothes.events({
 
 
 
-    
