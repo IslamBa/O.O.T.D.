@@ -2,6 +2,7 @@
   <title>O.O.T.D.</title>
   <link rel="stylesheet" href="addons/checkbox.min.css">
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">  
 </head>
 
 <body>
@@ -13,39 +14,43 @@
 <template name="content">
   {{#if currentUser}}
 
-  
+  <div id="loginLoading" class="lds-ripple" style="display:none;">
+    <div class="text-center"></div>
+    <div class="text-center"></div>
+  </div>
   <div class="divweather text-center">
     <button id="btnWeather" class="btn getweatherbtn"><i class="fas fa-redo-alt" style="color:white;"></i></button>
   </div>
-  <div class="weatheranimation suncolor">
+  <div class="weatheranimation cloudycolor">
     <div class="weathertitle text-center">
-      <h1 class="zustand">{{zustand}}</h1>
       <h1 class="title"></h1>
+      <h1 class="zustand">{{zustand}}</h1>
+      <h1 class="zip">{{zip}}</h1>
     </div>
   </div>
   
   <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around">
       <div class="divdailycloth col-sm col-md">
-          
+          <p>HOSE</p>
         </div>
         <div class="divdailycloth col-sm col-md">
-
+          <p>OBERTEIL</p>
         </div>
       </div>
       <div class="row justify-content-around">
 
         <div class="divdailycloth col-sm">
-
+          <p>SCHUHE</p>
         </div>
 
         <div class="divdailycloth col-sm">
-
+          <p>ACCESOIRE</p>
         </div>
       </div>
     </div>
 
-  <button class="allbtn allbtndown btn ">
+  <button class="allbtn allbtndown btn">
     <i class="fas fa-bars" style="color:white;"></i>
   </button>
   <a href="/">
@@ -106,12 +111,6 @@
     </form>
 
 
-    <div id="loginLoading" class="lds-ripple" style="display:none;">
-      <div class="text-center"></div>
-      <div class="text-center"></div>
-    </div>
-
-
     <div class="text-center">
       <div class="fehlermeldung">
         <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
@@ -137,9 +136,6 @@
 
 <template name="register">
   <div class="img-login">
-    <div class="arrow-back">
-      <i class="fas fa-chevron-left"></i>
-    </div>
     <form>
       <div class="container register-container">
         <div class="login-div form-group">
@@ -171,7 +167,7 @@
         </div>
         <br>
         <div class="input-field col s12">
-          <select id="countrySel">
+          <select id="countrySel" class="form-control dropdown_register">
             <option value="none" disabled selected>Land wählen</option>
             <option value="at">Österreich</option>
             <option value="de">Deutschland</option>
@@ -202,7 +198,7 @@
 
 <template name="AddClothes">
   <div class="arrow-back">
-    <i class="fas fa-chevron-left"></i>
+    <i class="fas fa-chevron-left icon-back"></i>
   </div>
   <div class="divclothpic text-center">
     <button class="clothpic">
@@ -219,27 +215,23 @@
     </div>
     <br>
     <div class="form-group inputaddcloth text-center">
-      <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
+      <input type="range" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
       <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück
         anzuziehen.
       </small>
     </div>
-    <br>
-    <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        Kleiderart
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button">Jacke</button>
-        <button class="dropdown-item" type="button">Hose</button>
-        <button class="dropdown-item" type="button">Shirt</button>
-        <button class="dropdown-item" type="button">Schuhe</button>
-        <button class="dropdown-item" type="button">Kleid</button>
-        <button class="dropdown-item" type="button">Rock</button>
-        <button class="dropdown-item" type="button">Accessoire</button>
+    <hr>
+    <div clas="text-center">
+        <select class="form-control dropdown_select text-center" id="select_kleiderart">
+          <option>Jacke</option>
+          <option>Hose</option>
+          <option>Shirt</option>
+          <option>Schuhe</option>
+          <option>KLeid</option>
+          <option>Rock</option>
+          <option>Accessoire</option>
+        </select>
       </div>
-    </div>
     <hr>
     <div class="text-center inputaddcloth row">
       <label class="el-switch col col-sm">
@@ -293,26 +285,26 @@
     <div class="text-center addclothbtn">
       <button class="btn btn-success">Speichern</button>
     </div>
+    <br>
   </form>
 
 </template>
 
 <template name="Kategorien">
 
-  <div class="weatherbar suncolor">
+  <div class="weatherbar cloudycolor">
     <div class="arrow-back">
-      <i class="fas fa-chevron-left"></i>
+      <i class="fas fa-chevron-left icon-back"></i>
     </div>
 
   </div>
-  <div class="container text-center">
+  <div class="container text-center kategorie-container">
 
     <div class="row">
       <div class="col col-sm-12">
         <a href="/oberteil">
-          <button class="divkategorie">
-            <i class="fas fa-tshirt kategorieicons"></i>
-            <br> Oberteil
+          <button class="divkategorie btn">
+            <p class="kategoriefont">OBERTEIL</p> 
           </button>
         </a>
       </div>
@@ -321,8 +313,7 @@
       <div class="col col-sm-12">
         <a href="/hosen">
           <button class="divkategorie">
-            <i class="fas fa-socks kategorieicons"></i>
-            <br> Hosen
+              <p class="kategoriefont">HOSEN</p> 
           </button>
         </a>
       </div>
@@ -331,8 +322,7 @@
       <div class="col col-sm-12">
         <a href="/schuhe">
           <button class="divkategorie">
-            <i class="fas fa-shoe-prints kategorieicons"></i>
-            <br> Schuhe
+              <p class="kategoriefont">SCHUHE</p> 
           </button>
         </a>
       </div>
@@ -341,8 +331,7 @@
       <div class="col col-sm-12">
         <a href="/accessoire">
           <button class="divkategorie">
-            <i class="fas fa-ring kategorieicons"></i>
-            <br> Accessoire
+              <p class="kategoriefont">ACCESOIRE</p>
           </button>
         </a>
       </div>
@@ -351,16 +340,15 @@
       <div class="col col-sm-12">
         <a href="/favoutfits">
           <button class="divkategorie">
-            <i class="fas fa-star kategorieicons"></i>
-            <br> Favourite Outfits
+              <p class="kategoriefont">OUTFITS</p>
           </button>
         </a>
       </div>
     </div>
   </div>
   <a href="/addcloth">
-    <button class="allbtndown btn suncolor">
-      <i class="fas fa-plus"></i>
+    <button class="allbtndown btn">
+      <i class="fas fa-plus" style="color:white;"></i>
     </button>
   </a>
 
@@ -368,24 +356,24 @@
 </template>
 
 <template name="Anlass">
-  <div class="weatherbar suncolor">
+  <div class="weatherbar cloudycolor">
     <div class="arrow-back">
-      <i class="fas fa-chevron-left"></i>
+      <i class="fas fa-chevron-left icon-back"></i>
     </div>
   </div>
 
   <p class="text-center nvorhandentext">Noch keine Anlässe vorhanden !</p>
 
   <a href="/addanlass">
-    <button class="allbtndown btn suncolor">
-      <i class="fas fa-plus"></i>
+    <button class="allbtndown btn">
+      <i class="fas fa-plus" style="color:white;"></i>
     </button>
   </a>
 </template>
 
 <template name="AddAnlass">
-  <div class="arrow-back">
-    <i class="fas fa-chevron-left"></i>
+  <div class="arrow-back"> 
+    <i class="fas fa-chevron-left icon-back"></i>
   </div>
   <form class="addanlasscontainer">
     <div class="col-sm-12">

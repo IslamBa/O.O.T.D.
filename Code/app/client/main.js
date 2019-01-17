@@ -157,13 +157,27 @@ Template.content.helpers({
         
     },
     zustand(){
-        if(Profile.findOne()){ return Profile.findOne().weather.zustand[0].description;}
+        if(Profile.findOne()){ 
+            
+            if(Profile.findOne().weather.zustand[0].description == "clear sky"){
+                return "KLARER HIMMEL";
+            }
+            else if(Profile.findOne().weather.zustand[0].description == "scattered clouds"){
+                return "BEWÖLKT";
+            }
+            else if(Profile.findOne().weather.zustand[0].description == "overcast clouds"){
+                return "BEWÖLKT";
+            }
+            
+        }
     }
 });
 
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
+
+    $("#loginLoading").hide();
 
     Meteor.call('FunktionAmServer', function (error, result) {
         //Code
@@ -175,10 +189,6 @@ Template.content.onRendered(() => {
 
         if (result != false) {
             $(".title").text(result.weather.temperatur.temp_max + "°C");
-            if(result.weather.zustand.description == "clear sky"){
-                $(".zustand").text("KLARER HIMMEL");
-                console.log("ghgjhghh");
-            }
         }
         else {
             console.log("10 Minuten noch nicht vorbei");
