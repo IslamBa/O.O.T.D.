@@ -91,7 +91,7 @@ Template.register.events({
             }
         });
     },
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     }
@@ -152,15 +152,25 @@ Template.content.helpers({
     username() {
         return Meteor.user().username;
     },
-    zip(){
-        if(Profile.findOne()){ return Profile.findOne().location.zip;}
-        
+    zip() {
+        if (Profile.findOne()) { return Profile.findOne().location.zip; }
+
     },
-    zustand(){
-        if(Profile.findOne()){ return Profile.findOne().weather.zustand[0].description;}
+    zustand() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].description == "clear sky") {
+                return "KLARER HIMMEL";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "scattered clouds") {
+                return "BEWÖLKT";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "overcast clouds") {
+                return "BEWÖLKT";
+            }
+        }
     },
-    wetter(){
-        if(Profile.findOne()){ return Profile.findOne().weather.temperatur.temp_max;}
+    wetter() {
+        if (Profile.findOne()) { return Profile.findOne().weather.temperatur.temp_max; }
     }
 });
 
@@ -168,30 +178,17 @@ Template.content.helpers({
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
 
-    Meteor.call('FunktionAmServer', function (error, result) {
-        //Code
-    });
+    $("#loginLoading").hide();
 
     Meteor.call('getWeather', function (error, result) {
 
-        // console.log(Profile.findOne().weather.zustand.description);
-
         if (result != false) {
             // $(".title").text(result.weather.temperatur.temp_max + "°C");
-            if(result.weather.zustand.description == "clear sky"){
-                $(".zustand").text("KLARER HIMMEL");
-                console.log("ghgjhghh");
-            }
         }
         else {
             console.log("10 Minuten noch nicht vorbei");
         }
     });
-
-    // Meteor.call('getProfile', Meteor.userId(), (error, result) => {
-
-    //     $(".title").text(result.weather.temperatur.temp_max + "°C");
-    // });
 
     function notification() {
         // IF Statement um zu schauen ob letztes Datum schon vorbei ist
@@ -242,7 +239,7 @@ Template.content.onRendered(() => {
 });
 
 
-Template.AddAnlass.onRendered(() =>{
+Template.AddAnlass.onRendered(() => {
     this.$('.datepicker').datepicker();
 
 });
@@ -351,53 +348,53 @@ Template.content.events({
 });
 
 Template.AddClothes.events({
-    'click #btn_addCloth'(){
+    'click #btn_addCloth'() {
         alert("passz");
     },
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     }
 });
 
 Template.AddAnlass.events({
-    'click #save_occasion'(){
+    'click #save_occasion'() {
         var obj = {};
         obj.name = $("#select_anlass").val();
         obj.date = $('.inputaddanlass').val();
 
         Meteor.call('addOccasion', obj, (error, result) => {
-            if(!err){
+            if (!err) {
                 alert("passt");
             }
-            else{
+            else {
                 alert(error);
             }
         });
     },
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     },
-    'click #other'(){
+    'click #other'() {
         $(".inputnewanlass").show();
     }
 });
 
 Template.Anlass.events({
 
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     }
 })
 
 Template.Kategorien.events({
-    
-        'click .arrow-back'(){
-            window.history.back();
-            console.log("ghjhgh");
-        }
+
+    'click .arrow-back'() {
+        window.history.back();
+        console.log("ghjhgh");
+    }
 })
 
 
