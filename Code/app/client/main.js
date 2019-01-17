@@ -158,6 +158,9 @@ Template.content.helpers({
     },
     zustand(){
         if(Profile.findOne()){ return Profile.findOne().weather.zustand[0].description;}
+    },
+    wetter(){
+        if(Profile.findOne()){ return Profile.findOne().weather.temperatur.temp_max;}
     }
 });
 
@@ -174,7 +177,7 @@ Template.content.onRendered(() => {
         // console.log(Profile.findOne().weather.zustand.description);
 
         if (result != false) {
-            $(".title").text(result.weather.temperatur.temp_max + "°C");
+            // $(".title").text(result.weather.temperatur.temp_max + "°C");
             if(result.weather.zustand.description == "clear sky"){
                 $(".zustand").text("KLARER HIMMEL");
                 console.log("ghgjhghh");
@@ -185,16 +188,10 @@ Template.content.onRendered(() => {
         }
     });
 
-    Meteor.call('getProfile', Meteor.userId(), (error, result) => {
+    // Meteor.call('getProfile', Meteor.userId(), (error, result) => {
 
-        $(".title").text(result.weather.temperatur.temp_max + "°C");
-    });
-
-
-
-
-
-
+    //     $(".title").text(result.weather.temperatur.temp_max + "°C");
+    // });
 
     function notification() {
         // IF Statement um zu schauen ob letztes Datum schon vorbei ist
@@ -238,13 +235,10 @@ Template.content.onRendered(() => {
                 }
 
             });
-
             //Server Aufrufen und neue Push Date einfügen/updaten
         }
     }
     notification();
-
-
 });
 
 
@@ -261,7 +255,8 @@ Template.content.events({
     'click #btnWeather'(event) {
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
-                $(".title").text(result.weather.temperatur.temp_max + "°C");
+                // $(".title").text(result.weather.temperatur.temp_max + "°C");
+                console.log("erfolgreich wetter aktualisiert");
             }
             else {
                 console.log("10 Minuten noch nicht vorbei");
