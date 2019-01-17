@@ -1,6 +1,7 @@
 <head>
   <title>O.O.T.D.</title>
   <link rel="stylesheet" href="addons/checkbox.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
 </head>
 
 <body>
@@ -12,69 +13,71 @@
 <template name="content">
   {{#if currentUser}}
   <div class="divweather text-center">
-    <p>{{zip}}</p>
-    <p>{{country}}</p>
-    <h1 class="title"></h1>
-    <button id="btnWeather" class="btn getweatherbtn suncolor">Get Weather</button>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col col-sm">
-        <div class="divdailycloth">
-          <i class="fas fa-tshirt kategorieicons"></i>
+
+    <div class="weathertitle text-center">
+      <p>{{zustand}}</p>
+      <h1 class="zustand">{{zip}}</h1>
+      <h1 class="title"></h1>
+    </div>
+    <div class="divweather text-center">
+      <button id="btnWeather" class="btn btn-primary getweatherbtn"><i class="fas fa-redo-alt"></i></button>
+    </div>
+    <div class="weatheranimation suncolor">
+
+    </div>
+
+    <div class="container text-center startseite-kleidung">
+      <div class="row justify-content-around">
+        <div class="divdailycloth col-sm col-md">
+
+        </div>
+        <div class="divdailycloth col-sm col-md">
+
         </div>
       </div>
-      <div class="col col-sm">
-        <div class="divdailycloth">
-          <i class="fas fa-socks kategorieicons"></i>
+      <div class="row justify-content-around">
+
+        <div class="divdailycloth col-sm">
+
+        </div>
+
+        <div class="divdailycloth col-sm">
+
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col col-sm">
-        <div class="divdailycloth">
-          <i class="fas fa-shoe-prints kategorieicons"></i>
-        </div>
-      </div>
-      <div class="col col-sm">
-        <div class="divdailycloth">
-          <i class="fas fa-ring kategorieicons"></i>
-        </div>
-      </div>
-    </div>
+
+    <button class="allbtn allbtndown btn suncolor">
+      <i class="fas fa-bars"></i>
+    </button>
+    <a href="/">
+      <button class="btnLogout btn suncolor" style="display: none;">
+        <i class="fas fa-power-off"></i>
+      </button>
+    </a>
+    <a href="/allcloth">
+      <button class="allcloth btn suncolor" style="display: none;">
+        <i class="fas fa-tshirt"></i>
+      </button>
+    </a>
+    <a href="/anlass">
+      <button class="anlassbtn btn suncolor" style="display: none;">
+        <i class="far fa-calendar-plus"></i>
+      </button>
+    </a>
   </div>
 
-  <button class="allbtn allbtndown btn suncolor">
-    <i class="fas fa-bars"></i>
-  </button>
-  <a href="/">
-    <button class="btnLogout btn suncolor" style="display: none;">
-      <i class="fas fa-power-off"></i>
-    </button>
-  </a>
-  <a href="/allcloth">
-    <button class="allcloth btn suncolor" style="display: none;">
-      <i class="fas fa-tshirt"></i>
-    </button>
-  </a>
-  <a href="/anlass">
-    <button class="anlassbtn btn suncolor" style="display: none;">
-      <i class="far fa-calendar-plus"></i>
-    </button>
-  </a>
-
-
-  <button id="getPicture">Bild</button>
+    <!--<button id="getPicture">Bild</button>
   <input type="file" name="myFile" id="galleryImage" accept="image/*">
   <button id="uploadImage">Upload Image</button>
 
-  <button id="getOutfit">Test Outfit (in console)</button>
+  <button id="getOutfit">Test Outfit (in console)</button>-->
 
-  {{else}}
-  <span style="color:blue;">
-    <a href="/">Bitte Einlogen !</a>
-  </span>
-  {{/if}}
+    {{else}}
+    <span style="color:blue;">
+      <a href="/">Bitte Einlogen !</a>
+    </span>
+    {{/if}}
 </template>
 
 <template name="login">
@@ -136,8 +139,11 @@
 
 <template name="register">
   <div class="img-login">
+    <div class="arrow-back">
+      <i class="fas fa-chevron-left"></i>
+    </div>
     <form>
-      <div class="container">
+      <div class="container register-container">
         <div class="login-div form-group">
 
           <!--<label class="login-text">Benutzername</label>-->
@@ -197,6 +203,9 @@
 </template>
 
 <template name="AddClothes">
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left"></i>
+  </div>
   <div class="divclothpic text-center">
     <button class="clothpic">
       <i class="fas fa-camera"></i>
@@ -206,18 +215,21 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <input type="range" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.
+      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück
+        anzuziehen.
       </small>
     </div>
     <br>
     <div class="form-group inputaddcloth text-center">
       <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.
+      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück
+        anzuziehen.
       </small>
     </div>
     <br>
     <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         Kleiderart
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -290,6 +302,9 @@
 <template name="Kategorien">
 
   <div class="weatherbar suncolor">
+    <div class="arrow-back">
+      <i class="fas fa-chevron-left"></i>
+    </div>
 
   </div>
   <div class="container text-center">
@@ -356,7 +371,9 @@
 
 <template name="Anlass">
   <div class="weatherbar suncolor">
-
+    <div class="arrow-back">
+      <i class="fas fa-chevron-left"></i>
+    </div>
   </div>
 
   <p class="text-center nvorhandentext">Noch keine Anlässe vorhanden !</p>
@@ -369,20 +386,26 @@
 </template>
 
 <template name="AddAnlass">
-  <form class="">
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  <form class="addanlasscontainer">
     <div class="col-sm-12">
       <input type="text" class="datepicker form-control inputaddanlass col-sm">
       <i class="fas fa-calendar-alt calender-icon"></i>
     </div>
     <br>
-    <div clas="text-center dropdown_select">
-      <select class="form-control" id="select_anlass">
+    <div clas="text-center">
+      <select class="form-control dropdown_select text-center" id="select_anlass">
         <option>Schicker Anlass</option>
         <option>Casual Day</option>
         <option>Bewerbung</option>
         <option>Business</option>
+        <option id="other">Other</option>
       </select>
     </div>
+    <br>
+    <input class="form-control inputnewanlass">
     <br>
     <div class="text-center addclothbtn">
       <button id="save_occasion" class="btn btn-success">Speichern</button>

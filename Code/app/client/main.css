@@ -6,8 +6,8 @@
 .login-buttonn{
   width : 80% !important;
   height: 45px !important;
-  background-color: #e6a452 !important; 
-  color: black !important;
+  background-color: #1313d6 !important; 
+  color: white !important;
   border-radius: 23px !important;
 
 }
@@ -45,6 +45,7 @@
 	float: left;
 	margin-top: -30px;
 	margin-left: 10px;
+	color: black;
 }
 
 .registrieren-text{
@@ -192,10 +193,31 @@ body,html{
 }
 
 .divweather{
-	margin-top : 180px;
+	padding-top: 272px;
+	position: absolute;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	
+	z-index: 10;
+    left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+.title{
+	font-size: 70px;
+	color: white;
+	font-family: 'Thasadith', sans-serif;
+}
+
+.weathertitle{
+	position: absolute;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	z-index: 10;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	transform: translateX(-50%);
+	padding-top: 100px;
 }
 
 .inputaddcloth{
@@ -212,11 +234,19 @@ body,html{
 }
 
 .divdailycloth{
-	height : 144px;
-	width : 144px;
+	height : 160px !important;
+	width : 160px !important;
 	margin-top: 20px;
-	background-color: #8deeee;
+	background-color: #ffffff;
 	text-align: center;
+	border-radius: 10px !important;
+	border: 5px solid transparent;
+	-moz-border-image: -moz-linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	-webkit-border-image: -webkit-linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	border-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+	border-image-slice: 1;
+	-moz-border-radius : 10px;
+	-webkit-border-radius : 10px;
 	
 }
 
@@ -238,8 +268,10 @@ body,html{
 
 
 .getweatherbtn{
-	border :1px solid black;
-	border-radius: 25px;
+	border :1px solid black !important;
+	border-radius: 30px !important;
+	height : 50px;
+	width : 50px;
 }
 
 .weatherbar{
@@ -256,11 +288,9 @@ body,html{
 }
 
 .dropdown_select{
-	left: auto !important;
-	right: auto !important;
-	text-align: center !important;
-	width: 100px !important;
-	background-color: #8deeee !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width: 200px !important;
 }
 
 .kategorieicons{
@@ -303,7 +333,7 @@ body,html{
 	font-size: 25px !important;
 	float: left;
 	margin-top : -35px;
-	margin-left: 10px;
+	margin-left: 50px;
 }
 .lds-ripple {
 	display: inline-block;
@@ -338,3 +368,32 @@ body,html{
 	}
   }
 
+.inputnewanlass{
+	width : 200px !important;
+	display: none;
+}
+
+.weatheranimation{
+	height : 300px;
+}
+
+.startseite-kleidung{
+	padding-top: 50px;
+}
+
+.arrow-back{
+	position: fixed;
+	top : 10px;
+	left : 20px;
+	font-size : 20px;
+	position: absolute;
+}
+
+.register-container{
+	padding-top: 100px;
+	
+}
+
+.addanlasscontainer{
+	padding-top : 50px;
+}

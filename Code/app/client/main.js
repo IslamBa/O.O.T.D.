@@ -90,6 +90,10 @@ Template.register.events({
                 Meteor.call('addNewProfile', user);
             }
         });
+    },
+    'click .arrow-back'(){
+        window.history.back();
+        console.log("ghjhgh");
     }
 });
 
@@ -152,8 +156,8 @@ Template.content.helpers({
         if(Profile.findOne()){ return Profile.findOne().location.zip;}
         
     },
-    country(){
-        if(Profile.findOne()){ return Profile.findOne().location.country;}
+    zustand(){
+        if(Profile.findOne()){ return Profile.findOne().weather.zustand[0].description;}
     }
 });
 
@@ -167,10 +171,14 @@ Template.content.onRendered(() => {
 
     Meteor.call('getWeather', function (error, result) {
 
-        // console.log(Profile.findOne());
+        // console.log(Profile.findOne().weather.zustand.description);
 
         if (result != false) {
             $(".title").text(result.weather.temperatur.temp_max + "°C");
+            if(result.weather.zustand.description == "clear sky"){
+                $(".zustand").text("KLARER HIMMEL");
+                console.log("ghgjhghh");
+            }
         }
         else {
             console.log("10 Minuten noch nicht vorbei");
@@ -181,6 +189,9 @@ Template.content.onRendered(() => {
 
         $(".title").text(result.weather.temperatur.temp_max + "°C");
     });
+
+
+
 
 
 
@@ -239,6 +250,7 @@ Template.content.onRendered(() => {
 
 Template.AddAnlass.onRendered(() =>{
     this.$('.datepicker').datepicker();
+
 });
 
 //Events für Content Seite
@@ -346,6 +358,10 @@ Template.content.events({
 Template.AddClothes.events({
     'click #btn_addCloth'(){
         alert("passz");
+    },
+    'click .arrow-back'(){
+        window.history.back();
+        console.log("ghjhgh");
     }
 });
 
@@ -363,8 +379,30 @@ Template.AddAnlass.events({
                 alert(error);
             }
         });
+    },
+    'click .arrow-back'(){
+        window.history.back();
+        console.log("ghjhgh");
+    },
+    'click #other'(){
+        $(".inputnewanlass").show();
     }
 });
 
+Template.Anlass.events({
+
+    'click .arrow-back'(){
+        window.history.back();
+        console.log("ghjhgh");
+    }
+})
+
+Template.Kategorien.events({
+    
+        'click .arrow-back'(){
+            window.history.back();
+            console.log("ghjhgh");
+        }
+})
 
 
