@@ -13,15 +13,15 @@
 <template name="content">
   {{#if currentUser}}
 
-  <div class="weathertitle text-center">
-    <h1 class="zustand"></h1>
-    <h1 class="title"></h1>
-  </div>
+  
   <div class="divweather text-center">
-    <button id="btnWeather" class="btn btn-primary getweatherbtn"><i class="fas fa-redo-alt"></i></button>
+    <button id="btnWeather" class="btn getweatherbtn"><i class="fas fa-redo-alt" style="color:white;"></i></button>
   </div>
   <div class="weatheranimation suncolor">
-
+    <div class="weathertitle text-center">
+      <h1 class="zustand"></h1>
+      <h1 class="title"></h1>
+    </div>
   </div>
   
   <div class="container text-center startseite-kleidung">
@@ -45,22 +45,22 @@
     </div>
   </div>
 
-  <button class="allbtn allbtndown btn suncolor">
-    <i class="fas fa-bars"></i>
+  <button class="allbtn allbtndown btn ">
+    <i class="fas fa-bars" style="color:white;"></i>
   </button>
   <a href="/">
-    <button class="btnLogout btn suncolor" style="display: none;">
-      <i class="fas fa-power-off"></i>
+    <button class="btnLogout btn " style="display: none;">
+      <i class="fas fa-power-off" style="color:white;"></i>
     </button>
   </a>
   <a href="/allcloth">
-    <button class="allcloth btn suncolor" style="display: none;">
-      <i class="fas fa-tshirt"></i>
+    <button class="allcloth btn " style="display: none;">
+      <i class="fas fa-tshirt" style="color:white;"></i>
     </button>
   </a>
   <a href="/anlass">
-    <button class="anlassbtn btn suncolor" style="display: none;">
-      <i class="far fa-calendar-plus"></i>
+    <button class="anlassbtn btn " style="display: none;">
+      <i class="far fa-calendar-plus" style="color:white;"></i>
     </button>
   </a>
 

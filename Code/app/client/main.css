@@ -149,6 +149,7 @@ body,html{
 	width : 60px;
 	border-radius: 30px !important;
 	position: fixed;
+	background-color: rgb(38, 38, 38);
 }
 
 .btnLogout{
@@ -158,6 +159,7 @@ body,html{
 	height : 60px;
 	width : 60px;
 	border-radius: 30px !important;
+	background-color: rgb(38, 38, 38);
 }
 
 .allcloth{
@@ -167,6 +169,7 @@ body,html{
 	height : 60px;
 	width : 60px;
 	border-radius: 30px !important;
+	background-color: rgb(38, 38, 38);
 }
 
 .anlassbtn{
@@ -176,6 +179,7 @@ body,html{
 	height : 60px;
 	width : 60px;
 	border-radius: 30px !important;
+	background-color: rgb(38, 38, 38);
 }
 
 .clothpic{
@@ -193,7 +197,7 @@ body,html{
 }
 
 .divweather{
-	padding-top: 272px;
+	padding-top: 325px;
 	position: absolute;
 	margin-left: auto !important;
 	margin-right: auto !important;
@@ -234,19 +238,12 @@ body,html{
 }
 
 .divdailycloth{
-	height : 160px !important;
-	width : 160px !important;
-	margin-top: 20px;
-	background-color: #ffffff;
+	height : 150px !important;
+	width : 150px !important;
+	margin-top: 10px;
 	text-align: center;
-	border-radius: 10px !important;
-	border: 5px solid transparent;
-	-moz-border-image: -moz-linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-	-webkit-border-image: -webkit-linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-	border-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-	border-image-slice: 1;
-	-moz-border-radius : 10px;
-	-webkit-border-radius : 10px;
+	border-radius: 15px !important;
+	border: 1px solid rgb(38, 38, 38);
 	
 }
 
@@ -272,6 +269,7 @@ body,html{
 	border-radius: 30px !important;
 	height : 50px;
 	width : 50px;
+	background-color : rgb(38, 38, 38);
 }
 
 .weatherbar{
@@ -374,11 +372,11 @@ body,html{
 }
 
 .weatheranimation{
-	height : 300px;
+	height : 350px;
 }
 
 .startseite-kleidung{
-	padding-top: 50px;
+	padding-top: 30px;
 }
 
 .arrow-back{
