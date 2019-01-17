@@ -147,6 +147,13 @@ Template.resPass.events({
 Template.content.helpers({
     username() {
         return Meteor.user().username;
+    },
+    zip(){
+        if(Profile.findOne()){ return Profile.findOne().location.zip;}
+        
+    },
+    country(){
+        if(Profile.findOne()){ return Profile.findOne().location.country;}
     }
 });
 
@@ -159,6 +166,9 @@ Template.content.onRendered(() => {
     });
 
     Meteor.call('getWeather', function (error, result) {
+
+        // console.log(Profile.findOne());
+
         if (result != false) {
             $(".title").text(result.weather.temperatur.temp_max + "°C");
         }
