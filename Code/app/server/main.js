@@ -14,7 +14,7 @@ Meteor.startup(() => {
 });
 
 Meteor.publish('Profile', () => Profile.find({ id: Meteor.userId() }));
-Meteor.publish('User', () => Meteor.users.find());
+Meteor.publish('User', () => Meteor.users.find({ id: Meteor.userId() }));
 
 Meteor.methods({
   getWeather() {

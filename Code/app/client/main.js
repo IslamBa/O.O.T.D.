@@ -151,6 +151,13 @@ Template.resPass.events({
 Template.content.helpers({
     username() {
         return Meteor.user().username;
+    },
+    zip(){
+        if(Profile.findOne()){ return Profile.findOne().location.zip;}
+        
+    },
+    zustand(){
+        if(Profile.findOne()){ return Profile.findOne().weather.zustand[0].description;}
     }
 });
 
@@ -163,6 +170,9 @@ Template.content.onRendered(() => {
     });
 
     Meteor.call('getWeather', function (error, result) {
+
+        // console.log(Profile.findOne().weather.zustand.description);
+
         if (result != false) {
             $(".title").text(result.weather.temperatur.temp_max + "°C");
             if(result.weather.zustand.description == "clear sky"){

@@ -19,7 +19,7 @@
   </div>
   <div class="weatheranimation suncolor">
     <div class="weathertitle text-center">
-      <h1 class="zustand"></h1>
+      <h1 class="zustand">{{zustand}}</h1>
       <h1 class="title"></h1>
     </div>
   </div>
@@ -30,20 +30,20 @@
           
         </div>
         <div class="divdailycloth col-sm col-md">
-          
+
         </div>
-    </div>
-    <div class="row justify-content-around">
-   
+      </div>
+      <div class="row justify-content-around">
+
         <div class="divdailycloth col-sm">
-          
+
         </div>
 
         <div class="divdailycloth col-sm">
-         
+
         </div>
+      </div>
     </div>
-  </div>
 
   <button class="allbtn allbtndown btn ">
     <i class="fas fa-bars" style="color:white;"></i>
@@ -65,17 +65,17 @@
   </a>
 
 
-  <!--<button id="getPicture">Bild</button>
+    <!--<button id="getPicture">Bild</button>
   <input type="file" name="myFile" id="galleryImage" accept="image/*">
   <button id="uploadImage">Upload Image</button>
 
   <button id="getOutfit">Test Outfit (in console)</button>-->
 
-  {{else}}
-  <span style="color:blue;">
-    <a href="/">Bitte Einlogen !</a>
-  </span>
-  {{/if}}
+    {{else}}
+    <span style="color:blue;">
+      <a href="/">Bitte Einlogen !</a>
+    </span>
+    {{/if}}
 </template>
 
 <template name="login">
@@ -138,7 +138,7 @@
 <template name="register">
   <div class="img-login">
     <div class="arrow-back">
-        <i class="fas fa-chevron-left"></i>
+      <i class="fas fa-chevron-left"></i>
     </div>
     <form>
       <div class="container register-container">
@@ -201,9 +201,9 @@
 </template>
 
 <template name="AddClothes">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left"></i>
+  </div>
   <div class="divclothpic text-center">
     <button class="clothpic">
       <i class="fas fa-camera"></i>
@@ -213,18 +213,21 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <input type="range" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.
+      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück
+        anzuziehen.
       </small>
     </div>
     <br>
     <div class="form-group inputaddcloth text-center">
       <input type="text" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück anzuziehen.
+      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück
+        anzuziehen.
       </small>
     </div>
     <br>
     <div class="dropdown text-center">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         Kleiderart
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
@@ -297,9 +300,9 @@
 <template name="Kategorien">
 
   <div class="weatherbar suncolor">
-      <div class="arrow-back">
-          <i class="fas fa-chevron-left"></i>
-      </div>
+    <div class="arrow-back">
+      <i class="fas fa-chevron-left"></i>
+    </div>
 
   </div>
   <div class="container text-center">
@@ -366,9 +369,9 @@
 
 <template name="Anlass">
   <div class="weatherbar suncolor">
-      <div class="arrow-back">
-          <i class="fas fa-chevron-left"></i>
-      </div>
+    <div class="arrow-back">
+      <i class="fas fa-chevron-left"></i>
+    </div>
   </div>
 
   <p class="text-center nvorhandentext">Noch keine Anlässe vorhanden !</p>
@@ -381,9 +384,9 @@
 </template>
 
 <template name="AddAnlass">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left"></i>
+  </div>
   <form class="addanlasscontainer">
     <div class="col-sm-12">
       <input type="text" class="datepicker form-control inputaddanlass col-sm">
