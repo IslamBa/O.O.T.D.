@@ -167,6 +167,15 @@ Template.content.helpers({
             else if (Profile.findOne().weather.zustand[0].description == "overcast clouds") {
                 return "BEWÖLKT";
             }
+            else if (Profile.findOne().weather.zustand[0].description == "light shower snow") {
+                return "LEICHTER SCHNEEREGEN";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
+                return "BEWÖLKT";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
+                return "BEWÖLKT";
+            }
         }
     },
     wetter() {
@@ -333,7 +342,14 @@ Template.content.events({
         alert("yow");
     },
     'click #uploadImage'() {
-
+        Meteor.call('uploadImage', 'https://upload.wikimedia.org/wikipedia/commons/1/17/HTL-Ottakring.png',(error, result) => {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log(result);
+            }
+        });
     },
     'click #getOutfit'() {
         Meteor.call('getOutfit', (error, result) => {

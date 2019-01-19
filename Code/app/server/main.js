@@ -1,13 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { Profile } from '../collections';
+// import sha1 from 'crypto-js/sha1';
 var cloudinary = require('cloudinary');
 
 
-cloudinary.config({ 
-  cloud_name: 'sample', 
-  api_key: '874837483274837', 
-  api_secret: 'a676b67565c6767a6767d6767f676fe1' 
-});
+// cloudinary.config({
+//   cloud_name: 'sample',
+//   api_key: '874837483274837',
+//   api_secret: 'a676b67565c6767a6767d6767f676fe1'
+// });
 
 Meteor.startup(() => {
   // code to run on server at startup
@@ -39,14 +40,14 @@ Meteor.methods({
       const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
 
       const vorschau = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=8&APPID=50fd161807446be0d6d1b7e5ee0f537c');
-      
+
 
       for (let index = 0; index < vorschau.data.list.length; index++) {
         temp_min_arr.push(vorschau.data.list[index].main.temp_min);
         temp_max_arr.push(vorschau.data.list[index].main.temp_max);
       }
-      
-    
+
+
       weather = {
         zustand: result.data.weather,
         temperatur: result.data.main,
@@ -72,6 +73,24 @@ Meteor.methods({
       location: {
         zip: obj.zip,
         country: obj.country
+      },
+      weather: {
+        zustand: [{
+          id: "",
+          main: "",
+          description: "",
+          icon: ""
+        }],
+        temperatur: {
+          temp: "",
+          pressure: "",
+          humidity: "",
+          temp_min: "",
+          temp_max: ""
+        },
+        city: "",
+        min: "",
+        max: ""
       },
       lastWeatherDt: weaterDate,
       kleider: [],
@@ -156,12 +175,12 @@ Meteor.methods({
   checkDate(d1, d2) {
     try {
       return d1.getFullYear() === d2.getFullYear() &&
-      d1.getMonth() === d2.getMonth() &&
-      d1.getDate() === d2.getDate();
+        d1.getMonth() === d2.getMonth() &&
+        d1.getDate() === d2.getDate();
     } catch (error) {
       console.log(error);
     }
-    
+
   },
   getClothing(type, filteredArray, fullArray) {
     if (filteredArray.length > 0) {
@@ -181,7 +200,7 @@ Meteor.methods({
   checkOccasions(arr) {
     var currDate = new Date();
     arr.forEach((el) => {
-      if (Meteor.call("checkDate",currDate, el.date)) {
+      if (Meteor.call("checkDate", currDate, el.date)) {
         return el.typ;
       }
       else {
@@ -210,6 +229,30 @@ Meteor.methods({
   updateNotificationDate(date) {
     const user = Profile.findOne({ id: Meteor.userId() });
     Profile.update(user._id, { $set: { notificationDate: date } });
+  },
+  uploadImage(file) {
+    var timestamp = new Date().getTime();
+    var api_secret = 'VSd_wf6a877FD-G0xlWN59PcDck';
+
+    var signature = "timestamp=" + timestamp + api_secret;
+    signature = CryptoJS.SHA1(signature).toString();
+
+    console.log(signature);
+    
+
+    HTTP.call('POST', 'https://api.cloudinary.com/v1_1/ootdapp/image/upload', {
+      data: {
+        file: file,
+        api_key: 559484368377945,
+        timestamp: timestamp,
+        signature: signature
+      }
+    }, (error, result) => {
+      if (!error) {
+        // console.log(result);
+        return result.data.url;
+      }
+    });
   }
 });
 
