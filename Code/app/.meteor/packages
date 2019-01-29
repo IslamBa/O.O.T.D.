@@ -24,7 +24,6 @@ msavin:mongol
 http@1.4.1
 email@1.2.3
 iron:router
-mdg:camera
 underscore
 lepozepo:cloudinary
 deepwell:bootstrap-datepicker2

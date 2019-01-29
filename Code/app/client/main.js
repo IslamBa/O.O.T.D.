@@ -180,6 +180,9 @@ Template.content.helpers({
     },
     wetter() {
         if (Profile.findOne()) { return Profile.findOne().weather.temperatur.temp_max; }
+    },
+    outfits(){
+        if (Profile.findOne()) { return Profile.findOne().currentOutfit; }
     }
 });
 
@@ -328,21 +331,29 @@ Template.content.events({
     },
     'click #getPicture'() {
 
-        MeteorCamera.getPicture((err, res) => {
-            if (!err) {
-                console.log(res);
+        // MeteorCameraUI.getPicture((err, res) => {
+        //     if (!err) {
+        //         console.log(res);
+        //         // Meteor.call('uploadImage', res, (error, result) => {
+        //         //     if (error) {
+        //         //         console.log(error);
+        //         //     }
+        //         //     else {
+        //         //         console.log(result);
+        //         //     }
+        //         // });
 
-            }
-            else {
-                console.log("fehler yow");
-            }
-        });
+        //     }
+        //     else {
+        //         console.log(err);
+        //     }
+        // });
     },
     'click #save_occasion'() {
         alert("yow");
     },
     'click #uploadImage'() {
-        Meteor.call('uploadImage', 'https://upload.wikimedia.org/wikipedia/commons/1/17/HTL-Ottakring.png',(error, result) => {
+        Meteor.call('uploadImage', 'https://upload.wikimedia.org/wikipedia/commons/1/17/HTL-Ottakring.png', (error, result) => {
             if (error) {
                 console.log(error);
             }

@@ -2,7 +2,7 @@
   <title>O.O.T.D.</title>
   <link rel="stylesheet" href="addons/checkbox.min.css">
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">  
+  <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
 </head>
 
 <body>
@@ -28,27 +28,41 @@
       <h1 class="zip">{{zip}}</h1>
     </div>
   </div>
-  
+
   <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around">
-      <div class="divdailycloth col-sm col-md">
-          <p>HOSE</p>
-        </div>
-        <div class="divdailycloth col-sm col-md">
-          <p>OBERTEIL</p>
-        </div>
-      </div>
-      <div class="row justify-content-around">
 
-        <div class="divdailycloth col-sm">
-          <p>SCHUHE</p>
+      {{#each value in outfits}}
+      <div class="divdailycloth col-3">
+          <!-- <p>HOSE</p> -->
+          <img src="{{value.image}}" alt="Bild"
+            class="imgOut">
         </div>
+      {{/each}}
+      <!-- <div class="divdailycloth col-3"> -->
+        <!-- <p>HOSE</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
+      <!-- <div class="divdailycloth col-3">
+        <p>OBERTEIL</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> --> 
 
-        <div class="divdailycloth col-sm">
-          <p>ACCESSOIRE</p>
-        </div>
-      </div>
+      <!-- <div class="divdailycloth col-3"> -->
+        <!-- <p>SCHUHE</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
+
+      <!-- <div class="divdailycloth col-3"> -->
+        <!-- <p>ACCESSOIRE</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
     </div>
+  </div>
 
   <button class="allbtn allbtndown btn">
     <i class="fas fa-bars" style="color:white;"></i>
@@ -68,19 +82,20 @@
       <i class="far fa-calendar-plus" style="color:white;"></i>
     </button>
   </a>
-  
 
-    <!--<button id="getPicture">Bild</button>
+  <!--<button id="getPicture">Bild</button>
   <input type="file" name="myFile" id="galleryImage" accept="image/*">
   <button id="uploadImage">Upload Image</button>
 
   <button id="getOutfit">Test Outfit (in console)</button>-->
 
-    {{else}}
-    <span style="color:blue;">
-      <a href="/">Bitte Einlogen !</a>
-    </span>
-    {{/if}}
+  <button id="getOutfit">Test Outfit (in console)</button>
+
+  {{else}}
+  <span style="color:blue;">
+    <a href="/">Bitte Einlogen !</a>
+  </span>
+  {{/if}}
 </template>
 
 <template name="login">
@@ -222,16 +237,16 @@
     </div>
     <hr>
     <div clas="text-center">
-        <select class="form-control dropdown_select text-center" id="select_kleiderart">
-          <option>Jacke</option>
-          <option>Hose</option>
-          <option>Shirt</option>
-          <option>Schuhe</option>
-          <option>KLeid</option>
-          <option>Rock</option>
-          <option>Accessoire</option>
-        </select>
-      </div>
+      <select class="form-control dropdown_select text-center" id="select_kleiderart">
+        <option>Jacke</option>
+        <option>Hose</option>
+        <option>Shirt</option>
+        <option>Schuhe</option>
+        <option>KLeid</option>
+        <option>Rock</option>
+        <option>Accessoire</option>
+      </select>
+    </div>
     <hr>
     <div class="text-center inputaddcloth row">
       <label class="el-switch col col-sm">
@@ -304,7 +319,7 @@
       <div class="col col-sm-12">
         <a href="/oberteil">
           <button class="divkategorie btn">
-            <p class="kategoriefont">OBERTEIL</p> 
+            <p class="kategoriefont">OBERTEIL</p>
           </button>
         </a>
       </div>
@@ -313,7 +328,7 @@
       <div class="col col-sm-12">
         <a href="/hosen">
           <button class="divkategorie">
-              <p class="kategoriefont">HOSEN</p> 
+            <p class="kategoriefont">HOSEN</p>
           </button>
         </a>
       </div>
@@ -322,7 +337,7 @@
       <div class="col col-sm-12">
         <a href="/schuhe">
           <button class="divkategorie">
-              <p class="kategoriefont">SCHUHE</p> 
+            <p class="kategoriefont">SCHUHE</p>
           </button>
         </a>
       </div>
@@ -331,7 +346,7 @@
       <div class="col col-sm-12">
         <a href="/accessoire">
           <button class="divkategorie">
-              <p class="kategoriefont">ACCESSOIRE</p>
+            <p class="kategoriefont">ACCESSOIRE</p>
           </button>
         </a>
       </div>
@@ -340,7 +355,7 @@
       <div class="col col-sm-12">
         <a href="/favoutfits">
           <button class="divkategorie">
-              <p class="kategoriefont">OUTFITS</p>
+            <p class="kategoriefont">OUTFITS</p>
           </button>
         </a>
       </div>
@@ -372,7 +387,7 @@
 </template>
 
 <template name="AddAnlass">
-  <div class="arrow-back"> 
+  <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back"></i>
   </div>
   <form class="addanlasscontainer">

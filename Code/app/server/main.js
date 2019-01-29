@@ -128,7 +128,7 @@ Meteor.methods({
     //Alle Kleidungsstücke die die Kriterien erfüllen werden in dieses Array gepackt
     var outfitCandidates = [];
     //Das finale Outfift wird in dieses Objekt gespeichert
-    var finalOutfit = {};
+    var finalOutfit = [];
 
     //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
     outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && el.weather_range.max >= currTemp);
@@ -149,26 +149,29 @@ Meteor.methods({
 
     for (var type of types) {
       var array = outfitCandidates.filter(el => el.type == type);
-      finalOutfit[type] = Meteor.call('getClothing', type, array, user.kleider);
+      finalOutfit.push(Meteor.call('getClothing', type, array, user.kleider));
     }
 
 
     //Kleidungsstücke entfernen nach Wetter
-    if (currTemp < 20) {
-      var zufallszahl = Math.floor((Math.random() * 30) + 1);
+    // if (currTemp < 20) {
+    //   var zufallszahl = Math.floor((Math.random() * 30) + 1);
 
-      if (zufallszahl > 10) {
-        delete finalOutfit.tshirt;
-      } else {
-        delete finalOutfit.shirt;
-      }
-    }
+    //   if (zufallszahl > 10) {
+    //     delete finalOutfit.tshirt;
+    //   } else {
+    //     delete finalOutfit.shirt;
+    //   }
+    // }
 
-    if (currTemp >= 18) {
-      delete finalOutfit.jacket;
-    }
+    // if (currTemp >= 18) {
+    //   delete finalOutfit.jacket;
+    // }
 
     Meteor.call('insertCandidates', outfitCandidates);
+
+    if (!user.currentOutfit) { user.currentOutfit = []; }
+    Profile.update(user._id, { $set: { currentOutfit: finalOutfit } });
 
     return finalOutfit;
   },
