@@ -22,7 +22,7 @@
 	color : white !important;
 }
 
-::placeholder{
+.login-input::placeholder,{
 	color:white !important;
 }
 
@@ -197,7 +197,7 @@ body,html{
 }
 
 .divweather{
-	padding-top: 325px;
+	padding-top: 270px;
 	position: absolute;
 	margin-left: auto !important;
 	margin-right: auto !important;
@@ -405,8 +405,10 @@ body,html{
   }
 
 .inputnewanlass{
-	width : 200px !important;
-	display: none;
+	width : 300px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
 }
 
 .weatheranimation{

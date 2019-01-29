@@ -3,6 +3,8 @@
   <link rel="stylesheet" href="addons/checkbox.min.css">
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
+  <link rel="stylesheet" href="addons/bootstrap-slider.min.css">
+  <script src="addons/bootstrap-slider.min.js"></script>
 </head>
 
 <body>
@@ -13,13 +15,12 @@
 
 <template name="content">
   {{#if currentUser}}
-
   <div id="loginLoading" class="lds-ripple" style="display:none;">
     <div class="text-center"></div>
     <div class="text-center"></div>
   </div>
   <div class="divweather text-center">
-    <button id="btnWeather" class="btn getweatherbtn"><i class="fas fa-redo-alt" style="color:white;"></i></button>
+      <i class="fas fa-redo-alt" style="color:white;"></i>
   </div>
   <div class="weatheranimation cloudycolor">
     <div class="weathertitle text-center">
@@ -191,7 +192,7 @@
         </div>
         <br>
         <div class="text-center form-group">
-          <button type="submit" class="btn login-buttonn">Regestrieren</button>
+          <button type="submit" class="btn login-buttonn">Registrieren</button>
         </div>
 
       </div>
@@ -213,7 +214,7 @@
 
 <template name="AddClothes">
   <div class="arrow-back">
-    <i class="fas fa-chevron-left icon-back"></i>
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
   <div class="divclothpic text-center">
     <button class="clothpic">
@@ -223,26 +224,20 @@
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
-      <input type="range" class="form-control inputt" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Min Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Mindesttemperatur gegeben sein muss um dieses Kleidungstück
-        anzuziehen.
-      </small>
-    </div>
-    <br>
-    <div class="form-group inputaddcloth text-center">
-      <input type="range" class="form-control inputt" id="exampleInputPassword1" placeholder="Max Temperatur">
-      <small id="emailHelp" class="form-text text-muted">Maximaletemperatur gegeben sein muss um dieses Kleidungstück
-        anzuziehen.
+      <p id="maxtempzahl"></p>
+      <input id="ex2" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"/>
+      <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
     </div>
     <hr>
     <div clas="text-center">
       <select class="form-control dropdown_select text-center" id="select_kleiderart">
+        <option value="none" disabled selected>Kleiderart wählen</option>
         <option>Jacke</option>
         <option>Hose</option>
         <option>Shirt</option>
         <option>Schuhe</option>
-        <option>KLeid</option>
+        <option>Kleid</option>
         <option>Rock</option>
         <option>Accessoire</option>
       </select>
@@ -263,7 +258,7 @@
           <input type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
-        <label class="switchfont col col-sm">Schicker Anlass</label>
+        <label class="switchfont col col-sm">Festlich</label>
 
       </div>
 
@@ -272,7 +267,7 @@
           <input type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
-        <label class="switchfont col col-sm">Casual Day</label>
+        <label class="switchfont col col-sm">Freizeit</label>
 
       </div>
 
@@ -290,7 +285,21 @@
           <input type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
-        <label class="switchfont col col-sm">Bewerbung</label>
+        <label class="switchfont col col-sm">Homewear</label>
+      </div>
+
+      <div class="text-center inputaddcloth row">
+        <label class="el-switch col col-sm">
+          <input id="otherclothanlass" type="checkbox" name="switch">
+          <span class="el-switch-style"></span>
+        </label>
+        <label class="switchfont col col-sm">Others</label>
+        <br>
+        <br>
+        <div class="text-center">
+          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+        </div>
+        <br>
         <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
       </div>
     </div>
@@ -388,7 +397,7 @@
 
 <template name="AddAnlass">
   <div class="arrow-back">
-    <i class="fas fa-chevron-left icon-back"></i>
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
   <form class="addanlasscontainer">
     <div class="col-sm-12">
@@ -398,15 +407,19 @@
     <br>
     <div clas="text-center">
       <select class="form-control dropdown_select text-center" id="select_anlass">
+        <option value="none" disabled selected>Anlass wählen</option>
         <option>Schicker Anlass</option>
-        <option>Casual Day</option>
-        <option>Bewerbung</option>
+        <option>Festlich</option>
+        <option>Freizeit</option>
         <option>Business</option>
+        <option>Homewear</option>
         <option id="other">Other</option>
       </select>
     </div>
     <br>
-    <input class="form-control inputnewanlass">
+    <div class="text-center">
+      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;" placeholder="Anderen Anlass angeben">
+    </div>
     <br>
     <div class="text-center addclothbtn">
       <button id="save_occasion" class="btn btn-success">Speichern</button>
