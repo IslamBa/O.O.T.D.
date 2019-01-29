@@ -168,6 +168,18 @@ Template.content.helpers({
             else if(Profile.findOne().weather.zustand[0].description == "overcast clouds"){
                 return "BEWÖLKT";
             }
+            else if(Profile.findOne().weather.zustand[0].description == "fog"){
+                return "NEBELIG";
+            }
+            else if(Profile.findOne().weather.zustand[0].description == "mist"){
+                return "NEBELIG";
+            }
+            else if(Profile.findOne().weather.zustand[0].description == "broken clouds"){
+                return "BEWÖLKT";
+            }
+            else if(Profile.findOne().weather.zustand[0].description == "few clouds"){
+                return "BEWÖLKT";
+            }
             
         }
     }
@@ -188,7 +200,7 @@ Template.content.onRendered(() => {
         // console.log(Profile.findOne().weather.zustand.description);
 
         if (result != false) {
-            $(".title").text(result.weather.temperatur.temp_max + "°C");
+            $(".title").text(result.weather.temperatur.temp_max + "°");
         }
         else {
             console.log("10 Minuten noch nicht vorbei");
@@ -197,7 +209,7 @@ Template.content.onRendered(() => {
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
 
-        $(".title").text(result.weather.temperatur.temp_max + "°C");
+        $(".title").text(result.weather.temperatur.temp_max + "°");
     });
 
 
@@ -372,7 +384,17 @@ Template.AddClothes.events({
     'click .arrow-back'(){
         window.history.back();
         console.log("ghjhgh");
-    }
+    },
+    'change #otherclothanlass'(){
+        if($(this).is(':checked')){
+            $(".hiddeninputcloth").show();
+            console.log("fghfghg");
+        }
+        else{
+            $(".hiddeninputcloth").hide();
+        }
+        
+    },
 });
 
 Template.AddAnlass.events({
@@ -394,8 +416,14 @@ Template.AddAnlass.events({
         window.history.back();
         console.log("ghjhgh");
     },
-    'click #other'(){
-        $(".inputnewanlass").show();
+    'click #select_anlass'(){
+        var select = $("#select_anlass").val();
+        if(select == "Other"){
+            $("#hiddeninputanlass").show();
+        }
+        else{
+            $("#hiddeninputanlass").hide();
+        }
     }
 });
 
@@ -416,3 +444,21 @@ Template.Kategorien.events({
 })
 
 
+Template.AddClothes.onRendered(() =>{
+    var slider2 = new Slider('#ex2');
+    slider2.on("slide", function(sliderValue) {
+        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
+    });
+
+    var switchStatus = false;
+    $("#otherclothanlass").on('change', function() {
+        if ($(this).is(':checked')) {
+            $("#hiddeninputcloth").show();
+            console.log("fghfghg");
+        }
+        else {
+            $("#hiddeninputcloth").hide();
+            console.log("klklklkl");
+        }
+    });
+});
