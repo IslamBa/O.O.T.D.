@@ -91,7 +91,7 @@ Template.register.events({
             }
         });
     },
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     }
@@ -152,20 +152,28 @@ Template.content.helpers({
     username() {
         return Meteor.user().username;
     },
-    zip(){
-        if(Profile.findOne()){ return Profile.findOne().location.zip;}
-        
+    zip() {
+        if (Profile.findOne()) { return Profile.findOne().location.zip; }
+
     },
-    zustand(){
-        if(Profile.findOne()){ 
-            
-            if(Profile.findOne().weather.zustand[0].description == "clear sky"){
+    zustand() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].description == "clear sky") {
                 return "KLARER HIMMEL";
             }
-            else if(Profile.findOne().weather.zustand[0].description == "scattered clouds"){
+            else if (Profile.findOne().weather.zustand[0].description == "scattered clouds") {
                 return "BEWÖLKT";
             }
-            else if(Profile.findOne().weather.zustand[0].description == "overcast clouds"){
+            else if (Profile.findOne().weather.zustand[0].description == "overcast clouds") {
+                return "BEWÖLKT";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "light shower snow") {
+                return "LEICHTER SCHNEEREGEN";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
+                return "BEWÖLKT";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
                 return "BEWÖLKT";
             }
             else if(Profile.findOne().weather.zustand[0].description == "fog"){
@@ -182,6 +190,9 @@ Template.content.helpers({
             }
             
         }
+    },
+    wetter() {
+        if (Profile.findOne()) { return Profile.findOne().weather.temperatur.temp_max; }
     }
 });
 
@@ -191,13 +202,7 @@ Template.content.onRendered(() => {
 
     $("#loginLoading").hide();
 
-    Meteor.call('FunktionAmServer', function (error, result) {
-        //Code
-    });
-
     Meteor.call('getWeather', function (error, result) {
-
-        // console.log(Profile.findOne().weather.zustand.description);
 
         if (result != false) {
             $(".title").text(result.weather.temperatur.temp_max + "°");
@@ -260,17 +265,14 @@ Template.content.onRendered(() => {
                 }
 
             });
-
             //Server Aufrufen und neue Push Date einfügen/updaten
         }
     }
     notification();
-
-
 });
 
 
-Template.AddAnlass.onRendered(() =>{
+Template.AddAnlass.onRendered(() => {
     this.$('.datepicker').datepicker();
 
 });
@@ -283,7 +285,8 @@ Template.content.events({
     'click #btnWeather'(event) {
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
-                $(".title").text(result.weather.temperatur.temp_max + "°C");
+                // $(".title").text(result.weather.temperatur.temp_max + "°C");
+                console.log("erfolgreich wetter aktualisiert");
             }
             else {
                 console.log("10 Minuten noch nicht vorbei");
@@ -363,7 +366,14 @@ Template.content.events({
         alert("yow");
     },
     'click #uploadImage'() {
-
+        Meteor.call('uploadImage', 'https://upload.wikimedia.org/wikipedia/commons/1/17/HTL-Ottakring.png',(error, result) => {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log(result);
+            }
+        });
     },
     'click #getOutfit'() {
         Meteor.call('getOutfit', (error, result) => {
@@ -378,10 +388,10 @@ Template.content.events({
 });
 
 Template.AddClothes.events({
-    'click #btn_addCloth'(){
+    'click #btn_addCloth'() {
         alert("passz");
     },
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     },
@@ -398,49 +408,43 @@ Template.AddClothes.events({
 });
 
 Template.AddAnlass.events({
-    'click #save_occasion'(){
+    'click #save_occasion'() {
         var obj = {};
         obj.name = $("#select_anlass").val();
         obj.date = $('.inputaddanlass').val();
 
         Meteor.call('addOccasion', obj, (error, result) => {
-            if(!err){
+            if (!err) {
                 alert("passt");
             }
-            else{
+            else {
                 alert(error);
             }
         });
     },
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     },
-    'click #select_anlass'(){
-        var select = $("#select_anlass").val();
-        if(select == "Other"){
-            $("#hiddeninputanlass").show();
-        }
-        else{
-            $("#hiddeninputanlass").hide();
-        }
+    'click #other'() {
+        $(".inputnewanlass").show();
     }
 });
 
 Template.Anlass.events({
 
-    'click .arrow-back'(){
+    'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
     }
 })
 
 Template.Kategorien.events({
-    
-        'click .arrow-back'(){
-            window.history.back();
-            console.log("ghjhgh");
-        }
+
+    'click .arrow-back'() {
+        window.history.back();
+        console.log("ghjhgh");
+    }
 })
 
 
