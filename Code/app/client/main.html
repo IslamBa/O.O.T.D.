@@ -30,15 +30,7 @@
     </div>
   </div>
 
-  <div class="container text-center startseite-kleidung">
-    <div class="row justify-content-around">
-      <div class="divdailycloth col-sm col-md">
-        <p>HOSE</p>
-      </div>
-      <div class="divdailycloth col-sm col-md">
-        <p>OBERTEIL</p>
-      </div>
-    </div>
+  <!-- <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around">
 
       <div class="divdailycloth col-sm">
@@ -47,9 +39,38 @@
 
       <div class="divdailycloth col-sm">
         <p>ACCESSOIRE</p>
-      </div>
-    </div>
-  </div>
+      </div> -->
+      {{#each value in outfits}}
+      <div class="divdailycloth col-3">
+          <!-- <p>HOSE</p> -->
+          <img src="{{value.image}}" alt="Bild"
+            class="imgOut">
+        </div>
+      {{/each}}
+      <!-- <div class="divdailycloth col-3"> -->
+        <!-- <p>HOSE</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
+      <!-- <div class="divdailycloth col-3">
+        <p>OBERTEIL</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> --> 
+
+      <!-- <div class="divdailycloth col-3"> -->
+        <!-- <p>SCHUHE</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
+
+      <!-- <div class="divdailycloth col-3"> -->
+        <!-- <p>ACCESSOIRE</p> -->
+        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
+    <!-- </div>
+  </div> -->
 
   <button class="allbtn allbtndown btn">
     <i class="fas fa-bars" style="color:white;"></i>
@@ -70,12 +91,13 @@
     </button>
   </a>
 
-
   <!--<button id="getPicture">Bild</button>
   <input type="file" name="myFile" id="galleryImage" accept="image/*">
   <button id="uploadImage">Upload Image</button>
 
   <button id="getOutfit">Test Outfit (in console)</button>-->
+
+  <button id="getOutfit">Test Outfit (in console)</button>
 
   {{else}}
   <span style="color:blue;">

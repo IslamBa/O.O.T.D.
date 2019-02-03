@@ -14,7 +14,7 @@
         ],
         "layer": 0,
         "color":"green",
-        "image": "",
+        "image": "https://cdn03.plentymarkets.com/zrhkwcifm7cp/item/images/513133675/full/12xVenti-Slim-Fit-Herren-Struktur-Hemd-mit-modi.jpg",
         "icon": "shirt_icon",
         "forWetWeather":false
     },
@@ -32,7 +32,7 @@
         ],
         "layer": 0,
         "color":"black",
-        "image": "",
+        "image": "https://www.supreme-streetwear.com/media/image/product/3399/md/supreme-europe-pullover-1104-hgrau.jpg",
         "icon": "shirt_icon",
         "forWetWeather":true
     },
@@ -49,7 +49,7 @@
         ],
         "layer": 1,
         "color":"black",
-        "image": "",
+        "image": "https://dsw.scene7.com/is/image/DSWShoes/402359_100_ss_01?$pdp-image$",
         "icon": "shoes_icon",
         "forWetWeather":false
     },
@@ -66,7 +66,7 @@
         ],
         "layer": 1,
         "color":"gray",
-        "image": "",
+        "image": "https://images.timberland.com/is/image/timberland/10061024-HERO?$PDP-FULL-IMAGE$",
         "icon": "shoes_icon",
         "forWetWeather":true
     },
@@ -84,7 +84,7 @@
         ],
         "layer": 1,
         "color":"blue",
-        "image": "",
+        "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
         "icon": "pants_icon",
         "forWetWeather":true
     },
@@ -102,7 +102,7 @@
         ],
         "layer": 1,
         "color":"gray",
-        "image": "",
+        "image": "https://i.pinimg.com/originals/b0/28/dc/b028dcb0b4ea07387eee1d0a0c318d99.jpg",
         "icon": "jacket_icon",
         "forWetWeather":true
     },
@@ -119,7 +119,7 @@
         ],
         "layer": 1,
         "color":"white",
-        "image": "",
+        "image": "https://www.supreme-streetwear.com/media/image/product/3399/md/supreme-europe-pullover-1104-hgrau.jpg",
         "icon": "shirt_icon",
         "forWetWeather":false
     },
@@ -136,7 +136,7 @@
         ],
         "layer": 1,
         "color":"white",
-        "image": "",
+        "image": "https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-gucci-gg-classic-t-shirt-black.jpg",
         "icon": "tshirt_icon",
         "forWetWeather":false
     },
@@ -153,7 +153,7 @@
         ],
         "layer": 1,
         "color":"white",
-        "image": "",
+        "image": "https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-gucci-gg-classic-t-shirt-black.jpg",
         "icon": "tshirt_icon",
         "forWetWeather":false
     },

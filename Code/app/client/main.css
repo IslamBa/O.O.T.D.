@@ -254,15 +254,26 @@ body,html{
 }
 
 .divdailycloth{
-	height : 150px !important;
-	width : 150px !important;
+	height : 100px !important;
+	width : 100px !important;
 	margin-top: 10px;
 	border-radius: 15px !important;
 	text-align: center;
 	vertical-align: middle;
-	line-height: 150px;  
-	background-color: rgb(38, 38, 38);
+	line-height: 100px;  
+	/* background-color: rgb(38, 38, 38); */
 	color: white;
+	overflow: hidden;
+	-webkit-box-shadow: 3px 3px 16px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: 3px 3px 16px 1px rgba(0,0,0,0.35);
+	box-shadow: 3px 3px 16px 1px rgba(0,0,0,0.35);
+	padding:0px !important;
+	margin-left: 5px;
+    margin-right: 5px;
+}
+
+.imgOut{
+	width: 100%;
 }
 
 .suncolor{
