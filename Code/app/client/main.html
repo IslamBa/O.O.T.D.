@@ -24,7 +24,7 @@
   </div>
   <div class="weatheranimation cloudycolor">
     <div class="weathertitle text-center">
-      <h1 class="title">{{wetter}} C°</h1>
+      <h1 class="title">{{wetter}}°</h1>
       <h1 class="zustand">{{zustand}}</h1>
       <h1 class="zip">{{zip}}</h1>
     </div>
@@ -34,11 +34,15 @@
     <div class="row justify-content-around">
 
       {{#each value in outfits}}
+      {{#if value.image}}
       <div class="divdailycloth col-3">
           <!-- <p>HOSE</p> -->
+          
           <img src="{{value.image}}" alt="Bild"
             class="imgOut">
+            
         </div>
+        {{/if}}
       {{/each}}
       <!-- <div class="divdailycloth col-3"> -->
         <!-- <p>HOSE</p> -->
@@ -89,9 +93,10 @@
   <button id="uploadImage">Upload Image</button>
 
   <button id="getOutfit">Test Outfit (in console)</button>-->
-
-  <button id="getOutfit">Test Outfit (in console)</button>
-
+<div class="container text-center">
+  <button class="btn btn-primary" id="getOutfit">Outfit generieren</button>
+  <button id="OccTest">Occasion Tester</button>
+</div>
   {{else}}
   <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>

@@ -107,6 +107,13 @@ Meteor.methods({
   addClothing(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
+
+    var ID = function () {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
+    obj.id = ID;
+
     Profile.update(user._id, { $push: { kleider: obj } });
   },
   addOccasion(obj) {
@@ -142,7 +149,8 @@ Meteor.methods({
     }
 
     if (Occasion != '') {
-      outfitCandidates = user.kleider.filter(el => el.occasions.includes(Occasion));
+      outfitCandidates = outfitCandidates.filter(el => el.occasions.includes(Occasion));
+      console.log(outfitCandidates);
     }
 
     var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear"];
@@ -202,14 +210,13 @@ Meteor.methods({
   },
   checkOccasions(arr) {
     var currDate = new Date();
+    var type = '';
     arr.forEach((el) => {
-      if (Meteor.call("checkDate", currDate, el.date)) {
-        return el.typ;
-      }
-      else {
-        return '';
+      if (Meteor.call("checkDate", currDate, new Date(el.date))) {
+        type = el.type;
       }
     });
+    return type;
   },
   checkPrecipitation(zustand) {
     var code = zustand.charAt(0);
@@ -241,7 +248,7 @@ Meteor.methods({
     signature = CryptoJS.SHA1(signature).toString();
 
     console.log(signature);
-    
+
 
     HTTP.call('POST', 'https://api.cloudinary.com/v1_1/ootdapp/image/upload', {
       data: {
@@ -256,6 +263,20 @@ Meteor.methods({
         return result.data.url;
       }
     });
+  },
+  delOldOccasions(){
+    const user = Profile.findOne({ id: Meteor.userId() });
+    var date = new Date();
+
+    for (let index = 0; index < user.occasions.length; index++) {
+      // console.log(user.occasions[index].date);
+      var occDate = new Date(user.occasions[index].date);
+      
+      var difference = date.getTime() - occDate.getTime();
+      if(difference/ (1000*60*60*24)>= 1){
+        Profile.update({_id: user._id}, {$pull : { occasions: { id: user.occasions[index].id } }});
+      }
+    }
   }
 });
 
