@@ -188,6 +188,9 @@ Template.content.helpers({
             else if(Profile.findOne().weather.zustand[0].description == "few clouds"){
                 return "BEWÖLKT";
             }
+            else if(Profile.findOne().weather.zustand[0].description == "light intensity shower rain"){
+                return "LEICHTER REGEN";
+            }
             
         }
     },
@@ -427,7 +430,8 @@ Template.AddAnlass.events({
         console.log("ghjhgh");
     },
     'click #other'() {
-        $(".inputnewanlass").show();
+        $("#hiddeninputanlass").show();
+        alert("ghgh");
     }
 });
 
