@@ -114,6 +114,8 @@ Meteor.methods({
 
     obj.id = ID;
 
+    obj.image = Meteor.call('checkOccasions', obj.image);
+
     Profile.update(user._id, { $push: { kleider: obj } });
   },
   addOccasion(obj) {
