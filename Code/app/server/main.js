@@ -125,10 +125,16 @@ Meteor.methods({
     obj.id = id;
     Profile.update(user._id, { $push: { occasions: obj } });
   },
-  addFavorite(obj) {
+  addFavorite() {
+    var obj ={};
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.favorites) { user.favorites = []; }
-    Profile.update(user._id, { $push: { favorites: obj } });
+
+    for (let index = 0; index < user.currentOutfit.length; index++) {
+      obj.id = user.currentOutfit[index].id;
+      obj.type = user.currentOutfit[index].type;
+      Profile.update(user._id, { $push: { favorites: obj } });
+    }
   },
   getOutfit() {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -197,7 +203,7 @@ Meteor.methods({
   },
   getClothing(type, filteredArray, fullArray) {
     if (filteredArray.length > 0) {
-      return filteredArray.filter(el => el.typ = type)[Math.floor(Math.random() * filteredArray.length)];
+      return filteredArray.filter(el => el.type = type)[Math.floor(Math.random() * filteredArray.length)];
     }
     else {
       var completeRandomType = fullArray.filter(el => el.type == type);
@@ -231,12 +237,39 @@ Meteor.methods({
   },
   insertCandidates(arr) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    var idArr = [];
-    for (var el of arr) {
-      idArr.push(el.id);
-    }
     if (!user.candidates) { user.candidates = []; }
+    
+    var idArr = [];
+    for (let index = 0; index < arr.length; index++) {
+      var obj = {};
+      obj.id = arr[index].id;
+      obj.type = arr[index].type;
+      idArr.push(obj);
+    }
+    
     Profile.update(user._id, { $set: { candidates: idArr } });
+  },
+  changeCloth(obj){
+    const user = Profile.findOne({ id: Meteor.userId() });
+
+    var change = user.candidates.filter(el => el.type == obj.type);
+    if(change.length > 1){
+      var newPiece = change.filter(el => el.id != obj.id);
+      newPiece = newPiece[Math.floor(Math.random() * newPiece.length)];
+
+      var newPieceFromKleider = user.kleider.find(el => el.id == newPiece.id);
+
+      var currOutfit = user.currentOutfit;
+
+      for (let index = 0; index < currOutfit.length; index++) {
+        if(currOutfit[index].type == obj.type){
+          currOutfit[index] = newPieceFromKleider;
+        }
+      }
+
+      Profile.update(user._id, {$set: {currentOutfit: currOutfit}});
+    }
+    
   },
   updateNotificationDate(date) {
     const user = Profile.findOne({ id: Meteor.userId() });

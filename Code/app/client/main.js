@@ -397,8 +397,8 @@ Template.content.events({
             }
         });
     },
-    'click #OccTest'() {
-        Meteor.call('delOldOccasions', (error, result) => {
+    'click #changePiece'() {
+        Meteor.call('changeCloth', {id:"test5785",type:"shirt"},(error, result) => {
             if (error) {
                 console.log(error);
             }
