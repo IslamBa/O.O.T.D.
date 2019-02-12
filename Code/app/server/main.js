@@ -107,6 +107,15 @@ Meteor.methods({
   addClothing(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
+
+    var ID = function () {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    };
+
+    obj.id = ID;
+
+    obj.image = Meteor.call('checkOccasions', obj.image);
+
     Profile.update(user._id, { $push: { kleider: obj } });
   },
   addOccasion(obj) {
@@ -116,10 +125,16 @@ Meteor.methods({
     obj.id = id;
     Profile.update(user._id, { $push: { occasions: obj } });
   },
-  addFavorite(obj) {
+  addFavorite() {
+    var obj ={};
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.favorites) { user.favorites = []; }
-    Profile.update(user._id, { $push: { favorites: obj } });
+
+    for (let index = 0; index < user.currentOutfit.length; index++) {
+      obj.id = user.currentOutfit[index].id;
+      obj.type = user.currentOutfit[index].type;
+      Profile.update(user._id, { $push: { favorites: obj } });
+    }
   },
   getOutfit() {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -142,7 +157,8 @@ Meteor.methods({
     }
 
     if (Occasion != '') {
-      outfitCandidates = user.kleider.filter(el => el.occasions.includes(Occasion));
+      outfitCandidates = outfitCandidates.filter(el => el.occasions.includes(Occasion));
+      console.log(outfitCandidates);
     }
 
     var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear"];
@@ -187,7 +203,7 @@ Meteor.methods({
   },
   getClothing(type, filteredArray, fullArray) {
     if (filteredArray.length > 0) {
-      return filteredArray.filter(el => el.typ = type)[Math.floor(Math.random() * filteredArray.length)];
+      return filteredArray.filter(el => el.type = type)[Math.floor(Math.random() * filteredArray.length)];
     }
     else {
       var completeRandomType = fullArray.filter(el => el.type == type);
@@ -202,14 +218,13 @@ Meteor.methods({
   },
   checkOccasions(arr) {
     var currDate = new Date();
+    var type = '';
     arr.forEach((el) => {
-      if (Meteor.call("checkDate", currDate, el.date)) {
-        return el.typ;
-      }
-      else {
-        return '';
+      if (Meteor.call("checkDate", currDate, new Date(el.date))) {
+        type = el.type;
       }
     });
+    return type;
   },
   checkPrecipitation(zustand) {
     var code = zustand.charAt(0);
@@ -222,12 +237,39 @@ Meteor.methods({
   },
   insertCandidates(arr) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    var idArr = [];
-    for (var el of arr) {
-      idArr.push(el.id);
-    }
     if (!user.candidates) { user.candidates = []; }
+    
+    var idArr = [];
+    for (let index = 0; index < arr.length; index++) {
+      var obj = {};
+      obj.id = arr[index].id;
+      obj.type = arr[index].type;
+      idArr.push(obj);
+    }
+    
     Profile.update(user._id, { $set: { candidates: idArr } });
+  },
+  changeCloth(obj){
+    const user = Profile.findOne({ id: Meteor.userId() });
+
+    var change = user.candidates.filter(el => el.type == obj.type);
+    if(change.length > 1){
+      var newPiece = change.filter(el => el.id != obj.id);
+      newPiece = newPiece[Math.floor(Math.random() * newPiece.length)];
+
+      var newPieceFromKleider = user.kleider.find(el => el.id == newPiece.id);
+
+      var currOutfit = user.currentOutfit;
+
+      for (let index = 0; index < currOutfit.length; index++) {
+        if(currOutfit[index].type == obj.type){
+          currOutfit[index] = newPieceFromKleider;
+        }
+      }
+
+      Profile.update(user._id, {$set: {currentOutfit: currOutfit}});
+    }
+    
   },
   updateNotificationDate(date) {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -241,7 +283,7 @@ Meteor.methods({
     signature = CryptoJS.SHA1(signature).toString();
 
     console.log(signature);
-    
+
 
     HTTP.call('POST', 'https://api.cloudinary.com/v1_1/ootdapp/image/upload', {
       data: {
@@ -256,6 +298,20 @@ Meteor.methods({
         return result.data.url;
       }
     });
+  },
+  delOldOccasions(){
+    const user = Profile.findOne({ id: Meteor.userId() });
+    var date = new Date();
+
+    for (let index = 0; index < user.occasions.length; index++) {
+      // console.log(user.occasions[index].date);
+      var occDate = new Date(user.occasions[index].date);
+      
+      var difference = date.getTime() - occDate.getTime();
+      if(difference/ (1000*60*60*24)>= 1){
+        Profile.update({_id: user._id}, {$pull : { occasions: { id: user.occasions[index].id } }});
+      }
+    }
   }
 });
 

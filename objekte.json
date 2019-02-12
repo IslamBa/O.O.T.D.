@@ -1,22 +1,79 @@
 [
     {
         "id": "test124",
-        "type": "shirt",
+        "type": "tshirt",
         "name":"Hemd",
         "weather_range": {
             "min": 12,
             "max": 30
         },
         "occasions": [
-            "jsadfj23",
+            "TDOT",
             "as46h84fasf",
             "aas05fsfa32"
         ],
         "layer": 0,
         "color":"green",
         "image": "https://cdn03.plentymarkets.com/zrhkwcifm7cp/item/images/513133675/full/12xVenti-Slim-Fit-Herren-Struktur-Hemd-mit-modi.jpg",
-        "icon": "shirt_icon",
+        "icon": "tshirt_icon",
         "forWetWeather":false
+    },
+    {
+        "id": "test512",
+        "type": "tshirt",
+        "name":"Hemd",
+        "weather_range": {
+            "min": 0,
+            "max": 25
+        },
+        "occasions": [
+            "TDOT",
+            "as46h84fasf",
+            "aas05fsfa32"
+        ],
+        "layer": 0,
+        "color":"white",
+        "image": "https://cms.brnstc.de/product_images/435x596/17/05/100069434311000_0.jpg",
+        "icon": "tshirt_icon",
+        "forWetWeather":false
+    },
+    {
+        "id": "test88712",
+        "type": "jacket",
+        "name":"Mantel",
+        "weather_range": {
+            "min": -10,
+            "max": 20
+        },
+        "occasions": [
+            "TDOT",
+            "as46h84fasf",
+            "aas05fsfa32"
+        ],
+        "layer": 0,
+        "color":"schwarz",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/81EKjfJcmbL._SX679._SX._UX._SY._UY_.jpg",
+        "icon": "shirt_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test88712",
+        "type": "jacket",
+        "name":"Mantel",
+        "weather_range": {
+            "min": -10,
+            "max": 20
+        },
+        "occasions": [
+            "TDOT",
+            "as46h84fasf",
+            "aas05fsfa32"
+        ],
+        "layer": 0,
+        "color":"grau",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/61wi5aNlIPL._UX385_.jpg",
+        "icon": "shirt_icon",
+        "forWetWeather":true
     },
     {
         "id": "test154",
@@ -71,6 +128,24 @@
         "forWetWeather":true
     },
     {
+        "id": "test5632",
+        "type": "shoes",
+        "name":"Schicker Schuh",
+        "weather_range": {
+            "min": -10,
+            "max": 20
+        },
+        "occasions": [
+            "jsadfj23",
+            "TDOT"
+        ],
+        "layer": 1,
+        "color":"schwarz",
+        "image": "https://www.gisy-schuhe.de/blog/wp-content/uploads/2011/01/Lloyd-Business-Schuhe1.bmp",
+        "icon": "shoes_icon",
+        "forWetWeather":true
+    },
+    {
         "id": "test785",
         "type": "pants",
         "name":"Jeans",
@@ -85,6 +160,25 @@
         "layer": 1,
         "color":"blue",
         "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
+        "icon": "pants_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test7835",
+        "type": "pants",
+        "name":"Anzughose",
+        "weather_range": {
+            "min": -10,
+            "max": 20
+        },
+        "occasions": [
+            "jsadfj23",
+            "aas05fsfa32",
+            "TDOT"
+        ],
+        "layer": 1,
+        "color":"blue",
+        "image": "https://www.karstadt.de/dw/image/v2/karstadt/derivates/1/001/305/805/SProdukt_0407002928_d.jpg?sw=1200&sh=1200&sm=fit",
         "icon": "pants_icon",
         "forWetWeather":true
     },
@@ -120,6 +214,24 @@
         "layer": 1,
         "color":"white",
         "image": "https://www.supreme-streetwear.com/media/image/product/3399/md/supreme-europe-pullover-1104-hgrau.jpg",
+        "icon": "shirt_icon",
+        "forWetWeather":false
+    },
+    {
+        "id": "test5785",
+        "type": "shirt",
+        "name":"Sakko",
+        "weather_range": {
+            "min": -5,
+            "max": 20
+        },
+        "occasions": [
+            "jsadfj23",
+            "TDOT"
+        ],
+        "layer": 1,
+        "color":"white",
+        "image": "https://sararshop.de/media/catalog/product/cache/3/image/800x1063.7119113573/9df78eab33525d08d6e5fb8d27136e95/i/_/i_000003848398.2_1.jpg",
         "icon": "shirt_icon",
         "forWetWeather":false
     },
@@ -171,6 +283,42 @@
         "layer": 1,
         "color":"silver",
         "image": "",
+        "icon": "accessoires_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test4938",
+        "type": "accessoires",
+        "name":"Krawatte",
+        "weather_range": {
+            "min": -10,
+            "max": 30
+        },
+        "occasions": [
+            "jsadfj23",
+            "TDOT"
+        ],
+        "layer": 1,
+        "color":"silver",
+        "image": "https://cdn.babymarkt.com/babymarkt/img/520337/443/g-o-l-kleinkind-krawatte-rot-blau-a225098.jpg",
+        "icon": "accessoires_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test4653",
+        "type": "accessoires",
+        "name":"Krawatte",
+        "weather_range": {
+            "min": -10,
+            "max": 30
+        },
+        "occasions": [
+            "jsadfj23",
+            "TDOT"
+        ],
+        "layer": 1,
+        "color":"silver",
+        "image": "https://cdn.babymarkt.com/babymarkt/img/520344/900/g-o-l-baby-krawatte-green-a225080.jpg",
         "icon": "accessoires_icon",
         "forWetWeather":true
     },

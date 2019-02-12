@@ -226,7 +226,7 @@ Template.content.onRendered(() => {
 
     Meteor.call('getProfile', Meteor.userId(), (error, result) => {
 
-        $(".title").text(result.weather.temperatur.temp_max + "°");
+        // $(".title").text(result.weather.temperatur.temp_max + "°");
     });
 
 
@@ -306,20 +306,21 @@ Template.content.events({
         });
     },
     'click #NochnichtexistierenderButton'(event) {
-        var typ = 'Wert von Input';
+        var type = 'Wert von Input';
         var wetterMin = 'Wert von Input';
         var wetterMax = 'Wert von Input';
         var anlaesse = 'Wert von Input - Array';
-        var forNiederschlag = 'Wert von Input - Boolean';
+        var forWetWeather = 'Wert von Input - Boolean';
         var layer = 'Wert von Frontend';
         var image = '';
         var icon = 'Wert von Frontend';
 
         var obj = {
-            typ: typ,
-            weatherRange: { wetterMin: wetterMin, wetterMax: wetterMax },
+            type: type,
+            weathe_range: { min: wetterMin, mX: wetterMax },
             anlaesse: anlaesse,
-            forNiederschlag: forNiederschlag,
+            forWetWeather: forWetWeather,
+            occasions:[],
             image: image,
             layer: layer,
             icon: icon
@@ -332,21 +333,21 @@ Template.content.events({
         });
     },
     'click #CurrentNoButton'(event) {
-        var name = 'Wert von Input';
-        var date = 'Wert von Input';
-        var typ = 'Wert von Input';
+        // var name = 'Wert von Input';
+        // var date = 'Wert von Input';
+        // var typ = 'Wert von Input';
 
-        var obj = {
-            name: name,
-            date: date,
-            typ: typ
-        };
+        // var obj = {
+        //     name: name,
+        //     date: date,
+        //     typ: typ
+        // };
 
-        Meteor.call('addOccasion', obj, (error, result) => {
-            if (!error) {
-                console.log("Kleidung erfolgreich hinzugefügt");
-            }
-        });
+        // Meteor.call('addOccasion', obj, (error, result) => {
+        //     if (!error) {
+        //         console.log("Kleidung erfolgreich hinzugefügt");
+        //     }
+        // });
     },
     'click .allbtn'() {
         if (allbtncount == 1) {
@@ -397,6 +398,16 @@ Template.content.events({
     },
     'click #getOutfit'() {
         Meteor.call('getOutfit', (error, result) => {
+            if (error) {
+                console.log(error);
+            }
+            else {
+                console.log(result);
+            }
+        });
+    },
+    'click #changePiece'() {
+        Meteor.call('changeCloth', {id:"test5785",type:"shirt"},(error, result) => {
             if (error) {
                 console.log(error);
             }

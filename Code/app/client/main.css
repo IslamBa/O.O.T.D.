@@ -229,7 +229,7 @@ body,html{
 	left: 50%;
 	-webkit-transform: translateX(-50%);
 	transform: translateX(-50%);
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 .inputaddcloth{
@@ -296,6 +296,10 @@ body,html{
 	height : 50px;
 	width : 50px;
 	background-color : rgb(38, 38, 38);
+}
+
+#getOutfit{
+	margin-top: 40px;
 }
 
 .weatherbar{
