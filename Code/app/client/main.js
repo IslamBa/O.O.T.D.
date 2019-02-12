@@ -196,6 +196,9 @@ Template.content.helpers({
     },
     outfits(){
         if (Profile.findOne()) { return Profile.findOne().currentOutfit; }
+    },
+    kleider(){
+        if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
     }
 });
 
