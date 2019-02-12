@@ -22,7 +22,7 @@
 	color : white !important;
 }
 
-.login-input::placeholder,{
+::placeholder,{
 	color:white !important;
 }
 
@@ -197,14 +197,10 @@ body,html{
 }
 
 .divweather{
-	padding-top: 270px;
 	position: absolute;
 	margin-left: auto !important;
 	margin-right: auto !important;
 	z-index: 10;
-    left: 50%;
-	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%);
 }
 
 .title{
@@ -412,7 +408,15 @@ body,html{
 }
 
 .weatheranimation{
-	height : 350px;
+	height : 300px;
+	width: 90%;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	margin-top : 50px;
+	border-radius : 20px;
+	-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
 }
 
 .startseite-kleidung{
@@ -445,4 +449,37 @@ body,html{
 
 .kategoriefont{
 	font-size : 15px;
+}
+
+.einzelkleiderbilder{
+	height : 200px;
+	width: auto !important;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.einzelkleidername{
+	padding-top : 10px;
+	padding-left : 10px;
+	font-weight : bold;
+}
+
+.edit-icon{
+	float: right;
+	margin-top : -35px;
+	margin-right : 20px;
+}
+
+.anlasse{
+	padding-top : 50px;
+}
+
+.anlassdatum{
+	font-size: 30px;
+}
+
+.anlasstext{
+	padding-left: 10px;
 }

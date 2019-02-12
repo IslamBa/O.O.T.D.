@@ -2,8 +2,11 @@ import { Template } from 'meteor/templating';
 import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
+
+
 //import '../node_modules/animate.css/animate.css';
 
 
@@ -191,6 +194,9 @@ Template.content.helpers({
             else if(Profile.findOne().weather.zustand[0].description == "light intensity shower rain"){
                 return "LEICHTER REGEN";
             }
+            else if(Profile.findOne().weather.zustand[0].description == "moderate rain"){
+                return "LEICHTER REGEN";
+            }
             
         }
     },
@@ -211,7 +217,7 @@ Template.content.onRendered(() => {
     Meteor.call('getWeather', function (error, result) {
 
         if (result != false) {
-            $(".title").text(result.weather.temperatur.temp_max + "°");
+            // $(".title").text(result.weather.temperatur.temp_max + "°");
         }
         else {
             console.log("10 Minuten noch nicht vorbei");
@@ -291,7 +297,7 @@ Template.content.events({
     'click #btnWeather'(event) {
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
-                // $(".title").text(result.weather.temperatur.temp_max + "°C");
+                $(".title").text(result.weather.temperatur.temp_max + "°");
                 console.log("erfolgreich wetter aktualisiert");
             }
             else {
@@ -465,8 +471,11 @@ Template.Kategorien.events({
 
 Template.AddClothes.onRendered(() =>{
     var slider2 = new Slider('#ex2');
+
     slider2.on("slide", function(sliderValue) {
+
         document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
+
     });
 
     var switchStatus = false;
@@ -479,5 +488,12 @@ Template.AddClothes.onRendered(() =>{
             $("#hiddeninputcloth").hide();
             console.log("klklklkl");
         }
+    });
+});
+
+Template.Oberteil.onRendered(() =>{
+    var slider = new Slider('#ex3');
+    slider.on("slide", function(sliderValue) {
+        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
     });
 });

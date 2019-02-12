@@ -4,6 +4,7 @@
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
   <link rel="stylesheet" href="addons/bootstrap-slider.min.css">
+
   <script src="addons/bootstrap-slider.min.js"></script>
 </head>
 
@@ -19,14 +20,15 @@
     <div class="text-center"></div>
     <div class="text-center"></div>
   </div>
-  <div class="divweather text-center">
-    <i class="fas fa-redo-alt" style="color:white;"></i>
-  </div>
+  
   <div class="weatheranimation cloudycolor">
     <div class="weathertitle text-center">
       <h1 class="title">{{wetter}} C°</h1>
       <h1 class="zustand">{{zustand}}</h1>
       <h1 class="zip">{{zip}}</h1>
+      <div id="btnWeather" class="divweather text-center">
+        <i class="fas fa-redo-alt" style="color:white;"></i>
+      </div>
     </div>
   </div>
 
@@ -40,36 +42,35 @@
       <div class="divdailycloth col-sm">
         <p>ACCESSOIRE</p>
       </div> -->
-      {{#each value in outfits}}
-      <div class="divdailycloth col-3">
-          <!-- <p>HOSE</p> -->
-          <img src="{{value.image}}" alt="Bild"
-            class="imgOut">
-        </div>
-      {{/each}}
-      <!-- <div class="divdailycloth col-3"> -->
-        <!-- <p>HOSE</p> -->
-        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+  {{#each value in outfits}}
+  <div class="divdailycloth col-3">
+    <!-- <p>HOSE</p> -->
+    <img src="{{value.image}}" alt="Bild" class="imgOut">
+  </div>
+  {{/each}}
+  <!-- <div class="divdailycloth col-3"> -->
+  <!-- <p>HOSE</p> -->
+  <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
           class="imgOut">
       </div> -->
-      <!-- <div class="divdailycloth col-3">
+  <!-- <div class="divdailycloth col-3">
         <p>OBERTEIL</p> -->
-        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
-          class="imgOut">
-      </div> --> 
-
-      <!-- <div class="divdailycloth col-3"> -->
-        <!-- <p>SCHUHE</p> -->
-        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+  <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
           class="imgOut">
       </div> -->
 
-      <!-- <div class="divdailycloth col-3"> -->
-        <!-- <p>ACCESSOIRE</p> -->
-        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+  <!-- <div class="divdailycloth col-3"> -->
+  <!-- <p>SCHUHE</p> -->
+  <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
           class="imgOut">
       </div> -->
-    <!-- </div>
+
+  <!-- <div class="divdailycloth col-3"> -->
+  <!-- <p>ACCESSOIRE</p> -->
+  <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+          class="imgOut">
+      </div> -->
+  <!-- </div>
   </div> -->
 
   <button class="allbtn allbtndown btn">
@@ -77,7 +78,11 @@
   </button>
   <a href="/">
     <button class="btnLogout btn " style="display: none;">
+
+
       <i class="fas fa-power-off" style="color:white;"></i>
+
+      
     </button>
   </a>
   <a href="/allcloth">
@@ -232,9 +237,10 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-      <input id="ex2" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-      />
-      <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+      <input id="ex2" type="text" class="span2" value="" data-slider-min="-25" 
+       data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"/>
+      <small id="emailHelp" class="form-text text-muted">
+        Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
     </div>
     <hr>
@@ -263,6 +269,7 @@
     <hr>
     <div>
       <div class="text-center inputaddcloth row">
+        
         <label class="el-switch col col-sm">
           <input type="checkbox" name="switch">
           <span class="el-switch-style"></span>
@@ -394,9 +401,15 @@
       <i class="fas fa-chevron-left icon-back"></i>
     </div>
   </div>
-
-  <p class="text-center nvorhandentext">Noch keine Anlässe vorhanden !</p>
-
+  <div class="anlasse">
+    <div>
+      <p class="anlassdatum text-center">Datum</p>
+      <div>
+        <p class="anlasstext">Anlass</p>
+      </div>
+      <hr>
+    </div>
+  </div>
   <a href="/addanlass">
     <button class="allbtndown btn">
       <i class="fas fa-plus" style="color:white;"></i>
@@ -438,7 +451,121 @@
 
 <template name="Oberteil">
 
-  <p class="text-center nvorhandentext">Noch keine Oberteile vorhanden !</p>
+  <div>
+    <img class="einzelkleiderbilder" src="https://static5.cilory.com/260520-thickbox_default/nologo-peach-polo-t-shirt.jpg">
+    <div>
+      <p class="einzelkleidername">Kleiderart</p>
+      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+    </div>
+    <hr>
+  </div>
+
+  <!--Modal-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Kleidungstück ändern</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group inputaddcloth text-center">
+              <p id="maxtempzahl"></p>
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+              />
+              <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+              </small>
+            </div>
+            <hr>
+            <div clas="text-center">
+              <select class="form-control dropdown_select text-center" id="select_kleiderart">
+                <option value="none" disabled selected>Kleiderart wählen</option>
+                <option>Jacke</option>
+                <option>Hose</option>
+                <option>Shirt</option>
+                <option>T-Shirt</option>
+                <option>Schuhe</option>
+                <option>Kleid</option>
+                <option>Rock</option>
+                <option>Accessoire</option>
+              </select>
+            </div>
+            <hr>
+            <div class="text-center inputaddcloth row">
+              <label class="el-switch col col-sm">
+                <input type="checkbox" name="switch">
+                <span class="el-switch-style"></span>
+              </label>
+              <label class="switchfont col col-sm">Niederschlag</label>
+              <small id="emailHelp" class="form-text text-muted col-sm">Regen und Schnee geschützt?</small>
+            </div>
+            <hr>
+            <div>
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Festlich</label>
+        
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Freizeit</label>
+        
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Busniess</label>
+        
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Homewear</label>
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="otherclothanlass" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Others</label>
+                <br>
+                <br>
+                <div class="text-center">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                </div>
+                <br>
+                <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
+              </div>
+            </div>
+        
+        
+            <br>
+            <div class="text-center addclothbtn">
+              <button class="btn btn-success">Speichern</button>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </template>
 
