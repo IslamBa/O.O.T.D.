@@ -22,7 +22,7 @@
 	color : white !important;
 }
 
-.login-input::placeholder,{
+.login-input::placeholder{
 	color:white !important;
 }
 
@@ -449,4 +449,17 @@ body,html{
 
 .kategoriefont{
 	font-size : 15px;
+}
+
+.spinner {
+  animation: rotate 1s ease infinite;
+  -webkit-animation: rotate 1s ease infinite;
+  -moz-animation: rotate 1s ease infinite;
+  position: relative;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
