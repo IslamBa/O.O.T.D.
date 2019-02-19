@@ -244,7 +244,7 @@ Template.Schuhe.helpers({
 Template.Accessoire.helpers({
         accessoires(){
             if (Profile.findOne()) {
-                var accessoire = Profile.findOne().kleider.filter(el => el.type == "accessoire");
+                var accessoire = Profile.findOne().kleider.filter(el => el.type == "accessoires");
                  return accessoire;
                 }
         }
@@ -344,7 +344,7 @@ Template.AddAnlass.onRendered(() => {
 
 });
 
-//Events für Content Seite
+//Events für Content Seifte
 Template.content.events({
     'click .btnLogout'(event) {
         Meteor.logout();
@@ -466,6 +466,7 @@ Template.content.events({
         });
     },
     'click #changePiece'() {
+        console.log("yo");
         Meteor.call('changeCloth', {id:"test5785",type:"shirt"},(error, result) => {
             if (error) {
                 console.log(error);

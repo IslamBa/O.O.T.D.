@@ -249,8 +249,8 @@ body,html{
 }
 
 .divdailycloth{
-	height : 100px !important;
-	width : 100px !important;
+	height : 125px !important;
+	width : 125px !important;
 	margin-top: 10px;
 	border-radius: 15px !important;
 	line-height: 100px;  
@@ -413,11 +413,11 @@ body,html{
 	width: 90%;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	margin-top : 50px;
+	margin-top : 25px;
 	border-radius : 20px;
-	-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 3px 0px 18px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 3px 0px 18px 0px rgba(0,0,0,0.75);
+	box-shadow: 3px 0px 18px 0px rgba(0,0,0,0.75);
 }
 
 .startseite-kleidung{
@@ -467,6 +467,12 @@ body,html{
 	font-weight : bold;
 }
 
+.imgOut{
+	height: 120px;
+	width : auto;
+	max-width: 120px;
+}
+
 .edit-icon{
 	float: right;
 	margin-top : -35px;
@@ -483,6 +489,8 @@ body,html{
 
 .anlasstext{
 	padding-left: 10px;
+}
+
 .spinner {
   animation: rotate 1s ease infinite;
   -webkit-animation: rotate 1s ease infinite;
