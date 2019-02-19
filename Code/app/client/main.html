@@ -20,7 +20,7 @@
     <div class="text-center"></div>
     <div class="text-center"></div>
   </div>
-  
+
   <div class="weatheranimation cloudycolor">
     <div class="weathertitle text-center">
       <h1 class="title">{{wetter}}°</h1>
@@ -32,23 +32,23 @@
     </div>
   </div>
 
-  <!-- <div class="container text-center startseite-kleidung">
+
+  
+
+  <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around">
 
       {{#each value in outfits}}
       {{#if value.image}}
       <div class="divdailycloth col-3">
-          <!-- <p>HOSE</p> -->
-          
-          <img src="{{value.image}}" alt="Bild"
-            class="imgOut">
-            
-        </div>
-        {{/if}}
-      {{/each}}
-      <!-- <div class="divdailycloth col-3"> -->
-        <!-- <p>HOSE</p> -->
-        <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
+  <img src="{{value.image}}" alt="Bild" class="imgOut"> 
+    </div>
+
+  {{/if}} 
+  {{/each}}
+  <!-- <div class="divdailycloth col-3"> -->
+  <!-- <p>HOSE</p> -->
+  <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
           class="imgOut">
       </div> -->
   <!-- <div class="divdailycloth col-3">
@@ -67,9 +67,9 @@
   <!-- <p>ACCESSOIRE</p> -->
   <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
           class="imgOut">
-      </div> -->
-  <!-- </div>
-  </div> -->
+        </div> -->
+    </div>
+  </div>
 
   <button class="allbtn allbtndown btn">
     <i class="fas fa-bars" style="color:white;"></i>
@@ -80,7 +80,7 @@
 
       <i class="fas fa-power-off" style="color:white;"></i>
 
-      
+
     </button>
   </a>
   <a href="/allcloth">
@@ -99,10 +99,10 @@
   <button id="uploadImage">Upload Image</button>
 
   <button id="getOutfit">Test Outfit (in console)</button>-->
-<div class="container text-center">
-  <button class="btn btn-primary" id="getOutfit">Outfit generieren</button>
-  <button class="btn btn-primary" id="changePiece">Change Piece</button>
-</div>
+  <div class="container text-center">
+    <button class="btn btn-primary" id="getOutfit">Outfit generieren</button>
+    <button class="btn btn-primary" id="changePiece">Change Piece</button>
+  </div>
   {{else}}
   <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>
@@ -236,8 +236,8 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-      <input id="ex2" type="text" class="span2" value="" data-slider-min="-25" 
-       data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"/>
+      <input id="ex2" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+      />
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -268,7 +268,7 @@
     <hr>
     <div>
       <div class="text-center inputaddcloth row">
-        
+
         <label class="el-switch col col-sm">
           <input type="checkbox" name="switch">
           <span class="el-switch-style"></span>
@@ -450,14 +450,17 @@
 
 <template name="Oberteil">
 
-  <div>
-    <img class="einzelkleiderbilder" src="https://static5.cilory.com/260520-thickbox_default/nologo-peach-polo-t-shirt.jpg">
+    {{#each value in shirts}}
+   <div>
+    <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
-      <p class="einzelkleidername">Kleiderart</p>
+      <p class="einzelkleidername">{{value.name}}</p>
       <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
     <hr>
   </div>
+  {{/each}}
+  
 
   <!--Modal-->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -509,27 +512,27 @@
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Festlich</label>
-        
+
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Freizeit</label>
-        
+
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Busniess</label>
-        
+
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input type="checkbox" name="switch">
@@ -537,7 +540,7 @@
                 </label>
                 <label class="switchfont col col-sm">Homewear</label>
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input id="otherclothanlass" type="checkbox" name="switch">
@@ -553,8 +556,8 @@
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
-        
-        
+
+
             <br>
             <div class="text-center addclothbtn">
               <button class="btn btn-success">Speichern</button>
@@ -569,15 +572,42 @@
 </template>
 
 <template name="Hosen">
-  <p class="text-center nvorhandentext">Noch keine Hosen vorhanden !</p>
+  {{#each value in hosen}}
+  <div>
+   <img class="einzelkleiderbilder" src="{{value.image}}">
+   <div>
+     <p class="einzelkleidername">{{value.name}}</p>
+     <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+   </div>
+   <hr>
+ </div>
+ {{/each}}
 </template>
 
 <template name="Schuhe">
-  <p class="text-center nvorhandentext">Noch keine Schuhe vorhanden !</p>
+  {{#each value in schuhe}}
+  <div>
+   <img class="einzelkleiderbilder" src="{{value.image}}">
+   <div>
+     <p class="einzelkleidername">{{value.name}}</p>
+     <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+   </div>
+   <hr>
+ </div>
+ {{/each}}
 </template>
 
 <template name="Accessoire">
-  <p class="text-center nvorhandentext">Noch keine Accessoires vorhanden !</p>
+  {{#each value in accessoires}}
+  <div>
+   <img class="einzelkleiderbilder" src="{{value.image}}">
+   <div>
+     <p class="einzelkleidername">{{value.name}}</p>
+     <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+   </div>
+   <hr>
+ </div>
+ {{/each}}
 </template>
 
 <template name="FavOutfits">

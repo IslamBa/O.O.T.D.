@@ -197,7 +197,6 @@ body,html{
 }
 
 .divweather{
-	position: absolute;
 	margin-left: auto !important;
 	margin-right: auto !important;
 	z-index: 10;
@@ -254,8 +253,6 @@ body,html{
 	width : 100px !important;
 	margin-top: 10px;
 	border-radius: 15px !important;
-	text-align: center;
-	vertical-align: middle;
 	line-height: 100px;  
 	/* background-color: rgb(38, 38, 38); */
 	color: white;

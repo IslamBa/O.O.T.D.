@@ -208,6 +208,55 @@ Template.content.helpers({
     }
 });
 
+Template.Oberteil.helpers({
+
+    shirts(){
+        if (Profile.findOne()) {
+            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt");
+             return shirts;
+            }
+    }
+})
+
+Template.Hosen.helpers({
+    
+        hosen(){
+            if (Profile.findOne()) {
+                var hosen = Profile.findOne().kleider.filter(el => el.type == "pants");
+                 return hosen;
+                }
+        }
+})
+
+Template.Schuhe.helpers({
+    
+        schuhe(){
+            if (Profile.findOne()) {
+                var schuhe = Profile.findOne().kleider.filter(el => el.type == "shoes");
+                 return schuhe;
+                }
+        }
+})
+
+Template.Accessoire.helpers({
+        accessoires(){
+            if (Profile.findOne()) {
+                var accessoire = Profile.findOne().kleider.filter(el => el.type == "accessoire");
+                 return accessoire;
+                }
+        }
+})
+
+Template.FavOutfits.helpers({
+    
+        // favoutfits(){
+        //     if (Profile.findOne()) {
+        //         var favoutfits = Profile.findOne().kleider.filter(el => el.type == "accessoire");
+        //          return accessoire;
+        //         }
+        // }
+})
+
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
