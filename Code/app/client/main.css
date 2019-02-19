@@ -257,9 +257,9 @@ body,html{
 	/* background-color: rgb(38, 38, 38); */
 	color: white;
 	overflow: hidden;
-	-webkit-box-shadow: 3px 3px 16px 1px rgba(0,0,0,0.35);
-	-moz-box-shadow: 3px 3px 16px 1px rgba(0,0,0,0.35);
-	box-shadow: 3px 3px 16px 1px rgba(0,0,0,0.35);
+	-webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
 	padding:0px !important;
 	margin-left: 5px;
     margin-right: 5px;
@@ -278,7 +278,7 @@ body,html{
 }
 
 .cloudycolor{
-	background-image: linear-gradient(to left, #BDBBBE 0%, #9D9EA3 100%), radial-gradient(88% 271%, rgba(255, 255, 255, 0.25) 0%, rgba(254, 254, 254, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%), radial-gradient(50% 100%, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+	background-image: linear-gradient(to left, #9525cd 0%, #2084c4 100%);
 	background-blend-mode: normal, lighten, soft-light;
 }
 
@@ -410,14 +410,13 @@ body,html{
 
 .weatheranimation{
 	height : 300px;
-	width: 90%;
-	margin-left: auto !important;
-	margin-right: auto !important;
-	margin-top : 50px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top : 25px;
 	border-radius : 20px;
-	-webkit-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 19px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
 }
 
 .startseite-kleidung{
@@ -483,6 +482,7 @@ body,html{
 
 .anlasstext{
 	padding-left: 10px;
+}
 .spinner {
   animation: rotate 1s ease infinite;
   -webkit-animation: rotate 1s ease infinite;
