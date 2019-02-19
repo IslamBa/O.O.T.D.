@@ -22,7 +22,7 @@
 	color : white !important;
 }
 
-::placeholder,{
+::placeholder{
 	color:white !important;
 }
 
@@ -483,4 +483,15 @@ body,html{
 
 .anlasstext{
 	padding-left: 10px;
+.spinner {
+  animation: rotate 1s ease infinite;
+  -webkit-animation: rotate 1s ease infinite;
+  -moz-animation: rotate 1s ease infinite;
+  position: relative;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }

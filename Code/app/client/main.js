@@ -205,6 +205,9 @@ Template.content.helpers({
     },
     outfits(){
         if (Profile.findOne()) { return Profile.findOne().currentOutfit; }
+    },
+    kleider(){
+        if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
     }
 });
 
@@ -263,13 +266,16 @@ Template.content.onRendered(() => {
 
     $("#loginLoading").hide();
 
+    $('#btnWeather').addClass('spinner');
     Meteor.call('getWeather', function (error, result) {
 
         if (result != false) {
             // $(".title").text(result.weather.temperatur.temp_max + "°");
+            $('#btnWeather').removeClass('spinner');
         }
         else {
             console.log("10 Minuten noch nicht vorbei");
+            $('#btnWeather').removeClass('spinner');
         }
     });
 
@@ -344,14 +350,18 @@ Template.content.events({
         Meteor.logout();
     },
     'click #btnWeather'(event) {
+        $('#btnWeather').addClass('spinner');
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
                 $(".title").text(result.weather.temperatur.temp_max + "°");
                 console.log("erfolgreich wetter aktualisiert");
+                $('#btnWeather').removeClass('spinner');
             }
             else {
                 console.log("10 Minuten noch nicht vorbei");
+                $('#btnWeather').removeClass('spinner');
             }
+            
         });
     },
     'click #NochnichtexistierenderButton'(event) {
