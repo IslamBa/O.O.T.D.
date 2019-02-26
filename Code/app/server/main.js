@@ -1,18 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Profile } from '../collections';
-// import sha1 from 'crypto-js/sha1';
-var cloudinary = require('cloudinary');
-
-
-// cloudinary.config({
-//   cloud_name: 'sample',
-//   api_key: '874837483274837',
-//   api_secret: 'a676b67565c6767a6767d6767f676fe1'
-// });
 
 Meteor.startup(() => {
   // code to run on server at startup
   // process.env.MAIL_URL="smtps://ootdapp1@gmail.com:IslamTolga@smtp.gmail.com:465";
+  console.log(process.env.MONGO_URL);
 });
 
 Meteor.publish('Profile', () => Profile.find({ id: Meteor.userId() }));
@@ -161,28 +153,40 @@ Meteor.methods({
       console.log(outfitCandidates);
     }
 
-    var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear"];
+    var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear", "dress", "skirt"];
 
     for (var type of types) {
       var array = outfitCandidates.filter(el => el.type == type);
-      finalOutfit.push(Meteor.call('getClothing', type, array, user.kleider));
+      var cloth = Meteor.call('getClothing', type, array, user.kleider);
+      if(cloth){finalOutfit.push(cloth);}
+      
     }
 
 
-    //Kleidungsstücke entfernen nach Wetter
-    // if (currTemp < 20) {
-    //   var zufallszahl = Math.floor((Math.random() * 30) + 1);
 
-    //   if (zufallszahl > 10) {
-    //     delete finalOutfit.tshirt;
-    //   } else {
-    //     delete finalOutfit.shirt;
-    //   }
-    // }
+    //Kollidierende Kleidungsstücke filtern
+    var toplayer = [];
+    toplayer = finalOutfit.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "dress");
 
-    // if (currTemp >= 18) {
-    //   delete finalOutfit.jacket;
-    // }
+    finalOutfit = finalOutfit.filter(el => el.type != "shirt" && el.type != "tshirt" && el.type != "dress");
+    finalOutfit.push(toplayer[Math.floor(Math.random() * toplayer.length)]);
+
+    if (finalOutfit.find(el => el.type == "dress")) {
+      finalOutfit = finalOutfit.filter(el => el.type != "pants" && el.type != "skirt");
+    }
+    else {
+      var bottomLayer = [];
+      bottomLayer = finalOutfit.filter(el => el.type == "skirt" || el.type == "pants");
+  
+      finalOutfit = finalOutfit.filter(el => el.type != "skirt" && el.type != "pants");
+      finalOutfit.push(bottomLayer[Math.floor(Math.random() * bottomLayer.length)]);
+    }
+
+    var jacket = finalOutfit.find(el => el.type == "jacket");
+    if(jacket.weather_range.max < currTemp)
+    {
+      finalOutfit = finalOutfit.filter(el => el.type != "jacket");
+    }
 
     Meteor.call('insertCandidates', outfitCandidates);
 
@@ -208,12 +212,12 @@ Meteor.methods({
     else {
       var completeRandomType = fullArray.filter(el => el.type == type);
 
-      if (completeRandomType.length > 0) {
+      if (completeRandomType.length > 0 && type != "headgear" && type != "accessoires") {
         return completeRandomType[Math.floor(Math.random() * completeRandomType.length)];
       }
-      else {
-        return "";
-      }
+      // else {
+      //   return "";
+      // }
     }
   },
   checkOccasions(arr) {
