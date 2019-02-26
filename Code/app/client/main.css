@@ -22,9 +22,9 @@
 	color : white !important;
 }
 
-::placeholder{
+/* ::placeholder{
 	color:white !important;
-}
+} */
 
 .login-input::placeholder{
 	color: white;
@@ -184,11 +184,10 @@ body,html{
 
 .clothpic{
 	margin-top: 50px;
-	height:250px;
-	width : 250px;
-	border-radius:125px !important;
+	height:200px;
+	width : 200px;
+	border-radius:100px !important;
 	background-color: lightgray;
-	cursor: pointer;
 }
 
 .divclothpic{
@@ -350,6 +349,16 @@ body,html{
 	display: none;
 }
 
+.fehlermeldung2{
+	background-color: #2f4f4f;
+	height : 50px;
+	width : 300px;
+	display: none;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	z-index: 10;
+}
+
 .fehlertext{
 	color : white;
 	padding-top: 12px;
@@ -420,7 +429,9 @@ body,html{
 }
 
 .startseite-kleidung{
-	padding-top: 30px;
+	padding-top: 25px !important;
+	padding-right: 25px !important;
+    padding-left: 25px !important;
 }
 
 .arrow-back{
@@ -501,4 +512,50 @@ body,html{
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Wetteranimation */
+
+canvas { background: #aaa8a8; display: block; }
+
+#cloud {
+    height: 230px;
+    margin: 40px;
+    position: relative;
+    width: 400px;
+    overflow: hidden;
+}
+
+
+#bottom_c {
+    background-color: grey;
+    border-radius: 100px;
+    height: 150px;
+    position: absolute; 
+    top: -50px;
+    left: 80px;
+    width: 650px;
+    z-index: 0;   
+}
+
+#bottom_c2 {
+    background-color: rgb(151, 151, 151);
+    border-radius: 100px;
+    height: 130px;
+    position: absolute; 
+    top: -50px;
+    left: -80px;
+    width: 250px;
+    z-index: 0;   
+}
+
+#bottom_c3 {
+    background-color: rgb(185, 185, 185);
+    border-radius: 100px;
+    height: 110px;
+    position: absolute; 
+    top: -50px;
+    left: 230px;
+    width: 250px;
+    z-index: 0;   
 }
