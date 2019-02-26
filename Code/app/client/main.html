@@ -30,6 +30,12 @@
       </div>
     </div>
   </div>
+  <!-- <div id="cloud" style="width:350px; height:750px;">
+    <canvas id="c" style="width:350px;height: 750px;"></canvas>
+   <div id="bottom_c"></div>
+   <div id="bottom_c2"></div>
+   <div id="bottom_c3"></div>
+   </div> -->
 
 
 
@@ -98,9 +104,10 @@
   <button id="uploadImage">Upload Image</button>
 
   <button id="getOutfit">Test Outfit (in console)</button>-->
-  <div class="container text-center">
+  <!-- <div class="container text-center">
     <button class="btn btn-primary" id="getOutfit">Outfit generieren</button>
-  </div>
+    <button class="btn btn-primary" id="changePiece">Change Piece</button>
+  </div> -->
   {{else}}
   <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>
@@ -234,8 +241,8 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-      <input id="ex2" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1"
-        data-slider-value="[-10,10]" />
+      <input id="ex2" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+      />
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -257,7 +264,7 @@
     <hr>
     <div class="text-center inputaddcloth row">
       <label class="el-switch col col-sm">
-        <input type="checkbox" name="switch">
+        <input id="niederschlag" type="checkbox" name="switch">
         <span class="el-switch-style"></span>
       </label>
       <label class="switchfont col col-sm">Niederschlag</label>
@@ -268,7 +275,7 @@
       <div class="text-center inputaddcloth row">
 
         <label class="el-switch col col-sm">
-          <input type="checkbox" name="switch">
+          <input id="festlich" type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
         <label class="switchfont col col-sm">Festlich</label>
@@ -277,7 +284,7 @@
 
       <div class="text-center inputaddcloth row">
         <label class="el-switch col col-sm">
-          <input type="checkbox" name="switch">
+          <input id="freizeit" type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
         <label class="switchfont col col-sm">Freizeit</label>
@@ -286,16 +293,16 @@
 
       <div class="text-center inputaddcloth row">
         <label class="el-switch col col-sm">
-          <input type="checkbox" name="switch">
+          <input id="business" type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
-        <label class="switchfont col col-sm">Busniess</label>
+        <label class="switchfont col col-sm">Business</label>
 
       </div>
 
       <div class="text-center inputaddcloth row">
         <label class="el-switch col col-sm">
-          <input type="checkbox" name="switch">
+          <input id="homewear" type="checkbox" name="switch">
           <span class="el-switch-style"></span>
         </label>
         <label class="switchfont col col-sm">Homewear</label>
@@ -318,13 +325,19 @@
       </div>
     </div>
 
+    <div class="text-center">
+      <div class="fehlermeldung2">
+        <p id="fehlertext2" class="fehlertext"></p>
+      </div>
+    </div>
 
     <br>
     <div class="text-center addclothbtn">
-      <button class="btn btn-success">Speichern</button>
+      <button type="button" class="btn btn-success addspeichern">Speichern</button>
     </div>
     <br>
   </form>
+
 
 </template>
 
@@ -428,12 +441,11 @@
     <div clas="text-center">
       <select class="form-control dropdown_select text-center" id="select_anlass">
         <option value="none" disabled selected>Anlass wählen</option>
-        <option>Schicker Anlass</option>
         <option>Festlich</option>
         <option>Freizeit</option>
         <option>Business</option>
         <option>Homewear</option>
-        <option id="other">Other</option>
+        <option>Other</option>
       </select>
     </div>
     <br>
@@ -441,9 +453,14 @@
       <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
         placeholder="Anderen Anlass angeben">
     </div>
+    <div class="text-center">
+      <div class="fehlermeldung2">
+        <p id="fehlertext3" class="fehlertext"></p>
+      </div>
+    </div>
     <br>
     <div class="text-center addclothbtn">
-      <button id="save_occasion" class="btn btn-success">Speichern</button>
+      <button id="save_occasion" type="button" class="btn btn-success">Speichern</button>
     </div>
   </form>
 </template>
@@ -461,6 +478,134 @@
   </div>
   {{/each}}
 
+
+  <!--Modal-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Kleidungstück ändern</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group inputaddcloth text-center">
+              <p id="maxtempzahl"></p>
+              <input id="ex3" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+              />
+              <small id="emailHelp" class="form-text text-muted">
+                Minimale und Maximaletemperatur für das Kleidungsstück.
+              </small>
+            </div>
+            <hr>
+            <div clas="text-center">
+              <select class="form-control dropdown_select text-center" id="select_kleiderart">
+                <option value="none" disabled selected>Kleiderart wählen</option>
+                <option>Jacke</option>
+                <option>Hose</option>
+                <option>Shirt</option>
+                <option>T-Shirt</option>
+                <option>Schuhe</option>
+                <option>Kleid</option>
+                <option>Rock</option>
+                <option>Accessoire</option>
+              </select>
+            </div>
+            <hr>
+            <div class="text-center inputaddcloth row">
+              <label class="el-switch col col-sm">
+                <input id="niederschlag" type="checkbox" name="switch">
+                <span class="el-switch-style"></span>
+              </label>
+              <label class="switchfont col col-sm">Niederschlag</label>
+              <small id="emailHelp" class="form-text text-muted col-sm">Regen und Schnee geschützt?</small>
+            </div>
+            <hr>
+            <div>
+              <div class="text-center inputaddcloth row">
+        
+                <label class="el-switch col col-sm">
+                  <input id="festlich" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Festlich</label>
+        
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="freizeit" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Freizeit</label>
+        
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="business" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Business</label>
+        
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="homewear" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Homewear</label>
+              </div>
+        
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="otherclothanlass" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Others</label>
+                <br>
+                <br>
+                <div class="text-center">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                </div>
+                <br>
+                <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
+              </div>
+            </div>
+        
+            <div class="text-center">
+              <div class="fehlermeldung2">
+                <p id="fehlertext2" class="fehlertext"></p>
+              </div>
+            </div>
+        
+            <br>
+            <div class="text-center addclothbtn">
+              <button type="button" class="btn btn-success editspeichern">Speichern</button>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="Hosen">
+  {{#each value in hosen}}
+  <div>
+    <img class="einzelkleiderbilder" src="{{value.image}}">
+    <div>
+      <p class="einzelkleidername">{{value.name}}</p>
+      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+    </div>
+    <hr>
+  </div>
+  {{/each}}
 
   <!--Modal-->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -558,11 +703,15 @@
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
-
+            <div class="text-center">
+              <div class="fehlermeldung2">
+                <p id="fehlertext2" class="fehlertext"></p>
+              </div>
+            </div>
 
             <br>
             <div class="text-center addclothbtn">
-              <button class="btn btn-success">Speichern</button>
+              <button type="button" class="btn btn-success clothedit">Speichern</button>
             </div>
             <br>
           </form>
@@ -571,19 +720,6 @@
     </div>
   </div>
 
-</template>
-
-<template name="Hosen">
-  {{#each value in hosen}}
-  <div>
-    <img class="einzelkleiderbilder" src="{{value.image}}">
-    <div>
-      <p class="einzelkleidername">{{value.name}}</p>
-      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
-    </div>
-    <hr>
-  </div>
-  {{/each}}
 </template>
 
 <template name="Schuhe">
@@ -597,6 +733,114 @@
     <hr>
   </div>
   {{/each}}
+
+  <!--Modal-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Kleidungstück ändern</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group inputaddcloth text-center">
+              <p id="maxtempzahl"></p>
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+              />
+              <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+              </small>
+            </div>
+            <hr>
+            <div clas="text-center">
+              <select class="form-control dropdown_select text-center" id="select_kleiderart">
+                <option value="none" disabled selected>Kleiderart wählen</option>
+                <option>Jacke</option>
+                <option>Hose</option>
+                <option>Shirt</option>
+                <option>T-Shirt</option>
+                <option>Schuhe</option>
+                <option>Kleid</option>
+                <option>Rock</option>
+                <option>Accessoire</option>
+              </select>
+            </div>
+            <hr>
+            <div class="text-center inputaddcloth row">
+              <label class="el-switch col col-sm">
+                <input type="checkbox" name="switch">
+                <span class="el-switch-style"></span>
+              </label>
+              <label class="switchfont col col-sm">Niederschlag</label>
+              <small id="emailHelp" class="form-text text-muted col-sm">Regen und Schnee geschützt?</small>
+            </div>
+            <hr>
+            <div>
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Festlich</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Freizeit</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Busniess</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Homewear</label>
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="otherclothanlass" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Others</label>
+                <br>
+                <br>
+                <div class="text-center">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                </div>
+                <br>
+                <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
+              </div>
+            </div>
+
+
+            <br>
+            <div class="text-center addclothbtn">
+              <button type="button" class="btn btn-success">Speichern</button>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <template name="Accessoire">
@@ -610,6 +854,114 @@
     <hr>
   </div>
   {{/each}}
+
+  <!--Modal-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Kleidungstück ändern</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group inputaddcloth text-center">
+              <p id="maxtempzahl"></p>
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+              />
+              <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+              </small>
+            </div>
+            <hr>
+            <div clas="text-center">
+              <select class="form-control dropdown_select text-center" id="select_kleiderart">
+                <option value="none" disabled selected>Kleiderart wählen</option>
+                <option>Jacke</option>
+                <option>Hose</option>
+                <option>Shirt</option>
+                <option>T-Shirt</option>
+                <option>Schuhe</option>
+                <option>Kleid</option>
+                <option>Rock</option>
+                <option>Accessoire</option>
+              </select>
+            </div>
+            <hr>
+            <div class="text-center inputaddcloth row">
+              <label class="el-switch col col-sm">
+                <input type="checkbox" name="switch">
+                <span class="el-switch-style"></span>
+              </label>
+              <label class="switchfont col col-sm">Niederschlag</label>
+              <small id="emailHelp" class="form-text text-muted col-sm">Regen und Schnee geschützt?</small>
+            </div>
+            <hr>
+            <div>
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Festlich</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Freizeit</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Busniess</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Homewear</label>
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="otherclothanlass" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Others</label>
+                <br>
+                <br>
+                <div class="text-center">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                </div>
+                <br>
+                <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
+              </div>
+            </div>
+
+
+            <br>
+            <div class="text-center">
+              <button type="button" class="btn btn-success">Speichern</button>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <template name="FavOutfits">
