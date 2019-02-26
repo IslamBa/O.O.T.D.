@@ -201,7 +201,7 @@ Template.content.helpers({
         }
     },
     wetter() {
-        if (Profile.findOne()) { return Profile.findOne().weather.temperatur.temp_max; }
+        if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp); }
     },
     outfits(){
         if (Profile.findOne()) { return Profile.findOne().currentOutfit; }
@@ -465,9 +465,10 @@ Template.content.events({
             }
         });
     },
-    'click #changePiece'() {
-        console.log("yo");
-        Meteor.call('changeCloth', {id:"test5785",type:"shirt"},(error, result) => {
+    'dblclick .imgOut'() {
+        var values = event.target.id.split(":");
+        console.log(values);
+        Meteor.call('changeCloth', {id:values[0],type:values[1]},(error, result) => {
             if (error) {
                 console.log(error);
             }
