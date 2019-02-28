@@ -28,7 +28,7 @@
         },
         "occasions": [
             "TDOT",
-            "as46h84fasf",
+            "Freizeit",
             "aas05fsfa32"
         ],
         "layer": 0,
@@ -53,7 +53,7 @@
         "layer": 2,
         "color":"schwarz",
         "image": "https://images-na.ssl-images-amazon.com/images/I/81EKjfJcmbL._SX679._SX._UX._SY._UY_.jpg",
-        "icon": "shirt_icon",
+        "icon": "jacket_icon",
         "forWetWeather":true
     },
     {
@@ -66,13 +66,13 @@
         },
         "occasions": [
             "TDOT",
-            "as46h84fasf",
+            "Freizeit",
             "aas05fsfa32"
         ],
         "layer": 2,
         "color":"grau",
         "image": "https://images-na.ssl-images-amazon.com/images/I/61wi5aNlIPL._UX385_.jpg",
-        "icon": "shirt_icon",
+        "icon": "jacket_icon",
         "forWetWeather":true
     },
     {
@@ -80,16 +80,16 @@
         "type": "shirt",
         "name":"Pullover",
         "weather_range": {
-            "min": 10,
+            "min": -3,
             "max": 27
         },
         "occasions": [
-            "jsadfj23",
+            "Freizeit",
             "aas05fsfa32"
         ],
         "layer": 1,
         "color":"black",
-        "image": "https://www.supreme-streetwear.com/media/image/product/3399/md/supreme-europe-pullover-1104-hgrau.jpg",
+        "image": "https://img.represent.com/uploads/5682b92a398b85e7861f6fb482dcd8a9.jpeg?auto=format&w=750",
         "icon": "shirt_icon",
         "forWetWeather":true
     },
@@ -102,7 +102,7 @@
             "max": 25
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 4,
         "color":"black",
@@ -119,7 +119,7 @@
             "max": 2
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 4,
         "color":"gray",
@@ -155,7 +155,25 @@
         },
         "occasions": [
             "jsadfj23",
-            "aas05fsfa32"
+            "Freizeit"
+        ],
+        "layer": 0,
+        "color":"blue",
+        "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
+        "icon": "pants_icon",
+        "forWetWeather":true
+    },
+    {
+        "id": "test784235",
+        "type": "pants",
+        "name":"Jeans",
+        "weather_range": {
+            "min": -10,
+            "max": 2
+        },
+        "occasions": [
+            "jsadfj23",
+            "Freizeit"
         ],
         "layer": 0,
         "color":"blue",
@@ -178,7 +196,7 @@
         ],
         "layer": 0,
         "color":"blue",
-        "image": "https://www.karstadt.de/dw/image/v2/karstadt/derivates/1/001/305/805/SProdukt_0407002928_d.jpg?sw=1200&sh=1200&sm=fit",
+        "image": "https://images.express.com/is/image/expressfashion/0024_02846230_0019?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "icon": "pants_icon",
         "forWetWeather":true
     },
@@ -188,11 +206,11 @@
         "name":"Leichte Jacke",
         "weather_range": {
             "min": 2,
-            "max": 20
+            "max": 23
         },
         "occasions": [
             "jsadfj23",
-            "aas05fsfa32"
+            "Freizeit"
         ],
         "layer": 2,
         "color":"gray",
@@ -209,7 +227,7 @@
             "max": 20
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 1,
         "color":"white",
@@ -244,7 +262,7 @@
             "max": 28
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 1,
         "color":"white",
@@ -261,7 +279,7 @@
             "max": 28
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 1,
         "color":"white",
@@ -278,7 +296,7 @@
             "max": 30
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 5,
         "color":"silver",
@@ -313,7 +331,7 @@
             "max": 30
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 5,
         "color":"gold",
@@ -330,7 +348,7 @@
             "max": 27
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 3,
         "color":"black",
@@ -347,7 +365,7 @@
             "max": 5
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 3,
         "color":"gray",
@@ -364,7 +382,7 @@
             "max": 20
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 3,
         "color":"gray",
@@ -381,7 +399,7 @@
             "max": 20
         },
         "occasions": [
-            "jsadfj23"
+            "Freizeit"
         ],
         "layer": 0,
         "color":"gray",

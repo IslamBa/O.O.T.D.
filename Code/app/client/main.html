@@ -38,15 +38,19 @@
    </div> -->
 
 
+
+
   <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around">
 
-      {{#each value in outfits}} {{#if value.image}}
-      <div class="divdailycloth col-5" id="{{value.id}}" value="{{value.type}}">
-        <img src="{{value.image}}" alt="Bild" class="imgOut">
+      {{#each value in outfits}}
+      {{#if value.image}}
+      <div class="divdailycloth col-5">
+        <img src="{{value.image}}" alt="Bild" class="imgOut" id="{{value.id}}:{{value.type}}">
       </div>
 
-      {{/if}} {{/each}}
+      {{/if}}
+      {{/each}}
       <!-- <div class="divdailycloth col-3"> -->
       <!-- <p>HOSE</p> -->
       <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
@@ -313,7 +317,8 @@
         <br>
         <br>
         <div class="text-center">
-          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+            placeholder="Anderen Anlass angeben">
         </div>
         <br>
         <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -445,7 +450,8 @@
     </div>
     <br>
     <div class="text-center">
-      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;" placeholder="Anderen Anlass angeben">
+      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
+        placeholder="Anderen Anlass angeben">
     </div>
     <div class="text-center">
       <div class="fehlermeldung2">
@@ -602,7 +608,8 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -615,8 +622,8 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-              />
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
+                data-slider-step="1" data-slider-value="[-10,10]" />
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -681,7 +688,8 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+                    placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
