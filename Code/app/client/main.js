@@ -742,7 +742,7 @@ Template.Hosen.events({
                 }, 1200);
             });
         }
-        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#homewear").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
             $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
                 setTimeout(function () {
@@ -770,9 +770,6 @@ Template.Hosen.events({
             }
             if ($("#business").is(":checked")) {
                 anlaesse.push("Business");
-            }
-            if ($("#homewear").is(":checked")) {
-                anlaesse.push("Homewear");
             }
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
