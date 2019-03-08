@@ -4,7 +4,7 @@ import { Profile } from '../collections';
 Meteor.startup(() => {
   // code to run on server at startup
   // process.env.MAIL_URL="smtps://ootdapp1@gmail.com:IslamTolga@smtp.gmail.com:465";
-  process.env.MONGO_URL="mongodb://ootdapp:IslamTolga1*@cluster0-shard-00-02-gnru9.mongodb.net:27017/ootd?authSource=admin&ssl=true&replicaSet=example-staging-shard-0";
+  // process.env.MONGO_URL="mongodb://ootdapp:IslamTolga1*@cluster0-shard-00-02-gnru9.mongodb.net:27017/ootd?authSource=admin&ssl=true&replicaSet=example-staging-shard-0";
   console.log(process.env.MONGO_URL);
 });
 
@@ -101,15 +101,25 @@ Meteor.methods({
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
 
-    var ID = function () {
-      return '_' + Math.random().toString(36).substr(2, 9);
-    };
+    obj.id = Date.now();
 
-    obj.id = ID;
+    if (obj.occasions.length < 1) {
+      obj.occasions.push("Freizeit");
+    }
 
-    obj.image = Meteor.call('uploadImage', obj.image);
+    if (obj.image != '') {
+      Meteor.call('uploadImage', obj.image, (error, result) => {
+        if (!error) {
+          obj.image = result;
+          Profile.update(user._id, { $push: { kleider: obj } });
+        }
+      });
+    }
+    else {
+      Profile.update(user._id, { $push: { kleider: obj } });
+    }
 
-    Profile.update(user._id, { $push: { kleider: obj } });
+
   },
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -153,7 +163,7 @@ Meteor.methods({
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes(Occasion));
       console.log(outfitCandidates);
     }
-    else{
+    else {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes("Freizeit"));
     }
 
@@ -162,35 +172,38 @@ Meteor.methods({
     for (var type of types) {
       var array = outfitCandidates.filter(el => el.type == type);
       var cloth = Meteor.call('getClothing', type, array, user.kleider);
-      if(cloth){finalOutfit.push(cloth);}
-      
+      if (cloth) { finalOutfit.push(cloth); }
+
     }
-
-
 
     //Kollidierende Kleidungsstücke filtern
     var toplayer = [];
     toplayer = finalOutfit.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "dress");
-
-    finalOutfit = finalOutfit.filter(el => el.type != "shirt" && el.type != "tshirt" && el.type != "dress");
-    finalOutfit.push(toplayer[Math.floor(Math.random() * toplayer.length)]);
-
+    
+    if (toplayer.length > 0) {
+      finalOutfit = finalOutfit.filter(el => el.type != "shirt" && el.type != "tshirt" && el.type != "dress");
+      (finalOutfit.push(toplayer[Math.floor(Math.random() * toplayer.length)]));
+    }
     if (finalOutfit.find(el => el.type == "dress")) {
       finalOutfit = finalOutfit.filter(el => el.type != "pants" && el.type != "skirt");
     }
     else {
       var bottomLayer = [];
       bottomLayer = finalOutfit.filter(el => el.type == "skirt" || el.type == "pants");
-  
-      finalOutfit = finalOutfit.filter(el => el.type != "skirt" && el.type != "pants");
-      finalOutfit.push(bottomLayer[Math.floor(Math.random() * bottomLayer.length)]);
+
+      if (bottomLayer.length > 0) {
+        finalOutfit = finalOutfit.filter(el => el.type != "skirt" && el.type != "pants");
+        finalOutfit.push(bottomLayer[Math.floor(Math.random() * bottomLayer.length)]);
+      }
     }
 
     var jacket = finalOutfit.find(el => el.type == "jacket");
-    if(jacket.weather_range.max < currTemp)
-    {
-      finalOutfit = finalOutfit.filter(el => el.type != "jacket");
+    if (jacket) {
+      if (jacket.weather_range.max < currTemp) {
+        finalOutfit = finalOutfit.filter(el => el.type != "jacket");
+      }
     }
+
 
     Meteor.call('insertCandidates', outfitCandidates);
 
@@ -260,13 +273,13 @@ Meteor.methods({
   changeCloth(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     var change = [];
-    if(obj.type == "shirt" || obj.type == "tshirt"){
+    if (obj.type == "shirt" || obj.type == "tshirt") {
       change = user.candidates.filter(el => el.type == "shirt" || el.type == "tshirt");
     }
-    else{
+    else {
       change = user.candidates.filter(el => el.type == obj.type);
     }
-     
+
     if (change.length > 1) {
       var newPiece = change.filter(el => el.id != obj.id);
       newPiece = newPiece[Math.floor(Math.random() * newPiece.length)];
@@ -295,22 +308,15 @@ Meteor.methods({
     var signature = "timestamp=" + timestamp + api_secret;
     signature = CryptoJS.SHA1(signature).toString();
 
-    console.log(signature);
-
-
-    HTTP.call('POST', 'https://api.cloudinary.com/v1_1/ootdapp/image/upload', {
+    var res = HTTP.call('POST', 'https://api.cloudinary.com/v1_1/ootdapp/image/upload', {
       data: {
         file: file,
         api_key: 559484368377945,
         timestamp: timestamp,
         signature: signature
       }
-    }, (error, result) => {
-      if (!error) {
-        // console.log(result);
-        return result.data.url;
-      }
     });
+    return res.data.url;
   },
   delOldOccasions() {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -329,19 +335,18 @@ Meteor.methods({
     Profile.update(user._id, { $pull: { kleider: { id: obj.id } } });
     Profile.update(user._id, { $push: { kleider: obj } });
   },
-  checkFavorite(){
+  checkFavorite() {
     const user = Profile.findOne({ id: Meteor.userId() });
     var check;
     for (let index = 0; index < user.favorites.length; index++) {
       const element = user.favorites[index];
       check = false;
       element.forEach(element => {
-        if(!user.currentOutfit.find(el => el.id == element)){
+        if (!user.currentOutfit.find(el => el.id == element)) {
           check = true;
         }
       });
-      if(!check)
-      {break};
+      if (!check) { break };
     }
     console.log(check);
     return check;

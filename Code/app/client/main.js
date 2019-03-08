@@ -430,19 +430,16 @@ Template.content.events({
         var wetterMax = 'Wert von Input';
         var anlaesse = 'Wert von Input - Array';
         var forWetWeather = 'Wert von Input - Boolean';
-        var layer = 'Wert von Frontend';
+        // var layer = 'Wert von Frontend';
         var image = '';
-        var icon = 'Wert von Frontend';
+        // var icon = 'Wert von Frontend';
 
         var obj = {
             type: type,
-            weathe_range: { min: wetterMin, mX: wetterMax },
-            anlaesse: anlaesse,
+            weather_range: { min: wetterMin, max: wetterMax },
             forWetWeather: forWetWeather,
-            occasions: [],
-            image: image,
-            layer: layer,
-            icon: icon
+            occasions: anlaesse,
+            image: image
         };
 
         Meteor.call('addClothing', obj, (error, result) => {
