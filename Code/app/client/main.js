@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
-import { Profile } from '../collections';
+import { Meteor } from 'meteor/meteor';
+// import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -13,6 +14,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 Meteor.subscribe('Profile');
 Meteor.subscribe('User');
 
+var Profile = new Mongo.Collection("profiles");
 
 Router.route('/', function () {
     this.render('login');
