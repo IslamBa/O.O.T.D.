@@ -124,8 +124,8 @@ Meteor.methods({
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.occasions) { user.occasions = []; }
-    var id = Date.now();
-    obj.id = id;
+    // var id = Date.now();
+    obj.id = new Mongo.ObjectID()._str;
     Profile.update(user._id, { $push: { occasions: obj } });
   },
   addFavorite() {
@@ -351,14 +351,13 @@ Meteor.methods({
     for (let index = 0; index < user.favorites.length; index++) {
       const element = user.favorites[index];
       check = false;
-      element.forEach(element => {
+      element.pieces.forEach(element => {
         if (!user.currentOutfit.find(el => el.id == element)) {
           check = true;
         }
       });
       if (!check) { break };
     }
-    console.log(check);
     return check;
   }
 });
