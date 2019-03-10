@@ -154,6 +154,8 @@ Meteor.methods({
     //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
     outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && el.weather_range.max >= currTemp);
 
+    console.log(outfitCandidates);
+
     if (Meteor.call('checkPrecipitation', user.weather.zustand[0].id.toString())) {
       outfitCandidates = outfitCandidates.filter(el => el.forWetWeather == true);
     }
@@ -164,7 +166,7 @@ Meteor.methods({
 
     if (Occasion != '') {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes(Occasion));
-      console.log(outfitCandidates);
+      console.log("sdgsg"+outfitCandidates);
     }
     else {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes("Freizeit"));
@@ -207,6 +209,7 @@ Meteor.methods({
       }
     }
 
+    
 
     Meteor.call('insertCandidates', outfitCandidates);
 

@@ -22,9 +22,9 @@
 	color : white !important;
 }
 
-/* ::placeholder{
+::placeholder{
 	color:white !important;
-} */
+} 
 
 .login-input::placeholder{
 	color: white;
@@ -346,7 +346,7 @@ body,html{
 	margin-top : 80px;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	display: none;
+	z-index: 10;
 }
 
 .fehlermeldung2{
@@ -429,7 +429,7 @@ body,html{
 }
 
 .startseite-kleidung{
-	padding-top: 25px !important;
+	padding-top: 15px !important;
 	padding-right: 25px !important;
     padding-left: 25px !important;
 }

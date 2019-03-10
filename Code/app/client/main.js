@@ -396,6 +396,19 @@ Template.content.onRendered(() => {
 
     // };
     // animation();
+
+    Meteor.call('checkFavorite',(error, result) => {
+        if (result == false) {
+            console.log("boiidjhf");
+            $('#favicon').removeClass();
+            $('#favicon').addClass("fas fa-star");
+        }
+        else {
+            console.log("passthjhj");
+            $('#favicon').removeClass();
+            $('#favicon').addClass("far fa-star");
+        }
+    });
 });
 
 
@@ -535,9 +548,38 @@ Template.content.events({
                 console.log(result);
             }
         });
+        Meteor.call('checkFavorite',(error, result) => {
+            if (result == false) {
+                console.log("boiidjhf");
+                $('#favicon').addClass("fas fa-star");
+            }
+            else {
+                console.log("passthjhj");
+                $('#favicon').removeClass();
+                $('#favicon').addClass("far fa-star");
+            }
+        });
     },
-    'dblclick .divdailycloth'(event) {
-        console.log(event.target);
+    'click #favicon'(){
+        Meteor.call('checkFavorite',(error, result) => {
+            if (result == false) {
+                console.log("boiidjhf");
+                console.log(this);
+            }
+            else {
+                Meteor.call('addFavorite',(error, result) => {
+                    if (!error) {
+                        console.log("passthjhj");
+                        $('#favicon').removeClass();
+                        $('#favicon').addClass("fas fa-star");
+                    }
+                    else {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+        
     }
 });
 
@@ -742,7 +784,7 @@ Template.Hosen.events({
                 }, 1200);
             });
         }
-        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#homewear").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
             $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
                 setTimeout(function () {
@@ -770,9 +812,6 @@ Template.Hosen.events({
             }
             if ($("#business").is(":checked")) {
                 anlaesse.push("Business");
-            }
-            if ($("#homewear").is(":checked")) {
-                anlaesse.push("Homewear");
             }
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
