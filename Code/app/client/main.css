@@ -22,9 +22,9 @@
 	color : white !important;
 }
 
-/* ::placeholder{
+::placeholder{
 	color:white !important;
-} */
+} 
 
 .login-input::placeholder{
 	color: white;

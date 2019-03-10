@@ -537,8 +537,15 @@ Template.content.events({
             }
         });
     },
-    'dblclick .divdailycloth'(event) {
-        console.log(event.target);
+    'click .favicon'(){
+        Meteor.call('addFavorite',(error, result) => {
+            if (!error) {
+                console.log("passt");
+            }
+            else {
+                console.log(error);
+            }
+        });
     }
 });
 
