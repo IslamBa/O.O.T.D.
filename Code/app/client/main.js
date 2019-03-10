@@ -394,6 +394,19 @@ Template.content.onRendered(() => {
 
     // };
     // animation();
+
+    Meteor.call('checkFavorite',(error, result) => {
+        if (result == false) {
+            console.log("boiidjhf");
+            $('#favicon').removeClass();
+            $('#favicon').addClass("fas fa-star");
+        }
+        else {
+            console.log("passthjhj");
+            $('#favicon').removeClass();
+            $('#favicon').addClass("far fa-star");
+        }
+    });
 });
 
 
@@ -533,16 +546,38 @@ Template.content.events({
                 console.log(result);
             }
         });
-    },
-    'click .favicon'(){
-        Meteor.call('addFavorite',(error, result) => {
-            if (!error) {
-                console.log("passt");
+        Meteor.call('checkFavorite',(error, result) => {
+            if (result == false) {
+                console.log("boiidjhf");
+                $('#favicon').addClass("fas fa-star");
             }
             else {
-                console.log(error);
+                console.log("passthjhj");
+                $('#favicon').removeClass();
+                $('#favicon').addClass("far fa-star");
             }
         });
+    },
+    'click #favicon'(){
+        Meteor.call('checkFavorite',(error, result) => {
+            if (result == false) {
+                console.log("boiidjhf");
+                console.log(this);
+            }
+            else {
+                Meteor.call('addFavorite',(error, result) => {
+                    if (!error) {
+                        console.log("passthjhj");
+                        $('#favicon').removeClass();
+                        $('#favicon').addClass("fas fa-star");
+                    }
+                    else {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+        
     }
 });
 

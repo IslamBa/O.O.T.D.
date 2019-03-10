@@ -29,10 +29,10 @@
         <i class="fas fa-redo-alt" style="color:white;"></i>
       </div>
       <div>
-        <i class="far fa-star favicon" style="color:white;"></i>
+        <i id="favicon" class="far fa-star" style="color:white;"></i>
       </div>
     </div>
-    
+
   </div>
   <!-- <div id="cloud" style="width:350px; height:750px;">
     <canvas id="c" style="width:350px;height: 750px;"></canvas>
@@ -42,63 +42,32 @@
    </div> -->
 
 
-
-
   <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around">
-
-      {{#each value in outfits}}
-      {{#if value.image}}
+      {{#each value in outfits}} {{#if value.image}}
       <div class="divdailycloth col-5">
         <img src="{{value.image}}" alt="Bild" class="imgOut" id="{{value.id}}:{{value.type}}">
       </div>
-
-      {{/if}}
-      {{/each}}
-      <!-- <div class="divdailycloth col-3"> -->
-      <!-- <p>HOSE</p> -->
-      <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
-          class="imgOut">
-      </div> -->
-      <!-- <div class="divdailycloth col-3">
-        <p>OBERTEIL</p> -->
-      <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
-          class="imgOut">
-      </div> -->
-
-      <!-- <div class="divdailycloth col-3"> -->
-      <!-- <p>SCHUHE</p> -->
-      <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
-          class="imgOut">
-      </div> -->
-
-      <!-- <div class="divdailycloth col-3"> -->
-      <!-- <p>ACCESSOIRE</p> -->
-      <!-- <img src="https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg" alt="Bild"
-          class="imgOut">
-        </div> -->
+      {{/if}} {{/each}}
     </div>
   </div>
+
 
   <button class="allbtn allbtndown btn">
     <i class="fas fa-bars" style="color:white;"></i>
   </button>
   <a href="/">
-    <button class="btnLogout btn " style="display: none;">
-
-
-      <i class="fas fa-power-off" style="color:white;"></i>
-
-
+    <button class="btnLogout btn" style="display: none;">
+     <i class="fas fa-power-off" style="color:white;"></i>
     </button>
   </a>
   <a href="/allcloth">
-    <button class="allcloth btn " style="display: none;">
+    <button class="allcloth btn" style="display: none;">
       <i class="fas fa-tshirt" style="color:white;"></i>
     </button>
   </a>
   <a href="/anlass">
-    <button class="anlassbtn btn " style="display: none;">
+    <button class="anlassbtn btn" style="display: none;">
       <i class="far fa-calendar-plus" style="color:white;"></i>
     </button>
   </a>
@@ -157,13 +126,7 @@
         </span>
       </p>
     </div>
-
-
-
   </div>
-
-
-
 </template>
 
 <template name="register">
@@ -317,8 +280,7 @@
         <br>
         <br>
         <div class="text-center">
-          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-            placeholder="Anderen Anlass angeben">
+          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
         </div>
         <br>
         <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -450,8 +412,7 @@
     </div>
     <br>
     <div class="text-center">
-      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
-        placeholder="Anderen Anlass angeben">
+      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;" placeholder="Anderen Anlass angeben">
     </div>
     <div class="text-center">
       <div class="fehlermeldung2">
@@ -525,33 +486,33 @@
             <hr>
             <div>
               <div class="text-center inputaddcloth row">
-        
+
                 <label class="el-switch col col-sm">
                   <input id="festlich" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Festlich</label>
-        
+
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input id="freizeit" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Freizeit</label>
-        
+
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input id="business" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Business</label>
-        
+
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input id="homewear" type="checkbox" name="switch">
@@ -559,7 +520,7 @@
                 </label>
                 <label class="switchfont col col-sm">Homewear</label>
               </div>
-        
+
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
                   <input id="otherclothanlass" type="checkbox" name="switch">
@@ -575,13 +536,13 @@
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
-        
+
             <div class="text-center">
               <div class="fehlermeldung2">
                 <p id="fehlertext2" class="fehlertext"></p>
               </div>
             </div>
-        
+
             <br>
             <div class="text-center addclothbtn">
               <button type="button" class="btn btn-success editspeichern">Speichern</button>
@@ -608,8 +569,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -622,8 +582,8 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
-                data-slider-step="1" data-slider-value="[-10,10]" />
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
+              />
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -688,8 +648,7 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
