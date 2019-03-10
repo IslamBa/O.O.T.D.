@@ -292,54 +292,46 @@ Template.content.onRendered(() => {
         // $(".title").text(result.weather.temperatur.temp_max + "°");
     });
 
-
-
-
-
-
-
     function notification() {
         // IF Statement um zu schauen ob letztes Datum schon vorbei ist
-        var lastNotification = '';
-        var date = new Date();
+
         if (Meteor.isCordova) {
-            Meteor.call('getProfile', Meteor.userId(), (error, result) => {
+            var lastNotification = '';
+            var date = new Date();
+            const user = Profile.findOne({ id: Meteor.userId() });
 
-                lastNotification = result.notificationDate;
-                if (lastNotification == '') { lastNotification = '2000-01-31'; }
-                var difference = (new Date(lastNotification) - date) * -1;
-                difference = difference / 1000 / 60 / 60 / 24;
+            lastNotification = user.notificationDate;
+            if (lastNotification == '') { lastNotification = '2000-01-31'; }
+            var difference = (new Date(lastNotification) - date) * -1;
+            difference = difference / 1000 / 60 / 60 / 24;
 
-                if (difference >= 2) {
-                    cordova.plugins.notification.local.cancelAll();
-                    try {
-                        alert("yow");
-                        date.setMinutes(date.getMinutes() + 1);
-                        cordova.plugins.notification.local.schedule(
-                            {
-                                id: 1,
-                                title: 'OOTD',
-                                text: 'Pa gönn dir Gucci Outfit, ' + Meteor.user().username,
-                                trigger: { at: date },
-                                foreground: true
-                            }
-                            // {
-                            //     id: 2,
-                            //     title: 'OOTD',
-                            //     text: 'Pa gönn dir Gucci Outfit, ' + Meteor.user().username,
-                            //     trigger: { at: date },
-                            //     foreground: true
-                            // }
-                        );
-                        Meteor.call("updateNotificationDate", date, (error, result) => {
-                            console.log(error);
+            if (difference >= 2) {
+                alert("2 tage schon her");
+                cordova.plugins.notification.local.cancelAll();
+                try {
+                    for (var i = 1; i < 3; i++) {
+                        var dateArr = new Date(date);
+
+                        dateArr.setDate(dateArr.getDate() + i);
+                        dateArr.setHours(5);
+                        dateArr.setSeconds(0);
+
+                        cordova.plugins.notification.local.schedule({
+                            id: i,
+                            title: 'OOTD',
+                            text: 'Schau dir dein heutiges Outfit an, ' + Meteor.user().username,
+                            trigger: { at: dateArr },
+                            foreground: true
                         });
-                    } catch (error) {
-                        console.log(error);
-                    }
-                }
 
-            });
+                    }
+                    Meteor.call("updateNotificationDate", date, (error, result) => {
+                        console.log(error);
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            }
             //Server Aufrufen und neue Push Date einfügen/updaten
         }
     }
@@ -397,7 +389,7 @@ Template.content.onRendered(() => {
     // };
     // animation();
 
-    Meteor.call('checkFavorite',(error, result) => {
+    Meteor.call('checkFavorite', (error, result) => {
         if (result == false) {
             console.log("boiidjhf");
             $('#favicon').removeClass();
@@ -540,7 +532,7 @@ Template.content.events({
     'dblclick .imgOut'() {
         var values = event.target.id.split(":");
         console.log(values);
-        Meteor.call('changeCloth', {id:values[0],type:values[1]},(error, result) => {
+        Meteor.call('changeCloth', { id: values[0], type: values[1] }, (error, result) => {
             if (error) {
                 console.log(error);
             }
@@ -548,7 +540,7 @@ Template.content.events({
                 console.log(result);
             }
         });
-        Meteor.call('checkFavorite',(error, result) => {
+        Meteor.call('checkFavorite', (error, result) => {
             if (result == false) {
                 console.log("boiidjhf");
                 $('#favicon').addClass("fas fa-star");
@@ -560,14 +552,14 @@ Template.content.events({
             }
         });
     },
-    'click #favicon'(){
-        Meteor.call('checkFavorite',(error, result) => {
+    'click #favicon'() {
+        Meteor.call('checkFavorite', (error, result) => {
             if (result == false) {
                 console.log("boiidjhf");
                 console.log(this);
             }
             else {
-                Meteor.call('addFavorite',(error, result) => {
+                Meteor.call('addFavorite', (error, result) => {
                     if (!error) {
                         console.log("passthjhj");
                         $('#favicon').removeClass();
@@ -579,7 +571,7 @@ Template.content.events({
                 });
             }
         });
-        
+
     }
 });
 
