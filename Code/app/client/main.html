@@ -20,7 +20,7 @@
     <div class="text-center"></div>
     <div class="text-center"></div>
   </div>
-  <div class="weatheranimation cloudycolor">
+  <div class="weatheranimation {{color}}">
     <div class="weathertitle text-center">
       <h1 class="title">{{wetter}}°</h1>
       <h1 class="zustand">{{zustand}}</h1>
@@ -375,13 +375,15 @@
     </div>
   </div>
   <div class="anlasse">
-    <div>
-      <p class="anlassdatum text-center">Datum</p>
+      {{#each value in anlass}}
       <div>
-        <p class="anlasstext">Anlass</p>
-      </div>
-      <hr>
-    </div>
+          <p class="anlassdatum text-center">{{value.date}}</p>
+          <div>
+            <p class="anlasstext">{{value.name}}</p>
+          </div>
+          <hr>
+        </div>
+      {{/each}}
   </div>
   <a href="/addanlass">
     <button class="allbtndown btn">
@@ -562,7 +564,7 @@
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
       <p class="einzelkleidername">{{value.name}}</p>
-      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+      <i id="{{value.id}}" class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
     <hr>
   </div>
