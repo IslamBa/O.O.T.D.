@@ -3,8 +3,7 @@ import { Profile } from '../collections';
 
 Meteor.startup(() => {
   // code to run on server at startup
-  // process.env.MAIL_URL="smtps://ootdapp1@gmail.com:IslamTolga@smtp.gmail.com:465";
-  // process.env.MONGO_URL="mongodb://ootdapp:IslamTolga1*@cluster0-shard-00-02-gnru9.mongodb.net:27017/ootd?authSource=admin&ssl=true&replicaSet=example-staging-shard-0";
+  // process.env.MONGO_URL="mongodb+srv://user:IslamTolga1@cluster0-gnru9.mongodb.net/ootd?retryWrites=true";
   console.log(process.env.MONGO_URL);
 });
 
@@ -101,7 +100,8 @@ Meteor.methods({
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
 
-    obj.id = Date.now();
+    // obj.id = Date.now();
+    obj.id = new Mongo.ObjectID()._str;
 
     if (obj.occasions.length < 1) {
       obj.occasions.push("Freizeit");
@@ -124,20 +124,23 @@ Meteor.methods({
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.occasions) { user.occasions = []; }
-    var id = Date.now();
-    obj.id = id;
+    // var id = Date.now();
+    obj.id = new Mongo.ObjectID()._str;
     Profile.update(user._id, { $push: { occasions: obj } });
   },
   addFavorite() {
     var pieces = [];
+    var obj = {};
+    obj.id = new Mongo.ObjectID()._str;
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.favorites) { user.favorites = []; }
 
     for (let index = 0; index < user.currentOutfit.length; index++) {
       pieces.push(user.currentOutfit[index].id);
-
     }
-    Profile.update(user._id, { $push: { favorites: pieces } });
+    
+    obj.pieces = pieces;
+    Profile.update(user._id, { $push: { favorites: obj } });
   },
   getOutfit() {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -181,7 +184,7 @@ Meteor.methods({
     //Kollidierende Kleidungsstücke filtern
     var toplayer = [];
     toplayer = finalOutfit.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "dress");
-    
+
     if (toplayer.length > 0) {
       finalOutfit = finalOutfit.filter(el => el.type != "shirt" && el.type != "tshirt" && el.type != "dress");
       (finalOutfit.push(toplayer[Math.floor(Math.random() * toplayer.length)]));
@@ -334,6 +337,10 @@ Meteor.methods({
       }
     }
   },
+  delFavorite(favId){
+    const user = Profile.findOne({ id: Meteor.userId() });
+    Profile.update({ _id: user._id }, { $pull: { favorites: { id: favId } } });
+  },
   updateCloth(obj) {
     Profile.update(user._id, { $pull: { kleider: { id: obj.id } } });
     Profile.update(user._id, { $push: { kleider: obj } });
@@ -344,14 +351,13 @@ Meteor.methods({
     for (let index = 0; index < user.favorites.length; index++) {
       const element = user.favorites[index];
       check = false;
-      element.forEach(element => {
+      element.pieces.forEach(element => {
         if (!user.currentOutfit.find(el => el.id == element)) {
           check = true;
         }
       });
       if (!check) { break };
     }
-    console.log(check);
     return check;
   }
 });
