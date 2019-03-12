@@ -72,6 +72,7 @@ Router.route('/favoutfits', function () {
 var allbtncount = 1;
 var slidermin;
 var slidermax;
+var updateID;
 
 
 Template.register.events({
@@ -207,6 +208,50 @@ Template.content.helpers({
 
         }
     },
+    color() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].description == "clear sky") {
+                return "suncolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "scattered clouds") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "overcast clouds") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "light shower snow") {
+                return "LEICHTER SCHNEEREGEN";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "fog") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "mist") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
+                return "cloudycolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "light intensity shower rain") {
+                return "raincolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "moderate rain") {
+                return "raincolor";
+            }
+            else if (Profile.findOne().weather.zustand[0].description == "light rain") {
+                return "raincolor";
+            }
+
+        }
+    },
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp); }
     },
@@ -220,8 +265,7 @@ Template.content.helpers({
 
 
 Template.Oberteil.helpers({
-
-    shirts() {
+     shirts() {
         if (Profile.findOne()) {
             var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt");
             return shirts;
@@ -254,6 +298,15 @@ Template.Accessoire.helpers({
         if (Profile.findOne()) {
             var accessoire = Profile.findOne().kleider.filter(el => el.type == "accessoires");
             return accessoire;
+        }
+    }
+})
+
+Template.Anlass.helpers({
+    anlass() {
+        if (Profile.findOne()) {
+            var anlass = Profile.findOne().occasions;
+            return anlass; 
         }
     }
 })
@@ -391,7 +444,7 @@ Template.content.onRendered(() => {
 
     Meteor.call('checkFavorite', (error, result) => {
         if (result == false) {
-            console.log("boiidjhf");
+            console.log("boiidjhf2");
             $('#favicon').removeClass();
             $('#favicon').addClass("fas fa-star");
         }
@@ -759,19 +812,24 @@ Template.Kategorien.events({
 
 Template.Hosen.events({
     'click #otherclothanlass'() {
-        if ($(this).is(':checked')) {
-            $(".hiddeninputcloth").show();
+        console.log("gcggvgvzg");
+        if ($("#otherclothanlass").is(':checked')) {
+            $("#hiddeninputcloth").show();
             console.log("fghfg");
         }
         else {
-            $(".hiddeninputcloth").hide();
+            $("#hiddeninputcloth").hide();
         }
 
     },
-    'click .editspeichern'() {
+    'click .edit-icon'(){
+        var values = event.target.id;
+        console.log(values);
+    },
+    'click .clothedit'() {
         var niederschlag = false;
         var anlaesse = [];
-        alert($("#select_kleiderart").val());
+        alert($(".clothedit").closest(".fas").attr("id"));
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -818,10 +876,9 @@ Template.Hosen.events({
                 niederschlag: niederschlag,
                 anlaesse: anlaesse,
                 kleiderart: kleiderart
-
             }
 
-            Meteor.call('addCloth', obj, (error, result) => {
+            Meteor.call('updateCloths', obj, (error, result) => {
 
             });
 
@@ -894,7 +951,6 @@ Template.Oberteil.events({
                 niederschlag: niederschlag,
                 anlaesse: anlaesse,
                 kleiderart: kleiderart
-
             }
 
             Meteor.call('addCloth', obj, (error, result) => {
@@ -911,7 +967,6 @@ Template.AddClothes.onRendered(() => {
     var slider2 = new Slider('#ex2');
 
     slider2.on("slide", function (sliderValue) {
-
         document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
         slidermin = sliderValue[0];
         slidermax = sliderValue[1];
