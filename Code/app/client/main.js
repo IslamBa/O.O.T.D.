@@ -305,8 +305,8 @@ Template.content.onRendered(() => {
             var difference = (new Date(lastNotification) - date) * -1;
             difference = difference / 1000 / 60 / 60 / 24;
 
-            if (difference >= 2) {
-                alert("2 tage schon her");
+            if (difference >= 1) {
+                
                 cordova.plugins.notification.local.cancelAll();
                 try {
                     for (var i = 1; i < 3; i++) {
@@ -529,15 +529,19 @@ Template.content.events({
             }
         });
     },
-    'dblclick .imgOut'() {
+    'dblclick .imgOut'(event) {
         var values = event.target.id.split(":");
+        // var parent = $(event.currentTarget).parent();
+        // parent.addClass("clothChange");
         console.log(values);
         Meteor.call('changeCloth', { id: values[0], type: values[1] }, (error, result) => {
             if (error) {
                 console.log(error);
+                // parent.removeClass("clothChange");
             }
             else {
                 console.log(result);
+                // parent.removeClass("clothChange");
             }
         });
         Meteor.call('checkFavorite', (error, result) => {

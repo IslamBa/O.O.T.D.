@@ -12,10 +12,8 @@ Meteor.publish('Profile', () => Profile.find({ id: Meteor.userId() }));
 
 Meteor.methods({
   getWeather() {
-    // var weatherApiKey = '&APPID=50fd161807446be0d6d1b7e5ee0f537c';
     const user = Profile.findOne({ id: Meteor.userId() });
     var weather = {};
-
     var zip = user.location.zip;
     var country = user.location.country;
 
@@ -28,17 +26,13 @@ Meteor.methods({
       var temp_max_arr = [];
       Profile.update(user._id, { $set: { lastWeatherDt: new Date() } });
 
-
       const result = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&units=metric&APPID=50fd161807446be0d6d1b7e5ee0f537c');
-
       const vorschau = HTTP.call('GET', 'http://api.openweathermap.org/data/2.5/forecast?zip=' + zip + ',' + country + '&units=metric&cnt=8&APPID=50fd161807446be0d6d1b7e5ee0f537c');
-
 
       for (let index = 0; index < vorschau.data.list.length; index++) {
         temp_min_arr.push(vorschau.data.list[index].main.temp_min);
         temp_max_arr.push(vorschau.data.list[index].main.temp_max);
       }
-
 
       weather = {
         zustand: result.data.weather,
@@ -47,7 +41,6 @@ Meteor.methods({
         min: Math.min(...temp_min_arr),
         max: Math.max(...temp_max_arr)
       };
-      //Profile.update(user._id, { $set: { weather: result.data } });
       Profile.update(user._id, { $set: { weather: weather } });
       weather = { weather };
       return weather;
@@ -100,7 +93,6 @@ Meteor.methods({
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
 
-    // obj.id = Date.now();
     obj.id = new Mongo.ObjectID()._str;
 
     if (obj.occasions.length < 1) {
@@ -118,8 +110,6 @@ Meteor.methods({
     else {
       Profile.update(user._id, { $push: { kleider: obj } });
     }
-
-
   },
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
@@ -166,7 +156,6 @@ Meteor.methods({
 
     if (Occasion != '') {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes(Occasion));
-      console.log("sdgsg"+outfitCandidates);
     }
     else {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes("Freizeit"));
@@ -202,12 +191,12 @@ Meteor.methods({
       }
     }
 
-    var jacket = finalOutfit.find(el => el.type == "jacket");
-    if (jacket) {
-      if (jacket.weather_range.max < currTemp) {
-        finalOutfit = finalOutfit.filter(el => el.type != "jacket");
-      }
-    }
+    // var jacket = finalOutfit.find(el => el.type == "jacket");
+    // if (jacket) {
+    //   if (jacket.weather_range.max < currTemp) {
+    //     finalOutfit = finalOutfit.filter(el => el.type != "jacket");
+    //   }
+    // }
 
     
 

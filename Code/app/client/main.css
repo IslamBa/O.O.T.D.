@@ -559,3 +559,20 @@ canvas { background: #aaa8a8; display: block; }
     width: 250px;
     z-index: 0;   
 }
+
+/* @keyframes border {
+  0%   {border-color: rgb(247, 82, 82);}
+  25%  {border-color: rgb(152, 228, 53);}
+  50%  {border-color: rgb(0, 162, 255);}
+  100% {border-color: rgb(186, 43, 243);}
+} */
+
+/* The element to apply the animation to */
+/* .clothChange {
+	border: 2px solid black;
+  animation-name: border;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease;
+	animation-direction: alternate;
+} */
