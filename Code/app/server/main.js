@@ -4,7 +4,6 @@ import { Profile } from '../collections';
 Meteor.startup(() => {
   // code to run on server at startup
   // process.env.MONGO_URL="mongodb+srv://user:IslamTolga1@cluster0-gnru9.mongodb.net/ootd?retryWrites=true";
-  console.log(process.env.MONGO_URL);
 });
 
 Meteor.publish('Profile', () => Profile.find({ id: Meteor.userId() }));

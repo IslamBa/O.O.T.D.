@@ -697,14 +697,24 @@ Template.AddClothes.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
-            var obj = {
-                tempmin: slidermin,
-                tempmax: slidermax,
-                niederschlag: niederschlag,
-                anlaesse: anlaesse,
-                kleiderart: kleiderart
+            // var obj = {
+            //     tempmin: slidermin,
+            //     tempmax: slidermax,
+            //     niederschlag: niederschlag,
+            //     anlaesse: anlaesse,
+            //     kleiderart: kleiderart
 
-            }
+            // }
+
+            var image = $("#addImageInput").val();
+
+            var obj = {
+                type: type,
+                weather_range: { min: wetterMin, max: wetterMax },
+                forWetWeather: forWetWeather,
+                occasions: anlaesse,
+                image: image
+            };
 
             Meteor.call('addCloth', obj, (error, result) => {
 
@@ -712,6 +722,10 @@ Template.AddClothes.events({
 
         }
 
+    },
+    'click .clothpic'(){
+        $("#addImageInput").click();
+        
     }
 });
 
