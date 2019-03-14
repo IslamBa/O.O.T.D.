@@ -17,11 +17,21 @@ Meteor.subscribe('User');
 var Profile = new Mongo.Collection("profiles");
 
 Router.route('/', function () {
-    this.render('login');
+    if (!Meteor.userId()) {
+        this.render('login');
+    }
+    else{
+        this.render('content');
+    }
 });
 
 Router.route('/registrieren', function () {
-    this.render('register');
+    if (!Meteor.userId()) {
+        this.render('register');
+    }
+    // else{
+    //     this.render('content');
+    // }
 });
 
 Router.route('/startseite', function () {
@@ -265,7 +275,7 @@ Template.content.helpers({
 
 
 Template.Oberteil.helpers({
-     shirts() {
+    shirts() {
         if (Profile.findOne()) {
             var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt");
             return shirts;
@@ -306,7 +316,7 @@ Template.Anlass.helpers({
     anlass() {
         if (Profile.findOne()) {
             var anlass = Profile.findOne().occasions;
-            return anlass; 
+            return anlass;
         }
     }
 })
@@ -320,7 +330,6 @@ Template.FavOutfits.helpers({
     //         }
     // }
 })
-
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
@@ -359,7 +368,7 @@ Template.content.onRendered(() => {
             difference = difference / 1000 / 60 / 60 / 24;
 
             if (difference >= 1) {
-                
+
                 cordova.plugins.notification.local.cancelAll();
                 try {
                     for (var i = 1; i < 3; i++) {
@@ -723,9 +732,9 @@ Template.AddClothes.events({
         }
 
     },
-    'click .clothpic'(){
+    'click .clothpic'() {
         $("#addImageInput").click();
-        
+
     }
 });
 
@@ -836,7 +845,7 @@ Template.Hosen.events({
         }
 
     },
-    'click .edit-icon'(){
+    'click .edit-icon'() {
         var values = event.target.id;
         console.log(values);
     },

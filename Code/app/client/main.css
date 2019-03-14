@@ -582,3 +582,23 @@ canvas { background: #aaa8a8; display: block; }
 	animation-timing-function: ease;
 	animation-direction: alternate;
 } */
+
+
+/* Min Max Slider */
+
+.slider.slider-horizontal .slider-track {
+	height: 3px !important;
+	margin-top: -2px !important;
+}
+
+.slider-track{
+background-color:#717171 !important;
+}
+
+.slider-selection {
+background-color: #49aff2 !important;
+}
+.slider-handle {
+background-color: #ffffff !important;
+border: 1px solid #adadad !important;
+}

@@ -26,7 +26,7 @@ module.exports = {
     env: {
       // TODO: Change to your app's url
       // If you are using ssl, it needs to start with https://
-      ROOT_URL: 'http://ootdapp.at',
+      ROOT_URL: 'http://104.248.243.244',
       MONGO_URL: 'mongodb+srv://user:IslamTolga1@cluster0-gnru9.mongodb.net/ootd?retryWrites=true'
     },
 
