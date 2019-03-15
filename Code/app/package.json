@@ -12,6 +12,7 @@
     "animate.css": "^3.7.0",
     "bcrypt": "^3.0.0",
     "bootstrap": "^4.1.3",
+    "bootstrap-slider": "^10.6.1",
     "cloudinary": "^1.13.2",
     "el-checkbox": "^1.0.2",
     "jquery": "^3.3.1",
