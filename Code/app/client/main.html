@@ -20,16 +20,75 @@
     <div class="text-center"></div>
     <div class="text-center"></div>
   </div>
+  <div class="animation">
+    <div id="sun">
+      <div class="sun-vorne"></div>
+      <div class="sun-hinten"></div>
+    </div>
+  </div>
   <div class="weatheranimation {{color}}">
+      <div class="animation">
+          <div id="sun">
+            <div class="sun-vorne"></div>
+            <div class="sun-hinten"></div>
+          </div>
+      </div>
+    <!-- <div id="cloud" style="width:100%;height: 300px;">
+      <div id="bottom_c"></div>
+      <div id="bottom_c2"></div>
+      <div id="bottom_c3"></div>
+      <div class="rain"></div>
+      <div class="rain2"></div>
+      <div class="rain3"></div>
+      <div class="rain4"></div>
+      <div class="rain5"></div>
+      <div class="rain6"></div>
+      <div class="rain7"></div>
+      <div class="rain8"></div>
+      <div class="rain9"></div>
+      <div class="rain10"></div>
+      <div class="rain11"></div>
+      <div class="rain12"></div>
+      <div class="rain13"></div>
+      <div class="rain14"></div>
+      <div class="rain15"></div>
+      <div class="rain16"></div>
+      <div class="rain17"></div>
+      <div class="rain18"></div>
+      <div class="rain19"></div>
+      <div class="rain20"></div>
+      <div class="rain21"></div>
+      <div class="rain22"></div>
+      <div class="rain23"></div>
+      <div class="rain24"></div>
+      <div class="rain25"></div>
+      <div class="rain26"></div>
+      <div class="rain27"></div>
+      <div class="rain28"></div>
+      <div class="rain29"></div>
+      <div class="rain30"></div>
+      <div class="rain31"></div>
+      <div class="rain32"></div>
+      <div class="rain33"></div>
+      <div class="rain34"></div>
+      <div class="rain35"></div>
+      <div class="rain36"></div>
+    </div> -->
+
     <div class="weathertitle text-center">
-      <h1 class="title">{{wetter}}°</h1>
+      <h1 class="title">{{wetter}}</h1>
       <h1 class="zustand">{{zustand}}</h1>
       <h1 class="zip">{{zip}}</h1>
       <div id="btnWeather" class="divweather text-center">
         <i class="fas fa-redo-alt" style="color:white;"></i>
       </div>
       <div>
-        <i id="favicon" class="far fa-star" style="color:white;"></i>
+          {{#if isFavorite}}
+          <p>nein</p>
+         {{else}}
+         <p>ja</p>
+         {{/if}}
+        
       </div>
     </div>
 
@@ -58,7 +117,7 @@
   </button>
   <a href="/">
     <button class="btnLogout btn" style="display: none;">
-     <i class="fas fa-power-off" style="color:white;"></i>
+      <i class="fas fa-power-off" style="color:white;"></i>
     </button>
   </a>
   <a href="/allcloth">
@@ -222,6 +281,7 @@
         <option>Kleid</option>
         <option>Rock</option>
         <option>Accessoire</option>
+        <option>Kopfbedeckung</option>
       </select>
     </div>
     <hr>
@@ -309,7 +369,9 @@
     <div class="arrow-back">
       <i class="fas fa-chevron-left icon-back"></i>
     </div>
-
+    <div class="text-center">
+        <p class="textwetter">{{wetter}}</p>
+    </div>
   </div>
   <div class="container text-center kategorie-container">
 
@@ -373,17 +435,20 @@
     <div class="arrow-back">
       <i class="fas fa-chevron-left icon-back"></i>
     </div>
+    <div class="text-center">
+      <p class="textwetter">{{wetter}}</p>
+    </div>
   </div>
   <div class="anlasse">
-      {{#each value in anlass}}
+    {{#each value in anlass}}
+    <div>
+      <p class="anlassdatum text-center">{{value.date}}</p>
       <div>
-          <p class="anlassdatum text-center">{{value.date}}</p>
-          <div>
-            <p class="anlasstext">{{value.name}}</p>
-          </div>
-          <hr>
-        </div>
-      {{/each}}
+        <p class="anlasstext">{{value.name}}</p>
+      </div>
+      <hr>
+    </div>
+    {{/each}}
   </div>
   <a href="/addanlass">
     <button class="allbtndown btn">
@@ -435,7 +500,7 @@
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
       <p class="einzelkleidername">{{value.name}}</p>
-      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+      <i id="{{value.id}}" class="fas fa-pen edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
     <hr>
   </div>
@@ -547,7 +612,7 @@
 
             <br>
             <div class="text-center addclothbtn">
-              <button type="button" class="btn btn-success editspeichern">Speichern</button>
+              <button type="button" class="btn btn-success clothedit">Speichern</button>
             </div>
             <br>
           </form>
@@ -564,7 +629,7 @@
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
       <p class="einzelkleidername">{{value.name}}</p>
-      <i id="{{value.id}}" class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+      <i id="{{value.id}}" class="fas fa-pen edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
     <hr>
   </div>
@@ -681,7 +746,7 @@
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
       <p class="einzelkleidername">{{value.name}}</p>
-      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+      <i id="{{value.id}}" class="fas fa-pen edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
     <hr>
   </div>
@@ -781,11 +846,15 @@
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
-
+            <div class="text-center">
+                <div class="fehlermeldung2">
+                  <p id="fehlertext2" class="fehlertext"></p>
+                </div>
+            </div>
 
             <br>
             <div class="text-center addclothbtn">
-              <button type="button" class="btn btn-success">Speichern</button>
+              <button type="button" class="btn btn-success clothedit">Speichern</button>
             </div>
             <br>
           </form>
@@ -802,7 +871,7 @@
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
       <p class="einzelkleidername">{{value.name}}</p>
-      <i class="fas fa-edit edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+      <i id="{{value.id}}" class="fas fa-pen edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
     <hr>
   </div>
@@ -902,11 +971,15 @@
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
-
+            <div class="text-center">
+                <div class="fehlermeldung2">
+                  <p id="fehlertext2" class="fehlertext"></p>
+                </div>
+            </div>
 
             <br>
             <div class="text-center">
-              <button type="button" class="btn btn-success">Speichern</button>
+              <button type="button" class="btn btn-success clothedit">Speichern</button>
             </div>
             <br>
           </form>
