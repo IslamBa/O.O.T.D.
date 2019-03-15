@@ -17,11 +17,21 @@ Meteor.subscribe('User');
 var Profile = new Mongo.Collection("profiles");
 
 Router.route('/', function () {
-    this.render('login');
+    if (!Meteor.userId()) {
+        this.render('login');
+    }
+    else{
+        this.render('content');
+    }
 });
 
 Router.route('/registrieren', function () {
-    this.render('register');
+    if (!Meteor.userId()) {
+        this.render('register');
+    }
+    // else{
+    //     this.render('content');
+    // }
 });
 
 Router.route('/startseite', function () {
@@ -274,7 +284,7 @@ Template.content.helpers({
 
 
 Template.Oberteil.helpers({
-     shirts() {
+    shirts() {
         if (Profile.findOne()) {
             var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt");
             return shirts;
@@ -315,7 +325,7 @@ Template.Anlass.helpers({
     anlass() {
         if (Profile.findOne()) {
             var anlass = Profile.findOne().occasions;
-            return anlass; 
+            return anlass;
         }
     },
     wetter() {
@@ -338,7 +348,6 @@ Template.FavOutfits.helpers({
     //         }
     // }
 })
-
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
@@ -376,8 +385,8 @@ Template.content.onRendered(() => {
             var difference = (new Date(lastNotification) - date) * -1;
             difference = difference / 1000 / 60 / 60 / 24;
 
-            if (difference >= 2) {
-                alert("2 tage schon her");
+            if (difference >= 1) {
+
                 cordova.plugins.notification.local.cancelAll();
                 try {
                     for (var i = 1; i < 3; i++) {
@@ -604,15 +613,19 @@ Template.content.events({
             }
         });
     },
-    'dblclick .imgOut'() {
+    'dblclick .imgOut'(event) {
         var values = event.target.id.split(":");
+        // var parent = $(event.currentTarget).parent();
+        // parent.addClass("clothChange");
         console.log(values);
         Meteor.call('changeCloth', { id: values[0], type: values[1] }, (error, result) => {
             if (error) {
                 console.log(error);
+                // parent.removeClass("clothChange");
             }
             else {
                 console.log(result);
+                // parent.removeClass("clothChange");
             }
         });
         Meteor.call('checkFavorite', (error, result) => {
@@ -715,20 +728,34 @@ Template.AddClothes.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
-            var obj = {
-                tempmin: slidermin,
-                tempmax: slidermax,
-                niederschlag: niederschlag,
-                anlaesse: anlaesse,
-                kleiderart: kleiderart
+            // var obj = {
+            //     tempmin: slidermin,
+            //     tempmax: slidermax,
+            //     niederschlag: niederschlag,
+            //     anlaesse: anlaesse,
+            //     kleiderart: kleiderart
 
-            }
+            // }
+
+            var image = $("#addImageInput").val();
+
+            var obj = {
+                type: type,
+                weather_range: { min: wetterMin, max: wetterMax },
+                forWetWeather: forWetWeather,
+                occasions: anlaesse,
+                image: image
+            };
 
             Meteor.call('addCloths', obj, (error, result) => {
 
             });
 
         }
+
+    },
+    'click .clothpic'() {
+        $("#addImageInput").click();
 
     }
 });
