@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-// import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,7 +7,6 @@ import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 
-//import '../node_modules/animate.css/animate.css';
 
 
 Meteor.subscribe('Profile');
@@ -20,7 +18,7 @@ Router.route('/', function () {
     if (!Meteor.userId()) {
         this.render('login');
     }
-    else{
+    else {
         this.render('content');
     }
 });
@@ -137,16 +135,6 @@ Template.login.events({
                 Router.go('startseite');
             }
         });
-    },
-    'click #forgotPass'(event) {
-        // Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
-        //     if (!err) {
-        //         console.log("passt");
-        //     }
-        //     else {
-        //         console.log(err);
-        //     }
-        // });
     }
 });
 
@@ -270,15 +258,6 @@ Template.content.helpers({
     },
     kleider() {
         if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
-    },
-    isFavorite(){
-        Meteor.call('checkFavorite', (error, result) => {
-            if(!error){
-                
-                return result;
-            }
-            
-        });
     }
 });
 
@@ -418,20 +397,18 @@ Template.content.onRendered(() => {
     notification();
 
     Meteor.call('checkFavorite', (error, result) => {
-        if(!error){
+        if (!error) {
             console.log(result);
             if (result == false) {
-               
                 $('#favicon').removeClass();
                 $('#favicon').addClass("fas fa-star");
             }
             else {
-               
                 $('#favicon').removeClass();
                 $('#favicon').addClass("far fa-star");
             }
         }
-        
+
     });
 });
 
@@ -486,23 +463,6 @@ Template.content.events({
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
-    },
-    'click #CurrentNoButton'(event) {
-        // var name = 'Wert von Input';
-        // var date = 'Wert von Input';
-        // var typ = 'Wert von Input';
-
-        // var obj = {
-        //     name: name,
-        //     date: date,
-        //     typ: typ
-        // };
-
-        // Meteor.call('addOccasion', obj, (error, result) => {
-        //     if (!error) {
-        //         console.log("Kleidung erfolgreich hinzugefügt");
-        //     }
-        // });
     },
     'click .allbtn'() {
         if (allbtncount == 1) {
@@ -815,7 +775,7 @@ Template.Hosen.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -862,7 +822,7 @@ Template.Hosen.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -891,7 +851,7 @@ Template.Oberteil.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -938,7 +898,7 @@ Template.Oberteil.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -967,7 +927,7 @@ Template.Schuhe.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -1014,7 +974,7 @@ Template.Schuhe.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -1043,7 +1003,7 @@ Template.Accessoire.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -1090,7 +1050,7 @@ Template.Accessoire.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
