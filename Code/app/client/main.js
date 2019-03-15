@@ -592,7 +592,9 @@ Template.AddClothes.events({
     'click .addspeichern'() {
         var niederschlag = false;
         var anlaesse = [];
-        alert($("#select_kleiderart").val());
+        var image = $("#addImageInput").val();
+        var type;
+    
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -601,7 +603,7 @@ Template.AddClothes.events({
                 }, 1200);
             });
         }
-        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#homewear").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
             $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
                 setTimeout(function () {
@@ -611,6 +613,14 @@ Template.AddClothes.events({
         }
         else if ($("#hiddeninputcloth").val() == "" && $("#otherclothanlass").is(":checked")) {
             $("#fehlertext2").text("Bitte einen neuen Anlass eintragen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if (image == "") {
+            $("#fehlertext2").text("Bitte ein Bild wählen!")
             $(".fehlermeldung2").slideDown(200, function () {
                 setTimeout(function () {
                     $('.fehlermeldung2').fadeOut();
@@ -630,35 +640,59 @@ Template.AddClothes.events({
             if ($("#business").is(":checked")) {
                 anlaesse.push("Business");
             }
-            if ($("#homewear").is(":checked")) {
-                anlaesse.push("Homewear");
-            }
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
-            // var obj = {
-            //     tempmin: slidermin,
-            //     tempmax: slidermax,
-            //     niederschlag: niederschlag,
-            //     anlaesse: anlaesse,
-            //     kleiderart: kleiderart
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke"){
+                type = "jacket"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Hose"){
+                type = "pants"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt"){
+                type = "shirt"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt"){
+                type = "tshirt"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe"){
+                type = "shoes"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid"){
+                type = "dress"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Rock"){
+                type = "skirt"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire"){
+                type = "accessoires"
+            }
+            if($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung"){
+                type = "headgear"
+            }
 
-            // }
-
-            var image = $("#addImageInput").val();
+            // alert(image);
 
             var obj = {
                 type: type,
-                weather_range: { min: wetterMin, max: wetterMax },
-                forWetWeather: forWetWeather,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
                 occasions: anlaesse,
                 image: image
             };
 
-            Meteor.call('addCloths', obj, (error, result) => {
-
+            Meteor.call('addClothing', obj, (error, result) => {
+                if(!error){
+                    console.log("passt");
+                }
             });
 
+            $("#fehlertext2").text("Ihr Kleidungstück wurde gespeichert!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
         }
 
     },
