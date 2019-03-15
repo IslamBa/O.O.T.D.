@@ -263,13 +263,22 @@ Template.content.helpers({
         }
     },
     wetter() {
-        if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp); }
+        if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     },
     outfits() {
         if (Profile.findOne()) { return Profile.findOne().currentOutfit; }
     },
     kleider() {
         if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
+    },
+    isFavorite(){
+        Meteor.call('checkFavorite', (error, result) => {
+            if(!error){
+                
+                return result;
+            }
+            
+        });
     }
 });
 
@@ -318,6 +327,15 @@ Template.Anlass.helpers({
             var anlass = Profile.findOne().occasions;
             return anlass;
         }
+    },
+    wetter() {
+        if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
+    }
+})
+
+Template.Kategorien.helpers({
+    wetter() {
+        if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     }
 })
 
@@ -400,16 +418,20 @@ Template.content.onRendered(() => {
     notification();
 
     Meteor.call('checkFavorite', (error, result) => {
-        if (result == false) {
-            console.log("boiidjhf2");
-            $('#favicon').removeClass();
-            $('#favicon').addClass("fas fa-star");
+        if(!error){
+            console.log(result);
+            if (result == false) {
+               
+                $('#favicon').removeClass();
+                $('#favicon').addClass("fas fa-star");
+            }
+            else {
+               
+                $('#favicon').removeClass();
+                $('#favicon').addClass("far fa-star");
+            }
         }
-        else {
-            console.log("passthjhj");
-            $('#favicon').removeClass();
-            $('#favicon').addClass("far fa-star");
-        }
+        
     });
 });
 
@@ -673,7 +695,7 @@ Template.AddClothes.events({
                 image: image
             };
 
-            Meteor.call('addCloth', obj, (error, result) => {
+            Meteor.call('addCloths', obj, (error, result) => {
 
             });
 
@@ -793,14 +815,12 @@ Template.Hosen.events({
         }
 
     },
-    'click .edit-icon'() {
-        var values = event.target.id;
-        console.log(values);
+    'click .edit-icon':function(e){
+        updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
         var niederschlag = false;
         var anlaesse = [];
-        alert($(".clothedit").closest(".fas").attr("id"));
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -842,6 +862,7 @@ Template.Hosen.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
+                id : updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -849,7 +870,7 @@ Template.Hosen.events({
                 kleiderart: kleiderart
             }
 
-            Meteor.call('updateCloths', obj, (error, result) => {
+            Meteor.call('updateCloth', obj, (error, result) => {
 
             });
 
@@ -860,19 +881,22 @@ Template.Hosen.events({
 
 Template.Oberteil.events({
     'click #otherclothanlass'() {
-        if ($(this).is(':checked')) {
-            $(".hiddeninputcloth").show();
+        console.log("gcggvgvzg");
+        if ($("#otherclothanlass").is(':checked')) {
+            $("#hiddeninputcloth").show();
             console.log("fghfg");
         }
         else {
-            $(".hiddeninputcloth").hide();
+            $("#hiddeninputcloth").hide();
         }
 
     },
-    'click .editspeichern'() {
+    'click .edit-icon':function(e){
+        updateID = e.currentTarget.id;
+    },
+    'click .clothedit'() {
         var niederschlag = false;
         var anlaesse = [];
-
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -881,7 +905,7 @@ Template.Oberteil.events({
                 }, 1200);
             });
         }
-        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#homewear").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
             $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
                 setTimeout(function () {
@@ -910,13 +934,11 @@ Template.Oberteil.events({
             if ($("#business").is(":checked")) {
                 anlaesse.push("Business");
             }
-            if ($("#homewear").is(":checked")) {
-                anlaesse.push("Homewear");
-            }
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
+                id : updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -924,7 +946,159 @@ Template.Oberteil.events({
                 kleiderart: kleiderart
             }
 
-            Meteor.call('addCloth', obj, (error, result) => {
+            Meteor.call('updateCloth', obj, (error, result) => {
+
+            });
+
+        }
+
+    }
+})
+
+Template.Schuhe.events({
+    'click #otherclothanlass'() {
+        console.log("gcggvgvzg");
+        if ($("#otherclothanlass").is(':checked')) {
+            $("#hiddeninputcloth").show();
+            console.log("fghfg");
+        }
+        else {
+            $("#hiddeninputcloth").hide();
+        }
+
+    },
+    'click .edit-icon':function(e){
+        updateID = e.currentTarget.id;
+    },
+    'click .clothedit'() {
+        var niederschlag = false;
+        var anlaesse = [];
+        if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
+            $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+            $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if ($("#hiddeninputcloth").val() == "" && $("#otherclothanlass").is(":checked")) {
+            $("#fehlertext2").text("Bitte einen neuen Anlass eintragen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else {
+            if ($("#niederschlag").is(":checked")) {
+                niederschlag = true;
+            }
+            if ($("#festlich").is(":checked")) {
+                anlaesse.push("Festlich");
+            }
+            if ($("#freizeit").is(":checked")) {
+                anlaesse.push("Freizeit");
+            }
+            if ($("#business").is(":checked")) {
+                anlaesse.push("Business");
+            }
+            if ($("#otherclothanlass").is(":checked")) {
+                anlaesse.push($("#hiddeninputcloth").val());
+            }
+            var obj = {
+                id : updateID,
+                tempmin: slidermin,
+                tempmax: slidermax,
+                niederschlag: niederschlag,
+                anlaesse: anlaesse,
+                kleiderart: kleiderart
+            }
+
+            Meteor.call('updateCloth', obj, (error, result) => {
+
+            });
+
+        }
+
+    }
+})
+
+Template.Accessoire.events({
+    'click #otherclothanlass'() {
+        console.log("gcggvgvzg");
+        if ($("#otherclothanlass").is(':checked')) {
+            $("#hiddeninputcloth").show();
+            console.log("fghfg");
+        }
+        else {
+            $("#hiddeninputcloth").hide();
+        }
+
+    },
+    'click .edit-icon':function(e){
+        updateID = e.currentTarget.id;
+    },
+    'click .clothedit'() {
+        var niederschlag = false;
+        var anlaesse = [];
+        if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
+            $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+            $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if ($("#hiddeninputcloth").val() == "" && $("#otherclothanlass").is(":checked")) {
+            $("#fehlertext2").text("Bitte einen neuen Anlass eintragen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else {
+            if ($("#niederschlag").is(":checked")) {
+                niederschlag = true;
+            }
+            if ($("#festlich").is(":checked")) {
+                anlaesse.push("Festlich");
+            }
+            if ($("#freizeit").is(":checked")) {
+                anlaesse.push("Freizeit");
+            }
+            if ($("#business").is(":checked")) {
+                anlaesse.push("Business");
+            }
+            if ($("#otherclothanlass").is(":checked")) {
+                anlaesse.push($("#hiddeninputcloth").val());
+            }
+            var obj = {
+                id : updateID,
+                tempmin: slidermin,
+                tempmax: slidermax,
+                niederschlag: niederschlag,
+                anlaesse: anlaesse,
+                kleiderart: kleiderart
+            }
+
+            Meteor.call('updateCloth', obj, (error, result) => {
 
             });
 
