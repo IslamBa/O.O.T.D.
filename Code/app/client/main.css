@@ -182,10 +182,10 @@ body,html{
 
 .clothpic{
 	margin-top: 50px;
-	height:200px;
-	width : 200px;
+	height: 80px;
+	width : 80px;
 	border-radius:100px !important;
-	background-color: lightgray;
+	/* background-color: lightgray; */
 }
 
 .divclothpic{
@@ -598,7 +598,7 @@ background-color:#717171 !important;
 }
 
 .slider-selection {
-background-color: #49aff2 !important;
+background-color: #007bff !important;
 }
 .slider-handle {
 background-color: #ffffff !important;
