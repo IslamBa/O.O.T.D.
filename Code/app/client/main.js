@@ -592,9 +592,10 @@ Template.AddClothes.events({
     'click .addspeichern'() {
         var niederschlag = false;
         var anlaesse = [];
-        var image = $("#addImageInput").val();
+        var image = $("#addImageInput")[0].files[0];
         var type;
-    
+        var reader = new FileReader();
+
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -643,49 +644,77 @@ Template.AddClothes.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
                 type = "jacket"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Hose"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
                 type = "pants"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
                 type = "shirt"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
                 type = "tshirt"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
                 type = "shoes"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
                 type = "dress"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Rock"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
                 type = "skirt"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
                 type = "accessoires"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
                 type = "headgear"
             }
 
             // alert(image);
 
-            var obj = {
-                type: type,
-                weather_range: { min: slidermin, max: slidermax },
-                forWetWeather: niederschlag,
-                occasions: anlaesse,
-                image: image
+            function getBase64(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
             };
 
-            Meteor.call('addClothing', obj, (error, result) => {
-                if(!error){
-                    console.log("passt");
-                }
+            getBase64(image).then((data) => {
+                image = data;
+                var obj = {
+                    type: type,
+                    weather_range: { min: slidermin, max: slidermax },
+                    forWetWeather: niederschlag,
+                    occasions: anlaesse,
+                    image: image
+                };
+                console.log(obj);
+
+
+                Meteor.call('addClothing', obj, (error, result) => {
+                    if (!error) {
+                        console.log(result);
+                    }
+                    else {
+                        console.log(error);
+                    }
+                });
             });
+
+
+
+            // reader.addEventListener("load", function () {
+            //     console.log(reader.result);
+            //   }, false);
+
+
+
+
+
 
             $("#fehlertext2").text("Ihr Kleidungstück wurde gespeichert!")
             $(".fehlermeldung2").slideDown(200, function () {
