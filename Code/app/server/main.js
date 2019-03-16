@@ -102,7 +102,11 @@ Meteor.methods({
       Meteor.call('uploadImage', obj.image, (error, result) => {
         if (!error) {
           obj.image = result;
+          console.log(obj);
           Profile.update(user._id, { $push: { kleider: obj } });
+        }
+        else{
+          return error;
         }
       });
     }

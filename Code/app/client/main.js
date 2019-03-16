@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-// import { Profile } from '../collections';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,7 +7,6 @@ import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 
-//import '../node_modules/animate.css/animate.css';
 
 
 Meteor.subscribe('Profile');
@@ -20,7 +18,7 @@ Router.route('/', function () {
     if (!Meteor.userId()) {
         this.render('login');
     }
-    else{
+    else {
         this.render('content');
     }
 });
@@ -137,16 +135,6 @@ Template.login.events({
                 Router.go('startseite');
             }
         });
-    },
-    'click #forgotPass'(event) {
-        // Accounts.forgotPassword({ email: 'islam2000@live.at' }, (err) => {
-        //     if (!err) {
-        //         console.log("passt");
-        //     }
-        //     else {
-        //         console.log(err);
-        //     }
-        // });
     }
 });
 
@@ -270,15 +258,6 @@ Template.content.helpers({
     },
     kleider() {
         if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
-    },
-    isFavorite(){
-        Meteor.call('checkFavorite', (error, result) => {
-            if(!error){
-                
-                return result;
-            }
-            
-        });
     }
 });
 
@@ -418,20 +397,18 @@ Template.content.onRendered(() => {
     notification();
 
     Meteor.call('checkFavorite', (error, result) => {
-        if(!error){
+        if (!error) {
             console.log(result);
             if (result == false) {
-               
                 $('#favicon').removeClass();
                 $('#favicon').addClass("fas fa-star");
             }
             else {
-               
                 $('#favicon').removeClass();
                 $('#favicon').addClass("far fa-star");
             }
         }
-        
+
     });
 });
 
@@ -486,23 +463,6 @@ Template.content.events({
                 console.log("Kleidung erfolgreich hinzugefügt");
             }
         });
-    },
-    'click #CurrentNoButton'(event) {
-        // var name = 'Wert von Input';
-        // var date = 'Wert von Input';
-        // var typ = 'Wert von Input';
-
-        // var obj = {
-        //     name: name,
-        //     date: date,
-        //     typ: typ
-        // };
-
-        // Meteor.call('addOccasion', obj, (error, result) => {
-        //     if (!error) {
-        //         console.log("Kleidung erfolgreich hinzugefügt");
-        //     }
-        // });
     },
     'click .allbtn'() {
         if (allbtncount == 1) {
@@ -632,9 +592,10 @@ Template.AddClothes.events({
     'click .addspeichern'() {
         var niederschlag = false;
         var anlaesse = [];
-        var image = $("#addImageInput").val();
+        var image = $("#addImageInput")[0].files[0];
         var type;
-    
+        var reader = new FileReader();
+
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -683,49 +644,77 @@ Template.AddClothes.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
                 type = "jacket"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Hose"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
                 type = "pants"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
                 type = "shirt"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
                 type = "tshirt"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
                 type = "shoes"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
                 type = "dress"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Rock"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
                 type = "skirt"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
                 type = "accessoires"
             }
-            if($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung"){
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
                 type = "headgear"
             }
 
             // alert(image);
 
-            var obj = {
-                type: type,
-                weather_range: { min: slidermin, max: slidermax },
-                forWetWeather: niederschlag,
-                occasions: anlaesse,
-                image: image
+            function getBase64(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
             };
 
-            Meteor.call('addClothing', obj, (error, result) => {
-                if(!error){
-                    console.log("passt");
-                }
+            getBase64(image).then((data) => {
+                image = data;
+                var obj = {
+                    type: type,
+                    weather_range: { min: slidermin, max: slidermax },
+                    forWetWeather: niederschlag,
+                    occasions: anlaesse,
+                    image: image
+                };
+                console.log(obj);
+
+
+                Meteor.call('addClothing', obj, (error, result) => {
+                    if (!error) {
+                        console.log(result);
+                    }
+                    else {
+                        console.log(error);
+                    }
+                });
             });
+
+
+
+            // reader.addEventListener("load", function () {
+            //     console.log(reader.result);
+            //   }, false);
+
+
+
+
+
 
             $("#fehlertext2").text("Ihr Kleidungstück wurde gespeichert!")
             $(".fehlermeldung2").slideDown(200, function () {
@@ -853,7 +842,7 @@ Template.Hosen.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -900,7 +889,7 @@ Template.Hosen.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -933,7 +922,7 @@ Template.Oberteil.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -980,7 +969,7 @@ Template.Oberteil.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -1013,7 +1002,7 @@ Template.Schuhe.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -1060,7 +1049,7 @@ Template.Schuhe.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
@@ -1093,7 +1082,7 @@ Template.Accessoire.events({
         }
 
     },
-    'click .edit-icon':function(e){
+    'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
     },
     'click .clothedit'() {
@@ -1140,7 +1129,7 @@ Template.Accessoire.events({
                 anlaesse.push($("#hiddeninputcloth").val());
             }
             var obj = {
-                id : updateID,
+                id: updateID,
                 tempmin: slidermin,
                 tempmax: slidermax,
                 niederschlag: niederschlag,
