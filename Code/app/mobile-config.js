@@ -8,6 +8,7 @@ App.info({
 });
 
 // App.setPreference('FullScreen', true);
+App.setPreference('StatusBarOverlaysWebView', 'true');
 
 App.icons({
     'android_mdpi': 'client/images/res/drawable-mdpi/ic_stat_o.png',

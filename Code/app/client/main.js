@@ -19,7 +19,7 @@ Router.route('/', function () {
         this.render('login');
     }
     else {
-        this.render('content');
+        this.redirect('/startseite');
     }
 });
 
@@ -27,13 +27,19 @@ Router.route('/registrieren', function () {
     if (!Meteor.userId()) {
         this.render('register');
     }
-    // else{
-    //     this.render('content');
-    // }
+    else {
+        this.redirect('/startseite');
+    }
 });
 
 Router.route('/startseite', function () {
-    this.render('content');
+    // this.render('content');
+    if (Meteor.userId()) {
+        this.render('content');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/resetPassword', function () {
@@ -41,39 +47,93 @@ Router.route('/resetPassword', function () {
 });
 
 Router.route('/addcloth', function () {
-    this.render('AddClothes');
+    // this.render('AddClothes');
+    if (Meteor.userId()) {
+        this.render('AddClothes');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/allcloth', function () {
-    this.render('Kategorien');
+    // this.render('Kategorien');
+    if (Meteor.userId()) {
+        this.render('Kategorien');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/anlass', function () {
-    this.render('Anlass');
+    // this.render('Anlass');
+    if (Meteor.userId()) {
+        this.render('Anlass');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/addanlass', function () {
-    this.render('AddAnlass');
+    // this.render('AddAnlass');
+    if (Meteor.userId()) {
+        this.render('AddAnlass');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/oberteil', function () {
-    this.render('Oberteil');
+    // this.render('Oberteil');
+    if (Meteor.userId()) {
+        this.render('Oberteil');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/hosen', function () {
-    this.render('Hosen');
+    // this.render('Hosen');
+    if (Meteor.userId()) {
+        this.render('Hosen');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/schuhe', function () {
-    this.render('Schuhe');
+    // this.render('Schuhe');
+    if (Meteor.userId()) {
+        this.render('Schuhe');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/accessoire', function () {
-    this.render('Accessoire');
+    // this.render('Accessoire');
+    if (Meteor.userId()) {
+        this.render('Accessoire');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/favoutfits', function () {
-    this.render('FavOutfits');
+    // this.render('FavOutfits');
+    if (Meteor.userId()) {
+        this.render('FavOutfits');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 
@@ -354,47 +414,55 @@ Template.content.onRendered(() => {
     function notification() {
         // IF Statement um zu schauen ob letztes Datum schon vorbei ist
 
-        if (Meteor.isCordova) {
-            var lastNotification = '';
-            var date = new Date();
-            const user = Profile.findOne({ id: Meteor.userId() });
 
-            lastNotification = user.notificationDate;
-            if (lastNotification == '') { lastNotification = '2000-01-31'; }
-            var difference = (new Date(lastNotification) - date) * -1;
-            difference = difference / 1000 / 60 / 60 / 24;
+        var lastNotification = '';
+        var date = new Date();
+        const user = Profile.findOne({ id: Meteor.userId() });
 
-            if (difference >= 1) {
+        lastNotification = user.notificationDate;
+        if (!lastNotification) { lastNotification = '2000-01-31'; }
+        var difference = (new Date(lastNotification) - date) * -1;
+        difference = difference / 1000 / 60 / 60 / 24;
 
-                cordova.plugins.notification.local.cancelAll();
-                try {
-                    for (var i = 1; i < 3; i++) {
-                        var dateArr = new Date(date);
+        if (difference >= 1) {
 
-                        dateArr.setDate(dateArr.getDate() + i);
-                        dateArr.setHours(5);
-                        dateArr.setSeconds(0);
+            cordova.plugins.notification.local.cancelAll();
+            try {
+                for (var i = 1; i < 3; i++) {
+                    var dateArr = new Date(date);
 
-                        cordova.plugins.notification.local.schedule({
-                            id: i,
-                            title: 'OOTD',
-                            text: 'Schau dir dein heutiges Outfit an, ' + Meteor.user().username,
-                            trigger: { at: dateArr },
-                            foreground: true
-                        });
+                    dateArr.setDate(dateArr.getDate() + i);
+                    dateArr.setHours(5);
+                    dateArr.setSeconds(0);
 
-                    }
-                    Meteor.call("updateNotificationDate", date, (error, result) => {
-                        console.log(error);
+                    cordova.plugins.notification.local.schedule({
+                        id: i,
+                        title: 'OOTD',
+                        text: 'Schau dir dein heutiges Outfit an, ' + Meteor.user().username,
+                        trigger: { at: dateArr },
+                        foreground: true
                     });
-                } catch (error) {
-                    console.log(error);
+
                 }
+                Meteor.call("updateNotificationDate", date, (error, result) => {
+                    console.log(error);
+                });
+            } catch (error) {
+                console.log(error);
             }
-            //Server Aufrufen und neue Push Date einfügen/updaten
         }
+        //Server Aufrufen und neue Push Date einfügen/updaten
     }
-    notification();
+
+
+    if (Meteor.isCordova) {
+        window.onpopstate = function () {
+            if (history.state && history.state.initial === true) {
+                navigator.app.exitApp();
+            }
+        };
+        notification();
+    }
 
     Meteor.call('checkFavorite', (error, result) => {
         if (!error) {
