@@ -1,12 +1,12 @@
 .login-container{
-  padding-top: 230px;
+  padding-top: 280px;
   position: absolute;
 }
 
 .login-buttonn{
   width : 80% !important;
   height: 45px !important;
-  background-color: rgb(0, 60, 255) !important; 
+  background-image: linear-gradient(to right, #16222A 0%, #3A6073 100%);
   color: white !important;
   border-radius: 23px !important;
 
@@ -18,15 +18,20 @@
 	border-radius: 23px !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
-	background-color: rgba(0, 0, 0, 0.4) !important;
+	background-color: hsla(350,50%,50%,0.3) !important;
 	color : white !important;
+	border : 1px solid black !important;
+}
+
+.logo{
+  height : 65px;
+}
+
+.imglogo{
+	padding-top: 70px;
 }
 
 ::placeholder{
-	color:white !important;
-} 
-
-.login-input::placeholder{
 	color: white;
 	opacity: 1;
 }
@@ -43,9 +48,8 @@
 .login-icon{
 	font-size: 20px;
 	float: left;
-	margin-top: -30px;
-	margin-left: 10px;
-	color: white;
+  margin-top: -30px;
+  color: black;
 }
 
 .registrieren-text{
@@ -54,6 +58,7 @@
 }
 
 body,html{
+  height: 100%;
   margin: 0;
 }
 
@@ -66,7 +71,7 @@ body,html{
 }
 
 .img-login{
-  background-image: url("assets/login.png");
+  background-image: url("assets/login3.png");
   
       /* Full height */
       height: 100%; 
@@ -351,7 +356,6 @@ body,html{
 	background-color: #2f4f4f;
 	height : 50px;
 	width : 300px;
-	margin-top : 80px;
 	margin-left: auto !important;
 	margin-right: auto !important;
 	z-index: 10;
@@ -430,7 +434,6 @@ body,html{
 	height : 300px;
 	margin-left: 25px;
 	margin-right: 25px;
-	margin-top : 25px;
 	border-radius : 20px;
 	-webkit-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
