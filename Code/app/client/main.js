@@ -89,23 +89,51 @@ Template.register.events({
         var username = $("#username").val();
         var email = $("#email").val();
         var passwort = $("#password").val();
+        var passwortb = $("#passwordb").val();
         var zip = $("#zip").val();
         var country = $("#countrySel").val();
 
-        Accounts.createUser({
-            username: username,
-            email: email,
-            password: passwort
-        }, (error) => {
-            if (!error) {
-                var user = {
-                    id: Meteor.userId(),
-                    zip: zip,
-                    country: country
+        if (username == "" || email == "" || passwort == "" || zip == "") {
+            $(".fehlertext").text("Bitte alle Felder ausfüllen!")
+            $(".fehlermeldung").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung').fadeOut();
+                }, 1200);
+            });
+        }
+        else if ($("#countrySel").children("option").filter(":selected").text() == "Land wählen") {
+            $(".fehlertext").text("Bitte ein Land auswählen!")
+            $(".fehlermeldung").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung').fadeOut();
+                }, 1200);
+            });
+        }
+        else if (passwortb != passwort) {
+            $(".fehlertext").text("Passwort stimmt nicht überein!")
+            $(".fehlermeldung").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung').fadeOut();
+                }, 1200);
+            });
+        }
+        else {
+            Accounts.createUser({
+                username: username,
+                email: email,
+                password: passwort
+            }, (error) => {
+                if (!error) {
+                    var user = {
+                        id: Meteor.userId(),
+                        zip: zip,
+                        country: country
+                    }
+                    Meteor.call('addNewProfile', user);
                 }
-                Meteor.call('addNewProfile', user);
-            }
-        });
+            });
+            Router.go('startseite');
+        }
     },
     'click .arrow-back'() {
         window.history.back();
@@ -1150,7 +1178,7 @@ Template.Accessoire.events({
 Template.AddClothes.onRendered(() => {
     var slider2 = new Slider('#ex2');
 
-    var slider =document.getElementById("ex2").value;
+    var slider = document.getElementById("ex2").value;
     var zahl = slider.split(",");
     slidermin = zahl[0];
     slidermax = zahl[1];
@@ -1194,7 +1222,7 @@ Template.Oberteil.onRendered(() => {
 
 Template.Hosen.onRendered(() => {
     var slider2 = new Slider('#ex3');
-    var slider =document.getElementById("ex3").value;
+    var slider = document.getElementById("ex3").value;
     var zahl = slider.split(",");
     slidermin = zahl[0];
     slidermax = zahl[1];
@@ -1209,7 +1237,7 @@ Template.Hosen.onRendered(() => {
 
 Template.Schuhe.onRendered(() => {
     var slider2 = new Slider('#ex3');
-    var slider =document.getElementById("ex3").value;
+    var slider = document.getElementById("ex3").value;
     var zahl = slider.split(",");
     slidermin = zahl[0];
     slidermax = zahl[1];
@@ -1224,7 +1252,7 @@ Template.Schuhe.onRendered(() => {
 
 Template.Accessoire.onRendered(() => {
     var slider2 = new Slider('#ex3');
-    var slider =document.getElementById("ex3").value;
+    var slider = document.getElementById("ex3").value;
     var zahl = slider.split(",");
     slidermin = zahl[0];
     slidermax = zahl[1];

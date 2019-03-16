@@ -23,12 +23,12 @@
   <div style="height:25px;">
   </div>
   <div class="weatheranimation {{color}}">
-      <div class="animation">
-          <div id="sun">
-            <div class="sun-vorne"></div>
-            <div class="sun-hinten"></div>
-          </div>
+    <div class="animation">
+      <div id="sun">
+        <div class="sun-vorne"></div>
+        <div class="sun-hinten"></div>
       </div>
+    </div>
 
     <div class="weathertitle text-center">
       <h1 class="title">{{wetter}}</h1>
@@ -100,9 +100,9 @@
 <template name="login">
 
   <div class="img-login">
-  <div class="text-center imglogo">
-    <img class="logo" src="assets/logo.svg">
-  </div>
+    <div class="text-center imglogo">
+      <img class="logo" src="assets/logo.svg">
+    </div>
     <form>
       <div class="container login-container">
         <div class="login-div form-group">
@@ -132,19 +132,19 @@
     </div>
 
     <div class="text-center">
-        <div class="fehlermeldung">
-          <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
-        </div>
+      <div class="fehlermeldung">
+        <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
+      </div>
     </div>
   </div>
 </template>
 
 <template name="register">
   <div class="img-login">
-      <div class="weatherbar">
-          <div class="arrow-back">
-            <i class="fas fa-chevron-left"></i>
-          </div>
+    <div class="weatherbar">
+      <div class="arrow-back">
+        <i class="fas fa-chevron-left"></i>
+      </div>
     </div>
     <form>
       <div class="container register-container">
@@ -165,8 +165,15 @@
         <div class="login-div form-group">
 
           <!--<label class="login-text">Passwort</label>-->
-          <input id="email" type="password" class="validate login-input form-control" placeholder="Passwort bestätigen">
+          <input id="passwordb" type="password" class="validate login-input form-control" placeholder="Passwort bestätigen">
           <i class="fas fa-lock login-icon"></i>
+        </div>
+        <br>
+        <div class="login-div form-group">
+
+          <!--<label class="login-text">Passwort</label>-->
+          <input id="email" type="text" class="validate login-input form-control" placeholder="Email">
+          <i class="fas fa-envelope login-icon"></i>
         </div>
         <br>
         <div class="login-div form-group">
@@ -191,6 +198,11 @@
 
       </div>
     </form>
+    <div class="text-center">
+      <div class="fehlermeldung">
+        <p class="fehlertext"></p>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -214,7 +226,7 @@
     <button class="clothpic btn btn-primary">
       <i class="fas fa-camera"></i>
     </button>
-    <input id="addImageInput" type="file" size="50" accept="image/*" style="display:none;"> 
+    <input id="addImageInput" type="file" size="50" accept="image/*" style="display:none;">
   </div>
   <br>
   <form>
@@ -319,7 +331,7 @@
       <i class="fas fa-chevron-left icon-back"></i>
     </div>
     <div class="text-center">
-        <p class="textwetter">{{wetter}}</p>
+      <p class="textwetter">{{wetter}}</p>
     </div>
   </div>
   <div class="container text-center kategorie-container">
@@ -442,9 +454,9 @@
 </template>
 
 <template name="Oberteil">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
+  </div>
   {{#each value in shirts}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -566,9 +578,9 @@
 </template>
 
 <template name="Hosen">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
+  </div>
   {{#each value in hosen}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -686,9 +698,9 @@
 </template>
 
 <template name="Schuhe">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
+  </div>
   {{#each value in schuhe}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -787,9 +799,9 @@
               </div>
             </div>
             <div class="text-center">
-                <div class="fehlermeldung2">
-                  <p id="fehlertext2" class="fehlertext"></p>
-                </div>
+              <div class="fehlermeldung2">
+                <p id="fehlertext2" class="fehlertext"></p>
+              </div>
             </div>
 
             <br>
@@ -806,9 +818,9 @@
 </template>
 
 <template name="Accessoire">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
+  </div>
   {{#each value in accessoires}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -907,9 +919,9 @@
               </div>
             </div>
             <div class="text-center">
-                <div class="fehlermeldung2">
-                  <p id="fehlertext2" class="fehlertext"></p>
-                </div>
+              <div class="fehlermeldung2">
+                <p id="fehlertext2" class="fehlertext"></p>
+              </div>
             </div>
 
             <br>
@@ -926,9 +938,9 @@
 </template>
 
 <template name="FavOutfits">
-    <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
-    </div>
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
+  </div>
   <p class="text-center nvorhandentext">Noch keine Favourite Outfits vorhanden !</p>
 </template>
 
