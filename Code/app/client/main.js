@@ -657,6 +657,24 @@ Template.AddClothes.events({
         }
 
     },
+    'click #btnCamera'() {
+        navigator.camera.getPicture((res)=>{
+           
+            localStorage.setItem("image", res);
+        }, (err)=>{
+            console.log(err);
+        }, {targetWidth:1500,targetHeight:1500,destinationType: Camera.DestinationType.DATA_URL})
+    },
+    'click .clothpic'() {
+        // $("#addImageInput").click();
+        navigator.camera.getPicture((res)=>{
+           
+            localStorage.setItem("image", res);
+        }, (err)=>{
+            console.log(err);
+        }, {targetWidth:1500,targetHeight:1500,destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY})
+    },
     'click .addspeichern'() {
         var niederschlag = false;
         var anlaesse = [];
@@ -742,17 +760,18 @@ Template.AddClothes.events({
 
             // alert(image);
 
-            function getBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = error => reject(error);
-                });
-            };
+            // function getBase64(file) {
+            //     return new Promise((resolve, reject) => {
+            //         const reader = new FileReader();
+            //         reader.readAsDataURL(file);
+            //         reader.onload = () => resolve(reader.result);
+            //         reader.onerror = error => reject(error);
+            //     });
+            // };
 
-            getBase64(image).then((data) => {
-                image = data;
+            // getBase64(image).then((data) => {
+                image = "data:image/jpeg;base64," + localStorage.getItem("image");
+                
                 var obj = {
                     type: type,
                     weather_range: { min: slidermin, max: slidermax },
@@ -771,7 +790,7 @@ Template.AddClothes.events({
                         console.log(error);
                     }
                 });
-            });
+            // });
 
 
 
@@ -791,10 +810,6 @@ Template.AddClothes.events({
                 }, 1200);
             });
         }
-
-    },
-    'click .clothpic'() {
-        $("#addImageInput").click();
 
     }
 });
