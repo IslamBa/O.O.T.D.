@@ -169,6 +169,7 @@ Template.register.events({
     },
     'click .arrow-back'() {
         window.history.back();
+        localStorage.removeItem("image");
         console.log("ghjhgh");
     }
 });
@@ -391,6 +392,7 @@ Template.FavOutfits.helpers({
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
 
+    localStorage.removeItem("image");
     $("#loginLoading").hide();
 
     $('#btnWeather').addClass('spinner');
@@ -658,29 +660,34 @@ Template.AddClothes.events({
 
     },
     'click #btnCamera'() {
-        navigator.camera.getPicture((res)=>{
-           
+        navigator.camera.getPicture((res) => {
+
             localStorage.setItem("image", res);
-        }, (err)=>{
+        }, (err) => {
             console.log(err);
-        }, {targetWidth:1500,targetHeight:1500,destinationType: Camera.DestinationType.DATA_URL})
+        }, {
+            targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
+                correctOrientation: true, allowEdit: true
+            })
     },
     'click .clothpic'() {
         // $("#addImageInput").click();
-        navigator.camera.getPicture((res)=>{
-           
+        navigator.camera.getPicture((res) => {
+
             localStorage.setItem("image", res);
-        }, (err)=>{
+        }, (err) => {
             console.log(err);
-        }, {targetWidth:1500,targetHeight:1500,destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY})
+        }, {
+            targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY, allowEdit: true
+            })
     },
     'click .addspeichern'() {
         var niederschlag = false;
         var anlaesse = [];
         var image = $("#addImageInput")[0].files[0];
         var type;
-        var reader = new FileReader();
+        // var reader = new FileReader();
 
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
@@ -770,26 +777,28 @@ Template.AddClothes.events({
             // };
 
             // getBase64(image).then((data) => {
-                image = "data:image/jpeg;base64," + localStorage.getItem("image");
-                
-                var obj = {
-                    type: type,
-                    weather_range: { min: slidermin, max: slidermax },
-                    forWetWeather: niederschlag,
-                    occasions: anlaesse,
-                    image: image
-                };
-                console.log(obj);
+            image = "data:image/jpeg;base64," + localStorage.getItem("image");
+
+            var obj = {
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse,
+                image: image
+            };
+            console.log(obj);
 
 
-                Meteor.call('addClothing', obj, (error, result) => {
-                    if (!error) {
-                        console.log(result);
-                    }
-                    else {
-                        console.log(error);
-                    }
-                });
+            Meteor.call('addClothing', obj, (error, result) => {
+                if (!error) {
+                    console.log(result);
+                    localStorage.removeItem("image");
+                }
+                else {
+                    console.log(error);
+                    localStorage.removeItem("image");
+                }
+            });
             // });
 
 

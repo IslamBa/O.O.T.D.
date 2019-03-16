@@ -188,6 +188,13 @@ body,html{
 	/* background-color: lightgray; */
 }
 
+#btnCamera{
+	height: 80px;
+	width : 80px;
+	border-radius:100px !important;
+	margin-top:50px;
+}
+
 .divclothpic{
 	margin-left: auto !important;
 	margin-right: auto !important;
