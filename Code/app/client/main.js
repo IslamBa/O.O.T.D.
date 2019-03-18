@@ -19,7 +19,7 @@ Router.route('/', function () {
         this.render('login');
     }
     else {
-        this.render('content');
+        this.redirect('/startseite');
     }
 });
 
@@ -27,13 +27,19 @@ Router.route('/registrieren', function () {
     if (!Meteor.userId()) {
         this.render('register');
     }
-    // else{
-    //     this.render('content');
-    // }
+    else {
+        this.redirect('/startseite');
+    }
 });
 
 Router.route('/startseite', function () {
-    this.render('content');
+    // this.render('content');
+    if (Meteor.userId()) {
+        this.render('content');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/resetPassword', function () {
@@ -41,39 +47,93 @@ Router.route('/resetPassword', function () {
 });
 
 Router.route('/addcloth', function () {
-    this.render('AddClothes');
+    // this.render('AddClothes');
+    if (Meteor.userId()) {
+        this.render('AddClothes');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/allcloth', function () {
-    this.render('Kategorien');
+    // this.render('Kategorien');
+    if (Meteor.userId()) {
+        this.render('Kategorien');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/anlass', function () {
-    this.render('Anlass');
+    // this.render('Anlass');
+    if (Meteor.userId()) {
+        this.render('Anlass');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/addanlass', function () {
-    this.render('AddAnlass');
+    // this.render('AddAnlass');
+    if (Meteor.userId()) {
+        this.render('AddAnlass');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/oberteil', function () {
-    this.render('Oberteil');
+    // this.render('Oberteil');
+    if (Meteor.userId()) {
+        this.render('Oberteil');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/hosen', function () {
-    this.render('Hosen');
+    // this.render('Hosen');
+    if (Meteor.userId()) {
+        this.render('Hosen');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/schuhe', function () {
-    this.render('Schuhe');
+    // this.render('Schuhe');
+    if (Meteor.userId()) {
+        this.render('Schuhe');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/accessoire', function () {
-    this.render('Accessoire');
+    // this.render('Accessoire');
+    if (Meteor.userId()) {
+        this.render('Accessoire');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 Router.route('/favoutfits', function () {
-    this.render('FavOutfits');
+    // this.render('FavOutfits');
+    if (Meteor.userId()) {
+        this.render('FavOutfits');
+    }
+    else {
+        this.redirect('/');
+    }
 });
 
 
@@ -132,13 +192,23 @@ Template.register.events({
                         country: country
                     }
                     Meteor.call('addNewProfile', user);
+                    Router.go('startseite');
+                }
+                else{
+                    $(".fehlertext").text(error.reason)
+                    $(".fehlermeldung").slideDown(200, function () {
+                        setTimeout(function () {
+                            $('.fehlermeldung').fadeOut();
+                        }, 1200);
+                    });
                 }
             });
-            Router.go('startseite');
+            
         }
     },
     'click .arrow-back'() {
         window.history.back();
+        localStorage.removeItem("image");
         console.log("ghjhgh");
     }
 });
@@ -296,6 +366,14 @@ Template.content.helpers({
     },
     kleider() {
         if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
+    },
+    hasOutfit() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().currentOutfit.length > 0)
+                return true;
+            else 
+            return false;
+        }
     }
 });
 
@@ -303,11 +381,11 @@ Template.content.helpers({
 Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
-            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt");
+            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt"||el.type=="tshirt"||el.type=="jacket");
             return shirts;
         }
     }
-})
+});
 
 Template.Hosen.helpers({
 
@@ -317,7 +395,7 @@ Template.Hosen.helpers({
             return hosen;
         }
     }
-})
+});
 
 Template.Schuhe.helpers({
 
@@ -327,7 +405,7 @@ Template.Schuhe.helpers({
             return schuhe;
         }
     }
-})
+});
 
 Template.Accessoire.helpers({
     accessoires() {
@@ -336,7 +414,7 @@ Template.Accessoire.helpers({
             return accessoire;
         }
     }
-})
+});
 
 Template.Anlass.helpers({
     anlass() {
@@ -348,13 +426,21 @@ Template.Anlass.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     }
-})
+});
 
 Template.Kategorien.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     }
-})
+});
+
+Template.AddClothes.helpers({
+    occasions() {
+        if (Profile.findOne()) {
+            return Profile.findOne().occasions;
+        }
+    }
+});
 
 Template.FavOutfits.helpers({
 
@@ -383,6 +469,7 @@ Template.FavOutfits.helpers({
 Template.content.onRendered(() => {
     
 
+    localStorage.removeItem("image");
     $("#loginLoading").hide();
 
     $('#btnWeather').addClass('spinner');
@@ -406,47 +493,55 @@ Template.content.onRendered(() => {
     function notification() {
         // IF Statement um zu schauen ob letztes Datum schon vorbei ist
 
-        if (Meteor.isCordova) {
-            var lastNotification = '';
-            var date = new Date();
-            const user = Profile.findOne({ id: Meteor.userId() });
 
-            lastNotification = user.notificationDate;
-            if (lastNotification == '') { lastNotification = '2000-01-31'; }
-            var difference = (new Date(lastNotification) - date) * -1;
-            difference = difference / 1000 / 60 / 60 / 24;
+        var lastNotification = '';
+        var date = new Date();
+        const user = Profile.findOne({ id: Meteor.userId() });
 
-            if (difference >= 1) {
+        lastNotification = user.notificationDate;
+        if (!lastNotification) { lastNotification = '2000-01-31'; }
+        var difference = (new Date(lastNotification) - date) * -1;
+        difference = difference / 1000 / 60 / 60 / 24;
 
-                cordova.plugins.notification.local.cancelAll();
-                try {
-                    for (var i = 1; i < 3; i++) {
-                        var dateArr = new Date(date);
+        if (difference >= 1) {
 
-                        dateArr.setDate(dateArr.getDate() + i);
-                        dateArr.setHours(5);
-                        dateArr.setSeconds(0);
+            cordova.plugins.notification.local.cancelAll();
+            try {
+                for (var i = 1; i < 3; i++) {
+                    var dateArr = new Date(date);
 
-                        cordova.plugins.notification.local.schedule({
-                            id: i,
-                            title: 'OOTD',
-                            text: 'Schau dir dein heutiges Outfit an, ' + Meteor.user().username,
-                            trigger: { at: dateArr },
-                            foreground: true
-                        });
+                    dateArr.setDate(dateArr.getDate() + i);
+                    dateArr.setHours(5);
+                    dateArr.setSeconds(0);
 
-                    }
-                    Meteor.call("updateNotificationDate", date, (error, result) => {
-                        console.log(error);
+                    cordova.plugins.notification.local.schedule({
+                        id: i,
+                        title: 'OOTD',
+                        text: 'Schau dir dein heutiges Outfit an, ' + Meteor.user().username,
+                        trigger: { at: dateArr },
+                        foreground: true
                     });
-                } catch (error) {
-                    console.log(error);
+
                 }
+                Meteor.call("updateNotificationDate", date, (error, result) => {
+                    console.log(error);
+                });
+            } catch (error) {
+                console.log(error);
             }
-            //Server Aufrufen und neue Push Date einfügen/updaten
         }
+        //Server Aufrufen und neue Push Date einfügen/updaten
     }
-    notification();
+
+
+    if (Meteor.isCordova) {
+        window.onpopstate = function () {
+            if (history.state && history.state.initial === true) {
+                navigator.app.exitApp();
+            }
+        };
+        notification();
+    }
 
     Meteor.call('checkFavorite', (error, result) => {
         if (!error) {
@@ -594,12 +689,35 @@ Template.AddClothes.events({
         }
 
     },
+    'click #btnCamera'() {
+        navigator.camera.getPicture((res) => {
+
+            localStorage.setItem("image", res);
+        }, (err) => {
+            console.log(err);
+        }, {
+                targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
+                correctOrientation: true, allowEdit: true
+            })
+    },
+    'click .clothpic'() {
+        // $("#addImageInput").click();
+        navigator.camera.getPicture((res) => {
+
+            localStorage.setItem("image", res);
+        }, (err) => {
+            console.log(err);
+        }, {
+                targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY, allowEdit: true
+            })
+    },
     'click .addspeichern'() {
         var niederschlag = false;
         var anlaesse = [];
-        var image = $("#addImageInput")[0].files[0];
+        var image = '';
         var type;
-        var reader = new FileReader();
+        // var reader = new FileReader();
 
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
@@ -679,36 +797,39 @@ Template.AddClothes.events({
 
             // alert(image);
 
-            function getBase64(file) {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = error => reject(error);
-                });
+            // function getBase64(file) {
+            //     return new Promise((resolve, reject) => {
+            //         const reader = new FileReader();
+            //         reader.readAsDataURL(file);
+            //         reader.onload = () => resolve(reader.result);
+            //         reader.onerror = error => reject(error);
+            //     });
+            // };
+
+            // getBase64(image).then((data) => {
+            image = "data:image/jpeg;base64," + localStorage.getItem("image");
+
+            var obj = {
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse,
+                image: image
             };
-
-            getBase64(image).then((data) => {
-                image = data;
-                var obj = {
-                    type: type,
-                    weather_range: { min: slidermin, max: slidermax },
-                    forWetWeather: niederschlag,
-                    occasions: anlaesse,
-                    image: image
-                };
-                console.log(obj);
+            console.log(obj);
 
 
-                Meteor.call('addClothing', obj, (error, result) => {
-                    if (!error) {
-                        console.log(result);
-                    }
-                    else {
-                        console.log(error);
-                    }
-                });
+            Meteor.call('addClothing', obj, (error, result) => {
+                if (!error) {
+                    console.log(result);
+                    localStorage.removeItem("image");
+                }
+                else {
+                    console.log(error);
+                    localStorage.removeItem("image");
+                }
             });
+            // });
 
 
 
@@ -728,10 +849,6 @@ Template.AddClothes.events({
                 }, 1200);
             });
         }
-
-    },
-    'click .clothpic'() {
-        $("#addImageInput").click();
 
     }
 });

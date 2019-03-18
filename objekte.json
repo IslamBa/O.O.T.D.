@@ -1,410 +1,631 @@
-[
-    {
-        "id": "test124",
-        "type": "tshirt",
-        "name":"Hemd",
-        "weather_range": {
-            "min": 12,
-            "max": 30
+{
+    "eins": [
+        {
+            "id": "test124",
+            "type": "tshirt",
+            "name": "Hemd",
+            "weather_range": {
+                "min": 12,
+                "max": 30
+            },
+            "occasions": [
+                "TDOT",
+                "as46h84fasf",
+                "aas05fsfa32"
+            ],
+            "layer": 1,
+            "color": "green",
+            "image": "https://cdn03.plentymarkets.com/zrhkwcifm7cp/item/images/513133675/full/12xVenti-Slim-Fit-Herren-Struktur-Hemd-mit-modi.jpg",
+            "icon": "tshirt_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "TDOT",
-            "as46h84fasf",
-            "aas05fsfa32"
-        ],
-        "layer": 1,
-        "color":"green",
-        "image": "https://cdn03.plentymarkets.com/zrhkwcifm7cp/item/images/513133675/full/12xVenti-Slim-Fit-Herren-Struktur-Hemd-mit-modi.jpg",
-        "icon": "tshirt_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test512",
-        "type": "tshirt",
-        "name":"Hemd",
-        "weather_range": {
-            "min": 0,
-            "max": 25
+        {
+            "id": "test512",
+            "type": "tshirt",
+            "name": "Hemd",
+            "weather_range": {
+                "min": 0,
+                "max": 25
+            },
+            "occasions": [
+                "TDOT",
+                "Freizeit",
+                "aas05fsfa32"
+            ],
+            "layer": 0,
+            "color": "white",
+            "image": "https://cms.brnstc.de/product_images/435x596/17/05/100069434311000_0.jpg",
+            "icon": "tshirt_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "TDOT",
-            "Freizeit",
-            "aas05fsfa32"
-        ],
-        "layer": 0,
-        "color":"white",
-        "image": "https://cms.brnstc.de/product_images/435x596/17/05/100069434311000_0.jpg",
-        "icon": "tshirt_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test88712",
-        "type": "jacket",
-        "name":"Mantel",
-        "weather_range": {
-            "min": -10,
-            "max": 20
+        {
+            "id": "test88712",
+            "type": "jacket",
+            "name": "Mantel",
+            "weather_range": {
+                "min": -10,
+                "max": 20
+            },
+            "occasions": [
+                "TDOT",
+                "as46h84fasf",
+                "aas05fsfa32"
+            ],
+            "layer": 2,
+            "color": "schwarz",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/81EKjfJcmbL._SX679._SX._UX._SY._UY_.jpg",
+            "icon": "jacket_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "TDOT",
-            "as46h84fasf",
-            "aas05fsfa32"
-        ],
-        "layer": 2,
-        "color":"schwarz",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/81EKjfJcmbL._SX679._SX._UX._SY._UY_.jpg",
-        "icon": "jacket_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test88712",
-        "type": "jacket",
-        "name":"Mantel",
-        "weather_range": {
-            "min": -10,
-            "max": 20
+        {
+            "id": "test88712",
+            "type": "jacket",
+            "name": "Mantel",
+            "weather_range": {
+                "min": -10,
+                "max": 20
+            },
+            "occasions": [
+                "TDOT",
+                "Freizeit",
+                "aas05fsfa32"
+            ],
+            "layer": 2,
+            "color": "grau",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/61wi5aNlIPL._UX385_.jpg",
+            "icon": "jacket_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "TDOT",
-            "Freizeit",
-            "aas05fsfa32"
-        ],
-        "layer": 2,
-        "color":"grau",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/61wi5aNlIPL._UX385_.jpg",
-        "icon": "jacket_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test154",
-        "type": "shirt",
-        "name":"Pullover",
-        "weather_range": {
-            "min": -3,
-            "max": 27
+        {
+            "id": "test154",
+            "type": "shirt",
+            "name": "Pullover",
+            "weather_range": {
+                "min": -3,
+                "max": 27
+            },
+            "occasions": [
+                "Freizeit",
+                "aas05fsfa32"
+            ],
+            "layer": 1,
+            "color": "black",
+            "image": "https://img.represent.com/uploads/5682b92a398b85e7861f6fb482dcd8a9.jpeg?auto=format&w=750",
+            "icon": "shirt_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "Freizeit",
-            "aas05fsfa32"
-        ],
-        "layer": 1,
-        "color":"black",
-        "image": "https://img.represent.com/uploads/5682b92a398b85e7861f6fb482dcd8a9.jpeg?auto=format&w=750",
-        "icon": "shirt_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test522",
-        "type": "shoes",
-        "name":"Sneaker",
-        "weather_range": {
-            "min": 5,
-            "max": 25
+        {
+            "id": "test522",
+            "type": "shoes",
+            "name": "Sneaker",
+            "weather_range": {
+                "min": 5,
+                "max": 25
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 4,
+            "color": "black",
+            "image": "https://dsw.scene7.com/is/image/DSWShoes/402359_100_ss_01?$pdp-image$",
+            "icon": "shoes_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 4,
-        "color":"black",
-        "image": "https://dsw.scene7.com/is/image/DSWShoes/402359_100_ss_01?$pdp-image$",
-        "icon": "shoes_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test562",
-        "type": "shoes",
-        "name":"Stiefel",
-        "weather_range": {
-            "min": -20,
-            "max": 2
+        {
+            "id": "test562",
+            "type": "shoes",
+            "name": "Stiefel",
+            "weather_range": {
+                "min": -20,
+                "max": 2
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 4,
+            "color": "gray",
+            "image": "https://images.timberland.com/is/image/timberland/10061024-HERO?$PDP-FULL-IMAGE$",
+            "icon": "shoes_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 4,
-        "color":"gray",
-        "image": "https://images.timberland.com/is/image/timberland/10061024-HERO?$PDP-FULL-IMAGE$",
-        "icon": "shoes_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test5632",
-        "type": "shoes",
-        "name":"Schicker Schuh",
-        "weather_range": {
-            "min": -10,
-            "max": 20
+        {
+            "id": "test5632",
+            "type": "shoes",
+            "name": "Schicker Schuh",
+            "weather_range": {
+                "min": -10,
+                "max": 20
+            },
+            "occasions": [
+                "jsadfj23",
+                "TDOT"
+            ],
+            "layer": 4,
+            "color": "schwarz",
+            "image": "https://www.gisy-schuhe.de/blog/wp-content/uploads/2011/01/Lloyd-Business-Schuhe1.bmp",
+            "icon": "shoes_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "jsadfj23",
-            "TDOT"
-        ],
-        "layer": 4,
-        "color":"schwarz",
-        "image": "https://www.gisy-schuhe.de/blog/wp-content/uploads/2011/01/Lloyd-Business-Schuhe1.bmp",
-        "icon": "shoes_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test785",
-        "type": "pants",
-        "name":"Jeans",
-        "weather_range": {
-            "min": -10,
-            "max": 20
+        {
+            "id": "test785",
+            "type": "pants",
+            "name": "Jeans",
+            "weather_range": {
+                "min": -10,
+                "max": 20
+            },
+            "occasions": [
+                "jsadfj23",
+                "Freizeit"
+            ],
+            "layer": 0,
+            "color": "blue",
+            "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
+            "icon": "pants_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "jsadfj23",
-            "Freizeit"
-        ],
-        "layer": 0,
-        "color":"blue",
-        "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
-        "icon": "pants_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test784235",
-        "type": "pants",
-        "name":"Jeans",
-        "weather_range": {
-            "min": -10,
-            "max": 2
+        {
+            "id": "test784235",
+            "type": "pants",
+            "name": "Jeans",
+            "weather_range": {
+                "min": -10,
+                "max": 2
+            },
+            "occasions": [
+                "jsadfj23",
+                "Freizeit"
+            ],
+            "layer": 0,
+            "color": "blue",
+            "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
+            "icon": "pants_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "jsadfj23",
-            "Freizeit"
-        ],
-        "layer": 0,
-        "color":"blue",
-        "image": "https://mosaic03.ztat.net/vgs/media/pdp-gallery/PI/92/2G/A0/3K/17/PI922GA03-K17@10.jpg",
-        "icon": "pants_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test7835",
-        "type": "pants",
-        "name":"Anzughose",
-        "weather_range": {
-            "min": -10,
-            "max": 20
+        {
+            "id": "test7835",
+            "type": "pants",
+            "name": "Anzughose",
+            "weather_range": {
+                "min": -10,
+                "max": 20
+            },
+            "occasions": [
+                "jsadfj23",
+                "aas05fsfa32",
+                "TDOT"
+            ],
+            "layer": 0,
+            "color": "blue",
+            "image": "https://images.express.com/is/image/expressfashion/0024_02846230_0019?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+            "icon": "pants_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "jsadfj23",
-            "aas05fsfa32",
-            "TDOT"
-        ],
-        "layer": 0,
-        "color":"blue",
-        "image": "https://images.express.com/is/image/expressfashion/0024_02846230_0019?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "icon": "pants_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test192",
-        "type": "jacket",
-        "name":"Leichte Jacke",
-        "weather_range": {
-            "min": 2,
-            "max": 23
+        {
+            "id": "test192",
+            "type": "jacket",
+            "name": "Leichte Jacke",
+            "weather_range": {
+                "min": 2,
+                "max": 23
+            },
+            "occasions": [
+                "jsadfj23",
+                "Freizeit"
+            ],
+            "layer": 2,
+            "color": "gray",
+            "image": "https://i.pinimg.com/originals/b0/28/dc/b028dcb0b4ea07387eee1d0a0c318d99.jpg",
+            "icon": "jacket_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "jsadfj23",
-            "Freizeit"
-        ],
-        "layer": 2,
-        "color":"gray",
-        "image": "https://i.pinimg.com/originals/b0/28/dc/b028dcb0b4ea07387eee1d0a0c318d99.jpg",
-        "icon": "jacket_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test985",
-        "type": "shirt",
-        "name":"Pullover",
-        "weather_range": {
-            "min": -5,
-            "max": 20
+        {
+            "id": "test985",
+            "type": "shirt",
+            "name": "Pullover",
+            "weather_range": {
+                "min": -5,
+                "max": 20
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 1,
+            "color": "white",
+            "image": "https://www.supreme-streetwear.com/media/image/product/3399/md/supreme-europe-pullover-1104-hgrau.jpg",
+            "icon": "shirt_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 1,
-        "color":"white",
-        "image": "https://www.supreme-streetwear.com/media/image/product/3399/md/supreme-europe-pullover-1104-hgrau.jpg",
-        "icon": "shirt_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test5785",
-        "type": "shirt",
-        "name":"Sakko",
-        "weather_range": {
-            "min": -5,
-            "max": 20
+        {
+            "id": "test5785",
+            "type": "shirt",
+            "name": "Sakko",
+            "weather_range": {
+                "min": -5,
+                "max": 20
+            },
+            "occasions": [
+                "jsadfj23",
+                "TDOT"
+            ],
+            "layer": 1,
+            "color": "white",
+            "image": "https://sararshop.de/media/catalog/product/cache/3/image/800x1063.7119113573/9df78eab33525d08d6e5fb8d27136e95/i/_/i_000003848398.2_1.jpg",
+            "icon": "shirt_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "jsadfj23",
-            "TDOT"
-        ],
-        "layer": 1,
-        "color":"white",
-        "image": "https://sararshop.de/media/catalog/product/cache/3/image/800x1063.7119113573/9df78eab33525d08d6e5fb8d27136e95/i/_/i_000003848398.2_1.jpg",
-        "icon": "shirt_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test975",
-        "type": "tshirt",
-        "name":"tshirt",
-        "weather_range": {
-            "min": 18,
-            "max": 28
+        {
+            "id": "test975",
+            "type": "tshirt",
+            "name": "tshirt",
+            "weather_range": {
+                "min": 18,
+                "max": 28
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 1,
+            "color": "white",
+            "image": "https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-gucci-gg-classic-t-shirt-black.jpg",
+            "icon": "tshirt_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 1,
-        "color":"white",
-        "image": "https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-gucci-gg-classic-t-shirt-black.jpg",
-        "icon": "tshirt_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test972",
-        "type": "tshirt",
-        "name":"poloshirt",
-        "weather_range": {
-            "min": 18,
-            "max": 28
+        {
+            "id": "test972",
+            "type": "tshirt",
+            "name": "poloshirt",
+            "weather_range": {
+                "min": 18,
+                "max": 28
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 1,
+            "color": "white",
+            "image": "https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-gucci-gg-classic-t-shirt-black.jpg",
+            "icon": "tshirt_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 1,
-        "color":"white",
-        "image": "https://eyeconicwear.com/wp-content/uploads/2017/03/EyeConicWear-gucci-gg-classic-t-shirt-black.jpg",
-        "icon": "tshirt_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "test493",
-        "type": "accessoires",
-        "name":"Uhr",
-        "weather_range": {
-            "min": -10,
-            "max": 30
+        {
+            "id": "test493",
+            "type": "accessoires",
+            "name": "Uhr",
+            "weather_range": {
+                "min": -10,
+                "max": 30
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 5,
+            "color": "silver",
+            "image": "https://www.juwelier-wagner.at/shop/pub/media/catalog/category/M228238-0042.jpg",
+            "icon": "accessoires_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 5,
-        "color":"silver",
-        "image": "https://www.juwelier-wagner.at/shop/pub/media/catalog/category/M228238-0042.jpg",
-        "icon": "accessoires_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test4938",
-        "type": "accessoires",
-        "name":"Krawatte",
-        "weather_range": {
-            "min": -10,
-            "max": 30
+        {
+            "id": "test4938",
+            "type": "accessoires",
+            "name": "Krawatte",
+            "weather_range": {
+                "min": -10,
+                "max": 30
+            },
+            "occasions": [
+                "jsadfj23",
+                "TDOT"
+            ],
+            "layer": 5,
+            "color": "silver",
+            "image": "https://cdn.babymarkt.com/babymarkt/img/520337/443/g-o-l-kleinkind-krawatte-rot-blau-a225098.jpg",
+            "icon": "accessoires_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "jsadfj23",
-            "TDOT"
-        ],
-        "layer": 5,
-        "color":"silver",
-        "image": "https://cdn.babymarkt.com/babymarkt/img/520337/443/g-o-l-kleinkind-krawatte-rot-blau-a225098.jpg",
-        "icon": "accessoires_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test683",
-        "type": "accessoires",
-        "name":"Kette",
-        "weather_range": {
-            "min": 15,
-            "max": 30
+        {
+            "id": "test683",
+            "type": "accessoires",
+            "name": "Kette",
+            "weather_range": {
+                "min": 15,
+                "max": 30
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 5,
+            "color": "gold",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/417tklm9v%2BL._UX395_.jpg",
+            "icon": "accessoires_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 5,
-        "color":"gold",
-        "image": "https://images-na.ssl-images-amazon.com/images/I/417tklm9v%2BL._UX395_.jpg",
-        "icon": "accessoires_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test983",
-        "type": "headgear",
-        "name":"Kappe",
-        "weather_range": {
-            "min": 12,
-            "max": 27
+        {
+            "id": "test983",
+            "type": "headgear",
+            "name": "Kappe",
+            "weather_range": {
+                "min": 12,
+                "max": 27
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 3,
+            "color": "black",
+            "image": "https://www.immerfresh.de/wp-content/uploads/2018/01/capital-bra-gucci-cap.jpg",
+            "icon": "headgear_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 3,
-        "color":"black",
-        "image": "https://www.immerfresh.de/wp-content/uploads/2018/01/capital-bra-gucci-cap.jpg",
-        "icon": "headgear_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "test643",
-        "type": "headgear",
-        "name":"Mütze",
-        "weather_range": {
-            "min": -15,
-            "max": 5
+        {
+            "id": "test643",
+            "type": "headgear",
+            "name": "Mütze",
+            "weather_range": {
+                "min": -15,
+                "max": 5
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 3,
+            "color": "gray",
+            "image": "https://cdn03.plentymarkets.com/ot5bd32ffuj2/item/images/1097/middle/4.jpg",
+            "icon": "headgear_icon",
+            "forWetWeather": true
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 3,
-        "color":"gray",
-        "image": "https://cdn03.plentymarkets.com/ot5bd32ffuj2/item/images/1097/middle/4.jpg",
-        "icon": "headgear_icon",
-        "forWetWeather":true
-    },
-    {
-        "id": "teste356363",
-        "type": "dress",
-        "name":"Kleid",
-        "weather_range": {
-            "min": -15,
-            "max": 20
+        {
+            "id": "teste356363",
+            "type": "dress",
+            "name": "Kleid",
+            "weather_range": {
+                "min": -15,
+                "max": 20
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 3,
+            "color": "gray",
+            "image": "https://images-eu.ssl-images-amazon.com/images/I/41oHuW2LW2L._AC_UL260_SR200,260_.jpg",
+            "icon": "dress_icon",
+            "forWetWeather": false
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 3,
-        "color":"gray",
-        "image": "https://images-eu.ssl-images-amazon.com/images/I/41oHuW2LW2L._AC_UL260_SR200,260_.jpg",
-        "icon": "dress_icon",
-        "forWetWeather":false
-    },
-    {
-        "id": "tsde8543",
-        "type": "skirt",
-        "name":"Rock",
-        "weather_range": {
-            "min": -15,
-            "max": 20
+        {
+            "id": "tsde8543",
+            "type": "skirt",
+            "name": "Rock",
+            "weather_range": {
+                "min": -15,
+                "max": 20
+            },
+            "occasions": [
+                "Freizeit"
+            ],
+            "layer": 0,
+            "color": "gray",
+            "image": "https://factory.jcrew.com/s7-img-facade/95435_NA6986?fmt=jpeg&qlt=90,0&resMode=sharp&op_usm=.1,0,0,0&wid=636&hei=636",
+            "icon": "skirt_icon",
+            "forWetWeather": false
+        }
+    ],
+    "kleider":
+    [
+        {
+            "id":"abc1",
+            "type": "tshirt",
+            "weather_range": { "min": 10, "max": 25 },
+            "forWetWeather": false,
+            "occasions": ["Business"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/PO/22/2P/0A/JK/11/PO222P0AJ-K11@9.jpg"
         },
-        "occasions": [
-            "Freizeit"
-        ],
-        "layer": 0,
-        "color":"gray",
-        "image": "https://factory.jcrew.com/s7-img-facade/95435_NA6986?fmt=jpeg&qlt=90,0&resMode=sharp&op_usm=.1,0,0,0&wid=636&hei=636",
-        "icon": "skirt_icon",
-        "forWetWeather":false
-    }
-]
+        {
+            "id":"abc2",
+            "type": "tshirt",
+            "weather_range": { "min": 10, "max": 28 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/JA/22/2O/1T/SQ/11/JA222O1TS-Q11@10.jpg"
+        },
+        {
+            "id":"abc3",
+            "type": "shirt",
+            "weather_range": { "min": 3, "max": 20 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/TO/12/2O/07/BC/11/TO122O07B-C11@4.jpg"
+        },
+        {
+            "id":"abc4",
+            "type": "tshirt",
+            "weather_range": { "min": 3, "max": 20 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/LE/22/2O/00/GC/12/LE222O00G-C12@14.1.jpg"
+        },
+        {
+            "id":"abc5",
+            "type": "shirt",
+            "weather_range": { "min": 3, "max": 22 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/PI/92/2O/A2/TQ/11/PI922OA2T-Q11@12.jpg"
+        },
+        {
+            "id":"abc6",
+            "type": "shirt",
+            "weather_range": { "min": -10, "max": 13 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/SU/22/2Q/09/XQ/11/SU222Q09X-Q11@8.jpg"
+        },
+        {
+            "id":"abc7",
+            "type": "jacket",
+            "weather_range": { "min": -10, "max": 10 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/EA/82/2T/01/BQ/11/EA822T01B-Q11@10.jpg"
+        },
+        {
+            "id":"abc8",
+            "type": "jacket",
+            "weather_range": { "min": 2, "max": 15 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/PE/12/2T/01/JK/11/PE122T01J-K11@4.jpg"
+        },
+        {
+            "id":"abc9",
+            "type": "jacket",
+            "weather_range": { "min": -2, "max": 10 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/TO/B2/2T/00/5K/11/TOB22T005-K11@12.2.jpg"
+        },
+        {
+            "id":"abc10",
+            "type": "jacket",
+            "weather_range": { "min": 3, "max": 17 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Festlich"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/SE/62/2T/04/FQ/11/SE622T04F-Q11@15.2.jpg"
+        },
+        {
+            "id":"abc11",
+            "type": "pants",
+            "weather_range": { "min": 0, "max": 22 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/7F/12/2G/04/UQ/11/7F122G04U-Q11@20.jpg"
+        },
+        {
+            "id":"abc12",
+            "type": "pants",
+            "weather_range": { "min": 0, "max": 28 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/C1/42/2G/02/JK/13/C1422G02J-K13@12.jpg"
+        },
+        {
+            "id":"abc13",
+            "type": "pants",
+            "weather_range": { "min": 10, "max": 30 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit","Sport"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/PO/22/2E/01/KC/15/PO222E01K-C15@11.jpg"
+        },
+        {
+            "id":"abc14",
+            "type": "pants",
+            "weather_range": { "min": 0, "max": 25 },
+            "forWetWeather": true,
+            "occasions": ["Business"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/TH/A2/2A/00/1Q/11/THA22A001-Q11@10.jpg"
+        },
+        {
+            "id":"abc15",
+            "type": "pants",
+            "weather_range": { "min": 10, "max": 28 },
+            "forWetWeather": false,
+            "occasions": ["Festlich","Freizeit"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/SC/32/2E/03/0Q/11/SC322E030-Q11@9.jpg"
+        },
+        {
+            "id":"abc16",
+            "type": "shoes",
+            "weather_range": { "min": 5, "max": 28 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/EA/81/2O/00/2Q/11/EA812O002-Q11@6.jpg"
+        },
+        {
+            "id":"abc17",
+            "type": "shoes",
+            "weather_range": { "min": 5, "max": 28 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/VA/21/5B/00/0Q/12/VA215B000-Q12@12.jpg"
+        },
+        {
+            "id":"abc18",
+            "type": "shoes",
+            "weather_range": { "min": 8, "max": 30 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit","Sport"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/AD/54/2A/2R/AQ/11/AD542A2RA-Q11@12.jpg"
+        },
+        {
+            "id":"abc19",
+            "type": "shoes",
+            "weather_range": { "min": 8, "max": 30 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit","Sport"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/N1/24/2A/1K/FQ/12/N1242A1KF-Q12@2.jpg"
+        },
+        {
+            "id":"abc20",
+            "type": "shoes",
+            "weather_range": { "min": 0, "max": 28 },
+            "forWetWeather": true,
+            "occasions": ["Business"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/G7/81/2M/00/4Q/11/G7812M004-Q11@16.jpg"
+        },
+        {
+            "id":"abc21",
+            "type": "headgear",
+            "weather_range": { "min": 10, "max": 30 },
+            "forWetWeather": false,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/VE/05/2P/00/7Q/11/VE052P007-Q11@11.jpg"
+        },
+        {
+            "id":"abc22",
+            "type": "headgear",
+            "weather_range": { "min": 10, "max": 30 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Sport"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/PO/25/2E/00/NG/11/PO252E00N-G11@14.jpg"
+        },
+        {
+            "id":"abc23",
+            "type": "headgear",
+            "weather_range": { "min": -10, "max": 5 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Festlich"],
+            "image": "https://mosaic03.ztat.net/vgs/media/pdp-zoom/CL/35/2O/00/3Q/11/CL352O003-Q11@7.jpg"
+        },
+        {
+            "id":"abc24",
+            "type": "headgear",
+            "weather_range": { "min": -10, "max": 5 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/YO/15/2O/00/4N/11/YO152O004-N11@6.jpg"
+        },
+        {
+            "id":"abc25",
+            "type": "accessoires",
+            "weather_range": { "min": 5, "max": 30 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/VE/F5/2M/00/7C/11/VEF52M007-C11@8.4.jpg"
+        },
+        {
+            "id":"abc26",
+            "type": "accessoires",
+            "weather_range": { "min": 5, "max": 30 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit","Business"],
+            "image": "https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/EA/85/2M/01/DQ/11/EA852M01D-Q11@6.1.jpg"
+        },
+        {
+            "id":"abc27",
+            "type": "accessoires",
+            "weather_range": { "min": 5, "max": 30 },
+            "forWetWeather": true,
+            "occasions": ["Freizeit"],
+            "image": "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/TO/15/2L/01/YK/11/TO152L01Y-K11@7.jpg"
+        }
+    ]
+}

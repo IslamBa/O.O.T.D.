@@ -77,6 +77,7 @@ Meteor.methods({
         max: ""
       },
       lastWeatherDt: weaterDate,
+      notificationDate:"2000-01-31",
       currentOutfit: [],
       occasions: [],
       favorites: [],
@@ -102,7 +103,6 @@ Meteor.methods({
       Meteor.call('uploadImage', obj.image, (error, result) => {
         if (!error) {
           obj.image = result;
-          console.log(obj);
           Profile.update(user._id, { $push: { kleider: obj } });
         }
         else{
@@ -146,8 +146,6 @@ Meteor.methods({
 
     //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
     outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && el.weather_range.max >= currTemp);
-
-    console.log(outfitCandidates);
 
     if (Meteor.call('checkPrecipitation', user.weather.zustand[0].id.toString())) {
       outfitCandidates = outfitCandidates.filter(el => el.forWetWeather == true);
@@ -297,6 +295,7 @@ Meteor.methods({
   },
   updateNotificationDate(date) {
     const user = Profile.findOne({ id: Meteor.userId() });
+    if(!user.notificationDate){user.notificationDate = '2000-01-31';}
     Profile.update(user._id, { $set: { notificationDate: date } });
   },
   uploadImage(file) {

@@ -201,6 +201,13 @@ body,html{
 	/* background-color: lightgray; */
 }
 
+#btnCamera{
+	height: 80px;
+	width : 80px;
+	border-radius:100px !important;
+	margin-top:50px;
+}
+
 .divclothpic{
 	margin-left: auto !important;
 	margin-right: auto !important;
@@ -253,14 +260,18 @@ body,html{
 }
 
 .divkategorie{
-	height: 200px !important;
+	height: 100px !important;
 	width: 100% !important;
 	background-color: #ffffff;
-	border-radius: 15px !important;
-	border: 1px solid rgb(38, 38, 38) !important;
+	border-radius: 20px !important;
+	border: 0px;
 	text-align: center;
-	vertical-align: middle;
-	line-height: 200px;  
+	vertical-align: middle; 
+	box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.2);
+	line-height: 95px;
+}
+.col{
+margin-top:10px !important;
 }
 
 .divdailycloth{

@@ -38,9 +38,11 @@
       <div id="btnWeather" class="divweather text-center">
         <i class="fas fa-redo-alt" style="color:white;"></i>
       </div>
+      {{#if hasOutfit}}
       <div>
         <i id="favicon" class="far fa-star" style="color:white;"></i>
       </div>
+      {{/if}}
     </div>
 
   </div>
@@ -89,9 +91,9 @@
     <button class="btn btn-primary" id="changePiece">Change Piece</button>
   </div> -->
   {{else}}
-  <span style="color:blue;">
+  <!-- <span style="color:blue;">
     <a href="/">Bitte Einlogen !</a>
-  </span>
+  </span> -->
   {{/if}}
 </template>
 
@@ -164,7 +166,8 @@
         <div class="login-div form-group">
 
           <!--<label class="login-text">Passwort</label>-->
-          <input id="passwordb" type="password" class="validate login-input form-control" placeholder="Passwort bestätigen">
+          <input id="passwordb" type="password" class="validate login-input form-control"
+            placeholder="Passwort bestätigen">
           <i class="fas fa-lock login-icon"></i>
         </div>
         <br>
@@ -222,16 +225,17 @@
   </div>
   <div class="divclothpic text-center">
     <button class="clothpic btn btn-primary">
-      <i class="fas fa-camera"></i>
+      <i class="fas fa-image"></i>
     </button>
-    <input id="addImageInput" type="file" size="50" accept="image/*" style="display:none;">
+    <!-- <input id="addImageInput" type="file" size="50" accept="image/*" style="display:none;">  -->
+    <button id="btnCamera" class="btn btn-primary"><i class="fas fa-camera"></i></button>
   </div>
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-      <input id="ex2" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-      />
+      <input id="ex2" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1"
+        data-slider-value="[-10,10]" />
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -290,6 +294,16 @@
 
       </div>
 
+      {{#each value in occasions}}
+      <div class="text-center inputaddcloth row">
+        <label class="el-switch col col-sm">
+          <input id="{{value.id}}" type="checkbox" name="switch">
+          <span class="el-switch-style"></span>
+        </label>
+        <label class="switchfont col col-sm">{{value.type}}</label>
+
+      </div>
+      {{/each}}
       <div class="text-center inputaddcloth row">
         <label class="el-switch col col-sm">
           <input id="otherclothanlass" type="checkbox" name="switch">
@@ -299,7 +313,8 @@
         <br>
         <br>
         <div class="text-center">
-          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+            placeholder="Anderen Anlass angeben">
         </div>
         <br>
         <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -337,7 +352,7 @@
     <div class="row">
       <div class="col col-sm-12">
         <a href="/oberteil">
-          <button class="divkategorie btn">
+          <button class="divkategorie">
             <p class="kategoriefont">OBERTEIL</p>
           </button>
         </a>
@@ -437,7 +452,8 @@
     </div>
     <br>
     <div class="text-center">
-      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;" placeholder="Anderen Anlass angeben">
+      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
+        placeholder="Anderen Anlass angeben">
     </div>
     <div class="text-center">
       <div class="fehlermeldung2">
@@ -468,7 +484,8 @@
 
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -481,8 +498,8 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-              />
+              <input id="ex3" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1"
+                data-slider-value="[-10,10]" />
               <small id="emailHelp" class="form-text text-muted">
                 Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
@@ -549,7 +566,8 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+                    placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -591,7 +609,8 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -604,8 +623,8 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-              />
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
+                data-slider-step="1" data-slider-value="[-10,10]" />
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -670,7 +689,8 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+                    placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -711,7 +731,8 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -724,8 +745,8 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-              />
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
+                data-slider-step="1" data-slider-value="[-10,10]" />
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -790,7 +811,8 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+                    placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -831,7 +853,8 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -844,8 +867,8 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50" data-slider-step="1" data-slider-value="[-10,10]"
-              />
+              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
+                data-slider-step="1" data-slider-value="[-10,10]" />
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -910,7 +933,8 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
+                    placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
