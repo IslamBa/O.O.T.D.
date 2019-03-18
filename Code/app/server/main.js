@@ -147,8 +147,6 @@ Meteor.methods({
     //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
     outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && el.weather_range.max >= currTemp);
 
-    console.log(outfitCandidates);
-
     if (Meteor.call('checkPrecipitation', user.weather.zustand[0].id.toString())) {
       outfitCandidates = outfitCandidates.filter(el => el.forWetWeather == true);
     }

@@ -190,9 +190,18 @@ Template.register.events({
                         country: country
                     }
                     Meteor.call('addNewProfile', user);
+                    Router.go('startseite');
+                }
+                else{
+                    $(".fehlertext").text(error.reason)
+                    $(".fehlermeldung").slideDown(200, function () {
+                        setTimeout(function () {
+                            $('.fehlermeldung').fadeOut();
+                        }, 1200);
+                    });
                 }
             });
-            Router.go('startseite');
+            
         }
     },
     'click .arrow-back'() {
@@ -347,6 +356,14 @@ Template.content.helpers({
     },
     kleider() {
         if (Profile.findOne()) { return Profile.findOne().kleider.filter(el => el.type == "shirt"); }
+    },
+    hasOutfit() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().currentOutfit.length > 0)
+                return true;
+            else 
+            return false;
+        }
     }
 });
 
@@ -354,11 +371,11 @@ Template.content.helpers({
 Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
-            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt");
+            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt"||el.type=="tshirt"||el.type=="jacket");
             return shirts;
         }
     }
-})
+});
 
 Template.Hosen.helpers({
 
@@ -368,7 +385,7 @@ Template.Hosen.helpers({
             return hosen;
         }
     }
-})
+});
 
 Template.Schuhe.helpers({
 
@@ -378,7 +395,7 @@ Template.Schuhe.helpers({
             return schuhe;
         }
     }
-})
+});
 
 Template.Accessoire.helpers({
     accessoires() {
@@ -387,7 +404,7 @@ Template.Accessoire.helpers({
             return accessoire;
         }
     }
-})
+});
 
 Template.Anlass.helpers({
     anlass() {
@@ -399,13 +416,21 @@ Template.Anlass.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     }
-})
+});
 
 Template.Kategorien.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     }
-})
+});
+
+Template.AddClothes.helpers({
+    occasions() {
+        if (Profile.findOne()) {
+            return Profile.findOne().occasions;
+        }
+    }
+});
 
 Template.FavOutfits.helpers({
 
@@ -694,7 +719,7 @@ Template.AddClothes.events({
         }, (err) => {
             console.log(err);
         }, {
-            targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
+                targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
                 correctOrientation: true, allowEdit: true
             })
     },
@@ -706,7 +731,7 @@ Template.AddClothes.events({
         }, (err) => {
             console.log(err);
         }, {
-            targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
+                targetWidth: 1500, targetHeight: 1500, destinationType: Camera.DestinationType.DATA_URL,
                 sourceType: Camera.PictureSourceType.PHOTOLIBRARY, allowEdit: true
             })
     },
