@@ -897,10 +897,10 @@ Template.AddAnlass.events({
         }
         else {
             if ($("#select_anlass").val() == "Other") {
-                obj.name = $('.inputnewanlass').val();
+                obj.type = $('.inputnewanlass').val();
             }
             else {
-                obj.name = $("#select_anlass").val();
+                obj.type = $("#select_anlass").val();
             }
             obj.date = $('.inputaddanlass').val();
 

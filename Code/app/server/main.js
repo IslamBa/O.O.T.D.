@@ -137,7 +137,7 @@ Meteor.methods({
   },
   getOutfit() {
     const user = Profile.findOne({ id: Meteor.userId() });
-    var currTemp = user.weather.temperatur.temp;
+    var currTemp = Math.round(user.weather.temperatur.temp);
     var Occasion = '';
     //Alle Kleidungsstücke die die Kriterien erfüllen werden in dieses Array gepackt
     var outfitCandidates = [];
@@ -145,8 +145,8 @@ Meteor.methods({
     var finalOutfit = [];
 
     //Wetterrange, Niederschlagsbeständigkeit und Anlass werden überprüft und anhand dieser Kleidungsstücke gefiltert
-    outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && el.weather_range.max >= currTemp);
-
+    outfitCandidates = user.kleider.filter(el => el.weather_range.min <= currTemp && currTemp <= el.weather_range.max);
+  
     if (Meteor.call('checkPrecipitation', user.weather.zustand[0].id.toString())) {
       outfitCandidates = outfitCandidates.filter(el => el.forWetWeather == true);
     }
@@ -154,13 +154,15 @@ Meteor.methods({
     if (user.occasions.length > 0) {
       Occasion = Meteor.call('checkOccasions', user.occasions);
     }
-
+    
     if (Occasion != '') {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes(Occasion));
     }
     else {
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes("Freizeit"));
     }
+
+    
 
     var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear", "dress", "skirt"];
 
