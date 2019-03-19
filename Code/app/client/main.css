@@ -81,7 +81,7 @@ body,html{
 }
 
 .img-login{
-  background-image: url("assets/login3.png");
+  	background-image: url("assets/login3.png");
       /* Full height */
 	min-height:100%;
       /* Center and scale the image nicely */
@@ -93,31 +93,30 @@ body,html{
 }
 
 .container {
-  position: relative;
+  	position: relative;
 }
 
 .input-text{
-  color: black !important;
+  	color: black !important;
 }
 
 #login-bottom{
-  border-bottom: black !important;
-  box-shadow: black !important
+  	border-bottom: black !important;
+  	box-shadow: black !important
 }
 
 .neu-registrieren{
-  bottom: 0px;
-  text-align: center;
-  width: 100%;
-	color: white;
-	margin-bottom: 0 !important;
+  	bottom: 0px;
+  	text-align: center;
+  	width: 100%;
+  	color: white;
 }
 
 .registrieren-container{
-  margin-top: 10%;
-  width: 90% !important;
-  margin-left: 5% !important;
-  position: absolute;
+  	margin-top: 10%;
+  	width: 90% !important;
+  	margin-left: 5% !important;
+  	position: absolute;
 }
 
 .carddes{
@@ -564,9 +563,9 @@ margin-top:10px !important;
 }
 
 .animation{
-	right : 15px;
-	top : 15px;
-	position: fixed;
+	right : 18px;
+	top : 18px;
+	position: absolute;
 }
 
 .sun-vorne{

@@ -4,9 +4,12 @@
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Assistant:200" rel="stylesheet">
-  <link rel="stylesheet" href="addons/bootstrap-slider.min.css">
+  <!-- <link rel="stylesheet" href="addons/bootstrap-slider.min.css"> -->
+  <link rel="stylesheet" href="addons/nouislider.min.css">
 
-  <script src="addons/bootstrap-slider.min.js"></script>
+  <!-- <script src="addons/bootstrap-slider.min.js"></script> -->
+  <script src="addons/nouislider.min.js"></script>
+
 </head>
 
 <body>
@@ -102,7 +105,6 @@
 <template name="login">
 
   <div class="img-login">
-    
     <div class="text-center imglogo">
       <img class="logo" src="assets/logo.svg">
     </div>
@@ -137,8 +139,6 @@
         <p class="fehlertext">Passwort oder Benutzername inkorrekt !</p>
       </div>
     </div>
-
-    
   </div>
 </template>
 
@@ -229,15 +229,13 @@
     <button class="clothpic btn btn-primary">
       <i class="fas fa-image"></i>
     </button>
-    <!-- <input id="addImageInput" type="file" size="50" accept="image/*" style="display:none;">  -->
     <button id="btnCamera" class="btn btn-primary"><i class="fas fa-camera"></i></button>
   </div>
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-      <input id="ex2" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1"
-        data-slider-value="[-10,10]" />
+        <div id="slider"></div>
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -500,8 +498,7 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" data-slider-min="-25" data-slider-max="50" data-slider-step="1"
-                data-slider-value="[-10,10]" />
+              <div id="slider"></div>
               <small id="emailHelp" class="form-text text-muted">
                 Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
@@ -625,8 +622,7 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
-                data-slider-step="1" data-slider-value="[-10,10]" />
+              <div id="slider"></div>
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -747,8 +743,7 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
-                data-slider-step="1" data-slider-value="[-10,10]" />
+              <div id="slider"></div>
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
@@ -869,8 +864,7 @@
           <form>
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
-              <input id="ex3" type="text" class="span2" value="" data-slider-min="-25" data-slider-max="50"
-                data-slider-step="1" data-slider-value="[-10,10]" />
+              <div id="slider"></div>
               <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>

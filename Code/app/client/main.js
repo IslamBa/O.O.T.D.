@@ -194,7 +194,7 @@ Template.register.events({
                     Meteor.call('addNewProfile', user);
                     Router.go('startseite');
                 }
-                else{
+                else {
                     $(".fehlertext").text(error.reason)
                     $(".fehlermeldung").slideDown(200, function () {
                         setTimeout(function () {
@@ -203,7 +203,7 @@ Template.register.events({
                     });
                 }
             });
-            
+
         }
     },
     'click .arrow-back'() {
@@ -267,8 +267,9 @@ Template.content.helpers({
     zip() {
         if (Profile.findOne()) {
             // console.log(Profile.findOne().kleider.find(el=>el.id == "test88712"));
-            return Profile.findOne().location.zip; }
-       
+            return Profile.findOne().location.zip;
+        }
+
     },
     zustand() {
         if (Profile.findOne()) {
@@ -371,8 +372,8 @@ Template.content.helpers({
         if (Profile.findOne()) {
             if (Profile.findOne().currentOutfit.length > 0)
                 return true;
-            else 
-            return false;
+            else
+                return false;
         }
     }
 });
@@ -381,7 +382,7 @@ Template.content.helpers({
 Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
-            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt"||el.type=="tshirt"||el.type=="jacket");
+            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "jacket");
             return shirts;
         }
     }
@@ -444,17 +445,17 @@ Template.AddClothes.helpers({
 
 Template.FavOutfits.helpers({
 
-    favoutfits(){
+    favoutfits() {
         if (Profile.findOne()) {
             var newFavs = [];
             var favs = Profile.findOne().favorites;
             favs.forEach(element => {
                 var pieceArr = [];
-                
+
                 element.pieces.forEach(el => {
-                   
+
                     //pieceArr.push(Profile.findOne({kleider:{id:el}}));
-                    
+
                     pieceArr.push(Profile.findOne().kleider.find(kleid => kleid.id == el));
                 });
                 newFavs.push(pieceArr);
@@ -467,7 +468,7 @@ Template.FavOutfits.helpers({
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
-    
+
 
     localStorage.removeItem("image");
     $("#loginLoading").hide();
@@ -615,6 +616,20 @@ Template.content.events({
         Meteor.call('getOutfit', (error, result) => {
             if (error) {
                 console.log(error);
+                Meteor.call('checkFavorite', (error, result) => {
+                    if (!error) {
+                        console.log(result);
+                        if (result == false) {
+                            $('#favicon').removeClass();
+                            $('#favicon').addClass("fas fa-star");
+                        }
+                        else {
+                            $('#favicon').removeClass();
+                            $('#favicon').addClass("far fa-star");
+                        }
+                    }
+
+                });
             }
             else {
                 console.log(result);
@@ -1270,19 +1285,26 @@ Template.Accessoire.events({
 
 
 Template.AddClothes.onRendered(() => {
-    var slider2 = new Slider('#ex2');
+    var slider = document.getElementById('slider');
 
-    var slider = document.getElementById("ex2").value;
-    var zahl = slider.split(",");
-    slidermin = zahl[0];
-    slidermax = zahl[1];
-    document.getElementById("maxtempzahl").textContent = slidermin + " °C | " + slidermax + " °C";
-    // console.log(slider2.data-slider-value);
+    noUiSlider.create(slider, {
+        start: [-10, 20],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -35,
+            'max': 50
+        }
+    });
 
-    slider2.on("slide", function (sliderValue) {
-        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
-        slidermin = sliderValue[0];
-        slidermax = sliderValue[1];
+    var wert = slider.noUiSlider.get();
+    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    slidermin = wert[0];
+    slidermax = wert[1];
+    slider.noUiSlider.on('update', function (values, handle) {
+        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        slidermin = slider.noUiSlider.get()[0];
+        slidermax = slider.noUiSlider.get()[1];
     });
 
     var switchStatus = false;
@@ -1299,62 +1321,97 @@ Template.AddClothes.onRendered(() => {
 });
 
 Template.Oberteil.onRendered(() => {
-    var slider2 = new Slider('#ex3');
+    var slider = document.getElementById('slider');
 
-    var slider = document.getElementById("ex3").value;
-    var zahl = slider.split(",");
-    slidermin = zahl[0];
-    slidermax = zahl[1];
-    document.getElementById("maxtempzahl").textContent = slidermin + " °C | " + slidermax + " °C";
+    noUiSlider.create(slider, {
+        start: [-10, 20],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -35,
+            'max': 50
+        }
+    });
 
-    slider2.on("slide", function (sliderValue) {
-        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
-        slidermin = sliderValue[0];
-        slidermax = sliderValue[1];
+    var wert = slider.noUiSlider.get();
+    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    slidermin = wert[0];
+    slidermax = wert[1];
+    slider.noUiSlider.on('update', function (values, handle) {
+        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        slidermin = slider.noUiSlider.get()[0];
+        slidermax = slider.noUiSlider.get()[1];
     });
 });
 
 Template.Hosen.onRendered(() => {
-    var slider2 = new Slider('#ex3');
-    var slider = document.getElementById("ex3").value;
-    var zahl = slider.split(",");
-    slidermin = zahl[0];
-    slidermax = zahl[1];
-    document.getElementById("maxtempzahl").textContent = slidermin + " °C | " + slidermax + " °C";
+    var slider = document.getElementById('slider');
 
-    slider2.on("slide", function (sliderValue) {
-        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
-        slidermin = sliderValue[0];
-        slidermax = sliderValue[1];
+    noUiSlider.create(slider, {
+        start: [-10, 20],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -35,
+            'max': 50
+        }
+    });
+
+    var wert = slider.noUiSlider.get();
+    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    slidermin = wert[0];
+    slidermax = wert[1];
+    slider.noUiSlider.on('update', function (values, handle) {
+        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        slidermin = slider.noUiSlider.get()[0];
+        slidermax = slider.noUiSlider.get()[1];
     });
 });
 
 Template.Schuhe.onRendered(() => {
-    var slider2 = new Slider('#ex3');
-    var slider = document.getElementById("ex3").value;
-    var zahl = slider.split(",");
-    slidermin = zahl[0];
-    slidermax = zahl[1];
-    document.getElementById("maxtempzahl").textContent = slidermin + " °C | " + slidermax + " °C";
+    var slider = document.getElementById('slider');
 
-    slider2.on("slide", function (sliderValue) {
-        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
-        slidermin = sliderValue[0];
-        slidermax = sliderValue[1];
+    noUiSlider.create(slider, {
+        start: [-10, 20],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -35,
+            'max': 50
+        }
+    });
+
+    var wert = slider.noUiSlider.get();
+    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    slidermin = wert[0];
+    slidermax = wert[1];
+    slider.noUiSlider.on('update', function (values, handle) {
+        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        slidermin = slider.noUiSlider.get()[0];
+        slidermax = slider.noUiSlider.get()[1];
     });
 });
 
 Template.Accessoire.onRendered(() => {
-    var slider2 = new Slider('#ex3');
-    var slider = document.getElementById("ex3").value;
-    var zahl = slider.split(",");
-    slidermin = zahl[0];
-    slidermax = zahl[1];
-    document.getElementById("maxtempzahl").textContent = slidermin + " °C | " + slidermax + " °C";
+    var slider = document.getElementById('slider');
 
-    slider2.on("slide", function (sliderValue) {
-        document.getElementById("maxtempzahl").textContent = sliderValue[0] + " °C | " + sliderValue[1] + " °C";
-        slidermin = sliderValue[0];
-        slidermax = sliderValue[1];
+    noUiSlider.create(slider, {
+        start: [-10, 20],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -35,
+            'max': 50
+        }
+    });
+
+    var wert = slider.noUiSlider.get();
+    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    slidermin = wert[0];
+    slidermax = wert[1];
+    slider.noUiSlider.on('update', function (values, handle) {
+        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        slidermin = slider.noUiSlider.get()[0];
+        slidermax = slider.noUiSlider.get()[1];
     });
 });
