@@ -5,10 +5,10 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Assistant:200" rel="stylesheet">
   <!-- <link rel="stylesheet" href="addons/bootstrap-slider.min.css"> -->
-  <link rel="stylesheet" href="addons/nouislider.min.css">
+  <!-- <link rel="stylesheet" href="addons/nouislider.min.css"> -->
 
   <!-- <script src="addons/bootstrap-slider.min.js"></script> -->
-  <script src="addons/nouislider.min.js"></script>
+  <!-- <script src="addons/nouislider.min.js"></script> -->
 
 </head>
 
@@ -64,6 +64,7 @@
       </div>
       {{/if}} {{/each}}
     </div>
+
   </div>
 
 
@@ -235,7 +236,7 @@
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-        <div id="slider"></div>
+      <div id="slider"></div>
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -354,6 +355,7 @@
         <a href="/oberteil">
           <button class="divkategorie">
             <p class="kategoriefont">OBERTEIL</p>
+
           </button>
         </a>
       </div>
@@ -965,7 +967,7 @@
   <div class="favdiv text-center">
     <p style="color:white;">FavOutfits</p>
   </div>
-    {{#each wert in value}}
+  {{#each wert in value}}
   <div>
     <img class="einzelkleiderbilder" src="{{wert.image}}">
     <div>
@@ -973,9 +975,9 @@
     </div>
     <hr>
   </div>
-    {{/each}}
   {{/each}}
-  
+  {{/each}}
+
 </template>
 
 

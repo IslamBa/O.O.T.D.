@@ -379,6 +379,7 @@ Template.content.helpers({
 });
 
 
+
 Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
@@ -486,14 +487,8 @@ Template.content.onRendered(() => {
         }
     });
 
-    Meteor.call('getProfile', Meteor.userId(), (error, result) => {
-
-        // $(".title").text(result.weather.temperatur.temp_max + "°");
-    });
-
     function notification() {
         // IF Statement um zu schauen ob letztes Datum schon vorbei ist
-
 
         var lastNotification = '';
         var date = new Date();
@@ -558,7 +553,36 @@ Template.content.onRendered(() => {
         }
 
     });
+    // setTimeout(function () {
+    //     $('#testtest').slick({
+    //         dots: true,
+    //         infinite: false,
+    //         speed: 300,
+    //         slidesToShow: 3,
+    //         swipeToSlide: true,
+    //         touchThreshold: 8,
+    //         centerMode: false,
+    //         responsive: [
+    //             {
+    //                 breakpoint: 980,
+    //                 settings: {
+    //                     arrows: false,
+    //                     slidesToShow: 2
+    //                 }
+    //             },
+    //             {
+    //                 breakpoint: 600,
+    //                 settings: {
+    //                     arrows: false,
+    //                     slidesToShow: 1,
+    //                 }
+    //             }
+    //         ]
+    //     });
+    // }, 100);
+    
 });
+
 
 
 Template.AddAnlass.onRendered(() => {
@@ -613,6 +637,7 @@ Template.content.events({
         });
     },
     'click #getOutfit'() {
+
         Meteor.call('getOutfit', (error, result) => {
             if (error) {
                 console.log(error);
@@ -732,7 +757,8 @@ Template.AddClothes.events({
         var anlaesse = [];
         var image = '';
         var type;
-        // var reader = new FileReader();
+
+        image = localStorage.getItem("image");
 
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
             $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
@@ -810,19 +836,7 @@ Template.AddClothes.events({
                 type = "headgear"
             }
 
-            // alert(image);
-
-            // function getBase64(file) {
-            //     return new Promise((resolve, reject) => {
-            //         const reader = new FileReader();
-            //         reader.readAsDataURL(file);
-            //         reader.onload = () => resolve(reader.result);
-            //         reader.onerror = error => reject(error);
-            //     });
-            // };
-
-            // getBase64(image).then((data) => {
-            image = "data:image/jpeg;base64," + localStorage.getItem("image");
+            image = "data:image/jpeg;base64," + image;
 
             var obj = {
                 type: type,
@@ -844,18 +858,6 @@ Template.AddClothes.events({
                     localStorage.removeItem("image");
                 }
             });
-            // });
-
-
-
-            // reader.addEventListener("load", function () {
-            //     console.log(reader.result);
-            //   }, false);
-
-
-
-
-
 
             $("#fehlertext2").text("Ihr Kleidungstück wurde gespeichert!")
             $(".fehlermeldung2").slideDown(200, function () {

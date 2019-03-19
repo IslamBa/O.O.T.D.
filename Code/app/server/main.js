@@ -86,9 +86,6 @@ Meteor.methods({
     });
 
   },
-  getProfile(id) {
-    return Profile.findOne({ id: id });
-  },
   addClothing(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.kleider) { user.kleider = []; }
@@ -162,8 +159,6 @@ Meteor.methods({
       outfitCandidates = outfitCandidates.filter(el => el.occasions.includes("Freizeit"));
     }
 
-    
-
     var types = ["shirt", "tshirt", "shoes", "pants", "jacket", "accessoires", "headgear", "dress", "skirt"];
 
     for (var type of types) {
@@ -194,15 +189,6 @@ Meteor.methods({
       }
     }
 
-    // var jacket = finalOutfit.find(el => el.type == "jacket");
-    // if (jacket) {
-    //   if (jacket.weather_range.max < currTemp) {
-    //     finalOutfit = finalOutfit.filter(el => el.type != "jacket");
-    //   }
-    // }
-
-    
-
     Meteor.call('insertCandidates', outfitCandidates);
 
     if (!user.currentOutfit) { user.currentOutfit = []; }
@@ -230,9 +216,6 @@ Meteor.methods({
       if (completeRandomType.length > 0 && type != "headgear" && type != "accessoires") {
         return completeRandomType[Math.floor(Math.random() * completeRandomType.length)];
       }
-      // else {
-      //   return "";
-      // }
     }
   },
   checkOccasions(arr) {
@@ -256,7 +239,6 @@ Meteor.methods({
   },
   insertCandidates(arr) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    if (!user.candidates) { user.candidates = []; }
 
     var idArr = [];
     for (let index = 0; index < arr.length; index++) {
@@ -297,7 +279,6 @@ Meteor.methods({
   },
   updateNotificationDate(date) {
     const user = Profile.findOne({ id: Meteor.userId() });
-    if(!user.notificationDate){user.notificationDate = '2000-01-31';}
     Profile.update(user._id, { $set: { notificationDate: date } });
   },
   uploadImage(file) {
