@@ -194,7 +194,7 @@ Template.register.events({
                     Meteor.call('addNewProfile', user);
                     Router.go('startseite');
                 }
-                else{
+                else {
                     $(".fehlertext").text(error.reason)
                     $(".fehlermeldung").slideDown(200, function () {
                         setTimeout(function () {
@@ -203,7 +203,7 @@ Template.register.events({
                     });
                 }
             });
-            
+
         }
     },
     'click .arrow-back'() {
@@ -267,8 +267,9 @@ Template.content.helpers({
     zip() {
         if (Profile.findOne()) {
             // console.log(Profile.findOne().kleider.find(el=>el.id == "test88712"));
-            return Profile.findOne().location.zip; }
-       
+            return Profile.findOne().location.zip;
+        }
+
     },
     zustand() {
         if (Profile.findOne()) {
@@ -371,8 +372,43 @@ Template.content.helpers({
         if (Profile.findOne()) {
             if (Profile.findOne().currentOutfit.length > 0)
                 return true;
-            else 
-            return false;
+            else
+                return false;
+        }
+    },
+    rain() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Rain" || Profile.findOne().weather.zustand[0].main == "Drizzle") {
+                return true;
+            }
+        }
+    },
+    cloud() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Clouds") {
+                return true;
+            }
+        }
+    },
+    thunder() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Thunderstorm") {
+                return true;
+            }
+        }
+    },
+    snow() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Snow") {
+                return true;
+            }
+        }
+    },
+    sun() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Clear") {
+                return true;
+            }
         }
     }
 });
@@ -381,7 +417,7 @@ Template.content.helpers({
 Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
-            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt"||el.type=="tshirt"||el.type=="jacket");
+            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "jacket");
             return shirts;
         }
     }
@@ -444,17 +480,17 @@ Template.AddClothes.helpers({
 
 Template.FavOutfits.helpers({
 
-    favoutfits(){
+    favoutfits() {
         if (Profile.findOne()) {
             var newFavs = [];
             var favs = Profile.findOne().favorites;
             favs.forEach(element => {
                 var pieceArr = [];
-                
+
                 element.pieces.forEach(el => {
-                   
+
                     //pieceArr.push(Profile.findOne({kleider:{id:el}}));
-                    
+
                     pieceArr.push(Profile.findOne().kleider.find(kleid => kleid.id == el));
                 });
                 newFavs.push(pieceArr);
@@ -467,7 +503,7 @@ Template.FavOutfits.helpers({
 
 //Wird aufgerufen wenn Content Page geladen wird
 Template.content.onRendered(() => {
-    
+
 
     localStorage.removeItem("image");
     $("#loginLoading").hide();
@@ -1271,11 +1307,11 @@ Template.Accessoire.events({
 
 Template.AddClothes.onRendered(() => {
     var slider = document.getElementById('slider');
-    
+
     noUiSlider.create(slider, {
         start: [-10, 20],
         connect: true,
-        step:1,
+        step: 1,
         range: {
             'min': -35,
             'max': 50
@@ -1307,11 +1343,11 @@ Template.AddClothes.onRendered(() => {
 
 Template.Oberteil.onRendered(() => {
     var slider = document.getElementById('slider');
-    
+
     noUiSlider.create(slider, {
         start: [-10, 20],
         connect: true,
-        step:1,
+        step: 1,
         range: {
             'min': -35,
             'max': 50
@@ -1331,11 +1367,11 @@ Template.Oberteil.onRendered(() => {
 
 Template.Hosen.onRendered(() => {
     var slider = document.getElementById('slider');
-    
+
     noUiSlider.create(slider, {
         start: [-10, 20],
         connect: true,
-        step:1,
+        step: 1,
         range: {
             'min': -35,
             'max': 50
@@ -1355,11 +1391,11 @@ Template.Hosen.onRendered(() => {
 
 Template.Schuhe.onRendered(() => {
     var slider = document.getElementById('slider');
-    
+
     noUiSlider.create(slider, {
         start: [-10, 20],
         connect: true,
-        step:1,
+        step: 1,
         range: {
             'min': -35,
             'max': 50
@@ -1379,11 +1415,11 @@ Template.Schuhe.onRendered(() => {
 
 Template.Accessoire.onRendered(() => {
     var slider = document.getElementById('slider');
-    
+
     noUiSlider.create(slider, {
         start: [-10, 20],
         connect: true,
-        step:1,
+        step: 1,
         range: {
             'min': -35,
             'max': 50

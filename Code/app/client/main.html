@@ -10,12 +10,12 @@
   <!-- <script src="addons/bootstrap-slider.min.js"></script> -->
   <script src="addons/nouislider.min.js"></script>
 
+
 </head>
 
 <body>
 
   {{> Router}}
-
 </body>
 
 <template name="content">
@@ -27,12 +27,74 @@
   <div style="height:25px;">
   </div>
   <div class="weatheranimation {{color}}">
+
+    {{#if cloud}}
+    <div class="breezy">
+        <ul>
+
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+
+        <span class="cloudrain"></span>
+        <span class="cloudrain2"></span>
+        <span class="cloudrain3"></span>
+
+
+      </div>
+    {{/if}} {{#if sun}}
     <div class="animation">
       <div id="sun">
         <div class="sun-vorne"></div>
         <div class="sun-hinten"></div>
       </div>
     </div>
+    {{/if}} {{#if rain}}
+    <div class="cloud">
+      <span class="cloudr"></span>
+      <span class="cloudr3"></span>
+      <span class="cloudr2"></span>
+
+    </div>
+    {{/if}} {{#if thunder}}
+    <div class="breezy">
+      <ul>
+
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <span class="cloudr"></span>
+      <span class="cloudr2"></span>
+      <span class="cloudr3"></span>
+
+
+    </div>
+    {{/if}} {{#if snow}}
+    <div class="stormy">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <span class="cloudr"></span>
+      <span class="cloudr2"></span>
+      <span class="cloudr3"></span>
+
+    </div>
+    {{/if}}
 
     <div class="weathertitle text-center">
       <h1 class="title">{{wetter}}</h1>
@@ -54,7 +116,7 @@
     <button id="getOutfit" class="btn">Get Outfit</button>
   </div>
 
-  <div class="container text-center startseite-kleidung">
+  <!-- <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around slider">
       {{#each value in outfits}} {{#if value.image}}
       <div class="divdailycloth col-5">
@@ -62,6 +124,11 @@
       </div>
       {{/if}} {{/each}}
     </div>
+  </div> -->
+  <div class="center">
+    <div>boi</div>
+    <div>boi2</div>
+    <div>boi3</div>
   </div>
 
 
@@ -166,8 +233,7 @@
         <div class="login-div form-group">
 
           <!--<label class="login-text">Passwort</label>-->
-          <input id="passwordb" type="password" class="validate login-input form-control"
-            placeholder="Passwort bestätigen">
+          <input id="passwordb" type="password" class="validate login-input form-control" placeholder="Passwort bestätigen">
           <i class="fas fa-lock login-icon"></i>
         </div>
         <br>
@@ -227,13 +293,15 @@
     <button class="clothpic btn btn-primary">
       <i class="fas fa-image"></i>
     </button>
-    <button id="btnCamera" class="btn btn-primary"><i class="fas fa-camera"></i></button>
+    <button id="btnCamera" class="btn btn-primary">
+      <i class="fas fa-camera"></i>
+    </button>
   </div>
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
-        <div id="slider"></div>
+      <div id="slider"></div>
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -311,8 +379,7 @@
         <br>
         <br>
         <div class="text-center">
-          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-            placeholder="Anderen Anlass angeben">
+          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
         </div>
         <br>
         <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -450,8 +517,7 @@
     </div>
     <br>
     <div class="text-center">
-      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
-        placeholder="Anderen Anlass angeben">
+      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;" placeholder="Anderen Anlass angeben">
     </div>
     <div class="text-center">
       <div class="fehlermeldung2">
@@ -482,8 +548,7 @@
 
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -563,8 +628,7 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -606,8 +670,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -685,8 +748,7 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -727,8 +789,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -806,8 +867,7 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -848,8 +908,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -927,8 +986,7 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -958,12 +1016,11 @@
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
   <br>
-  <br>
-  {{#each value in favoutfits}}
+  <br> {{#each value in favoutfits}}
   <div class="favdiv text-center">
     <p style="color:white;">FavOutfits</p>
   </div>
-    {{#each wert in value}}
+  {{#each wert in value}}
   <div>
     <img class="einzelkleiderbilder" src="{{wert.image}}">
     <div>
@@ -971,9 +1028,8 @@
     </div>
     <hr>
   </div>
-    {{/each}}
-  {{/each}}
-  
+  {{/each}} {{/each}}
+
 </template>
 
 
