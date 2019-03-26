@@ -547,8 +547,7 @@ Template.AddAnlass.helpers({
         if (Profile.findOne()) {
             for (let i = 0; i < Profile.findOne().kleider.length; i++) {
                 for (let j = 0; j < Profile.findOne().kleider[i].occasions.length; j++) {
-                    if (Profile.findOne().kleider[i].occasions[j] == "Freizeit" || Profile.findOne().kleider[i].occasions[j] == "Festlich" || Profile.findOne().kleider[i].occasions[j] == "Business" || arr.indexOf(Profile.findOne().kleider[i].occasions[j]) > -1) {
-                        console.log("fdfg");
+                    if (Profile.findOne().kleider[i].occasions[j] == "Freizeit" || Profile.findOne().kleider[i].occasions[j] == "Festlich" || Profile.findOne().kleider[i].occasions[j] == "Business" || arr.indexOf(Profile.findOne().kleider[i].occasions[j]) > -1) {                 
                     }
                     else {
                         arr.push(Profile.findOne().kleider[i].occasions[j]);
@@ -1041,8 +1040,22 @@ Template.AddAnlass.events({
 
 
             Meteor.call('addOccasion', obj, (error, result) => {
-                if (!err) {
+                if (!error) {
                     alert("passt");
+
+                    var user = Profile.findOne();
+                    var found = false;
+                    user.kleider.forEach(element => {
+                        if(element.occasions.find(el => el == obj.type)){
+                            found = true;
+                        }
+                        else{
+                            found = false;
+                        }
+                    });
+                    if(found == false){
+                        console.log("Es gibt kein Outfit für dieses Anlass");
+                    }
                 }
                 else {
                     alert(error);
