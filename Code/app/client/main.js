@@ -277,7 +277,7 @@ Template.content.helpers({
     minmax() {
         if (Profile.findOne()) {
             // console.log(Profile.findOne().kleider.find(el=>el.id == "test88712"));
-            return Math.round(Profile.findOne().weather.temperatur.temp_min) + "°  |  " + Math.round(Profile.findOne().weather.temperatur.temp_max) + "°";
+            return Math.round(Profile.findOne().weather.min) + "°  |  " + Math.round(Profile.findOne().weather.max) + "°";
         }
 
     },
@@ -463,6 +463,11 @@ Template.Anlass.helpers({
     },
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
+    },
+    isSnow(){
+        if (Profile.findOne().weather.zustand[0].main == "Snow") {
+            return true;
+        }
     },
     color() {
         if (Profile.findOne()) {
@@ -1236,8 +1241,11 @@ Template.Oberteil.events({
             console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
         }
+        console.log(this);
+        
     },
     'click .clothedit'() {
+        
         var niederschlag = false;
         var anlaesse = [];
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {

@@ -4,10 +4,7 @@
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Assistant:200" rel="stylesheet">
-  <link rel="stylesheet" href="addons/bootstrap-slider.min.css">
   <link rel="stylesheet" href="addons/nouislider.min.css">
-
-  <script src="addons/bootstrap-slider.min.js"></script>
   <script src="addons/nouislider.min.js"></script>
 
 
@@ -109,10 +106,6 @@
       <h1 class="title">{{wetter}}</h1>
       <h1 class="minmax">{{minmax}}</h1>
       <h1 class="zustand">{{zustand}}</h1>
-      <div id="btnWeather" class="divweather text-center">
-        <i class="fas fa-redo-alt" style="color:white;"></i>
-      </div>
-
     </div>
     {{/if}}
 
@@ -472,12 +465,22 @@
 <template name="Anlass">
   <div class="text-center">
     <div class="weatherbar text-center {{color}}">
+      {{#if isSnow}}
       <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back"></i>
+        <i style="color:black;" class="fas fa-chevron-left icon-back"></i>
       </div>
       <div class="text-center">
-        <p class="textwetter">{{wetter}}</p>
+        <p style="color:black;" class="textwetter">{{wetter}}</p>
       </div>
+      {{else}}
+      <div class="arrow-back">
+          <i class="fas fa-chevron-left icon-back"></i>
+        </div>
+        <div class="text-center">
+          <p class="textwetter">{{wetter}}</p>
+      </div>
+      {{/if}}
+      
     </div>
   </div>
   <div class="container anlasse">
@@ -548,7 +551,7 @@
       <p class="einzelkleidername">{{value.name}}</p>
       <i id="{{value.id}}" class="fas fa-pen edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
     </div>
-    <hr>
+    <hr> 
   </div>
   {{/each}}
 
