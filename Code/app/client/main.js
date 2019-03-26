@@ -764,6 +764,9 @@ Template.content.events({
         Meteor.call('getOutfit', (error, result) => {
             if (error) {
                 console.log(error);
+            }
+            else {
+                console.log(result);
                 Meteor.call('checkFavorite', (error, result) => {
                     if (!error) {
                         console.log(result);
@@ -776,11 +779,7 @@ Template.content.events({
                             $('#favicon').addClass("far fa-star");
                         }
                     }
-
                 });
-            }
-            else {
-                console.log(result);
             }
         });
     },

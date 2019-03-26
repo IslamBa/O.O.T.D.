@@ -114,7 +114,7 @@ Meteor.methods({
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.occasions) { user.occasions = []; }
-    // var id = Date.now();
+
     obj.id = new Mongo.ObjectID()._str;
     Profile.update(user._id, { $push: { occasions: obj } });
   },
@@ -316,8 +316,10 @@ Meteor.methods({
     Profile.update({ _id: user._id }, { $pull: { favorites: { id: favId } } });
   },
   updateCloth(obj) {
-    Profile.update(user._id, { $pull: { kleider: { id: obj.id } } });
-    Profile.update(user._id, { $push: { kleider: obj } });
+    const user = Profile.findOne({ id: Meteor.userId() });
+    obj.image = user.kleider.find(el => el.id == obj.id).image;
+    
+    Profile.update({_id:user._id, "kleider.id":obj.id},{$set:{"kleider.$":obj}});
   },
   checkFavorite() {
     const user = Profile.findOne({ id: Meteor.userId() });

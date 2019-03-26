@@ -367,10 +367,12 @@ margin-top:10px !important;
 }
 
 .weatherbar{
-	top: 5px;
+	top: 15px;
+	right: 15px;
+	left: 15px;
 	text-align: center;
 	position: fixed;
-	width: 100%;
+	/* width: 100%; */
 	height : 50px;
 	border-radius: 20px;
 	z-index: 10;
@@ -507,11 +509,11 @@ margin-top:10px !important;
     padding-left: 25px !important;
 }
 
-.arrow-back{
+.arrow-back {
 	position: fixed;
-	top : 15px;
-	left : 20px;
-	font-size : 20px;
+	top: 23px;
+	left: 30px;
+	font-size: 20px;
 }
 
 .register-container{
@@ -528,7 +530,7 @@ margin-top:10px !important;
 }
 
 .kategorie-container{
-	padding-top : 60px;
+	padding-top : 75px;
 }
 
 .kategoriefont{
@@ -563,7 +565,7 @@ margin-top:10px !important;
 }
 
 .anlasse{
-	padding-top : 60px;
+	padding-top : 75px;
 	width: 90% !important;
 }
 
@@ -652,7 +654,7 @@ position: absolute;
 	height: 20px;
 	border-radius:10px;
 	background-color: rgb(116, 149, 165);
-	box-shadow: 1px 1px 3px rgb(163, 176, 182);
+	/* box-shadow: 1px 1px 3px rgb(163, 176, 182); */
     animation: move2 3.5s infinite linear;
 
 }
@@ -666,7 +668,7 @@ position: absolute;
 	height: 25px;
 	border-radius:20px;
 	background-color: rgb(125, 162, 180);
-	box-shadow: 1px 1px 3px rgb(163, 176, 182);
+	/* box-shadow: 1px 1px 3px rgb(163, 176, 182); */
     animation: move 2.5s infinite linear;
 
 }
