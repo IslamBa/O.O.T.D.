@@ -277,7 +277,7 @@ Template.content.helpers({
     minmax() {
         if (Profile.findOne()) {
             // console.log(Profile.findOne().kleider.find(el=>el.id == "test88712"));
-            return Math.round(Profile.findOne().weather.temperatur.temp_min) + "°  |  " + Math.round(Profile.findOne().weather.temperatur.temp_max) + "°";
+            return Math.round(Profile.findOne().weather.min) + "°  |  " + Math.round(Profile.findOne().weather.max) + "°";
         }
 
     },
