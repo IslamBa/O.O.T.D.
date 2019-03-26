@@ -114,7 +114,7 @@ Meteor.methods({
   addOccasion(obj) {
     const user = Profile.findOne({ id: Meteor.userId() });
     if (!user.occasions) { user.occasions = []; }
-    // var id = Date.now();
+
     obj.id = new Mongo.ObjectID()._str;
     Profile.update(user._id, { $push: { occasions: obj } });
   },
