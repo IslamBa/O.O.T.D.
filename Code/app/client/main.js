@@ -2,7 +2,6 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import './main.html';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
 import '../node_modules/@fortawesome/fontawesome-free/js/all.js';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
@@ -126,6 +125,16 @@ Router.route('/accessoire', function () {
     }
 });
 
+Router.route('/headgear', function () {
+    // this.render('Kopfbedeckung');
+    if (Meteor.userId()) {
+        this.render('Kopfbedeckung');
+    }
+    else {
+        this.redirect('/');
+    }
+});
+
 Router.route('/favoutfits', function () {
     // this.render('FavOutfits');
     if (Meteor.userId()) {
@@ -141,6 +150,7 @@ var allbtncount = 1;
 var slidermin;
 var slidermax;
 var updateID;
+var arr = [];
 
 screen.orientation.lock("natural");
 
@@ -264,97 +274,79 @@ Template.content.helpers({
     username() {
         return Meteor.user().username;
     },
-    zip() {
+    minmax() {
         if (Profile.findOne()) {
             // console.log(Profile.findOne().kleider.find(el=>el.id == "test88712"));
-            return Profile.findOne().location.zip;
+            return Math.round(Profile.findOne().weather.temperatur.temp_min) + "°  |  " + Math.round(Profile.findOne().weather.temperatur.temp_max) + "°";
         }
 
     },
     zustand() {
         if (Profile.findOne()) {
-            if (Profile.findOne().weather.zustand[0].description == "clear sky") {
+
+            if (Profile.findOne().weather.zustand[0].main == "Thunderstorm") {
+
+                return "GEWITTER";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Drizzle") {
+
+                return "NIESELN";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Rain") {
+
+                return "REGEN";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Snow") {
+
+                return "SCHNEE";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clear") {
+
                 return "KLARER HIMMEL";
             }
-            else if (Profile.findOne().weather.zustand[0].description == "scattered clouds") {
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clouds") {
+
                 return "BEWÖLKT";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "overcast clouds") {
-                return "BEWÖLKT";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "light shower snow") {
-                return "LEICHTER SCHNEEREGEN";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
-                return "BEWÖLKT";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
-                return "BEWÖLKT";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "fog") {
-                return "NEBELIG";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "mist") {
-                return "NEBELIG";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
-                return "BEWÖLKT";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
-                return "BEWÖLKT";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "light intensity shower rain") {
-                return "LEICHTER REGEN";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "moderate rain") {
-                return "LEICHTER REGEN";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "light rain") {
-                return "LEICHTER REGEN";
             }
 
         }
     },
     color() {
         if (Profile.findOne()) {
-            if (Profile.findOne().weather.zustand[0].description == "clear sky") {
+
+            if (Profile.findOne().weather.zustand[0].main == "Thunderstorm") {
+
+                return "thundercolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Drizzle") {
+
+                return "raincolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Rain") {
+
+                return "raincolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Snow") {
+
+                return "snowcolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clear") {
+
                 return "suncolor";
             }
-            else if (Profile.findOne().weather.zustand[0].description == "scattered clouds") {
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clouds") {
+
                 return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "overcast clouds") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "light shower snow") {
-                return "LEICHTER SCHNEEREGEN";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "fog") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "mist") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "broken clouds") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "few clouds") {
-                return "cloudycolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "light intensity shower rain") {
-                return "raincolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "moderate rain") {
-                return "raincolor";
-            }
-            else if (Profile.findOne().weather.zustand[0].description == "light rain") {
-                return "raincolor";
             }
 
         }
@@ -375,6 +367,41 @@ Template.content.helpers({
             else
                 return false;
         }
+    },
+    rain() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Rain" || Profile.findOne().weather.zustand[0].main == "Drizzle") {
+                return true;
+            }
+        }
+    },
+    cloud() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Clouds") {
+                return true;
+            }
+        }
+    },
+    thunder() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Thunderstorm") {
+                return true;
+            }
+        }
+    },
+    snow() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Snow") {
+                return true;
+            }
+        }
+    },
+    sun() {
+        if (Profile.findOne()) {
+            if (Profile.findOne().weather.zustand[0].main == "Clear") {
+                return true;
+            }
+        }
     }
 });
 
@@ -383,7 +410,7 @@ Template.content.helpers({
 Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
-            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "jacket");
+            var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "jacket" || el.type == "dress");
             return shirts;
         }
     }
@@ -393,7 +420,7 @@ Template.Hosen.helpers({
 
     hosen() {
         if (Profile.findOne()) {
-            var hosen = Profile.findOne().kleider.filter(el => el.type == "pants");
+            var hosen = Profile.findOne().kleider.filter(el => el.type == "pants" || el.type == "skirt");
             return hosen;
         }
     }
@@ -418,6 +445,15 @@ Template.Accessoire.helpers({
     }
 });
 
+Template.Kopfbedeckung.helpers({
+    headgear() {
+        if (Profile.findOne()) {
+            var headgear = Profile.findOne().kleider.filter(el => el.type == "headgear");
+            return headgear;
+        }
+    }
+});
+
 Template.Anlass.helpers({
     anlass() {
         if (Profile.findOne()) {
@@ -427,20 +463,102 @@ Template.Anlass.helpers({
     },
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
+    },
+    color() {
+        if (Profile.findOne()) {
+
+            if (Profile.findOne().weather.zustand[0].main == "Thunderstorm") {
+
+                return "thundercolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Drizzle") {
+
+                return "raincolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Rain") {
+
+                return "raincolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Snow") {
+
+                return "snowcolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clear") {
+
+                return "suncolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clouds") {
+
+                return "cloudycolor";
+            }
+
+        }
     }
 });
 
 Template.Kategorien.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
+    },
+    color() {
+        if (Profile.findOne()) {
+
+            if (Profile.findOne().weather.zustand[0].main == "Thunderstorm") {
+
+                return "thundercolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Drizzle") {
+
+                return "raincolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Rain") {
+
+                return "raincolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Snow") {
+
+                return "snowcolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clear") {
+
+                return "suncolor";
+            }
+
+            else if (Profile.findOne().weather.zustand[0].main == "Clouds") {
+
+                return "cloudycolor";
+            }
+
+        }
     }
 });
 
-Template.AddClothes.helpers({
+Template.AddAnlass.helpers({
     occasions() {
         if (Profile.findOne()) {
-            return Profile.findOne().occasions;
+            for (let i = 0; i < Profile.findOne().kleider.length; i++) {
+                for (let j = 0; j < Profile.findOne().kleider[i].occasions.length; j++) {
+                    if (Profile.findOne().kleider[i].occasions[j] == "Freizeit" || Profile.findOne().kleider[i].occasions[j] == "Festlich" || Profile.findOne().kleider[i].occasions[j] == "Business" || arr.indexOf(Profile.findOne().kleider[i].occasions[j]) > -1) {
+                        console.log("fdfg");
+                    }
+                    else {
+                        arr.push(Profile.findOne().kleider[i].occasions[j]);
+                    }
+
+                }
+
+            }
         }
+        return arr;
     }
 });
 
@@ -757,6 +875,7 @@ Template.AddClothes.events({
         var image = '';
         var type;
 
+
         image = localStorage.getItem("image");
 
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
@@ -982,6 +1101,13 @@ Template.Hosen.events({
     },
     'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
+        var kleid = Profile.findOne().kleider.filter(el => el.id == updateID);
+
+        document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
+        if (kleid[0].forWetWeather == true) {
+            console.log("hhhbh");
+            document.getElementById('niederschlag').checked = true;
+        }
     },
     'click .clothedit'() {
         var niederschlag = false;
@@ -1026,14 +1152,42 @@ Template.Hosen.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
+                type = "jacket"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
+                type = "pants"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
+                type = "shirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
+                type = "tshirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
+                type = "shoes"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
+                type = "dress"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
+                type = "skirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
+                type = "accessoires"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
+                type = "headgear"
+            }
             var obj = {
                 id: updateID,
-                tempmin: slidermin,
-                tempmax: slidermax,
-                niederschlag: niederschlag,
-                anlaesse: anlaesse,
-                kleiderart: kleiderart
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse
             }
+
+            console.log(obj);
 
             Meteor.call('updateCloth', obj, (error, result) => {
 
@@ -1062,6 +1216,13 @@ Template.Oberteil.events({
     },
     'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
+        var kleid = Profile.findOne().kleider.filter(el => el.id == updateID);
+
+        document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
+        if (kleid[0].forWetWeather == true) {
+            console.log("hhhbh");
+            document.getElementById('niederschlag').checked = true;
+        }
     },
     'click .clothedit'() {
         var niederschlag = false;
@@ -1106,14 +1267,42 @@ Template.Oberteil.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
+                type = "jacket"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
+                type = "pants"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
+                type = "shirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
+                type = "tshirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
+                type = "shoes"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
+                type = "dress"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
+                type = "skirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
+                type = "accessoires"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
+                type = "headgear"
+            }
             var obj = {
                 id: updateID,
-                tempmin: slidermin,
-                tempmax: slidermax,
-                niederschlag: niederschlag,
-                anlaesse: anlaesse,
-                kleiderart: kleiderart
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse
             }
+            console.log(obj);
+            $("#exampleModalCenter").modal('hide');
 
             Meteor.call('updateCloth', obj, (error, result) => {
 
@@ -1142,6 +1331,13 @@ Template.Schuhe.events({
     },
     'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
+        var kleid = Profile.findOne().kleider.filter(el => el.id == updateID);
+
+        document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
+        if (kleid[0].forWetWeather == true) {
+            console.log("hhhbh");
+            document.getElementById('niederschlag').checked = true;
+        }
     },
     'click .clothedit'() {
         var niederschlag = false;
@@ -1186,13 +1382,39 @@ Template.Schuhe.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
+                type = "jacket"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
+                type = "pants"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
+                type = "shirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
+                type = "tshirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
+                type = "shoes"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
+                type = "dress"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
+                type = "skirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
+                type = "accessoires"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
+                type = "headgear"
+            }
             var obj = {
                 id: updateID,
-                tempmin: slidermin,
-                tempmax: slidermax,
-                niederschlag: niederschlag,
-                anlaesse: anlaesse,
-                kleiderart: kleiderart
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse
             }
 
             Meteor.call('updateCloth', obj, (error, result) => {
@@ -1222,6 +1444,13 @@ Template.Accessoire.events({
     },
     'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
+        var kleid = Profile.findOne().kleider.filter(el => el.id == updateID);
+
+        document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
+        if (kleid[0].forWetWeather == true) {
+            console.log("hhhbh");
+            document.getElementById('niederschlag').checked = true;
+        }
     },
     'click .clothedit'() {
         var niederschlag = false;
@@ -1266,13 +1495,152 @@ Template.Accessoire.events({
             if ($("#otherclothanlass").is(":checked")) {
                 anlaesse.push($("#hiddeninputcloth").val());
             }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
+                type = "jacket"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
+                type = "pants"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
+                type = "shirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
+                type = "tshirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
+                type = "shoes"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
+                type = "dress"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
+                type = "skirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
+                type = "accessoires"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
+                type = "headgear"
+            }
             var obj = {
                 id: updateID,
-                tempmin: slidermin,
-                tempmax: slidermax,
-                niederschlag: niederschlag,
-                anlaesse: anlaesse,
-                kleiderart: kleiderart
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse
+            }
+
+            Meteor.call('updateCloth', obj, (error, result) => {
+
+            });
+
+        }
+
+    }
+})
+
+Template.Kopfbedeckung.events({
+    'click .arrow-back'() {
+        window.history.back();
+        console.log("ghjhgh");
+    },
+    'click #otherclothanlass'() {
+        console.log("gcggvgvzg");
+        if ($("#otherclothanlass").is(':checked')) {
+            $("#hiddeninputcloth").show();
+            console.log("fghfg");
+        }
+        else {
+            $("#hiddeninputcloth").hide();
+        }
+
+    },
+    'click .edit-icon': function (e) {
+        updateID = e.currentTarget.id;
+        var kleid = Profile.findOne().kleider.filter(el => el.id == updateID);
+
+        document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
+        if (kleid[0].forWetWeather == true) {
+            console.log("hhhbh");
+            document.getElementById('niederschlag').checked = true;
+        }
+    },
+    'click .clothedit'() {
+        var niederschlag = false;
+        var anlaesse = [];
+        if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
+            $("#fehlertext2").text("Bitte eine Kleiderart auswählen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if (!$("#festlich").is(":checked") && !$("#freizeit").is(":checked") && !$("#business").is(":checked") && !$("#otherclothanlass").is(":checked")) {
+            $("#fehlertext2").text("Bitte mindestens einen Anlass auswählen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else if ($("#hiddeninputcloth").val() == "" && $("#otherclothanlass").is(":checked")) {
+            $("#fehlertext2").text("Bitte einen neuen Anlass eintragen!")
+            $(".fehlermeldung2").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung2').fadeOut();
+                }, 1200);
+            });
+        }
+        else {
+            if ($("#niederschlag").is(":checked")) {
+                niederschlag = true;
+            }
+            if ($("#festlich").is(":checked")) {
+                anlaesse.push("Festlich");
+            }
+            if ($("#freizeit").is(":checked")) {
+                anlaesse.push("Freizeit");
+            }
+            if ($("#business").is(":checked")) {
+                anlaesse.push("Business");
+            }
+            if ($("#otherclothanlass").is(":checked")) {
+                anlaesse.push($("#hiddeninputcloth").val());
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Jacke") {
+                type = "jacket"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Hose") {
+                type = "pants"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Shirt") {
+                type = "shirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "T-Shirt") {
+                type = "tshirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Schuhe") {
+                type = "shoes"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleid") {
+                type = "dress"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Rock") {
+                type = "skirt"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Accessoire") {
+                type = "accessoires"
+            }
+            if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kopfbedeckung") {
+                type = "headgear"
+            }
+            var obj = {
+                id: updateID,
+                type: type,
+                weather_range: { min: slidermin, max: slidermax },
+                forWetWeather: niederschlag,
+                occasions: anlaesse
             }
 
             Meteor.call('updateCloth', obj, (error, result) => {
@@ -1299,11 +1667,11 @@ Template.AddClothes.onRendered(() => {
     });
 
     var wert = slider.noUiSlider.get();
-    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    document.getElementById("maxtempzahl").textContent = Math.round(wert[0]) + " °C | " + Math.round(wert[1]) + " °C";
     slidermin = wert[0];
     slidermax = wert[1];
     slider.noUiSlider.on('update', function (values, handle) {
-        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        document.getElementById("maxtempzahl").textContent = Math.round(slider.noUiSlider.get()[0]) + " °C | " + Math.round(slider.noUiSlider.get()[1]) + " °C";
         slidermin = slider.noUiSlider.get()[0];
         slidermax = slider.noUiSlider.get()[1];
     });
@@ -1335,11 +1703,11 @@ Template.Oberteil.onRendered(() => {
     });
 
     var wert = slider.noUiSlider.get();
-    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    document.getElementById("maxtempzahl").textContent = Math.round(wert[0]) + " °C | " + Math.round(wert[1]) + " °C";
     slidermin = wert[0];
     slidermax = wert[1];
     slider.noUiSlider.on('update', function (values, handle) {
-        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        document.getElementById("maxtempzahl").textContent = Math.round(slider.noUiSlider.get()[0]) + " °C | " + Math.round(slider.noUiSlider.get()[1]) + " °C";
         slidermin = slider.noUiSlider.get()[0];
         slidermax = slider.noUiSlider.get()[1];
     });
@@ -1359,11 +1727,11 @@ Template.Hosen.onRendered(() => {
     });
 
     var wert = slider.noUiSlider.get();
-    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    document.getElementById("maxtempzahl").textContent = Math.round(wert[0]) + " °C | " + Math.round(wert[1]) + " °C";
     slidermin = wert[0];
     slidermax = wert[1];
     slider.noUiSlider.on('update', function (values, handle) {
-        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        document.getElementById("maxtempzahl").textContent = Math.round(slider.noUiSlider.get()[0]) + " °C | " + Math.round(slider.noUiSlider.get()[1]) + " °C";
         slidermin = slider.noUiSlider.get()[0];
         slidermax = slider.noUiSlider.get()[1];
     });
@@ -1383,11 +1751,11 @@ Template.Schuhe.onRendered(() => {
     });
 
     var wert = slider.noUiSlider.get();
-    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    document.getElementById("maxtempzahl").textContent = Math.round(wert[0]) + " °C | " + Math.round(wert[1]) + " °C";
     slidermin = wert[0];
     slidermax = wert[1];
     slider.noUiSlider.on('update', function (values, handle) {
-        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        document.getElementById("maxtempzahl").textContent = Math.round(slider.noUiSlider.get()[0]) + " °C | " + Math.round(slider.noUiSlider.get()[1]) + " °C";
         slidermin = slider.noUiSlider.get()[0];
         slidermax = slider.noUiSlider.get()[1];
     });
@@ -1407,11 +1775,35 @@ Template.Accessoire.onRendered(() => {
     });
 
     var wert = slider.noUiSlider.get();
-    document.getElementById("maxtempzahl").textContent = wert[0] + " °C | " + wert[1] + " °C";
+    document.getElementById("maxtempzahl").textContent = Math.round(wert[0]) + " °C | " + Math.round(wert[1]) + " °C";
     slidermin = wert[0];
     slidermax = wert[1];
     slider.noUiSlider.on('update', function (values, handle) {
-        document.getElementById("maxtempzahl").textContent = slider.noUiSlider.get()[0] + " °C | " + slider.noUiSlider.get()[1] + " °C";
+        document.getElementById("maxtempzahl").textContent = Math.round(slider.noUiSlider.get()[0]) + " °C | " + Math.round(slider.noUiSlider.get()[1]) + " °C";
+        slidermin = slider.noUiSlider.get()[0];
+        slidermax = slider.noUiSlider.get()[1];
+    });
+});
+
+Template.Kopfbedeckung.onRendered(() => {
+    var slider = document.getElementById('slider');
+
+    noUiSlider.create(slider, {
+        start: [-10, 20],
+        connect: true,
+        step: 1,
+        range: {
+            'min': -35,
+            'max': 50
+        }
+    });
+
+    var wert = slider.noUiSlider.get();
+    document.getElementById("maxtempzahl").textContent = Math.round(wert[0]) + " °C | " + Math.round(wert[1]) + " °C";
+    slidermin = wert[0];
+    slidermax = wert[1];
+    slider.noUiSlider.on('update', function (values, handle) {
+        document.getElementById("maxtempzahl").textContent = Math.round(slider.noUiSlider.get()[0]) + " °C | " + Math.round(slider.noUiSlider.get()[1]) + " °C";
         slidermin = slider.noUiSlider.get()[0];
         slidermax = slider.noUiSlider.get()[1];
     });

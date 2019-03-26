@@ -4,18 +4,18 @@
   <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Thasadith" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Assistant:200" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="addons/bootstrap-slider.min.css"> -->
-  <!-- <link rel="stylesheet" href="addons/nouislider.min.css"> -->
+  <link rel="stylesheet" href="addons/bootstrap-slider.min.css">
+  <link rel="stylesheet" href="addons/nouislider.min.css">
 
-  <!-- <script src="addons/bootstrap-slider.min.js"></script> -->
-  <!-- <script src="addons/nouislider.min.js"></script> -->
+  <script src="addons/bootstrap-slider.min.js"></script>
+  <script src="addons/nouislider.min.js"></script>
+
 
 </head>
 
 <body>
 
   {{> Router}}
-
 </body>
 
 <template name="content">
@@ -27,34 +27,109 @@
   <div style="height:25px;">
   </div>
   <div class="weatheranimation {{color}}">
+
+    {{#if rain}}
+    <div class="breezyrain">
+      <ul>
+
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <span class="cloudrain"></span>
+      <span class="cloudrain2"></span>
+      <span class="cloudrain3"></span>
+
+
+    </div>
+    {{/if}} {{#if sun}}
     <div class="animation">
-      <div id="sun">
-        <div class="sun-vorne"></div>
-        <div class="sun-hinten"></div>
-      </div>
+      <div class="sun-vorne"></div>
+      <div class="sun-hinten"></div>
+    </div>
+    {{/if}} {{#if cloud}}
+    <div class="cloud">
+      <span class="cloudr"></span>
+      <span class="cloudr3"></span>
+      <span class="cloudr2"></span>
+
+    </div>
+    {{/if}} {{#if thunder}}
+    <div class="breezy">
+      <ul>
+
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <span class="cloudthunder"></span>
+      <span class="cloudthunder2"></span>
+      <span class="cloudthunder3"></span>
+    </div>
+    {{/if}} {{#if snow}}
+    <div class="stormy">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <span class="cloudsnow"></span>
+      <span class="cloudsnow2"></span>
+      <span class="cloudsnow3"></span>
+
     </div>
 
     <div class="weathertitle text-center">
-      <h1 class="title">{{wetter}}</h1>
-      <h1 class="zustand">{{zustand}}</h1>
-      <h1 class="zip">{{zip}}</h1>
+      <h1 style="color:rgb(38, 38, 38);" class="title">{{wetter}}</h1>
+      <h1 style="color:rgb(38, 38, 38);" class="minmax">{{minmax}}</h1>
+      <h1 style="color:rgb(38, 38, 38);" class="zustand">{{zustand}}</h1>
       <div id="btnWeather" class="divweather text-center">
-        <i class="fas fa-redo-alt" style="color:white;"></i>
+        <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
       </div>
       {{#if hasOutfit}}
       <div>
-        <i id="favicon" class="far fa-star" style="color:white;"></i>
+        <i id="favicon" class="far fa-star" style="color:rgb(38, 38, 38);"></i>
       </div>
       {{/if}}
     </div>
+    {{else}}
+    <div class="weathertitle text-center">
+      <h1 class="title">{{wetter}}</h1>
+      <h1 class="minmax">{{minmax}}</h1>
+      <h1 class="zustand">{{zustand}}</h1>
+      <div id="btnWeather" class="divweather text-center">
+        <i class="fas fa-redo-alt" style="color:white;"></i>
+      </div>
+
+    </div>
+    {{/if}}
 
   </div>
 
-  <div class="text-center">
-    <button id="getOutfit" class="btn btn-outline-primary">
+  <div class="newOutfit">
+    <button id="getOutfit" class="btn btn-primary startButton">
       <i class="fas fa-tshirt"></i>
     </button>
   </div>
+  {{#if hasOutfit}}
+  <div class="newFav">
+    <button class="btn btn-primary startButton">
+      <i id="favicon" class="far fa-star" style="color:white;"></i>
+    </button>
+  </div>
+  {{/if}}
 
   <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around slider">
@@ -64,7 +139,6 @@
       </div>
       {{/if}} {{/each}}
     </div>
-
   </div>
 
 
@@ -144,7 +218,7 @@
 </template>
 
 <template name="register">
-  <div class="fulllogin">
+  <div class="img-login">
     <div class="weatherbar">
       <div class="arrow-back">
         <i class="fas fa-chevron-left"></i>
@@ -169,8 +243,7 @@
         <div class="login-div form-group">
 
           <!--<label class="login-text">Passwort</label>-->
-          <input id="passwordb" type="password" class="validate login-input form-control"
-            placeholder="Passwort bestätigen">
+          <input id="passwordb" type="password" class="validate login-input form-control" placeholder="Passwort bestätigen">
           <i class="fas fa-lock login-icon"></i>
         </div>
         <br>
@@ -230,13 +303,16 @@
     <button class="clothpic btn btn-primary">
       <i class="fas fa-image"></i>
     </button>
-    <button id="btnCamera" class="btn btn-primary"><i class="fas fa-camera"></i></button>
+    <button id="btnCamera" class="btn btn-primary">
+      <i class="fas fa-camera"></i>
+    </button>
   </div>
   <br>
   <form>
     <div class="form-group inputaddcloth text-center">
       <p id="maxtempzahl"></p>
       <div id="slider"></div>
+      <br>
       <small id="emailHelp" class="form-text text-muted">
         Minimale und Maximaletemperatur für das Kleidungsstück.
       </small>
@@ -294,17 +370,6 @@
         <label class="switchfont col col-sm">Business</label>
 
       </div>
-
-      {{#each value in occasions}}
-      <div class="text-center inputaddcloth row">
-        <label class="el-switch col col-sm">
-          <input id="{{value.id}}" type="checkbox" name="switch">
-          <span class="el-switch-style"></span>
-        </label>
-        <label class="switchfont col col-sm">{{value.type}}</label>
-
-      </div>
-      {{/each}}
       <div class="text-center inputaddcloth row">
         <label class="el-switch col col-sm">
           <input id="otherclothanlass" type="checkbox" name="switch">
@@ -314,8 +379,7 @@
         <br>
         <br>
         <div class="text-center">
-          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-            placeholder="Anderen Anlass angeben">
+          <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
         </div>
         <br>
         <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -340,7 +404,7 @@
 
 <template name="Kategorien">
 
-  <div class="weatherbar cloudycolor">
+  <div class="text-center weatherbar {{color}}">
     <div class="arrow-back">
       <i class="fas fa-chevron-left icon-back"></i>
     </div>
@@ -389,6 +453,15 @@
     </div>
     <div class="row">
       <div class="col col-sm-12">
+        <a href="/headgear">
+          <button class="divkategorie">
+            <p class="kategoriefont">Kopfbedeckung</p>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-sm-12">
         <a href="/favoutfits">
           <button class="divkategorie">
             <p class="kategoriefont">OUTFITS</p>
@@ -407,22 +480,25 @@
 </template>
 
 <template name="Anlass">
-  <div class="weatherbar cloudycolor">
-    <div class="arrow-back">
-      <i class="fas fa-chevron-left icon-back"></i>
-    </div>
-    <div class="text-center">
-      <p class="textwetter">{{wetter}}</p>
+  <div class="text-center">
+    <div class="weatherbar text-center {{color}}">
+      <div class="arrow-back">
+        <i class="fas fa-chevron-left icon-back"></i>
+      </div>
+      <div class="text-center">
+        <p class="textwetter">{{wetter}}</p>
+      </div>
     </div>
   </div>
-  <div class="anlasse">
+  <div class="container anlasse">
     {{#each value in anlass}}
-    <div>
-      <p class="anlassdatum text-center">{{value.date}}</p>
-      <div>
-        <p class="anlasstext">{{value.type}}</p>
+    <div class="row">
+      <div class="anlassdiv col col-sm-12">
+        <p class="anlassdatum text-center">{{value.date}}</p>
+        <div>
+          <p class="anlasstext">{{value.type}}</p>
+        </div>
       </div>
-      <hr>
     </div>
     {{/each}}
   </div>
@@ -449,13 +525,15 @@
         <option>Festlich</option>
         <option>Freizeit</option>
         <option>Business</option>
+        {{#each value in occasions}}
+        <option>{{value}}</option>
+        {{/each}}
         <option>Other</option>
       </select>
     </div>
     <br>
     <div class="text-center">
-      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
-        placeholder="Anderen Anlass angeben">
+      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;" placeholder="Anderen Anlass angeben">
     </div>
     <div class="text-center">
       <div class="fehlermeldung2">
@@ -486,8 +564,7 @@
 
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -517,6 +594,7 @@
                 <option>Kleid</option>
                 <option>Rock</option>
                 <option>Accessoire</option>
+                <option>Kopfbedeckung</option>
               </select>
             </div>
             <hr>
@@ -567,8 +645,7 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
@@ -610,8 +687,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -625,7 +701,8 @@
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
               <div id="slider"></div>
-              <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+              <small id="emailHelp" class="form-text text-muted">
+                Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
             <hr>
@@ -640,12 +717,13 @@
                 <option>Kleid</option>
                 <option>Rock</option>
                 <option>Accessoire</option>
+                <option>Kopfbedeckung</option>
               </select>
             </div>
             <hr>
             <div class="text-center inputaddcloth row">
               <label class="el-switch col col-sm">
-                <input type="checkbox" name="switch">
+                <input id="niederschlag" type="checkbox" name="switch">
                 <span class="el-switch-style"></span>
               </label>
               <label class="switchfont col col-sm">Niederschlag</label>
@@ -654,8 +732,9 @@
             <hr>
             <div>
               <div class="text-center inputaddcloth row">
+
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="festlich" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Festlich</label>
@@ -664,7 +743,7 @@
 
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="freizeit" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Freizeit</label>
@@ -673,10 +752,10 @@
 
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="business" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
-                <label class="switchfont col col-sm">Busniess</label>
+                <label class="switchfont col col-sm">Business</label>
 
               </div>
 
@@ -689,13 +768,13 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
+
             <div class="text-center">
               <div class="fehlermeldung2">
                 <p id="fehlertext2" class="fehlertext"></p>
@@ -731,8 +810,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -746,7 +824,8 @@
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
               <div id="slider"></div>
-              <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+              <small id="emailHelp" class="form-text text-muted">
+                Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
             <hr>
@@ -761,12 +840,13 @@
                 <option>Kleid</option>
                 <option>Rock</option>
                 <option>Accessoire</option>
+                <option>Kopfbedeckung</option>
               </select>
             </div>
             <hr>
             <div class="text-center inputaddcloth row">
               <label class="el-switch col col-sm">
-                <input type="checkbox" name="switch">
+                <input id="niederschlag" type="checkbox" name="switch">
                 <span class="el-switch-style"></span>
               </label>
               <label class="switchfont col col-sm">Niederschlag</label>
@@ -775,8 +855,9 @@
             <hr>
             <div>
               <div class="text-center inputaddcloth row">
+
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="festlich" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Festlich</label>
@@ -785,7 +866,7 @@
 
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="freizeit" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Freizeit</label>
@@ -794,10 +875,10 @@
 
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="business" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
-                <label class="switchfont col col-sm">Busniess</label>
+                <label class="switchfont col col-sm">Business</label>
 
               </div>
 
@@ -810,13 +891,13 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
+
             <div class="text-center">
               <div class="fehlermeldung2">
                 <p id="fehlertext2" class="fehlertext"></p>
@@ -852,8 +933,7 @@
   {{/each}}
 
   <!--Modal-->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -867,7 +947,8 @@
             <div class="form-group inputaddcloth text-center">
               <p id="maxtempzahl"></p>
               <div id="slider"></div>
-              <small id="emailHelp" class="form-text text-muted">Minimale und Maximaletemperatur für das Kleidungsstück.
+              <small id="emailHelp" class="form-text text-muted">
+                Minimale und Maximaletemperatur für das Kleidungsstück.
               </small>
             </div>
             <hr>
@@ -882,12 +963,13 @@
                 <option>Kleid</option>
                 <option>Rock</option>
                 <option>Accessoire</option>
+                <option>Kopfbedeckung</option>
               </select>
             </div>
             <hr>
             <div class="text-center inputaddcloth row">
               <label class="el-switch col col-sm">
-                <input type="checkbox" name="switch">
+                <input id="niederschlag" type="checkbox" name="switch">
                 <span class="el-switch-style"></span>
               </label>
               <label class="switchfont col col-sm">Niederschlag</label>
@@ -896,8 +978,9 @@
             <hr>
             <div>
               <div class="text-center inputaddcloth row">
+
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="festlich" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Festlich</label>
@@ -906,7 +989,7 @@
 
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="freizeit" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
                 <label class="switchfont col col-sm">Freizeit</label>
@@ -915,10 +998,10 @@
 
               <div class="text-center inputaddcloth row">
                 <label class="el-switch col col-sm">
-                  <input type="checkbox" name="switch">
+                  <input id="business" type="checkbox" name="switch">
                   <span class="el-switch-style"></span>
                 </label>
-                <label class="switchfont col col-sm">Busniess</label>
+                <label class="switchfont col col-sm">Business</label>
 
               </div>
 
@@ -931,13 +1014,13 @@
                 <br>
                 <br>
                 <div class="text-center">
-                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;"
-                    placeholder="Anderen Anlass angeben">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
                 </div>
                 <br>
                 <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
               </div>
             </div>
+
             <div class="text-center">
               <div class="fehlermeldung2">
                 <p id="fehlertext2" class="fehlertext"></p>
@@ -945,7 +1028,130 @@
             </div>
 
             <br>
+            <div class="text-center addclothbtn">
+              <button type="button" class="btn btn-success clothedit">Speichern</button>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+<template name="Kopfbedeckung">
+  <div class="arrow-back">
+    <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
+  </div>
+  {{#each value in headgear}}
+  <div>
+    <img class="einzelkleiderbilder" src="{{value.image}}">
+    <div>
+      <p class="einzelkleidername">{{value.name}}</p>
+      <i id="{{value.id}}" class="fas fa-pen edit-icon" data-toggle="modal" data-target="#exampleModalCenter"></i>
+    </div>
+    <hr>
+  </div>
+  {{/each}}
+
+  <!--Modal-->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Kleidungstück ändern</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group inputaddcloth text-center">
+              <p id="maxtempzahl"></p>
+              <div id="slider"></div>
+              <small id="emailHelp" class="form-text text-muted">
+                Minimale und Maximaletemperatur für das Kleidungsstück.
+              </small>
+            </div>
+            <hr>
+            <div clas="text-center">
+              <select class="form-control dropdown_select text-center" id="select_kleiderart">
+                <option value="none" disabled selected>Kleiderart wählen</option>
+                <option>Jacke</option>
+                <option>Hose</option>
+                <option>Shirt</option>
+                <option>T-Shirt</option>
+                <option>Schuhe</option>
+                <option>Kleid</option>
+                <option>Rock</option>
+                <option>Accessoire</option>
+                <option>Kopfbedeckung</option>
+              </select>
+            </div>
+            <hr>
+            <div class="text-center inputaddcloth row">
+              <label class="el-switch col col-sm">
+                <input id="niederschlag" type="checkbox" name="switch">
+                <span class="el-switch-style"></span>
+              </label>
+              <label class="switchfont col col-sm">Niederschlag</label>
+              <small id="emailHelp" class="form-text text-muted col-sm">Regen und Schnee geschützt?</small>
+            </div>
+            <hr>
+            <div>
+              <div class="text-center inputaddcloth row">
+
+                <label class="el-switch col col-sm">
+                  <input id="festlich" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Festlich</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="freizeit" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Freizeit</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="business" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Business</label>
+
+              </div>
+
+              <div class="text-center inputaddcloth row">
+                <label class="el-switch col col-sm">
+                  <input id="otherclothanlass" type="checkbox" name="switch">
+                  <span class="el-switch-style"></span>
+                </label>
+                <label class="switchfont col col-sm">Others</label>
+                <br>
+                <br>
+                <div class="text-center">
+                  <input id="hiddeninputcloth" class="form-control inputnewanlass" style="display:none;" placeholder="Anderen Anlass angeben">
+                </div>
+                <br>
+                <small id="emailHelp" class="form-text text-muted col-sm">Passende Anlässe zum Kleidungstück?</small>
+              </div>
+            </div>
+
             <div class="text-center">
+              <div class="fehlermeldung2">
+                <p id="fehlertext2" class="fehlertext"></p>
+              </div>
+            </div>
+
+            <br>
+            <div class="text-center addclothbtn">
               <button type="button" class="btn btn-success clothedit">Speichern</button>
             </div>
             <br>
@@ -962,8 +1168,7 @@
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
   <br>
-  <br>
-  {{#each value in favoutfits}}
+  <br> {{#each value in favoutfits}}
   <div class="favdiv text-center">
     <p style="color:white;">FavOutfits</p>
   </div>
@@ -975,8 +1180,7 @@
     </div>
     <hr>
   </div>
-  {{/each}}
-  {{/each}}
+  {{/each}} {{/each}}
 
 </template>
 
