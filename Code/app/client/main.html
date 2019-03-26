@@ -482,12 +482,22 @@
 <template name="Anlass">
   <div class="text-center">
     <div class="weatherbar text-center {{color}}">
+      {{#if isSnow}}
       <div class="arrow-back">
-        <i class="fas fa-chevron-left icon-back"></i>
+        <i style="color:black;" class="fas fa-chevron-left icon-back"></i>
       </div>
       <div class="text-center">
-        <p class="textwetter">{{wetter}}</p>
+        <p style="color:black;" class="textwetter">{{wetter}}</p>
       </div>
+      {{else}}
+      <div class="arrow-back">
+          <i class="fas fa-chevron-left icon-back"></i>
+        </div>
+        <div class="text-center">
+          <p class="textwetter">{{wetter}}</p>
+      </div>
+      {{/if}}
+      
     </div>
   </div>
   <div class="container anlasse">

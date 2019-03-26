@@ -414,7 +414,7 @@ margin-top:10px !important;
 }
 
 .fehlermeldung{
-	background-color: #2f4f4f;
+	background-color: #282828;
 	height : 50px;
 	width : 300px;
 	margin-left: auto !important;
@@ -528,7 +528,7 @@ margin-top:10px !important;
 }
 
 .kategorie-container{
-	padding-top : 50px;
+	padding-top : 60px;
 }
 
 .kategoriefont{
@@ -573,6 +573,7 @@ margin-top:10px !important;
 
 .anlasstext{
 	padding-left: 10px;
+	font-weight: bold;
 }
 
 .spinner {

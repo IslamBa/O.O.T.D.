@@ -464,6 +464,11 @@ Template.Anlass.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     },
+    isSnow(){
+        if (Profile.findOne().weather.zustand[0].main == "Snow") {
+            return true;
+        }
+    },
     color() {
         if (Profile.findOne()) {
 
@@ -1224,8 +1229,11 @@ Template.Oberteil.events({
             console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
         }
+        console.log(this);
+        
     },
     'click .clothedit'() {
+        
         var niederschlag = false;
         var anlaesse = [];
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
