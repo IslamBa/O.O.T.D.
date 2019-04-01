@@ -1026,22 +1026,9 @@ Template.AddAnlass.events({
                 }, 1200);
             });
         }
-        else if ($("#select_anlass").val() == "Other" && $('.inputnewanlass').val() == "") {
-
-            $("#fehlertext3").text("Bitte einen Anlass eintragen!")
-            $(".fehlermeldung2").slideDown(200, function () {
-                setTimeout(function () {
-                    $('.fehlermeldung2').fadeOut();
-                }, 1200);
-            });
-        }
         else {
-            if ($("#select_anlass").val() == "Other") {
-                obj.type = $('.inputnewanlass').val();
-            }
-            else {
-                obj.type = $("#select_anlass").val();
-            }
+            
+            obj.type = $("#select_anlass").val();
             obj.date = $('.inputaddanlass').val();
 
 
