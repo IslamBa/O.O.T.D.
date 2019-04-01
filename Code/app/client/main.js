@@ -402,6 +402,13 @@ Template.content.helpers({
                 return true;
             }
         }
+    },
+    isFav() {
+        Meteor.call('checkFavorite', (error, result) => {
+            if (!error) {
+                return result;
+            }
+        });
     }
 });
 
@@ -464,7 +471,7 @@ Template.Anlass.helpers({
     wetter() {
         if (Profile.findOne()) { return Math.round(Profile.findOne().weather.temperatur.temp) + "°"; }
     },
-    isSnow(){
+    isSnow() {
         if (Profile.findOne().weather.zustand[0].main == "Snow") {
             return true;
         }
@@ -552,7 +559,7 @@ Template.AddAnlass.helpers({
         if (Profile.findOne()) {
             for (let i = 0; i < Profile.findOne().kleider.length; i++) {
                 for (let j = 0; j < Profile.findOne().kleider[i].occasions.length; j++) {
-                    if (Profile.findOne().kleider[i].occasions[j] == "Freizeit" || Profile.findOne().kleider[i].occasions[j] == "Festlich" || Profile.findOne().kleider[i].occasions[j] == "Business" || arr.indexOf(Profile.findOne().kleider[i].occasions[j]) > -1) {                 
+                    if (Profile.findOne().kleider[i].occasions[j] == "Freizeit" || Profile.findOne().kleider[i].occasions[j] == "Festlich" || Profile.findOne().kleider[i].occasions[j] == "Business" || arr.indexOf(Profile.findOne().kleider[i].occasions[j]) > -1) {
                     }
                     else {
                         arr.push(Profile.findOne().kleider[i].occasions[j]);
@@ -661,47 +668,28 @@ Template.content.onRendered(() => {
         notification();
     }
 
+
     Meteor.call('checkFavorite', (error, result) => {
         if (!error) {
-            console.log(result);
             if (result == false) {
-                $('#favicon').removeClass();
-                $('#favicon').addClass("fas fa-star");
+                console.log("Ist Favorit Outfit");
+                setTimeout(function () {
+                    $('#favicon').removeClass();
+                    $('#favicon').addClass("fas fa-star");
+                }, 100);
+
             }
             else {
-                $('#favicon').removeClass();
-                $('#favicon').addClass("far fa-star");
+                console.log("Ist kein Favorit Outfit");
+                setTimeout(function () {
+                    $('#favicon').removeClass();
+                    $('#favicon').addClass("far fa-star");
+                }, 100);
+
             }
         }
-
     });
-    // setTimeout(function () {
-    //     $('#testtest').slick({
-    //         dots: true,
-    //         infinite: false,
-    //         speed: 300,
-    //         slidesToShow: 3,
-    //         swipeToSlide: true,
-    //         touchThreshold: 8,
-    //         centerMode: false,
-    //         responsive: [
-    //             {
-    //                 breakpoint: 980,
-    //                 settings: {
-    //                     arrows: false,
-    //                     slidesToShow: 2
-    //                 }
-    //             },
-    //             {
-    //                 breakpoint: 600,
-    //                 settings: {
-    //                     arrows: false,
-    //                     slidesToShow: 1,
-    //                 }
-    //             }
-    //         ]
-    //     });
-    // }, 100);
+
 
 });
 
@@ -1051,14 +1039,14 @@ Template.AddAnlass.events({
                     var user = Profile.findOne();
                     var found = false;
                     user.kleider.forEach(element => {
-                        if(element.occasions.find(el => el == obj.type)){
+                        if (element.occasions.find(el => el == obj.type)) {
                             found = true;
                         }
-                        else{
+                        else {
                             found = false;
                         }
                     });
-                    if(found == false){
+                    if (found == false) {
                         console.log("Es gibt kein Outfit für dieses Anlass");
                     }
                 }
@@ -1242,10 +1230,10 @@ Template.Oberteil.events({
             document.getElementById('niederschlag').checked = true;
         }
         console.log(this);
-        
+
     },
     'click .clothedit'() {
-        
+
         var niederschlag = false;
         var anlaesse = [];
         if ($("#select_kleiderart").children("option").filter(":selected").text() == "Kleiderart wählen") {
