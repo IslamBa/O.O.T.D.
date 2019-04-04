@@ -1012,22 +1012,9 @@ Template.AddAnlass.events({
                 }, 1200);
             });
         }
-        else if ($("#select_anlass").val() == "Other" && $('.inputnewanlass').val() == "") {
-
-            $("#fehlertext3").text("Bitte einen Anlass eintragen!")
-            $(".fehlermeldung2").slideDown(200, function () {
-                setTimeout(function () {
-                    $('.fehlermeldung2').fadeOut();
-                }, 1200);
-            });
-        }
         else {
-            if ($("#select_anlass").val() == "Other") {
-                obj.type = $('.inputnewanlass').val();
-            }
-            else {
-                obj.type = $("#select_anlass").val();
-            }
+            
+            obj.type = $("#select_anlass").val();
             obj.date = $('.inputaddanlass').val();
 
 
@@ -1047,6 +1034,12 @@ Template.AddAnlass.events({
                     });
                     if (found == false) {
                         console.log("Es gibt kein Outfit für dieses Anlass");
+                        $("#fehlertext3").text("Für diesen Anlass sind nicht genug Kleidungstsücke vorhanden!")
+                        $(".fehlermeldung2").slideDown(200, function () {
+                            setTimeout(function () {
+                                $('.fehlermeldung2').fadeOut();
+                            }, 1200);
+                        });
                     }
                 }
                 else {
@@ -1104,6 +1097,46 @@ Template.Hosen.events({
         document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
         if (kleid[0].forWetWeather == true) {
             document.getElementById('niederschlag').checked = true;
+        }
+
+        if(kleid[0].type == "pants"){
+            $("#select_kleiderart").val("Hose");
+        }
+        if(kleid[0].type == "jacket"){
+            $("#select_kleiderart").val("Jacke");
+        }
+        if(kleid[0].type == "shirt"){
+            $("#select_kleiderart").val("Shirt");
+        }
+        if(kleid[0].type == "tshirt"){
+            $("#select_kleiderart").val("T-Shirt");
+        }
+        if(kleid[0].type == "shoes"){
+            $("#select_kleiderart").val("Schuhe");
+        }
+        if(kleid[0].type == "dress"){
+            $("#select_kleiderart").val("Kleid");
+        }
+        if(kleid[0].type == "skirt"){
+            $("#select_kleiderart").val("Rock");
+        }
+        if(kleid[0].type == "accessoires"){
+            $("#select_kleiderart").val("Accessoire");
+        }
+        if(kleid[0].type == "headgear"){
+            $("#select_kleiderart").val("Kopfbedeckung");
+        }
+
+        if(kleid[0].occasions.indexOf("Freizeit") > -1){
+            document.getElementById('freizeit').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Business") > -1){
+            document.getElementById('business').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Festlich") > -1){
+            document.getElementById('festlich').checked = true;
         }
     },
     'click .clothedit'() {
@@ -1220,6 +1253,46 @@ Template.Oberteil.events({
             document.getElementById('niederschlag').checked = true;
         }
         
+        if(kleid[0].type == "pants"){
+            $("#select_kleiderart").val("Hose");
+        }
+        if(kleid[0].type == "jacket"){
+            $("#select_kleiderart").val("Jacke");
+        }
+        if(kleid[0].type == "shirt"){
+            $("#select_kleiderart").val("Shirt");
+        }
+        if(kleid[0].type == "tshirt"){
+            $("#select_kleiderart").val("T-Shirt");
+        }
+        if(kleid[0].type == "shoes"){
+            $("#select_kleiderart").val("Schuhe");
+        }
+        if(kleid[0].type == "dress"){
+            $("#select_kleiderart").val("Kleid");
+        }
+        if(kleid[0].type == "skirt"){
+            $("#select_kleiderart").val("Rock");
+        }
+        if(kleid[0].type == "accessoires"){
+            $("#select_kleiderart").val("Accessoire");
+        }
+        if(kleid[0].type == "headgear"){
+            $("#select_kleiderart").val("Kopfbedeckung");
+        }
+
+        
+        if(kleid[0].occasions.indexOf("Freizeit") > -1){
+            document.getElementById('freizeit').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Business") > -1){
+            document.getElementById('business').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Festlich") > -1){
+            document.getElementById('festlich').checked = true;
+        }
 
     },
     'click .clothedit'() {
@@ -1337,6 +1410,47 @@ Template.Schuhe.events({
             console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
         }
+
+        if(kleid[0].type == "pants"){
+            $("#select_kleiderart").val("Hose");
+        }
+        if(kleid[0].type == "jacket"){
+            $("#select_kleiderart").val("Jacke");
+        }
+        if(kleid[0].type == "shirt"){
+            $("#select_kleiderart").val("Shirt");
+        }
+        if(kleid[0].type == "tshirt"){
+            $("#select_kleiderart").val("T-Shirt");
+        }
+        if(kleid[0].type == "shoes"){
+            $("#select_kleiderart").val("Schuhe");
+        }
+        if(kleid[0].type == "dress"){
+            $("#select_kleiderart").val("Kleid");
+        }
+        if(kleid[0].type == "skirt"){
+            $("#select_kleiderart").val("Rock");
+        }
+        if(kleid[0].type == "accessoires"){
+            $("#select_kleiderart").val("Accessoire");
+        }
+        if(kleid[0].type == "headgear"){
+            $("#select_kleiderart").val("Kopfbedeckung");
+        }
+
+        
+        if(kleid[0].occasions.indexOf("Freizeit") > -1){
+            document.getElementById('freizeit').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Business") > -1){
+            document.getElementById('business').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Festlich") > -1){
+            document.getElementById('festlich').checked = true;
+        }
     },
     'click .clothedit'() {
         var niederschlag = false;
@@ -1450,6 +1564,47 @@ Template.Accessoire.events({
             console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
         }
+
+        if(kleid[0].type == "pants"){
+            $("#select_kleiderart").val("Hose");
+        }
+        if(kleid[0].type == "jacket"){
+            $("#select_kleiderart").val("Jacke");
+        }
+        if(kleid[0].type == "shirt"){
+            $("#select_kleiderart").val("Shirt");
+        }
+        if(kleid[0].type == "tshirt"){
+            $("#select_kleiderart").val("T-Shirt");
+        }
+        if(kleid[0].type == "shoes"){
+            $("#select_kleiderart").val("Schuhe");
+        }
+        if(kleid[0].type == "dress"){
+            $("#select_kleiderart").val("Kleid");
+        }
+        if(kleid[0].type == "skirt"){
+            $("#select_kleiderart").val("Rock");
+        }
+        if(kleid[0].type == "accessoires"){
+            $("#select_kleiderart").val("Accessoire");
+        }
+        if(kleid[0].type == "headgear"){
+            $("#select_kleiderart").val("Kopfbedeckung");
+        }
+
+        
+        if(kleid[0].occasions.indexOf("Freizeit") > -1){
+            document.getElementById('freizeit').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Business") > -1){
+            document.getElementById('business').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Festlich") > -1){
+            document.getElementById('festlich').checked = true;
+        }
     },
     'click .clothedit'() {
         var niederschlag = false;
@@ -1559,6 +1714,47 @@ Template.Kopfbedeckung.events({
         if (kleid[0].forWetWeather == true) {
             console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
+        }
+
+        if(kleid[0].type == "pants"){
+            $("#select_kleiderart").val("Hose");
+        }
+        if(kleid[0].type == "jacket"){
+            $("#select_kleiderart").val("Jacke");
+        }
+        if(kleid[0].type == "shirt"){
+            $("#select_kleiderart").val("Shirt");
+        }
+        if(kleid[0].type == "tshirt"){
+            $("#select_kleiderart").val("T-Shirt");
+        }
+        if(kleid[0].type == "shoes"){
+            $("#select_kleiderart").val("Schuhe");
+        }
+        if(kleid[0].type == "dress"){
+            $("#select_kleiderart").val("Kleid");
+        }
+        if(kleid[0].type == "skirt"){
+            $("#select_kleiderart").val("Rock");
+        }
+        if(kleid[0].type == "accessoires"){
+            $("#select_kleiderart").val("Accessoire");
+        }
+        if(kleid[0].type == "headgear"){
+            $("#select_kleiderart").val("Kopfbedeckung");
+        }
+
+        
+        if(kleid[0].occasions.indexOf("Freizeit") > -1){
+            document.getElementById('freizeit').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Business") > -1){
+            document.getElementById('business').checked = true;
+        }
+
+        if(kleid[0].occasions.indexOf("Festlich") > -1){
+            document.getElementById('festlich').checked = true;
         }
     },
     'click .clothedit'() {

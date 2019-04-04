@@ -102,15 +102,22 @@
       <h1 style="color:rgb(38, 38, 38);" class="title">{{wetter}}</h1>
       <h1 style="color:rgb(38, 38, 38);" class="minmax">{{minmax}}</h1>
       <h1 style="color:rgb(38, 38, 38);" class="zustand">{{zustand}}</h1>
+      
       <div id="btnWeather" class="divweather text-center">
         <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
       </div>
-      {{#if hasOutfit}}
-      <div>
-        <i id="favicon" class="far fa-star" style="color:rgb(38, 38, 38);"></i>
+    </div>
+    {{else}}
+    <div class="weathertitle text-center">
+      <h1 class="title">{{wetter}}</h1>
+      <h1 class="minmax">{{minmax}}</h1>
+      <h1 class="zustand">{{zustand}}</h1>
+      <div id="btnWeather" class="divweather text-center">
+        <i class="fas fa-redo-alt" style="color:white;"></i>
       </div>
-      {{/if}}
-    </div> -->
+    </div>
+    {{/if}}
+
   </div>
 
   {{#if hasOutfit}}
@@ -405,8 +412,8 @@
       <div class="col col-sm-12">
         <a href="/oberteil">
           <button class="divkategorie">
+            <img class="katimg" src="assets/TShirt.jpg">
             <p class="kategoriefont">OBERTEIL</p>
-
           </button>
         </a>
       </div>
@@ -415,6 +422,7 @@
       <div class="col col-sm-12">
         <a href="/hosen">
           <button class="divkategorie">
+            <img class="katimg" src="assets/Hose.jpg">
             <p class="kategoriefont">HOSEN</p>
           </button>
         </a>
@@ -424,6 +432,7 @@
       <div class="col col-sm-12">
         <a href="/schuhe">
           <button class="divkategorie">
+            <img class="katimg" src="assets/Schuhe.jpg">
             <p class="kategoriefont">SCHUHE</p>
           </button>
         </a>
@@ -433,6 +442,7 @@
       <div class="col col-sm-12">
         <a href="/accessoire">
           <button class="divkategorie">
+            <img class="katimg" src="assets/Uhr.jpg">
             <p class="kategoriefont">ACCESSOIRE</p>
           </button>
         </a>
@@ -442,7 +452,8 @@
       <div class="col col-sm-12">
         <a href="/headgear">
           <button class="divkategorie">
-            <p class="kategoriefont">Kopfbedeckung</p>
+            <i class="fas fa-hat-wizard katimg"></i>
+            <p class="kategoriefont">KOPFBEDECKUNG</p>
           </button>
         </a>
       </div>
@@ -451,6 +462,7 @@
       <div class="col col-sm-12">
         <a href="/favoutfits">
           <button class="divkategorie">
+            <img class="katimg" src="assets/Stern.jpg">
             <p class="kategoriefont">OUTFITS</p>
           </button>
         </a>
@@ -512,8 +524,7 @@
   </div>
   <form class="addanlasscontainer">
     <div class="col-sm-12">
-      <input type="text" class="datepicker form-control inputaddanlass col-sm">
-      <i class="fas fa-calendar-alt calender-icon"></i>
+      <input type="text" class="datepicker form-control inputaddanlass col-sm" placeholder="Datum hinzufügen">
     </div>
     <br>
     <div clas="text-center">
@@ -525,14 +536,9 @@
         {{#each value in occasions}}
         <option>{{value}}</option>
         {{/each}}
-        <option>Other</option>
       </select>
     </div>
     <br>
-    <div class="text-center">
-      <input id="hiddeninputanlass" class="form-control inputnewanlass" style="display: none;"
-        placeholder="Anderen Anlass angeben">
-    </div>
     <div class="text-center">
       <div class="fehlermeldung2">
         <p id="fehlertext3" class="fehlertext"></p>
