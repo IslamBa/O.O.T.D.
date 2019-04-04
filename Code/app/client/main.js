@@ -685,7 +685,6 @@ Template.content.onRendered(() => {
                     $('#favicon').removeClass();
                     $('#favicon').addClass("far fa-star");
                 }, 100);
-
             }
         }
     });
@@ -756,12 +755,14 @@ Template.content.events({
                 console.log(result);
                 Meteor.call('checkFavorite', (error, result) => {
                     if (!error) {
-                        console.log(result);
+                        
                         if (result == false) {
+                            console.log("Ist Favorit Outfit");
                             $('#favicon').removeClass();
                             $('#favicon').addClass("fas fa-star");
                         }
                         else {
+                            console.log("Ist kein Favorit Outfit");
                             $('#favicon').removeClass();
                             $('#favicon').addClass("far fa-star");
                         }
@@ -787,11 +788,11 @@ Template.content.events({
         });
         Meteor.call('checkFavorite', (error, result) => {
             if (result == false) {
-                console.log("boiidjhf");
+                console.log("Ist Favorit Outfit");
                 $('#favicon').addClass("fas fa-star");
             }
             else {
-                console.log("passthjhj");
+                console.log("Ist kein Favorit Outfit");
                 $('#favicon').removeClass();
                 $('#favicon').addClass("far fa-star");
             }
@@ -800,8 +801,7 @@ Template.content.events({
     'click #favicon'() {
         Meteor.call('checkFavorite', (error, result) => {
             if (result == false) {
-                console.log("boiidjhf");
-                // console.log(this);
+                console.log("Ist Favorit Outfit");
             }
             else {
                 Meteor.call('addFavorite', (error, result) => {
@@ -850,7 +850,6 @@ Template.AddClothes.events({
             })
     },
     'click .clothpic'() {
-        // $("#addImageInput").click();
         navigator.camera.getPicture((res) => {
 
             localStorage.setItem("image", res);
@@ -1074,31 +1073,24 @@ Template.AddAnlass.events({
 });
 
 Template.Anlass.events({
-
     'click .arrow-back'() {
         window.history.back();
-        console.log("ghjhgh");
     }
 })
 
 Template.Kategorien.events({
-
     'click .arrow-back'() {
         window.history.back();
-        console.log("ghjhgh");
     }
 })
 
 Template.Hosen.events({
     'click .arrow-back'() {
         window.history.back();
-        console.log("ghjhgh");
     },
     'click #otherclothanlass'() {
-        console.log("gcggvgvzg");
         if ($("#otherclothanlass").is(':checked')) {
             $("#hiddeninputcloth").show();
-            console.log("fghfg");
         }
         else {
             $("#hiddeninputcloth").hide();
@@ -1111,7 +1103,6 @@ Template.Hosen.events({
 
         document.getElementById('slider').noUiSlider.set([kleid[0].weather_range.min, kleid[0].weather_range.max]);
         if (kleid[0].forWetWeather == true) {
-            console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
         }
     },
@@ -1196,18 +1187,17 @@ Template.Hosen.events({
             console.log(obj);
 
             Meteor.call('updateCloth', obj, (error, result) => {
-
+                if(!error){
+                    console.log("Kleidungsstück erfolgreich geändert");
+                }
             });
-
         }
-
     }
 })
 
 Template.Oberteil.events({
     'click .arrow-back'() {
         window.history.back();
-        console.log("ghjhgh");
     },
     'click #otherclothanlass'() {
         console.log("gcggvgvzg");
@@ -1229,7 +1219,7 @@ Template.Oberteil.events({
             console.log("hhhbh");
             document.getElementById('niederschlag').checked = true;
         }
-        console.log(this);
+        
 
     },
     'click .clothedit'() {
@@ -1314,11 +1304,11 @@ Template.Oberteil.events({
             $("#exampleModalCenter").modal('hide');
 
             Meteor.call('updateCloth', obj, (error, result) => {
-
+                if(!error){
+                    console.log("Kleidungsstück erfolgreich geändert");
+                }
             });
-
         }
-
     }
 })
 
@@ -1427,11 +1417,11 @@ Template.Schuhe.events({
             }
 
             Meteor.call('updateCloth', obj, (error, result) => {
-
+                if(!error){
+                    console.log("Kleidungsstück erfolgreich geändert");
+                }
             });
-
         }
-
     }
 })
 
@@ -1540,29 +1530,26 @@ Template.Accessoire.events({
             }
 
             Meteor.call('updateCloth', obj, (error, result) => {
-
+                if(!error){
+                    console.log("Kleidungsstück erfolgreich geändert");
+                }
             });
-
         }
-
     }
 })
 
 Template.Kopfbedeckung.events({
     'click .arrow-back'() {
         window.history.back();
-        console.log("ghjhgh");
     },
     'click #otherclothanlass'() {
         console.log("gcggvgvzg");
         if ($("#otherclothanlass").is(':checked')) {
             $("#hiddeninputcloth").show();
-            console.log("fghfg");
         }
         else {
             $("#hiddeninputcloth").hide();
         }
-
     },
     'click .edit-icon': function (e) {
         updateID = e.currentTarget.id;
@@ -1653,11 +1640,11 @@ Template.Kopfbedeckung.events({
             }
 
             Meteor.call('updateCloth', obj, (error, result) => {
-
+                if(!error){
+                    console.log("Kleidungsstück erfolgreich geändert");
+                }
             });
-
         }
-
     }
 })
 
@@ -1689,11 +1676,9 @@ Template.AddClothes.onRendered(() => {
     $("#otherclothanlass").on('change', function () {
         if ($(this).is(':checked')) {
             $("#hiddeninputcloth").show();
-            console.log("fghfghg");
         }
         else {
             $("#hiddeninputcloth").hide();
-            console.log("klklklkl");
         }
     });
 });
