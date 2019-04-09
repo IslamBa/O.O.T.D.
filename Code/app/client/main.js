@@ -727,12 +727,14 @@ Template.content.events({
             $('.btnLogout').fadeIn(200);
             $('.allcloth').fadeIn(400);
             $('.anlassbtn').fadeIn(600);
+            $('.infobtn').fadeIn(800);
             allbtncount--;
         }
         else {
             $('.btnLogout').fadeOut(600);
             $('.allcloth').fadeOut(400);
             $('.anlassbtn').fadeOut(200);
+            $('.infobtn').fadeOut(200);
             allbtncount++;
         }
     },

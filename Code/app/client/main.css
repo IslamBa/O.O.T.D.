@@ -199,6 +199,16 @@ body,html{
 	background-color: rgb(38, 38, 38);
 }
 
+.infobtn{
+	position: fixed;
+	right : 310px;
+	bottom : 30px;
+	height : 60px;
+	width : 60px;
+	border-radius: 30px !important;
+	background-color: rgb(38, 38, 38);
+}
+
 .clothpic{
 	margin-top: 50px;
 	height: 80px;
