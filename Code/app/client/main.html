@@ -88,34 +88,37 @@
 
     </div>
 
-    <div class="weathertitle text-center">
-      <h1 style="color:rgb(38, 38, 38);" class="title">{{wetter}}</h1>
-      <h1 style="color:rgb(38, 38, 38);" class="minmax">{{minmax}}</h1>
-      <h1 style="color:rgb(38, 38, 38);" class="zustand">{{zustand}}</h1>
-      
-      <div id="btnWeather" class="divweather text-center">
-        <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
-      </div>
-    </div>
     {{else}}
     <div class="weathertitle text-center">
       <h1 class="title">{{wetter}}</h1>
       <h1 class="minmax">{{minmax}}</h1>
       <h1 class="zustand">{{zustand}}</h1>
       <div id="btnWeather" class="divweather text-center">
-        <i class="fas fa-redo-alt" style="color:white;"></i>
+        <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
       </div>
     </div>
     {{/if}}
-
+    <!-- <div class="weathertitle text-center">
+      <h1 style="color:rgb(38, 38, 38);" class="title">{{wetter}}</h1>
+      <h1 style="color:rgb(38, 38, 38);" class="minmax">{{minmax}}</h1>
+      <h1 style="color:rgb(38, 38, 38);" class="zustand">{{zustand}}</h1>
+      <div id="btnWeather" class="divweather text-center">
+        <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
+      </div>
+      {{#if hasOutfit}}
+      <div>
+        <i id="favicon" class="far fa-star" style="color:rgb(38, 38, 38);"></i>
+      </div>
+      {{/if}}
+    </div> -->
   </div>
 
+  {{#if hasOutfit}}
   <div class="newOutfit">
     <button id="getOutfit" class="btn btn-primary startButton">
       <i class="fas fa-tshirt"></i>
     </button>
   </div>
-  {{#if hasOutfit}}
   <div class="newFav">
     <button class="btn btn-primary startButton">
       <i id="favicon" class="far fa-star" style="color:white;"></i>
