@@ -710,7 +710,7 @@ Template.content.events({
         $('#btnWeather').addClass('spinner');
         Meteor.call('getWeather', function (error, result) {
             if (result != false) {
-                $(".title").text(result.weather.temperatur.temp_max + "°");
+                // $(".title").text(result.weather.temperatur.temp_max + "°");
                 console.log("erfolgreich wetter aktualisiert");
                 $('#btnWeather').removeClass('spinner');
             }
