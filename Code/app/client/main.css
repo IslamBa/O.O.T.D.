@@ -160,10 +160,10 @@ body,html{
 }
 
 .allbtndown{
-	right : 30px;
+	right : 20px;
 	bottom : 30px;
-	height : 60px;
-	width : 60px;
+	height : 50px;
+	width : 50px;
 	border-radius: 30px !important;
 	position: fixed;
 	background-color: rgb(38, 38, 38);
@@ -171,40 +171,40 @@ body,html{
 
 .btnLogout{
 	position: fixed;
-	right : 100px;
+	right : 80px;
 	bottom : 30px;
-	height : 60px;
-	width : 60px;
+	height : 50px;
+	width : 50px;
 	border-radius: 30px !important;
 	background-color: rgb(38, 38, 38);
 }
 
 .allcloth{
 	position: fixed;
-	right : 170px;
+	right : 140px;
 	bottom : 30px;
-	height : 60px;
-	width : 60px;
+	height : 50px;
+	width : 50px;
 	border-radius: 30px !important;
 	background-color: rgb(38, 38, 38);
 }
 
 .anlassbtn{
 	position: fixed;
-	right : 240px;
+	right : 200px;
 	bottom : 30px;
-	height : 60px;
-	width : 60px;
+	height : 50px;
+	width : 50px;
 	border-radius: 30px !important;
 	background-color: rgb(38, 38, 38);
 }
 
 .infobtn{
 	position: fixed;
-	right : 310px;
+	right : 260px;
 	bottom : 30px;
-	height : 60px;
-	width : 60px;
+	height : 50px;
+	width : 50px;
 	border-radius: 30px !important;
 	background-color: rgb(38, 38, 38);
 }
@@ -227,6 +227,20 @@ body,html{
 .divclothpic{
 	margin-left: auto !important;
 	margin-right: auto !important;
+}
+
+.vkleidung{
+	padding-top: 60px;
+}
+
+.vicon{
+	height: 40px !important;
+	font-size: 5px !important;
+}
+
+.vfont{
+	z-index: 10;
+	color:black;
 }
 
 .divweather{

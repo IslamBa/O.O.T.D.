@@ -87,6 +87,14 @@
       <span class="cloudsnow3"></span>
 
     </div>
+    <div class="weathertitle text-center">
+      <h1 class="title" style="color:rgb(38, 38, 38);">{{wetter}}</h1>
+      <h1 class="minmax" style="color:rgb(38, 38, 38);">{{minmax}}</h1>
+      <h1 class="zustand" style="color:rgb(38, 38, 38);">{{zustand}}</h1>
+      <div id="btnWeather" class="divweather text-center">
+        <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
+      </div>
+    </div>
 
     {{else}}
     <div class="weathertitle text-center">
@@ -94,7 +102,7 @@
       <h1 class="minmax">{{minmax}}</h1>
       <h1 class="zustand">{{zustand}}</h1>
       <div id="btnWeather" class="divweather text-center">
-        <i class="fas fa-redo-alt" style="color:rgb(38, 38, 38);"></i>
+        <i class="fas fa-redo-alt" style="color:white"></i>
       </div>
     </div>
     {{/if}}
@@ -124,7 +132,6 @@
       <i id="favicon" class="far fa-star" style="color:white;"></i>
     </button>
   </div>
-  {{/if}}
 
   <div class="container text-center startseite-kleidung">
     <div class="row justify-content-around slider">
@@ -135,6 +142,11 @@
       {{/if}} {{/each}}
     </div>
   </div>
+  {{else}}
+    <p class="text-center" style="padding-top:50%;">Nicht genügend Kleidungststücke für ein Outfit eingefügt!</p>
+  {{/if}}
+
+ 
 
 
   <button class="allbtn allbtndown btn">
@@ -172,11 +184,11 @@
         </div>
         <div class="modal-body">
           <p>Schritt 1: Benutzen sie die Navigation Buttons, um sich zu navigieren</p>
-          <img src="assets/Bild1.jpg">
+          <img style="width : 200px;" src="assets/Bild1.jpg">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter2">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -200,10 +212,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter1">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter3">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -226,10 +238,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter2">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter4">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -249,14 +261,14 @@
         <div class="modal-body">
           <p>Schritt 4: Wählen sie nun aus ob Sie ein Foto von ihrem Kleidungsstück machen wollen oder es von ihrer Galerie
             holen möchten </p>
-          <img src="assets/Bild4.jpg">
+          <img style="width : 200px;" src="assets/Bild4.jpg">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter3">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter5">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -280,10 +292,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter4">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter6">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -306,10 +318,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter5">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter7">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -332,10 +344,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter6">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter8">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -359,10 +371,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter7">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter9">
-            <span class="glyphicon glyphicon-chevron-right"></span> Rechts
+            <span class="glyphicon glyphicon-chevron-right"></span> <i class="fas fa-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -385,7 +397,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalCenter8">
-            <span class="glyphicon glyphicon-chevron-left"></span> Links
+            <span class="glyphicon glyphicon-chevron-left"></span> <i class="fas fa-arrow-left"></i>
           </button>
         </div>
       </div>
@@ -521,28 +533,36 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
-  <div class="text-center">
-    <p>Vorgefertigte Kleidungstücke wählen oder selber einstellen!</p>
-    <div class="divdailycloth col-5">
-      <img alt="Bild" class="imgOut">
-    </div>
-    <div class="divdailycloth col-5">
-      <img alt="Bild" class="imgOut">
-    </div>
-    <div class="divdailycloth col-5">
-      <img alt="Bild" class="imgOut">
-    </div>
-    <div class="divdailycloth col-5">
-      <img alt="Bild" class="imgOut">
-    </div>
-    <div class="divdailycloth col-5">
-      <img alt="Bild" class="imgOut">
-    </div>
-    <div class="divdailycloth col-5">
-      <img alt="Bild" class="imgOut">
+   <div class="text-center vkleidung">
+     <p>Vorgefertigte Kleidungstücke wählen.</p>
+     <div class="row justify-content-around slider">
+        <div class="divdailycloth col-5 vtshirt">
+          <p class="vfont">Tshirt</p>  
+        </div>
+        <div class="divdailycloth col-5 vshirt">
+          <p class="vfont">Shirt</p>  
+        </div>
+        <div class="divdailycloth col-5 vjacke">
+          <p class="vfont">Jacke</p>  
+        </div>
+        <div class="divdailycloth col-5 vschuhe">
+          <p class="vfont">Schuhe</p>  
+        </div>
+        <div class="divdailycloth col-5 vkleid">
+          <p class="vfont">Kleid</p>  
+        </div>
+        <div class="divdailycloth col-5 vrock">
+          <p class="vfont">Rock</p>  
+        </div>
+        <div class="divdailycloth col-5 vgear">
+          <p class="vfont">Kopfbedeckung</p>  
+        </div>
+        <div class="divdailycloth col-5 vaccessoire">
+          <p class="vfont">Accessoire</p>  
+        </div>
     </div>
   </div>
-  <div style="display:none">
+  <div class="addshow" style="display:none">
     <div class="divclothpic text-center">
       <button class="clothpic btn btn-primary">
         <i class="fas fa-image"></i>
@@ -750,6 +770,7 @@
     </div>
   </div>
   <div class="container anlasse">
+    {{#if anlass}}
     {{#each value in anlass}}
     <div class="row">
       <div class="anlassdiv col col-sm-12">
@@ -760,6 +781,9 @@
       </div>
     </div>
     {{/each}}
+    {{else}}
+    <p class="text-center" style="padding-top:50%;">Keine Anlässe vorhanden!</p>
+    {{/if}}
   </div>
   <a href="/addanlass">
     <button class="allbtndown btn">
@@ -805,6 +829,7 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
+  {{#if shirts}}
   {{#each value in shirts}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -815,6 +840,9 @@
     <hr>
   </div>
   {{/each}}
+  {{else}}
+  <p class="text-center" style="margin-top: 50%;">Keine Oberteile vorhanden!</p>
+  {{/if}}
 
 
   <!--Modal-->
@@ -929,6 +957,7 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
+  {{#if hosen}}
   {{#each value in hosen}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -939,6 +968,9 @@
     <hr>
   </div>
   {{/each}}
+  {{else}}
+  <p class="text-center" style="margin-top: 50%;">Keine Hosen vorhanden!</p>
+  {{/if}}
 
   <!--Modal-->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1052,6 +1084,7 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
+  {{#if schuhe}}
   {{#each value in schuhe}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -1062,6 +1095,9 @@
     <hr>
   </div>
   {{/each}}
+  {{else}}
+  <p class="text-center" style="margin-top: 50%;">Keine Schuhe vorhanden!</p>
+  {{/if}}
 
   <!--Modal-->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1175,7 +1211,8 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
-  {{#each value in accessoires}}
+  {{#if accessoire}}
+  {{#each value in accessoire}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
@@ -1185,6 +1222,9 @@
     <hr>
   </div>
   {{/each}}
+  {{else}}
+  <p class="text-center" style="margin-top: 50%;">Keine Accessoire vorhanden!</p>
+  {{/if}}
 
   <!--Modal-->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1298,6 +1338,7 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
+  {{#if headgear}}
   {{#each value in headgear}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
@@ -1308,6 +1349,9 @@
     <hr>
   </div>
   {{/each}}
+  {{else}}
+  <p class="text-center" style="margin-top: 50%;">Keine Kopfbedeckungen vorhanden!</p>
+  {{/if}}
 
   <!--Modal-->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -1422,7 +1466,9 @@
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
   <br>
-  <br> {{#each value in favoutfits}}
+  <br> 
+  {{#if favoutfits}}
+  {{#each value in favoutfits}}
   <div class="favdiv text-center">
     <p style="color:white;">FavOutfits</p>
   </div>
@@ -1434,6 +1480,10 @@
     </div>
     <hr>
   </div>
-  {{/each}} {{/each}}
+  {{/each}} 
+  {{/each}}
+  {{else}}
+  <p class="text-center" style="margin-top: 50%;">Keine Favourite Outfits vorhanden!</p>
+  {{/if}}
 
 </template>

@@ -418,7 +418,13 @@ Template.Oberteil.helpers({
     shirts() {
         if (Profile.findOne()) {
             var shirts = Profile.findOne().kleider.filter(el => el.type == "shirt" || el.type == "tshirt" || el.type == "jacket" || el.type == "dress");
-            return shirts;
+            if(shirts.length != 0){
+                return shirts;
+            }
+            else{
+                return false;
+            }
+            
         }
     }
 });
@@ -428,7 +434,13 @@ Template.Hosen.helpers({
     hosen() {
         if (Profile.findOne()) {
             var hosen = Profile.findOne().kleider.filter(el => el.type == "pants" || el.type == "skirt");
-            return hosen;
+            if(hosen.length != 0){
+                return hosen;
+            }
+            else{
+                return false;
+            }
+            
         }
     }
 });
@@ -438,7 +450,13 @@ Template.Schuhe.helpers({
     schuhe() {
         if (Profile.findOne()) {
             var schuhe = Profile.findOne().kleider.filter(el => el.type == "shoes");
-            return schuhe;
+            if(schuhe.length != 0){
+                return schuhe;
+            }
+            else{
+                return false;
+            }
+            
         }
     }
 });
@@ -447,7 +465,14 @@ Template.Accessoire.helpers({
     accessoires() {
         if (Profile.findOne()) {
             var accessoire = Profile.findOne().kleider.filter(el => el.type == "accessoires");
-            return accessoire;
+            if(accessoire.length != 0)
+            {
+                return accessoire;
+            }
+            else{
+                return false;
+            }
+            
         }
     }
 });
@@ -456,7 +481,13 @@ Template.Kopfbedeckung.helpers({
     headgear() {
         if (Profile.findOne()) {
             var headgear = Profile.findOne().kleider.filter(el => el.type == "headgear");
-            return headgear;
+            if(headgear.length != 0){
+                return headgear;
+            }
+            else{
+                return false;
+            }
+            
         }
     }
 });
@@ -465,7 +496,13 @@ Template.Anlass.helpers({
     anlass() {
         if (Profile.findOne()) {
             var anlass = Profile.findOne().occasions;
-            return anlass;
+            if(anlass.length != 0){
+                return anlass;
+            }
+            else{
+                return false;
+            }
+            
         }
     },
     wetter() {
@@ -584,14 +621,18 @@ Template.FavOutfits.helpers({
 
                 element.pieces.forEach(el => {
 
-                    //pieceArr.push(Profile.findOne({kleider:{id:el}}));
-
                     pieceArr.push(Profile.findOne().kleider.find(kleid => kleid.id == el));
                 });
                 newFavs.push(pieceArr);
             });
             console.log(newFavs);
-            return newFavs;
+            if(newFavs.length != 0){
+                return newFavs;
+            }
+            else{
+                return false;
+            }
+            
         }
     }
 })
@@ -824,11 +865,74 @@ Template.content.events({
 
 Template.AddClothes.events({
     'click #btn_addCloth'() {
-        alert("passz");
     },
     'click .arrow-back'() {
         window.history.back();
         console.log("ghjhgh");
+    },
+    'click .vtshirt'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([5,30]);
+        $("#select_kleiderart").val("T-Shirt");
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vjacke'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([-10,10]);
+        $("#select_kleiderart").val("Jacke");
+        document.getElementById('niederschlag').checked = true;
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vshirt'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([0,20]);
+        $("#select_kleiderart").val("Shirt");
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vschuhe'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([-15,20]);
+        $("#select_kleiderart").val("Schuhe");
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vkleid'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([10,30]);
+        $("#select_kleiderart").val("Kleid");
+    },
+    'click .vrock'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([10,30]);
+        $("#select_kleiderart").val("Rock");
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vgear'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([-10,10]);
+        $("#select_kleiderart").val("Kopfbedeckung");
+        document.getElementById('niederschlag').checked = true;
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vaccessoire'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([-20,50]);
+        $("#select_kleiderart").val("Accessoire");
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
     },
     'change #otherclothanlass'() {
         if ($(this).is(':checked')) {
@@ -1022,7 +1126,6 @@ Template.AddAnlass.events({
 
             Meteor.call('addOccasion', obj, (error, result) => {
                 if (!error) {
-                    alert("passt");
 
                     var user = Profile.findOne();
                     var found = false;
@@ -1036,7 +1139,7 @@ Template.AddAnlass.events({
                     });
                     if (found == false) {
                         console.log("Es gibt kein Outfit für dieses Anlass");
-                        $("#fehlertext3").text("Für diesen Anlass sind nicht genug Kleidungstsücke vorhanden!")
+                        $("#fehlertext3").text("Kein Outfit für dieses Anlass vorhanden!");
                         $(".fehlermeldung2").slideDown(200, function () {
                             setTimeout(function () {
                                 $('.fehlermeldung2').fadeOut();
@@ -1045,7 +1148,7 @@ Template.AddAnlass.events({
                     }
                 }
                 else {
-                    alert(error);
+                    console.log(error);
                 }
             });
         }
