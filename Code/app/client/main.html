@@ -149,7 +149,7 @@
  
 
 
-  <button class="allbtn allbtndown btn">
+  <button id="allbtn" class="allbtn allbtndown btn">
     <i class="fas fa-bars" style="color:white;"></i>
   </button>
   <a href="/">
@@ -489,9 +489,7 @@
         </div>
         <br>
         <div class="login-div form-group">
-
-          <!--<label class="login-text">Passwort</label>-->
-          <input id="zip" type="text" class="validate login-input form-control" placeholder="ZIP">
+          <input id="zip" type="text" class="validate login-input form-control" placeholder="PLZ">
           <i class="fas fa-map-marker-alt login-icon"></i>
         </div>
         <br>
@@ -541,6 +539,9 @@
         </div>
         <div class="divdailycloth col-5 vshirt">
           <p class="vfont">Shirt</p>  
+        </div>
+        <div class="divdailycloth col-5 vhose">
+          <p class="vfont">Hose</p>  
         </div>
         <div class="divdailycloth col-5 vjacke">
           <p class="vfont">Jacke</p>  
@@ -1211,8 +1212,8 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
-  {{#if accessoire}}
-  {{#each value in accessoire}}
+  {{#if accessoires}}
+  {{#each value in accessoires}}
   <div>
     <img class="einzelkleiderbilder" src="{{value.image}}">
     <div>
@@ -1465,8 +1466,6 @@
   <div class="arrow-back">
     <i class="fas fa-chevron-left icon-back" style="color:black;"></i>
   </div>
-  <br>
-  <br> 
   {{#if favoutfits}}
   {{#each value in favoutfits}}
   <div class="favdiv text-center">

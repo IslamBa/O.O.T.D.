@@ -189,6 +189,14 @@ Template.register.events({
                 }, 1200);
             });
         }
+        else if(isNaN(zip)){
+            $(".fehlertext").text("Gültige PLZ eingeben!")
+            $(".fehlermeldung").slideDown(200, function () {
+                setTimeout(function () {
+                    $('.fehlermeldung').fadeOut();
+                }, 1200);
+            });
+        }
         else {
             Accounts.createUser({
                 username: username,
@@ -763,15 +771,20 @@ Template.content.events({
         });
     },
     'click .allbtn'() {
+        document.getElementById("allbtn").disabled = true;
         if (allbtncount == 1) {
             $('.btnLogout').fadeIn(200);
             $('.allcloth').fadeIn(400);
             $('.anlassbtn').fadeIn(600);
-            $('.infobtn').fadeIn(800);
+            $('.infobtn').fadeIn(800,function(){
+                document.getElementById("allbtn").disabled = false;
+            });
             allbtncount--;
         }
         else {
-            $('.btnLogout').fadeOut(600);
+            $('.btnLogout').fadeOut(600,function(){
+                document.getElementById("allbtn").disabled = false;
+            });
             $('.allcloth').fadeOut(400);
             $('.anlassbtn').fadeOut(200);
             $('.infobtn').fadeOut(200);
@@ -892,6 +905,14 @@ Template.AddClothes.events({
         $(".addshow").show();
         document.getElementById('slider').noUiSlider.set([0,20]);
         $("#select_kleiderart").val("Shirt");
+        slidermin = document.getElementById('slider').noUiSlider.get()[0];
+        slidermax = document.getElementById('slider').noUiSlider.get()[1];
+    },
+    'click .vhose'(){
+        $(".vkleidung").hide();
+        $(".addshow").show();
+        document.getElementById('slider').noUiSlider.set([-10,20]);
+        $("#select_kleiderart").val("Hose");
         slidermin = document.getElementById('slider').noUiSlider.get()[0];
         slidermax = document.getElementById('slider').noUiSlider.get()[1];
     },
